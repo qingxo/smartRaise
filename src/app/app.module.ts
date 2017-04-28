@@ -1,20 +1,49 @@
+;
+import { SharedComponent } from './shared/shared.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { RouterModule } from '@angular/router';
+import { ROUTER_CONFIG } from './app.routes';
 
+import { Http,HttpModule, XHRBackend, RequestOptions }    from '@angular/http';
 import { AppComponent } from './app.component';
+import {OneComponent} from './one/one.component'
+import {TestComponent} from './one/test/test.component';
+import { LoginComponent } from './login/login.component';
+import { CoreComponent } from './core/core.component';
+
+import { InterceptedHttp }   from './shared/base.http.interceptor';
+
+export function httpFactory(xhrBackend: XHRBackend, requestOptions: RequestOptions): Http {
+    return new InterceptedHttp(xhrBackend, requestOptions);
+}
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    OneComponent,
+    TestComponent,
+    LoginComponent,
+    CoreComponent,
+    SharedComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(ROUTER_CONFIG)
+
   ],
-  providers: [],
+  providers: [
+      {
+        provide: Http,
+          useFactory: httpFactory,
+          deps: [XHRBackend, RequestOptions]
+        }],
   bootstrap: [AppComponent]
 })
+
+
+
 export class AppModule { }

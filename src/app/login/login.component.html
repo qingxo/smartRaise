@@ -1,0 +1,26 @@
+<div class="login" ng-keypress="$ctrl.loginByEnter($event)">
+  <div class="login-wrap">
+    <div class="login-center">
+      <div class="login-cont">
+        <div class="login-title">
+          <h1>智汇健康医养护平台</h1>
+        </div>
+        <div class="login-form">
+          <!-- <span class="login-errmsg" ng-show="$ctrl.loginErr">{{$ctrl.errormsg}}</span> -->
+          <div class="login-input">
+            <input type="text" class="form-text" placeholder="账号：" ng-model="$ctrl.LoginName">
+          </div>
+          <div class="login-input">
+            <input type="password" class="form-text" placeholder="密码：" ng-model="$ctrl.password"  >
+          </div>
+          <div class="login-input submit">
+            <span class="login-button" (click) = "login()">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</span>
+          </div>
+          <div class="login-input rememberPwd">
+            <input type="checkbox" id="rememberPWD" ng-model="$ctrl.rememberPWD"><label for="rememberPWD">记住密码</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
