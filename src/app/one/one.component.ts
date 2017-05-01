@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OneComponent implements OnInit {
 
+  private tt:string = 'godlike'
   constructor() { }
 
   ngOnInit() {
