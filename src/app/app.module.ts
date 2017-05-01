@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { CoreComponent } from './core/core.component';
 
 import { InterceptedHttp }   from './shared/base.http.interceptor';
+import { requestOptionsProvider} from './shared/default.request.option';
 
 export function httpFactory(xhrBackend: XHRBackend, requestOptions: RequestOptions): Http {
     return new InterceptedHttp(xhrBackend, requestOptions);
@@ -35,12 +36,7 @@ export function httpFactory(xhrBackend: XHRBackend, requestOptions: RequestOptio
     RouterModule.forRoot(ROUTER_CONFIG)
 
   ],
-  providers: [
-      {
-        provide: Http,
-          useFactory: httpFactory,
-          deps: [XHRBackend, RequestOptions]
-        }],
+  providers: [requestOptionsProvider],
   bootstrap: [AppComponent]
 })
 
