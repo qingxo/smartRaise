@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {LoginService} from './login.service';
+import {Observable} from'rxjs/Rx';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -8,14 +9,21 @@ import {LoginService} from './login.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  private loginAction:Observable<any>
+  constructor(private loginService:LoginService) {
+  }
 
   ngOnInit() {
-
+    this.loginAction =  this.loginService.login('test')
   }
   login() {
     console.log("haha")
-    // LoginService.login('test')
+    this.loginAction.subscribe(
+      (data) =>{
+        console.log(data)
+      }
+    )
+
   }
 
 }
