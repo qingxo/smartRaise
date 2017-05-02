@@ -10,8 +10,7 @@
   .login-wrap {
     position: relative;
     height: 600px;
-    background-color: #007dff;
-    // background-image: url("/img/login-logo.png");
+    background-color: #fcc80e;
     background-repeat: no-repeat;
     background-position: 75px 184px;
     background-size: 512px 110px;
@@ -22,6 +21,12 @@
       position: relative;
       height: 800px;
       margin: auto;
+      background-color: #fcc80e;
+      background-image: url("/assets/img/login-logo.png");
+      background-repeat: no-repeat;
+      background-position: 75px 204px;
+      background-size: 512px 110px;
+      overflow: hidden;
     .login-cont {
       width: 320px;
       position: absolute;
@@ -34,7 +39,7 @@
           font-size: 30px;
           padding: 0;
           margin: 90px 0 0;
-          color:white;
+          color:#6a4306;
         }
         h2 {
           font-size: 28px;
@@ -84,7 +89,7 @@
     font-size: 16px;
     text-align: center;
     text-decoration: none;
-    background-color: #ffe07d;
+    background-color: #8a85ff;
     color: #fff;
     border: 1px solid #979797;
     box-shadow: inset 0px 2px 4px 0px rgba(255,255,255,0.49);

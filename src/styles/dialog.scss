@@ -1,0 +1,55 @@
+.ngdialog-content {
+  // padding: 0 !important;
+  .dialog-head {
+    height: 50px;
+    line-height: 50px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    h3 {
+      margin: 0;
+      text-align: center;
+      color: #fff;
+      font-size: 18px;
+    }
+    &.warn {
+      background-color: #fd7d7e;
+    }
+  }
+  .dialog-content {
+    font-size: 16px;
+    padding: 20px 30px;
+    td {
+      padding: 10px 0;
+      &.attr {
+        min-width: 120px;
+        color: #bcc3d4;
+        vertical-align: top;
+      }
+      &.value {
+        min-width: 120px;
+        color: #8d93a3;
+      }
+    }
+    .textarea {
+      width: 375px;
+      height: 100px;
+      resize: vertical;
+    }
+  }
+  .dialog-footer {
+    padding: 0 30px 30px;
+    .button-wrap {
+      text-align: right;
+    }
+    .button {
+      margin-left: 20px;
+      cursor: pointer;
+      &.default {
+        color: #d2d6e1;
+      }
+      &.primary {
+        color: #6f99fc;
+      }
+    }
+  }
+}

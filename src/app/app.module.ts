@@ -15,6 +15,7 @@ import { CoreComponent } from './core/core.component';
 
 import { InterceptedHttp }   from './shared/base.http.interceptor';
 import { requestOptionsProvider} from './shared/default.request.option';
+import { HomeComponent } from './home/home.component';
 
 export function httpFactory(xhrBackend: XHRBackend, requestOptions: RequestOptions): Http {
     return new InterceptedHttp(xhrBackend, requestOptions);
@@ -27,7 +28,8 @@ export function httpFactory(xhrBackend: XHRBackend, requestOptions: RequestOptio
     TestComponent,
     LoginComponent,
     CoreComponent,
-    SharedComponent
+    SharedComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

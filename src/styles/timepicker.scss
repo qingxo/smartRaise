@@ -1,0 +1,70 @@
+.date-picker {
+  position: absolute;
+  top: 20px;
+  right: 0;
+  z-index: 9999;
+}
+
+.datetimepicker {
+  background-color: #edf2fe;
+  box-shadow: 3px 5px 6px 0 rgba(188, 196, 216, 0.7);
+  .table {
+    width: 100%;
+    max-width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+    .switch {
+      color: #6895fc;
+    }
+    .dow,
+    .day {
+      color: #b1b9cd;
+      background-color: #fff;
+      &.past,
+      &.future {
+        color: #d7dbe5;
+      }
+      &.disabled {
+        color: #ebebeb;
+      }
+    }
+    .dow {
+      border-bottom: 1px solid #979797;
+    }
+    .current {
+      color: #000;
+    }
+    .active {
+      color: #6895fc;
+      background: #fff !important;
+      text-shadow: none;
+    }
+    td,
+    th {
+      padding: 5px;
+      line-height: 1.42857143;
+      border-radius: 0;
+      vertical-align: top;
+    }
+    th {
+      vertical-align: bottom;
+    }
+  }
+  .glyphicon {
+    display: inline-block;
+    width: 9px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: 9px 16px;
+    > span {
+      display: none;
+    }
+    &.glyphicon-arrow-left {
+      background-image: url("/img/arrow-left.png");
+    }
+    &.glyphicon-arrow-right {
+      background-image: url("/img/arrow-right.png");
+    }
+  }
+}
