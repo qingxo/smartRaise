@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {LoginService} from './login.service';
 import {Observable} from'rxjs/Rx';
+import {Router} from '@angular/router';
 import * as md5 from 'md5';
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   private passWord:string = ''
   private loginName:string ='sys'
   private errorMsg:string = ''
-  constructor(private loginService:LoginService) {
+  constructor(private loginService:LoginService,private router:Router) {
   }
 
   ngOnInit() {
@@ -30,7 +31,7 @@ export class LoginComponent implements OnInit {
       (data) =>{
         console.log(data)
         if(data.success){
-
+          this.router.navigate(['/home/client'])
         }else{
         this.errorMsg = data.errMsg
         }

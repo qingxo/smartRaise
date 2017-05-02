@@ -8,14 +8,12 @@ import { ROUTER_CONFIG } from './app.routes';
 
 import { Http,HttpModule, XHRBackend, RequestOptions }    from '@angular/http';
 import { AppComponent } from './app.component';
-import {OneComponent} from './one/one.component'
-import {TestComponent} from './one/test/test.component';
 import { LoginComponent } from './login/login.component';
 import { CoreComponent } from './core/core.component';
 
 import { InterceptedHttp }   from './shared/base.http.interceptor';
 import { requestOptionsProvider} from './shared/default.request.option';
-import { HomeComponent } from './home/home.component';
+import { HomeModule } from './home';
 
 export function httpFactory(xhrBackend: XHRBackend, requestOptions: RequestOptions): Http {
     return new InterceptedHttp(xhrBackend, requestOptions);
@@ -24,17 +22,15 @@ export function httpFactory(xhrBackend: XHRBackend, requestOptions: RequestOptio
 @NgModule({
   declarations: [
     AppComponent,
-    OneComponent,
-    TestComponent,
     LoginComponent,
     CoreComponent,
-    SharedComponent,
-    HomeComponent
+    SharedComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    HomeModule,
     RouterModule.forRoot(ROUTER_CONFIG)
 
   ],
