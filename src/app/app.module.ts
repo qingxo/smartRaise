@@ -10,7 +10,7 @@ import { Http,HttpModule, XHRBackend, RequestOptions }    from '@angular/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { CoreComponent } from './core/core.component';
-
+import {LoginGuard} from './guard/LoginGuard';
 import { InterceptedHttp }   from './shared/base.http.interceptor';
 import { requestOptionsProvider} from './shared/default.request.option';
 import { HomeModule } from './home';
@@ -34,7 +34,7 @@ export function httpFactory(xhrBackend: XHRBackend, requestOptions: RequestOptio
     RouterModule.forRoot(ROUTER_CONFIG)
 
   ],
-  providers: [requestOptionsProvider],
+  providers: [requestOptionsProvider,LoginGuard],
   bootstrap: [AppComponent]
 })
 

@@ -3,6 +3,7 @@ import {LoginService} from './login.service';
 import {Observable} from'rxjs/Rx';
 import {Router} from '@angular/router';
 import * as md5 from 'md5';
+import storage from '../shared/storage';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,17 +20,16 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.loginAction =  this.loginService.login("password="+this.passWord+"&userName="+this.loginName)
   }
+
   login() {
     var datas = {
       "password":md5(this.passWord),
       "userName":this.loginName
     }
-    console.log(this.passWord+","+this.loginName)
     this.loginService.login(datas).subscribe(
       (data) =>{
-        console.log(data)
+        storage.set('state',data.data)
         if(data.success){
           this.router.navigate(['/home/client'])
         }else{
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
         }
       }
     )
-
   }
+
 
 }
