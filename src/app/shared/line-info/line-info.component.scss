@@ -1,0 +1,11 @@
+$mainPageColor:#6f4100;
+.head-tips{
+  height:55px;
+  line-height: 55px;
+  .tips-info{
+    font-size:22px;
+    font-weight: bold;
+    padding-left:15px;
+  }
+  border-bottom: 1px solid $mainPageColor;
+}
