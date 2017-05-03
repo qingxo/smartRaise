@@ -1,0 +1,24 @@
+$mainComponentColor:#6f4100;
+.search-line{
+  display:inline-block;
+  input{
+    border: 1px solid $mainComponentColor;
+    color: $mainComponentColor;
+    width: 200px;
+    margin-right: 8px;
+    border-radius: 5px;
+    padding-left: 8px;
+    height: 25px;
+  }
+  span{
+    border: 1px solid $mainComponentColor;
+    width: 50px;
+    display: inline-block;
+    background-color: white;
+    padding: 2px 5px;
+    border-radius: 5px;
+    vertical-align: top;
+    text-align: center;
+  }
+
+}
