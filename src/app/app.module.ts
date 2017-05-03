@@ -14,6 +14,7 @@ import {LoginGuard} from './guard/LoginGuard';
 import { InterceptedHttp }   from './shared/base.http.interceptor';
 import { requestOptionsProvider} from './shared/default.request.option';
 import { HomeModule } from './home';
+import {SharedModule} from './shared';
 
 export function httpFactory(xhrBackend: XHRBackend, requestOptions: RequestOptions): Http {
     return new InterceptedHttp(xhrBackend, requestOptions);
@@ -29,8 +30,9 @@ export function httpFactory(xhrBackend: XHRBackend, requestOptions: RequestOptio
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
     HomeModule,
+    SharedModule,
+    HttpModule,
     RouterModule.forRoot(ROUTER_CONFIG)
 
   ],
