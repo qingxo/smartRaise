@@ -1,4 +1,4 @@
 <div class="search-line">
-  <input type="text" name="" placeholder="请输入姓名、手机号" ng-model="$ctrl.queryInfo" (keydown)="search($event)">
+  <input type="text" name="query" placeholder="请输入姓名、手机号" [(ngModel)]="searchInput" >
   <span (click)="searchInfo()">查找</span>
 </div>

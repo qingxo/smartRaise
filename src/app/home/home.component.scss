@@ -354,10 +354,23 @@ $homeMainColor:#6f4100;
   }
 }
 
-.right-content{
-  min-height: 900px;
-}
+.container {
+  padding-top: 0px;
+  .content{
+    transition: all .3s;
+    margin-left: 235px;
+    margin-top:80px;
+    min-height: 900px;
+    background-color: #f7fafc;
+    .right-content{
+      background-color: #f7fafc;
+      border-radius: 0;
+      min-height:900px;
 
+    }
+  }
+
+}
 
 .content.full {
   margin-left: 0;

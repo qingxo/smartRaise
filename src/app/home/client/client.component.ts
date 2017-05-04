@@ -12,4 +12,8 @@ export class ClientComponent implements OnInit {
   ngOnInit() {
   }
 
+  searchTable(queryInfo:string) {
+    console.log(queryInfo)
+  }
+
 }

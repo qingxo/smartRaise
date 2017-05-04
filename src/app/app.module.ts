@@ -1,5 +1,5 @@
 ;
-import { SharedComponent } from './shared/shared.component';
+// import { SharedComponent } from './shared/shared.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -24,15 +24,14 @@ export function httpFactory(xhrBackend: XHRBackend, requestOptions: RequestOptio
   declarations: [
     AppComponent,
     LoginComponent,
-    CoreComponent,
-    SharedComponent
+    CoreComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HomeModule,
-    SharedModule,
     HttpModule,
+    SharedModule,
+    HomeModule,
     RouterModule.forRoot(ROUTER_CONFIG)
 
   ],

@@ -1,0 +1,13 @@
+$homeMainColor:#6f4100;
+.highline{
+  padding-bottom:0;
+  .lf{
+    float: left;
+    padding:25px;
+  }
+
+  .rf{
+    border:1px solid $homeMainColor;
+    background-color: white;
+  }
+}

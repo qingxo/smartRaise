@@ -47,58 +47,6 @@ a,div,h1,h2,h3,h4,h5,span,td,em,tr,hr{
   margin-top: 100px;
 }
 
-.container {
-  padding-top: 0px;
-  .right-content{
-    background-color: #f7fafc;
-    border-radius: 0;
-    min-height:900px;
-     .detail-content{
-       .highline{
-         padding-bottom:0;
-         .lf{
-           &>input{
-             border:1px solid $mainPageColor;
-             color:$mainPageColor;
-             width:200px;
-           }
-           input::placeholder{
-            //  color:$mainPageColor;
-           }
-
-           &>span{
-             border:1px solid $mainPageColor;
-             width: 50px;
-             display: inline-block;
-             background-color: white;
-           }
-         }
-
-         .rf{
-           border:1px solid $mainPageColor;
-           background-color: white;
-         }
-       }
-     }
-     .info{
-       table{
-         border:1px solid $mainPageColor;
-         thead{
-           tr {
-             span{
-               border-bottom:1px solid $mainPageColor;
-               color:$mainPageColor;
-             }
-           }
-         }
-         tr:nth-child(even) {
-           background-color:rgba(217, 237, 247, 0.30);
-         }
-       }
-     }
-  }
-}
-
 .sidebar {
   position: absolute;
   top: 0;
@@ -122,10 +70,4 @@ a,div,h1,h2,h3,h4,h5,span,td,em,tr,hr{
   &.home-sidebar {
     background-color: #f7fafc;
   }
-}
-
-.content {
-  transition: all .3s;
-  margin-left: 235px;
-  margin-top:80px;
 }
