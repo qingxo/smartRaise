@@ -1,0 +1,23 @@
+<div class="info">
+  <table cellpadding="0" cellspacing="0" border="0">
+    <thead>
+      <tr >
+        <td *ngFor="let item of headList"><span>{{item}}</span></td>
+        <td *ngIf="operate != ''">
+          <span>{{operate}}</span>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of bodyList">
+        <td *ngFor="let unit of listName"><span>{{item[unit]}}</span></td>
+        <td *ngIf="operate!=''" >
+          <!-- <em ngRepeat="opt in operate.array" routerLink='{{opt.url}}' >{{opt.name}}</em> -->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- <div class="page-turning" ng-show="morePage">
+    <span [(ngClick)]="ngPageUp()">上一页</span><span ngRepeat="page in pagination" class="{{page == pageNumber? 'cur' : ''}}" [(ngClick)]='goDetailPage(page)'>{{page}}</span><span [(ngClick)]="ngPageDown()">下一页</span>
+  </div> -->
+</div>
