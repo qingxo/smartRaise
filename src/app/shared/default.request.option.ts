@@ -8,7 +8,7 @@ export class DefaultRequestOptions extends BaseRequestOptions {
     super();
 
     // Set the default 'Content-Type' header
-    this.headers.set('Content-Type', 'application/jsonlalal');
+    this.headers.set('Content-Type', 'application/x-www-form-urlencoded;charset=UTF-8');
   }
 }
 

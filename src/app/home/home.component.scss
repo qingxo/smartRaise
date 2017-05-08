@@ -95,7 +95,7 @@ $homeMainColor:#6f4100;
     ul {
       li {
         .provices-icon {
-          @extend %query-bk;
+          // @extend %query-bk;
           background-size: 16px 16px;
           background-image: url(/assets/img/provices-icon.png);
         }
@@ -308,49 +308,7 @@ $homeMainColor:#6f4100;
         border-left: 1px solid #979797;
       }
     }
-    .search-type {
-      @extend %query-font;
-      margin-right: 1px;
-      background-image: url("/assets/img/logo-dropdown.png");
-      background-repeat: no-repeat;
-      background-position: 96px center;
-      background-size: 13px 8px;
-    }
-    .search-dropdown {
-      position: absolute;
-      left: 0;
-      top: 0;
-      background: #fff;
-      box-shadow: 3px 5px 6px 0px rgba(0,0,0,0.21);
-      > li {
-        @extend %query-font
-      }
-    }
-    .search-input {
-      height: 22px;
-      line-height: 22px;
-      padding: 0 30px 0 10px;
-      border-width: 0 0 0 1px;
-      font-size: 16px;
-      outline: 0 none;
-      background-color: #f7fafc;
-      background-image: url("/assets/img/icon-search.png");
-      background-repeat: no-repeat;
-      background-position: right center;
-      background-size: 20px 20px;
-    }
-    .search-submit {
-      display: inline-block;
-      width: 50px;
-      text-align: center;
-      font-size: 16px;
-      color: #886327;
-      text-decoration: none;
-      &:hover,
-      &:active {
-        color: #6692ff;
-      }
-    }
+
   }
 }
 
@@ -366,7 +324,6 @@ $homeMainColor:#6f4100;
       background-color: #f7fafc;
       border-radius: 0;
       min-height:900px;
-
     }
   }
 
@@ -374,20 +331,4 @@ $homeMainColor:#6f4100;
 
 .content.full {
   margin-left: 0;
-}
-
-%query-font {
-  padding: 0 33px 0 23px;
-  font-size: 16px;
-  color: #794f05;
-  cursor: pointer;
-  &:hover {
-    background-color: #e8d9b4;
-  }
-}
-
-%query-bk {
-  padding-left: 20px;
-  background-repeat: no-repeat;
-  vertical-align: middle;
 }

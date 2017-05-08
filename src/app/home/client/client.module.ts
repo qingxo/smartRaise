@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {LineInfoComponent} from '../../shared/line-info'
 import { ClientComponent } from './client.component';
+import {ClientService} from './client.service'
 
 @NgModule({
   imports: [
-    CommonModule,
-    LineInfoComponent
+    CommonModule
   ],
-  declarations: [ClientComponent]
+  declarations: [ClientComponent],
+  providers: [ClientService]
 })
 export class ClientModule { }
