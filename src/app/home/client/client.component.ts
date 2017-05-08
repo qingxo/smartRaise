@@ -14,6 +14,7 @@ export class ClientComponent implements OnInit {
   private operate:string = '操作'
   private listData:Array<any> = []
   private listName:Array<any> = []
+  private pages:Array<any> = []
   private pageSize:number = 10
   private pageNumber:number = 1
   constructor(private clientService:ClientService) { }
@@ -31,6 +32,8 @@ export class ClientComponent implements OnInit {
     this.clientService.clientList(data).subscribe((data)=>{
       console.log(data)
       this.listData = data.data.result
+      this.pages = data.data.linkPageNumbers
+
     })
   }
 
@@ -42,6 +45,11 @@ export class ClientComponent implements OnInit {
 
   searchTable(queryInfo:string) {
     console.log(queryInfo)
+  }
+
+  pageTurning(number) {
+    this.pageNumber = number
+    this.initAsyc()
   }
 
 }

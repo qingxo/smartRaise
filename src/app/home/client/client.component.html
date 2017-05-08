@@ -30,9 +30,8 @@
           </tr>
         </tbody>
       </table>
-      <div class="page-turning" >
-        <span >上一页</span><span class="{{page == pageNumber? 'cur' : ''}}" >{{page}}</span><span>下一页</span>
-      </div>
+      <app-pages [pages] = pages (pageInfo)="pageTurning($event)" [currentPage] = pageNumber></app-pages>
+
     </div>
 
   </div>
