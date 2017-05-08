@@ -1,0 +1,18 @@
+.page-turning{
+  text-align: center;
+  margin:20px 0;
+
+  span{
+    padding: 4px 12px;
+    background-color: #e9f1f7;
+    border: 1px solid grey;
+    border-radius: 2px;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+  span.cur{
+    background-color: white;
+    border: 0px;
+    cursor: auto;
+  }
+}

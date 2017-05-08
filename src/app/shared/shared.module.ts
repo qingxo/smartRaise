@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { LineInfoComponent } from './line-info/line-info.component';
 import { SearchLineComponent } from './search-line/search-line.component';
 import { PowerTableComponent } from './power-table/power-table.component';
+import { PagesComponent } from './pages/pages.component';
 
 @NgModule({
   imports: [
@@ -14,12 +15,14 @@ import { PowerTableComponent } from './power-table/power-table.component';
   declarations: [
     LineInfoComponent,
     SearchLineComponent,
-    PowerTableComponent
+    PowerTableComponent,
+    PagesComponent
   ],
   exports:[
     LineInfoComponent,
     SearchLineComponent,
-    PowerTableComponent
+    PowerTableComponent,
+    PagesComponent
   ]
 })
 export class SharedModule { }

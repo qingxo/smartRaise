@@ -1,0 +1,3 @@
+<div class="page-turning">
+  <span (click)="changePage(currentPage-1)" >上一页</span><span class="{{page == currentPage? 'cur' : ''}}"  *ngFor="let page of pages" (click) = "changePage(page)">{{page}}</span><span (click) = "changePage(currentPage+1)">下一页</span>
+</div>
