@@ -25,8 +25,7 @@ export class PagesComponent implements OnInit {
       pageNum = this.pages[this.pages.length-1]
     }
 
-      this.pageInfo.emit(pageNum)
-    console.log(num)
+    this.pageInfo.emit(pageNum)
   }
 
 }
