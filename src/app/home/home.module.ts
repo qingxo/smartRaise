@@ -6,7 +6,8 @@ import { ROUTER_CONFIG } from './home.routes';
 import {RouterModule} from '@angular/router';
 import {SharedModule} from '../shared';
 import { PlanmanComponent } from './planman/planman.component'
-import {FormsModule} from '@angular/forms'
+import {FormsModule} from '@angular/forms';
+import { CreateAccountComponent } from './create-account/create-account.component'
 @NgModule({
   imports: [
     CommonModule,
@@ -17,7 +18,8 @@ import {FormsModule} from '@angular/forms'
   declarations: [
     HomeComponent,
     ClientComponent,
-    PlanmanComponent
+    PlanmanComponent,
+    CreateAccountComponent
   ]
 })
 export class HomeModule { }
