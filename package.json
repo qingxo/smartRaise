@@ -21,8 +21,13 @@
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
     "@types/md5": "^2.1.32",
+    "compression": "^1.6.2",
     "core-js": "^2.4.1",
+    "express": "^4.15.2",
+    "express-http-proxy": "^1.0.2",
+    "helmet": "^3.6.0",
     "md5": "^2.2.1",
+    "qiniu": "^6.1.13",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.4"
   },
