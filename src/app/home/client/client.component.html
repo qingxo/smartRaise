@@ -21,7 +21,8 @@
             <td><span>{{item.equipmentNo || '未绑定'}}</span></td>
             <td><span>
                <em routerLink="home.clientdetail({'userId':item.customerId,'equipNo':item.equipmentNo})">详情</em>
-               <em routerLink="home.healthcare({'customerId':item.customerId,'mobile':item.mobile,'name':item.name,'person':item.commissionerUserId})">安排专员</em>
+               <!-- <em routerLink="({'customerId':item.customerId,'mobile':item.mobile,'name':item.name,'person':item.commissionerUserId})">安排专员</em> -->
+               <em routerLink="/home/client/planman" [queryParams]="{'customerId':item.customerId,'mobile':item.mobile,'name':item.name,'person':item.commissionerUserId}">安排专员</em>
 
               <em class="ng-class:{true:'active',false:'inactive'}[!item.equipmentNo]"   routerLink="home.smartBed({'customerId':item.customerId,'mobile':item.mobile,'name':item.name})" style="color:green">绑定设备</em>
               <em class="ng-class:{true:'active',false:'inactive'}[!!item.equipmentNo]"   ngClick="$ctrl.cancelSmartBed(item.customerId,item.equipmentNo,item)" style="color:#ab602f">取消绑定</em>
