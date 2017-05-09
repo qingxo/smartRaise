@@ -15,6 +15,7 @@ import { InterceptedHttp }   from './shared/base.http.interceptor';
 import { requestOptionsProvider} from './shared/default.request.option';
 import { HomeModule } from './home';
 import {SharedModule} from './shared';
+import { CreateAccountComponent } from './client/create-account/create-account.component';
 
 export function httpFactory(xhrBackend: XHRBackend, requestOptions: RequestOptions): Http {
     return new InterceptedHttp(xhrBackend, requestOptions);
@@ -24,7 +25,8 @@ export function httpFactory(xhrBackend: XHRBackend, requestOptions: RequestOptio
   declarations: [
     AppComponent,
     LoginComponent,
-    CoreComponent
+    CoreComponent,
+    CreateAccountComponent
   ],
   imports: [
     BrowserModule,

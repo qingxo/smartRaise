@@ -1,0 +1,30 @@
+<div class="right-content">
+    <app-line-info  lineInfo="安排专员"></app-line-info>
+  <div class="detail-content">
+    <div class="detailform">
+      <div class="line">
+        <label for="">姓名*</label>
+        <div class="inline">
+          <input type="text" name="" value="" [(ngModel)]="name" disabled="">
+        </div>
+      </div>
+      <div class="line">
+        <label for="">手机号*</label>
+        <div class="inline">
+          <input type="text" name="" value="" [(ngModel)]="mobile" disabled="">
+        </div>
+      </div>
+      <div class="line">
+        <label for="">健康专员</label>
+        <div class="inline">
+          <select class="" name="" style="min-width:200px"  [(ngModel)]="healthCarePerson"  (ngModelChange) = "resetCarePerson($event)">
+            <option *ngFor="let obj of list" [value]="obj.userId">{{obj.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="btn" (click)="save()">
+        保存
+      </div>
+    </div>
+  </div>
+</div>
