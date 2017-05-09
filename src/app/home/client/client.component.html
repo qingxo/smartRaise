@@ -4,7 +4,7 @@
       <div class="lf">
         <app-search-line placeHolderValue= "客户请输入" (search) = "searchTable($event)"></app-search-line>
       </div>
-      <div class="rf" routerLink="home.client.newclient">
+      <div class="rf" routerLink="/home/newaccount">
           新增客户
       </div>
     </div>
@@ -21,7 +21,6 @@
             <td><span>{{item.equipmentNo || '未绑定'}}</span></td>
             <td><span>
                <em routerLink="home.clientdetail({'userId':item.customerId,'equipNo':item.equipmentNo})">详情</em>
-               <!-- <em routerLink="({'customerId':item.customerId,'mobile':item.mobile,'name':item.name,'person':item.commissionerUserId})">安排专员</em> -->
                <em routerLink="/home/client/planman" [queryParams]="{'customerId':item.customerId,'mobile':item.mobile,'name':item.name,'person':item.commissionerUserId}">安排专员</em>
 
               <em class="ng-class:{true:'active',false:'inactive'}[!item.equipmentNo]"   routerLink="home.smartBed({'customerId':item.customerId,'mobile':item.mobile,'name':item.name})" style="color:green">绑定设备</em>
