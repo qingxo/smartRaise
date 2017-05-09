@@ -24,8 +24,7 @@ export function httpFactory(xhrBackend: XHRBackend, requestOptions: RequestOptio
   declarations: [
     AppComponent,
     LoginComponent,
-    CoreComponent,
-    CreateAccountComponent
+    CoreComponent
   ],
   imports: [
     BrowserModule,
