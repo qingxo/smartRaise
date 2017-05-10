@@ -8,6 +8,7 @@ import {SharedModule} from '../shared';
 import { PlanmanComponent } from './planman/planman.component'
 import {FormsModule} from '@angular/forms';
 import { CreateAccountComponent } from './create-account/create-account.component'
+
 @NgModule({
   imports: [
     CommonModule,
@@ -20,6 +21,7 @@ import { CreateAccountComponent } from './create-account/create-account.componen
     ClientComponent,
     PlanmanComponent,
     CreateAccountComponent
-  ]
+  ],
+  providers:[]
 })
 export class HomeModule { }
