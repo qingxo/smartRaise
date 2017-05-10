@@ -23,7 +23,7 @@
         <ul class="first-level">
           <li ><span   class="myAccount">平台管理</span>
               <ul class="second-level">
-                <li class="dotHover"><span routerLink= '/home/client' activedRoute = 'active' class="">客户管理</span></li>
+                <li class="dotHover"><span routerLink= '/home/client' routerLinkActive='active' class="">客户管理</span></li>
                 <!-- <li class="dotHover"><span ui-sref="home.servicepackage" ng-click="$ctrl.handerColorLevel2(2,$event)" class="">服务包管理</span></li>
                 <li class="dotHover"><span ui-sref="home.order" ng-click="$ctrl.handerColorLevel2(3,$event)" class="">订单管理</span></li>
                 <li class="dotHover"><span ui-sref="home.accounts" ng-click="$ctrl.handerColorLevel2(4,$event)" class="">账号管理</span></li>
@@ -46,6 +46,7 @@
     </div>
   </div>
   <div class="content">
+
   <router-outlet></router-outlet>
   </div>
 </div>
