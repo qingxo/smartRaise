@@ -26,6 +26,7 @@
     "express": "^4.15.2",
     "express-http-proxy": "^1.0.2",
     "helmet": "^3.6.0",
+    "jquery": "^3.2.1",
     "md5": "^2.2.1",
     "qiniu": "^6.1.13",
     "rxjs": "^5.1.0",
