@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import $ from 'jquery/dist/jquery'
+import * as $ from 'jquery'
 @Component({
   selector: 'app-create-account',
   templateUrl: './create-account.component.html',
@@ -18,6 +18,7 @@ export class CreateAccountComponent implements OnInit {
   private controlName:string = ''
   private controlMobile:string = ''
   private relationShip:number = 0
+  private date:any
   constructor() { }
 
   ngOnInit() {

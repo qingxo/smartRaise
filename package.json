@@ -20,6 +20,7 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
+    "@types/jquery": "^2.0.43",
     "@types/md5": "^2.1.32",
     "compression": "^1.6.2",
     "core-js": "^2.4.1",
@@ -28,6 +29,7 @@
     "helmet": "^3.6.0",
     "jquery": "^3.2.1",
     "md5": "^2.2.1",
+    "ng2-flatpickr": "^0.1.14",
     "qiniu": "^6.1.13",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.4"
