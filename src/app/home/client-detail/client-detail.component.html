@@ -1,0 +1,83 @@
+<div class="right-content">
+  <app-line-info  lineInfo="客户详情"></app-line-info>
+
+  <div class="detail-content">
+
+      <div class="info">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <thead>
+            <tr><td><span>姓名</span></td><td><span>手机号</span></td><td><span>性别</span></td><td><span>年龄</span></td><td><span>注册时间</span></td><td><span>健康服务专员</span></td><td><span>操作</span></td></tr>
+          </thead>
+          <tbody>
+            <tr >
+              <td><span>{{$ctrl.userInfo.name}}</span></td><td><span>{{$ctrl.userInfo.mobile}}</span></td><td><span>{{$ctrl.userInfo.sex === 'M' ? '男' : '女'}}</span></td><td><span>{{$ctrl.getAge($ctrl.userInfo.birdthday | date:'yyyy-MM-dd')}}</span></td>
+              <td><span>{{$ctrl.userInfo.createDt | date:'yyyy-MM-dd'}}</span></td><td><span>{{$ctrl.userInfo.commissionerUserName?$ctrl.userInfo.commissionerUserName:'无'}}</span></td>
+
+              <td><span>
+                 <em ui-sref="home.newaccount({'isEdit':true,'userId':$ctrl.userInfo.customerId})">编辑</em>
+              </span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <h3 class="titleH3">订单数据</h3>
+
+            <div class="info">
+              <table cellpadding="0" cellspacing="0" border="0">
+                <thead>
+                  <tr><td><span>订单编号</span></td><td><span>服务包</span></td><td><span>购买时间</span></td><td><span>订单状态</span></td></tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="item in $ctrl.list">
+                    <td><span><em ui-sref="home.orderdetail({'pkgId':item.serviceOrderId})">{{item.serviceOrderId}}</em></span></td><td><span><em ui-sref="home.newpackages({'packageId':item.servicePackId,'isEdit':true})">{{item.servicePackName}}</em></span></td><td><span>{{item.buyDt | date:'yyyy-MM-dd'}}</span></td><td><span>{{item.statue == '0'?'停止':'启动'}}</span></td>
+
+                  </tr>
+                </tbody>
+              </table>
+              <div class="page-turning" ng-show="$ctrl.morePage">
+                <span ng-click="$ctrl.ngPageUp()">上一页</span><span ng-repeat="page in $ctrl.pagination" class="{{page == $ctrl.pageNumber? 'cur' : ''}}" ng-click='$ctrl.goDetailPage(page)'>{{page}}</span><span ng-click="$ctrl.ngPageDown()">下一页</span>
+              </div>
+            </div>
+
+        <h3 class="titleH3">智能床数据</h3>
+        <div class="living">
+          <div class="halfpart">
+            <span>心率/HR:</span><span ng-bind="$ctrl.heartBeating" id="ht{{$ctrl.equipNo}}"></span> 次/分
+          </div>
+          <div class="halfpart">
+            <span>呼吸率/RR:</span><span ng-bind="$ctrl.breathLevel" id="bl{{$ctrl.equipNo}}"></span> 次/分
+          </div>
+        </div>
+
+        <div class="periodDayChoosed">
+            <span class="day-1-{{$ctrl.periodDay}}" ng-click="$ctrl.changePeriodDay(1)">今天</span><span class="day-7-{{$ctrl.periodDay}}" ng-click="$ctrl.changePeriodDay(7)">最近七天</span><span class="day-30-{{$ctrl.periodDay}}" ng-click="$ctrl.changePeriodDay(30)">最近一月</span>
+        </div>
+
+          <div class="no-data" ng-show="$ctrl.bedList.length==0">
+            暂无智能床相应数据
+          </div>
+            <div class="echarts-box show-info-{{$ctrl.bedList.length}}" style="height: 800px" echarts="$ctrl.instance"></div>
+
+        <h3 class="titleH3">健康监测数据</h3>
+        <div class="mybox">
+          <div class="mybox-half" >
+            <div class="echarts-box show-info-{{$ctrl.bloodPressureList.length}}" style="height: 350px;" echarts="$ctrl.instance2"></div>
+            <div class="no-data-half" ng-show="$ctrl.bloodPressureList.length==0">
+              暂无血压数据
+            </div>
+          </div>
+
+
+          <div class="mybox-half" >
+              <div  class="echarts-box show-info-{{$ctrl.bloodSugarListBefore.length}}" style="height: 350px;" echarts="$ctrl.instance3"></div>
+            <div class="no-data-half" ng-show="$ctrl.bloodSugarListBefore.length==0">
+              暂无血糖数据
+            </div>
+          </div>
+
+        </div>
+
+
+
+  </div>
+</div>

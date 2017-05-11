@@ -7,7 +7,8 @@ import {RouterModule} from '@angular/router';
 import {SharedModule} from '../shared';
 import { PlanmanComponent } from './planman/planman.component'
 import {FormsModule} from '@angular/forms';
-import { CreateAccountComponent } from './create-account/create-account.component'
+import { CreateAccountComponent } from './create-account/create-account.component';
+import { ClientDetailComponent } from './client-detail/client-detail.component'
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { CreateAccountComponent } from './create-account/create-account.componen
     HomeComponent,
     ClientComponent,
     PlanmanComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+    ClientDetailComponent
   ],
   providers:[]
 })
