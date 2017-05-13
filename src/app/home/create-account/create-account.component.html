@@ -45,24 +45,12 @@
           <input type="radio" name="sex" value="F" [(ngModel)]="sex"><label for="">女</label>
         </div>
       </div>
-      <!-- <div class="line">
-        <label for="">生日</label>
-        <div class="inline">
-          <div class="tab-content-select">
-            <input class="date-input"
-              type="text"
-              readonly
-              ng-click="openCalendar()"
-              [(ngModel)]="birdthday">
-            <div class="date-picker pos" ng-show="showCalendar">
-              <datetimepicker
-                [(ngModel)]="timeStart"
-                datetimepicker-config="dateTimePickerConfig"
-                on-set-time="onSetTime(newDate)" />
-            </div>
+      <div class="line">
+          <label for="">生日</label>
+          <div class="inline">
+            <ng2-flatpickr  [(ngModel)]='birdthday'></ng2-flatpickr>
           </div>
-        </div>
-      </div> -->
+      </div>
       <div class="line">
         <label for="">身高</label>
         <div class="inline">

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core'
 import * as $ from 'jquery'
-
+import { FlatpickrOptions } from 'ng2-flatpickr/ng2-flatpickr';
+import  * as Flatpickr from 'flatpickr'
+import * as moment from 'moment'
+import * as flatpickr_local from 'flatpickr/dist/l10n/zh'
 @Component({
   selector: 'app-create-account',
   templateUrl: './create-account.component.html',
@@ -19,15 +22,40 @@ export class CreateAccountComponent implements OnInit {
   private controlName:string = ''
   private controlMobile:string = ''
   private relationShip:number = 0
+  private flatpickrOption:FlatpickrOptions
+  private birdthday:any
+  private role:number
+
   constructor() { }
 
   ngOnInit() {
     this.initData()
-    this.uploadImage()
+    // this.uploadImage()
   }
 
   initData(){
+    Flatpickr.localize(flatpickr_local.zh)
+  }
 
+  save() {
+    console.log(this.birdthday[0])
+    this.birdthday = moment(this.birdthday[0]).format('YYYY-MM-DD')
+    console.log(this.birdthday)
+
+    var data = {
+      'name': this.realname,
+      'mobile': this.mobile,
+      'sex': this.sex,
+      'birdthday': this.birdthday,
+      'height': this.height,
+      'weight': this.weight,
+      'address': this.address,
+      // 'guardianName': this.controlName,
+      // 'guardianMobile': this.controlMobile,
+      // 'relationToCustomer': this.relationShip,
+      'role': this.role,
+      'imgUrl':this.imageUrl
+    }
   }
 
 
