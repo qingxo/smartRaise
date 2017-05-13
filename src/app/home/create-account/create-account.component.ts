@@ -34,11 +34,13 @@ export class CreateAccountComponent implements OnInit {
   }
 
   initData(){
+    this.flatpickrOption = {
+      enableTime: true
+    }
     Flatpickr.localize(flatpickr_local.zh)
   }
 
   save() {
-    console.log(this.birdthday[0])
     this.birdthday = moment(this.birdthday[0]).format('YYYY-MM-DD')
     console.log(this.birdthday)
 
