@@ -22,7 +22,7 @@
         "styles/bootstrap.scss"
       ],
       "scripts": [
-
+        "../node_modules/echarts/dist/echarts.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

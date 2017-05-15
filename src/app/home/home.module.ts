@@ -10,12 +10,14 @@ import {FormsModule} from '@angular/forms';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { ClientDetailComponent } from './client-detail/client-detail.component'
 import { Ng2FlatpickrComponent } from 'ng2-flatpickr/ng2-flatpickr';
+import { AngularEchartsModule } from 'angular2-echarts';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
     FormsModule,
+    AngularEchartsModule,
     RouterModule.forChild(ROUTER_CONFIG)
   ],
   declarations: [
