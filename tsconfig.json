@@ -9,7 +9,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es5",
-    "types":["jquery"],
+    "types":["jquery","jasmine","md5"],
     "lib": [
       "es2016",
       "dom"
