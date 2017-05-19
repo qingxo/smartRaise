@@ -1,0 +1,124 @@
+.right-content{
+  background-color: white;
+  min-height: 900px;
+  border-radius: 5px;
+  .head-tips{
+    height:55px;
+    line-height: 55px;
+    .tips-info{
+      font-size:22px;
+      font-weight: bold;
+      padding-left:15px;
+    }
+    border-bottom: 1px solid #cccccc;
+  }
+  .detail-content{
+    text-align: center;
+    .highline{
+      position: relative;
+      height: 50px;
+      padding:20px;
+      &>div{
+        display: inline-block;
+      }
+      .lf{
+        float:left;
+        padding:5px;
+        input{
+          margin-right:8px;
+          border-radius:5px;
+          border: 1px solid #4c1a1a;
+          padding-left:8px;
+          height:25px;
+        }
+        span{
+          border:1px solid black;
+          padding: 4px 5px;
+          border-radius:5px;
+        }
+      }
+
+      .rf{
+        float: right;
+        padding: 5px 10px;
+        border: 1px solid rgba(47, 64, 6, 0.7);
+        border-radius: 3px;
+        cursor: pointer;
+      }
+    }
+
+    .info{
+        padding:20px;
+        table{
+          width:100%;
+          border:1px solid #979797;
+          border-radius: 2px;
+          text-align: center;
+          thead{
+            tr{
+               span{
+                   border-bottom: 1px solid #979797;
+               }
+            }
+          }
+          tr{
+            span{
+
+              width: 100%;
+              display: inline-block;
+              padding: 10px 0;
+              min-width:30px;
+              color:#8995b4;
+              text-align: center;
+              em{
+                font-style: normal;
+                cursor:pointer;
+                display:inline-block;
+                padding:0 5px;
+              }
+
+              em.active{
+                display: inline-block!important;
+              }
+              em.inactive{
+                display:none!important;
+              }
+            }
+          }
+
+          tr:nth-child(even){
+            background-color: #f7fafc;
+          }
+
+          tbody{
+            tr:last-child{
+              span{
+                border-bottom:0;
+              }
+            }
+          }
+
+        }
+    }
+
+    .page-turning{
+      text-align: center;
+      margin:20px 0;
+
+      span{
+        padding: 4px 12px;
+        background-color: #e9f1f7;
+        border: 1px solid grey;
+        border-radius: 2px;
+        margin-left: 5px;
+        cursor: pointer;
+      }
+      span.cur{
+        background-color: white;
+        border: 0px;
+        cursor: auto;
+      }
+    }
+
+  }
+}

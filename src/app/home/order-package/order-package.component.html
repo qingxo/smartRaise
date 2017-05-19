@@ -1,0 +1,62 @@
+<div class="right-content">
+  <app-line-info  lineInfo="订购服务包"></app-line-info>
+  <div class="detail-content">
+      <div class="info">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <thead>
+            <tr><td><span>姓名</span></td><td><span>手机号</span></td><td><span>性别</span></td><td><span>年龄</span></td><td><span>注册时间</span></td><td><span>健康服务专员</span></td></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span>{{personInfo.name}}</span></td><td><span>{{personInfo.mobile}}</span></td><td><span>{{personInfo.sex === 'M' ? '男' : '女'}}</span></td><td><span>{{getAge(personInfo.birdthday | date:'yyyy-MM-dd')}}</span></td>
+              <td><span>{{personInfo.createDt | date:'yyyy-MM-dd'}}</span></td><td><span>{{personInfo.commissionerUserName || '无'}}</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="titleH3">已购服务包</h3>
+
+            <div class="info">
+              <table cellpadding="0" cellspacing="0" border="0">
+                <thead>
+                  <tr><td><span>订单编号</span></td><td><span>服务包</span></td><td><span>购买时间</span></td><td><span>订单状态</span></td><td><span>操作</span></td></tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="item in personBuyPkg" ng-show="item.myBuyCounts>0">
+                    <td><span><em ui-sref="home.orderdetail({'pkgId':item.serviceOrderId})">{{item.serviceOrderId}}</em></span></td><td><span> <em ui-sref="home.newpackages({'packageId':item.servicePackId,'isEdit':true})">{{item.servicePackName}}</em></span></td><td><span>{{item.buyDt | date:'yyyy-MM-dd'}}</span></td>
+                    <td><span>{{item.orderStatus == '1'?'已启动':item.orderStatus=='0'?'未启动':'已停止'}}</span></td>
+                    <td><span>
+                      <em ng-show="item.orderStatus !='1'" ng-click="startOrderConfirm(item,$index)">启动</em>
+                      <em ng-show="item.orderStatus =='1'" ng-click="endOrderConfirm(item,$index)">停止</em>
+                      <em ng-show="item.orderStatus !='1'" ng-click="unSubscriptionPkgConfirm(item,$index)">退订</em></span></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="page-turning" ng-show="morePage">
+                <span ng-click="ngPageUp()">上一页</span><span ng-repeat="page in pagination" class="{{page == pageNumber? 'cur' : ''}}" ng-click='goDetailPage(page)'>{{page}}</span><span ng-click="ngPageDown()">下一页</span>
+              </div>
+            </div>
+
+        <h3 class="titleH3">未订购服务包</h3>
+        <div class="info">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <thead>
+              <tr><td><span>服务包</span></td><td><span>上架时间</span></td><td><span>价格</span></td><td><span>状态</span></td><td><span>操作</span></td></tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="item in personBuyPkg"  ng-show="item.myBuyCounts==0&&item.statue == 1">
+                <td><span>{{item.servicePackName}}</span></td><td><span>{{item.createDt |  date:'yyyy-MM-dd'}}</span></td><td><span>{{item.priceNew}}</span></td><td><span>{{item.statue =='1'?'上架':'下架'}}</span></td>
+                <td><span>
+                    <em ng-click="sellPackageConfirm(item.servicePackId,item)">订购</em>
+                </span></td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+
+
+  </div>
+</div>

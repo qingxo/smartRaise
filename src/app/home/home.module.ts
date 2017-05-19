@@ -12,6 +12,7 @@ import { ClientDetailComponent } from './client-detail/client-detail.component'
 import { Ng2FlatpickrComponent } from 'ng2-flatpickr/ng2-flatpickr';
 import { AngularEchartsModule } from 'angular2-echarts';
 import { SmartBedComponent } from './smart-bed';
+import { OrderPackageComponent } from './order-package';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { SmartBedComponent } from './smart-bed';
     CreateAccountComponent,
     Ng2FlatpickrComponent,
     ClientDetailComponent,
-    SmartBedComponent
+    SmartBedComponent,
+    OrderPackageComponent
   ],
   providers:[]
 })
