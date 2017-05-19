@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {ClientService} from './client.service';
+import storage from '../../shared/storage'
 
 @Component({
   selector: 'app-client',
@@ -17,6 +18,7 @@ export class ClientComponent implements OnInit {
   private pages:Array<any> = []
   private pageSize:number = 10
   private pageNumber:number = 1
+  private queryInfo:string = ''
   constructor(private clientService:ClientService) { }
 
   ngOnInit() {
@@ -27,7 +29,9 @@ export class ClientComponent implements OnInit {
   initAsyc() {
     let data = {
         'pageSize': this.pageSize,
-        'pageNum': this.pageNumber
+        'pageNum': this.pageNumber,
+        'query':this.queryInfo,
+        'userId':storage.get('state')['userId']
     }
     this.clientService.clientList(data).subscribe((data)=>{
       console.log(data)
@@ -44,7 +48,8 @@ export class ClientComponent implements OnInit {
   }
 
   searchTable(queryInfo:string) {
-    console.log(queryInfo)
+    this.queryInfo = queryInfo
+    this.initAsyc()
   }
 
   pageTurning(number) {
