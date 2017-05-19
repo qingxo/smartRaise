@@ -36,7 +36,8 @@
                <em routerLink="/home/client/detail">详情</em>
                <em routerLink="/home/client/planman" [queryParams]="{'customerId':item.customerId,'mobile':item.mobile,'name':item.name,'person':item.commissionerUserId}">安排专员</em>
 
-              <em class="ng-class:{true:'active',false:'inactive'}[!item.equipmentNo]"   routerLink="home.smartBed({'customerId':item.customerId,'mobile':item.mobile,'name':item.name})" style="color:green">绑定设备</em>
+              <!-- <em class="ng-class:{true:'active',false:'inactive'}[!item.equipmentNo]"   routerLink="home.smartBed({'customerId':item.customerId,'mobile':item.mobile,'name':item.name})" style="color:green">绑定设备</em> -->
+              <em routerLink="/home/smartbed" [queryParams]="{'customerId':item.customerId,'mobile':item.mobile,'name':item.name}">绑定设备</em>
               <em class="ng-class:{true:'active',false:'inactive'}[!!item.equipmentNo]"   ngClick="$ctrl.cancelSmartBed(item.customerId,item.equipmentNo,item)" style="color:#ab602f">取消绑定</em>
               <em routerLink="home.orderpackage({'userId':item.customerId})">订购服务包</em>
             </span></td>

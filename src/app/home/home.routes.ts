@@ -4,6 +4,7 @@ import {ClientComponent} from './client'
 import {ClientDetailComponent} from './client-detail'
 import {PlanmanComponent} from './planman'
 import {CreateAccountComponent} from './create-account'
+import {SmartBedComponent} from './smart-bed'
 export const ROUTER_CONFIG: Routes = [
   {
     path:'',component:HomeComponent,
@@ -12,7 +13,8 @@ export const ROUTER_CONFIG: Routes = [
       { path: 'client' ,component:ClientComponent},
       { path: 'client/detail' ,component:ClientDetailComponent},
       { path: 'client/planman',component:PlanmanComponent},
-      { path: 'newaccount',component:CreateAccountComponent}
+      { path: 'newaccount',component:CreateAccountComponent},
+      { path: 'smartbed',component:SmartBedComponent}
     ]
   }
   ];
