@@ -11,6 +11,7 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { ClientDetailComponent } from './client-detail/client-detail.component'
 import { Ng2FlatpickrComponent } from 'ng2-flatpickr/ng2-flatpickr';
 import { AngularEchartsModule } from 'angular2-echarts';
+import { SmartbedComponent } from './smartbed/smartbed.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { AngularEchartsModule } from 'angular2-echarts';
     PlanmanComponent,
     CreateAccountComponent,
     Ng2FlatpickrComponent,
-    ClientDetailComponent
+    ClientDetailComponent,
+    SmartbedComponent
   ],
   providers:[]
 })
