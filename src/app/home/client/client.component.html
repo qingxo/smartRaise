@@ -1,4 +1,4 @@
-  <div class="right-content">
+  <div class="right-content client-content">
     <app-line-info  lineInfo="客户管理"></app-line-info>
     <div class="highline">
       <div class="lf">
@@ -12,12 +12,24 @@
     <div class="info">
       <table cellpadding="0" cellspacing="0" border="0">
         <thead>
-          <tr><td><span>姓名</span></td><td><span>手机号</span></td><td><span>性别</span></td><td><span>年龄</span></td><td><span>注册时间</span></td><td><span>健康服务专员</span></td><td><span ui-sref="home.binding">绑定设备</span></td><td><span>操作</span></td></tr>
+          <tr><td><span>姓名</span></td>
+            <td><span>手机号</span></td>
+            <td><span>性别</span></td>
+            <td><span>年龄</span></td>
+            <td><span>注册时间</span></td>
+            <td><span>是否监护人</span></td>
+            <td><span>身份证号</span></td>
+            <td><span>健康服务专员</span></td>
+            <td><span ui-sref="home.binding">绑定设备</span>
+            </td><td><span>操作</span></td></tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of listData">
             <td><span><em routerLink="home.newaccount({'isEdit':true,'userId':item.customerId,'name':item.commissionerUserName})">{{item.name}}</em></span></td><td><span>{{item.mobile}}</span></td><td><span>{{item.sex === 'M' ? '男' : '女'}}</span></td><td><span>{{item.birdthday | date:'yyyy-MM-dd'}}</span></td>
-            <td><span>{{item.createDt | date:'yyyy-MM-dd'}}</span></td><td><span><em ui-sref="home.create({'userId':item.commissionerUserId})">{{item.commissionerUserName || '无'}}</em></span></td>
+            <td><span>{{item.createDt | date:'yyyy-MM-dd'}}</span></td>
+            <td><span>{{item.guardian == '1'?'Y':''}}</span></td>
+            <td><span>{{item.cardId}}</span></td>
+            <td><span><em ui-sref="home.create({'userId':item.commissionerUserId})">{{item.commissionerUserName || '无'}}</em></span></td>
             <td><span>{{item.equipmentNo || '未绑定'}}</span></td>
             <td><span>
                <!-- <em routerLink="home.clientdetail({'userId':item.customerId,'equipNo':item.equipmentNo})">详情</em> -->
