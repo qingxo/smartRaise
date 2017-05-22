@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {ClientService} from './client.service';
 import storage from '../../shared/storage'
+import {SweetAlertService} from 'ng2-sweetalert2'
 
 @Component({
   selector: 'app-client',
   templateUrl: './client.component.html',
   styleUrls: ['./client.component.scss'],
-  providers:[ClientService]
+  providers:[ClientService,SweetAlertService]
 })
 export class ClientComponent implements OnInit {
 
@@ -34,7 +35,6 @@ export class ClientComponent implements OnInit {
         'userId':storage.get('state')['userId']
     }
     this.clientService.clientList(data).subscribe((data)=>{
-      console.log(data)
       this.listData = data.data.result
       this.pages = data.data.linkPageNumbers
 
