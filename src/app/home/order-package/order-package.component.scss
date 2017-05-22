@@ -73,15 +73,8 @@
               em{
                 font-style: normal;
                 cursor:pointer;
-                display:inline-block;
+                // display:inline-block;
                 padding:0 5px;
-              }
-
-              em.active{
-                display: inline-block!important;
-              }
-              em.inactive{
-                display:none!important;
               }
             }
           }

@@ -23,21 +23,19 @@
                   <tr><td><span>订单编号</span></td><td><span>服务包</span></td><td><span>购买时间</span></td><td><span>订单状态</span></td><td><span>操作</span></td></tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let item of personBuyPkg" [hidden]="!item.myBuyCounts>0">
+                  <tr *ngFor="let item of personBuyPkg; let index = index" [hidden]="!item.myBuyCounts>0">
                     <td><span><em ui-sref="home.orderdetail({'pkgId':item.serviceOrderId})">{{item.serviceOrderId}}</em></span></td>
                     <td><span> <em ui-sref="home.newpackages({'packageId':item.servicePackId,'isEdit':true})">{{item.servicePackName}}</em></span></td>
                     <td><span>{{item.buyDt | date:'yyyy-MM-dd'}}</span></td>
                     <td><span>{{item.orderStatus == '1'?'已启动':item.orderStatus=='0'?'未启动':'已停止'}}</span></td>
                     <td><span>
-                      <em ng-show="item.orderStatus !='1'" ng-click="startOrderConfirm(item,$index)">启动</em>
-                      <em ng-show="item.orderStatus =='1'" ng-click="endOrderConfirm(item,$index)">停止</em>
-                      <em ng-show="item.orderStatus !='1'" ng-click="unSubscriptionPkgConfirm(item,$index)">退订</em></span></td>
+                      <em [hidden]="item.orderStatus==1" (click)="startOrderConfirm(item,index)">启动</em>
+                      <em [hidden]="item.orderStatus!=1" (click)="endOrderConfirm(item,index)">停止</em>
+                      <em [hidden]="item.orderStatus==1" (click)="unSubscriptionPkgConfirm(item,index)">退订</em></span></td>
                   </tr>
                 </tbody>
               </table>
-              <div class="page-turning" ng-show="morePage">
-                <span ng-click="ngPageUp()">上一页</span><span ng-repeat="page in pagination" class="{{page == pageNumber? 'cur' : ''}}" ng-click='goDetailPage(page)'>{{page}}</span><span ng-click="ngPageDown()">下一页</span>
-              </div>
+              <app-pages [pages] = pages (pageInfo)="pageTurning($event)" [currentPage] = pageNumber></app-pages>
             </div>
 
         <h3 class="titleH3">未订购服务包</h3>
@@ -47,7 +45,7 @@
               <tr><td><span>服务包</span></td><td><span>上架时间</span></td><td><span>价格</span></td><td><span>状态</span></td><td><span>操作</span></td></tr>
             </thead>
             <tbody>
-              <tr *ngFor=" let item of personBuyPkg"  [hidden]="item.myBuyCounts!=0&&item.statue != 1">
+              <tr *ngFor=" let item of personBuyPkg"  [hidden]="item.myBuyCounts!=0">
                 <td><span>{{item.servicePackName}}</span></td><td><span>{{item.createDt |  date:'yyyy-MM-dd'}}</span></td><td><span>{{item.priceNew}}</span></td><td><span>{{item.statue =='1'?'上架':'下架'}}</span></td>
                 <td><span>
                     <em (click)="sellPackageConfirm(item.servicePackId,item)">订购</em>
