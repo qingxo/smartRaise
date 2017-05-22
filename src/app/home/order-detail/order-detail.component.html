@@ -1,0 +1,45 @@
+<div class="right-content">
+  <app-line-info  lineInfo="订单详情"></app-line-info>
+
+  <div class="detail-content">
+    <div class="info">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <thead>
+          <tr><td><span>订单编号</span></td><td><span>服务包</span></td><td><span>购买时间</span></td><td><span>客户姓名</span></td><td><span>客户手机号</span></td><td><span>健康服务专员</span></td><td><span ui-sref="home.binding">订单状态</span></td><td><span>操作</span></td></tr>
+        </thead>
+        <tbody>
+          <tr >
+            <td><span>{{item.serviceOrderId}}</span></td><td><span><em ui-sref="home.newpackages({'packageId':item.servicePackId,'isEdit':true})">{{item.servicePackName}}</em></span></td><td><span>{{item.buyDt | date:'yyyy-MM-dd'}}</span></td><td><span>{{item.customerName}}</span></td>
+            <td><span>{{item.customerMobile}}</span></td><td><span>{{item.commissionerUserName || '无'}}</span></td>
+            <td><span>{{item.statue =='1'?'已启动':item.statue=='2'?'已停止':'未启动'}}</span></td>
+            <td><span>
+              <em [hidden]="item.statue==1"    (click)="unsubscribeConfirm(item.servicePackId,item.customerId)">退订</em>
+              <em [hidden]="item.statue==1"    (click)="startOrderConfirm(item.serviceOrderId)">启动</em>
+              <em [hidden]="item.statue!=1" (click)="endOrderConfirm(item.serviceOrderId)" >停止</em>
+            </span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+<div [hidden]="list.length==0">
+
+    <h3 class="orderInfo">订单任务执行情况</h3>
+      <div class="info">
+
+        <table cellpadding="0" cellspacing="0" border="0">
+          <thead>
+            <tr><td><span>任务名称</span></td><td><span>任务类型</span></td><td><span>计划完成时间</span></td><td><span>是否已完成</span></td><td><span>实际完成时间</span></td><td><span>任务完成人员</span></td></tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let task of list">
+              <td><span>{{task.missionName}}</span></td><td><span>{{missionType[task.missionType]}}</span></td><td><span>{{task.endDt | date:'yyyy-MM-dd'}}</span></td><td><span>{{task.execStatus == '1'?'已处理':'未处理'}}</span></td>
+              <td><span [hidden]="!!task.dealDt"></span><span [hidden]="!task.dealDt">{{task.dealDt | date:'yyyy-MM-dd'}}</span></td><td><span>{{task.commissionerName}}</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+      </div>
+  </div>
+</div>
