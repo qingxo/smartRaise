@@ -24,7 +24,7 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let item of personBuyPkg; let index = index" [hidden]="!item.myBuyCounts>0">
-                    <td><span><em ui-sref="home.orderdetail({'pkgId':item.serviceOrderId})">{{item.serviceOrderId}}</em></span></td>
+                    <td><span><em routerLink="/home/orderdetail" [queryParams]="{'pkgId':item.serviceOrderId}">{{item.serviceOrderId}}</em></span></td>
                     <td><span> <em ui-sref="home.newpackages({'packageId':item.servicePackId,'isEdit':true})">{{item.servicePackName}}</em></span></td>
                     <td><span>{{item.buyDt | date:'yyyy-MM-dd'}}</span></td>
                     <td><span>{{item.orderStatus == '1'?'已启动':item.orderStatus=='0'?'未启动':'已停止'}}</span></td>
