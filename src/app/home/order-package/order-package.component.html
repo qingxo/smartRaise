@@ -8,7 +8,7 @@
           </thead>
           <tbody>
             <tr>
-              <td><span>{{personInfo.name}}</span></td><td><span>{{personInfo.mobile}}</span></td><td><span>{{personInfo.sex === 'M' ? '男' : '女'}}</span></td><td><span>{{getAge(personInfo.birdthday | date:'yyyy-MM-dd')}}</span></td>
+              <td><span>{{personInfo.name}}</span></td><td><span>{{personInfo.mobile}}</span></td><td><span>{{personInfo.sex === 'M' ? '男' : '女'}}</span></td><td><span>{{personInfo.birdthday | date:'yyyy-MM-dd'}}</span></td>
               <td><span>{{personInfo.createDt | date:'yyyy-MM-dd'}}</span></td><td><span>{{personInfo.commissionerUserName || '无'}}</span></td>
             </tr>
           </tbody>
@@ -23,8 +23,10 @@
                   <tr><td><span>订单编号</span></td><td><span>服务包</span></td><td><span>购买时间</span></td><td><span>订单状态</span></td><td><span>操作</span></td></tr>
                 </thead>
                 <tbody>
-                  <tr ng-repeat="item in personBuyPkg" ng-show="item.myBuyCounts>0">
-                    <td><span><em ui-sref="home.orderdetail({'pkgId':item.serviceOrderId})">{{item.serviceOrderId}}</em></span></td><td><span> <em ui-sref="home.newpackages({'packageId':item.servicePackId,'isEdit':true})">{{item.servicePackName}}</em></span></td><td><span>{{item.buyDt | date:'yyyy-MM-dd'}}</span></td>
+                  <tr *ngFor="let item of personBuyPkg" [hidden]="!item.myBuyCounts>0">
+                    <td><span><em ui-sref="home.orderdetail({'pkgId':item.serviceOrderId})">{{item.serviceOrderId}}</em></span></td>
+                    <td><span> <em ui-sref="home.newpackages({'packageId':item.servicePackId,'isEdit':true})">{{item.servicePackName}}</em></span></td>
+                    <td><span>{{item.buyDt | date:'yyyy-MM-dd'}}</span></td>
                     <td><span>{{item.orderStatus == '1'?'已启动':item.orderStatus=='0'?'未启动':'已停止'}}</span></td>
                     <td><span>
                       <em ng-show="item.orderStatus !='1'" ng-click="startOrderConfirm(item,$index)">启动</em>
@@ -45,10 +47,10 @@
               <tr><td><span>服务包</span></td><td><span>上架时间</span></td><td><span>价格</span></td><td><span>状态</span></td><td><span>操作</span></td></tr>
             </thead>
             <tbody>
-              <tr ng-repeat="item in personBuyPkg"  ng-show="item.myBuyCounts==0&&item.statue == 1">
+              <tr *ngFor=" let item of personBuyPkg"  [hidden]="item.myBuyCounts!=0&&item.statue != 1">
                 <td><span>{{item.servicePackName}}</span></td><td><span>{{item.createDt |  date:'yyyy-MM-dd'}}</span></td><td><span>{{item.priceNew}}</span></td><td><span>{{item.statue =='1'?'上架':'下架'}}</span></td>
                 <td><span>
-                    <em ng-click="sellPackageConfirm(item.servicePackId,item)">订购</em>
+                    <em (click)="sellPackageConfirm(item.servicePackId,item)">订购</em>
                 </span></td>
               </tr>
             </tbody>
