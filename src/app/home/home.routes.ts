@@ -9,6 +9,7 @@ import {OrderPackageComponent} from './order-package'
 import {OrderDetailComponent} from './order-detail'
 import {ServicePackageComponent} from './service-package'
 import {OrderComponent} from './order'
+import {AccountsComponent} from './accounts'
 export const ROUTER_CONFIG: Routes = [
   {
     path:'',component:HomeComponent,
@@ -22,7 +23,9 @@ export const ROUTER_CONFIG: Routes = [
       { path: 'orderpackage',component:OrderPackageComponent},
       { path: 'orderdetail',component:OrderDetailComponent},
       { path: 'servicepackage',component:ServicePackageComponent},
-      { path: 'order',component:OrderComponent}
+      { path: 'order',component:OrderComponent},
+      { path: 'accounts',component:AccountsComponent}
+
 
 
     ]
