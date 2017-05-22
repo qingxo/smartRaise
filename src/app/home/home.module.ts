@@ -15,6 +15,7 @@ import { SmartBedComponent } from './smart-bed';
 import { OrderPackageComponent } from './order-package';
 import { OrderDetailComponent } from './order-detail';
 import { ServicePackageComponent } from './service-package/service-package.component';
+import { OrderComponent } from './order/order.component';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { ServicePackageComponent } from './service-package/service-package.compo
     SmartBedComponent,
     OrderPackageComponent,
     OrderDetailComponent,
-    ServicePackageComponent
+    ServicePackageComponent,
+    OrderComponent
   ],
   providers:[]
 })

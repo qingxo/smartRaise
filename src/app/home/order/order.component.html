@@ -1,0 +1,32 @@
+<div class="right-content">
+  <app-line-info  lineInfo="订单管理"></app-line-info>
+
+  <div class="detail-content">
+      <div class="highline">
+        <div class="lf">
+          <app-search-line placeHolderValue= "服务包名、姓名、手机号" (search) = "searchTable($event)"></app-search-line>
+        </div>
+      </div>
+      <div class="info">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <thead>
+            <tr><td><span>订单编号</span></td><td><span>服务包</span></td><td><span>购买时间</span></td><td><span>客户姓名</span></td><td><span>客户手机号</span></td><td><span>健康服务专员</span></td><td><span>订单状态</span></td><td><span>操作</span></td></tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of list">
+              <td><span>{{item.serviceOrderId}}</span></td>
+              <td><span><em ui-sref="home.newpackages({'packageId':item.servicePackId,'isEdit':true})">{{item.servicePackName}}</em></span></td>
+              <td><span>{{item.buyDt | date:'yyyy-MM-dd'}}</span></td>
+              <td><span><em routerLink="/home/client/detail" [queryParams]="{'userId':item.customerId}">{{!!item.customerName?item.customerName:'未知'}}</em></span></td>
+              <td><span>{{item.customerMobile}}</span></td><td><span>{{item.commissionerUserName || '无'}}</span></td>
+              <td><span>{{item.statue =='1'?'已启动':item.statue=='2'?'已停止':'未启动'}}</span></td>
+              <td><span>
+                 <em routerLink="/home/orderdetail" [queryParams]="{'pkgId':item.serviceOrderId}">详情</em>
+              </span></td>
+            </tr>
+          </tbody>
+        </table>
+        <app-pages [pages] = pages (pageInfo)="pageTurning($event)" [currentPage] = pageNumber></app-pages>
+      </div>
+  </div>
+</div>
