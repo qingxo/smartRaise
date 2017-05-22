@@ -17,6 +17,7 @@ import { OrderDetailComponent } from './order-detail';
 import { ServicePackageComponent } from './service-package/service-package.component';
 import { OrderComponent } from './order/order.component';
 import { AccountsComponent } from './accounts/accounts.component';
+import { WaiterComponent } from './waiter/waiter.component';
 
 @NgModule({
   imports: [
@@ -39,7 +40,8 @@ import { AccountsComponent } from './accounts/accounts.component';
     OrderDetailComponent,
     ServicePackageComponent,
     OrderComponent,
-    AccountsComponent
+    AccountsComponent,
+    WaiterComponent
   ],
   providers:[]
 })
