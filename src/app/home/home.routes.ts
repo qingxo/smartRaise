@@ -7,6 +7,7 @@ import {CreateAccountComponent} from './create-account'
 import {SmartBedComponent} from './smart-bed'
 import {OrderPackageComponent} from './order-package'
 import {OrderDetailComponent} from './order-detail'
+import {ServicePackageComponent} from './service-package'
 export const ROUTER_CONFIG: Routes = [
   {
     path:'',component:HomeComponent,
@@ -18,7 +19,9 @@ export const ROUTER_CONFIG: Routes = [
       { path: 'newaccount',component:CreateAccountComponent},
       { path: 'smartbed',component:SmartBedComponent},
       { path: 'orderpackage',component:OrderPackageComponent},
-      { path: 'orderdetail',component:OrderDetailComponent}
+      { path: 'orderdetail',component:OrderDetailComponent},
+      { path: 'servicepackage',component:ServicePackageComponent}
+
     ]
   }
   ];

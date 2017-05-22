@@ -14,6 +14,7 @@ import { AngularEchartsModule } from 'angular2-echarts';
 import { SmartBedComponent } from './smart-bed';
 import { OrderPackageComponent } from './order-package';
 import { OrderDetailComponent } from './order-detail';
+import { ServicePackageComponent } from './service-package/service-package.component';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { OrderDetailComponent } from './order-detail';
     ClientDetailComponent,
     SmartBedComponent,
     OrderPackageComponent,
-    OrderDetailComponent
+    OrderDetailComponent,
+    ServicePackageComponent
   ],
   providers:[]
 })
