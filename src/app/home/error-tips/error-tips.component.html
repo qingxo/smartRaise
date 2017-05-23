@@ -1,0 +1,46 @@
+<div class="right-content">
+  <app-line-info  lineInfo="异常提醒"></app-line-info>
+
+  <div class="detail-content">
+    <div class="highline">
+      <div class="lf">
+        <app-search-line placeHolderValue= "客户姓名、手机号、专员名" (search) = "searchTable($event)"></app-search-line>
+      </div>
+    </div>
+      <div class="info errorInfo">
+        <table cellpadding="0" cellspacing="0" border="0" ng-show="taskProgress == 0">
+          <thead>
+            <tr>
+              <td><span>客户姓名</span></td>
+              <td><span>性别</span></td>
+              <td><span>年龄</span></td>
+              <td><span>监测项目</span></td>
+              <td><span>监测值</span></td>
+              <td><span>异常发生时间</span></td>
+              <td><span>异常情况</span></td>
+              <td><span>处理意见</span></td>
+              <td><span>健康服务专员</span></td>
+              <!-- <td><span>操作</span></td> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of list;let index = index">
+              <td><span>{{item.custName}}</span></td>
+              <td><span>{{item.sex=='M'?'男':'女'}}</span></td>
+              <td><span>{{getAge(item.birdthday)}}</span></td>
+              <td><span>{{item.missionName}}</span></td>
+              <td><span>{{item.missionValue}}</span></td>
+              <td><span>{{item.ocurrDate | date:'yyyy-MM-dd'}}</span></td>
+              <td><span>{{item.errContent}}</span></td>
+              <!-- <td [hidden]="!item.opinion"><span>{{item.opinion}}</span></td> -->
+              <td >
+                <span  title="{{item.opinion}}"  popoverPlacement="top">{{cultOpinion(item.opinion)}}</span>
+              </td>
+              <td><span>{{item.commissionerName}}</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <app-pages [pages] = pages (pageInfo)="pageTurning($event)" [currentPage] = pageNumber></app-pages>
+      </div>
+  </div>
+</div>
