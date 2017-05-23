@@ -11,6 +11,7 @@ import {ServicePackageComponent} from './service-package'
 import {OrderComponent} from './order'
 import {AccountsComponent} from './accounts'
 import {WaiterComponent} from './waiter'
+import {MyTaskComponent} from './my-task'
 export const ROUTER_CONFIG: Routes = [
   {
     path:'',component:HomeComponent,
@@ -26,7 +27,9 @@ export const ROUTER_CONFIG: Routes = [
       { path: 'servicepackage',component:ServicePackageComponent},
       { path: 'order',component:OrderComponent},
       { path: 'accounts',component:AccountsComponent},
-      { path: 'waiter',component:WaiterComponent}
+      { path: 'waiter',component:WaiterComponent},
+      { path: 'mytask',component:MyTaskComponent}
+
 
 
 

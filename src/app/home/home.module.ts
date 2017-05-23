@@ -18,6 +18,7 @@ import { ServicePackageComponent } from './service-package/service-package.compo
 import { OrderComponent } from './order/order.component';
 import { AccountsComponent } from './accounts/accounts.component';
 import { WaiterComponent } from './waiter/waiter.component';
+import { MyTaskComponent } from './my-task/my-task.component';
 
 @NgModule({
   imports: [
@@ -41,7 +42,8 @@ import { WaiterComponent } from './waiter/waiter.component';
     ServicePackageComponent,
     OrderComponent,
     AccountsComponent,
-    WaiterComponent
+    WaiterComponent,
+    MyTaskComponent
   ],
   providers:[]
 })
