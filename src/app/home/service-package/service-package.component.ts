@@ -53,6 +53,7 @@ export class ServicePackageComponent implements OnInit {
 
   searchTable(queryInfo:string) {
     this.queryInfo = queryInfo
+    this.pageNumber =1
     this.packageList()
   }
 

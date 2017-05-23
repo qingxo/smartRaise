@@ -23,6 +23,7 @@ export class AccountsComponent implements OnInit {
 
   searchTable(queryInfo:string) {
     this.queryInfo = queryInfo
+    this.pageNumber = 1
     this.accountsList()
   }
 
