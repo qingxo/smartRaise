@@ -21,6 +21,7 @@ import { AccountsComponent } from './accounts/accounts.component';
 import { WaiterComponent } from './waiter/waiter.component';
 import { MyTaskComponent } from './my-task/my-task.component';
 import { ErrorTipsComponent } from './error-tips/error-tips.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 @NgModule({
   imports: [
@@ -47,7 +48,8 @@ import { ErrorTipsComponent } from './error-tips/error-tips.component';
     AccountsComponent,
     WaiterComponent,
     MyTaskComponent,
-    ErrorTipsComponent
+    ErrorTipsComponent,
+    FeedbackComponent
   ],
   providers:[]
 })

@@ -1,0 +1,27 @@
+<div class="right-content">
+  <app-line-info  lineInfo="意见反馈"></app-line-info>
+
+  <div class="fbchoose">
+    <span class="choosed" (click)="toogleChoosed($event,1)">客户意见</span><span (click)="toogleChoosed($event,2)">健康专员意见</span>
+  </div>
+  <div class="detail-content">
+      <div class="info">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <thead>
+            <tr><td><span>{{feedback == '1'?'客户':'健康专员'}}姓名</span></td><td><span>手机号</span></td><td><span>反馈内容</span></td><td><span>处理意见</span></td><td><span>操作</span></td></tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of list">
+              <td><span>{{item.name}}</span></td><td><span>{{item.mobile}}</span></td><td><span>{{item.remark}}</span></td><td><span>{{item.dealRemark?item.dealRemark:''}}</span></td>
+              <td><span>
+                 <em [hidden]="!item.dealRemark" class="hasremark">已处理</em>
+                 <em [hidden]="!!item.dealRemark" (click)="handleFeedBack(feedback == 1? item.opinionId: item.opinionUserId,item)">处理</em>
+              </span></td>
+            </tr>
+          </tbody>
+        </table>
+        <app-pages [pages] = pages (pageInfo)="pageTurning($event)" [currentPage] = pageNumber></app-pages>
+
+      </div>
+  </div>
+</div>
