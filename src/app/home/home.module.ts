@@ -5,6 +5,7 @@ import { ClientComponent } from './client/client.component';
 import { ROUTER_CONFIG } from './home.routes';
 import {RouterModule} from '@angular/router';
 import {SharedModule} from '../shared';
+import {PopoverModule} from 'ngx-popover'
 import { PlanmanComponent } from './planman/planman.component'
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { CreateAccountComponent } from './create-account/create-account.component';
@@ -19,6 +20,7 @@ import { OrderComponent } from './order/order.component';
 import { AccountsComponent } from './accounts/accounts.component';
 import { WaiterComponent } from './waiter/waiter.component';
 import { MyTaskComponent } from './my-task/my-task.component';
+import { ErrorTipsComponent } from './error-tips/error-tips.component';
 
 @NgModule({
   imports: [
@@ -27,6 +29,7 @@ import { MyTaskComponent } from './my-task/my-task.component';
     FormsModule,
     AngularEchartsModule,
     ReactiveFormsModule,
+    PopoverModule,
     RouterModule.forChild(ROUTER_CONFIG)
   ],
   declarations: [
@@ -43,7 +46,8 @@ import { MyTaskComponent } from './my-task/my-task.component';
     OrderComponent,
     AccountsComponent,
     WaiterComponent,
-    MyTaskComponent
+    MyTaskComponent,
+    ErrorTipsComponent
   ],
   providers:[]
 })

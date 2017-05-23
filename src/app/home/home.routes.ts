@@ -12,6 +12,7 @@ import {OrderComponent} from './order'
 import {AccountsComponent} from './accounts'
 import {WaiterComponent} from './waiter'
 import {MyTaskComponent} from './my-task'
+import {ErrorTipsComponent} from './error-tips'
 export const ROUTER_CONFIG: Routes = [
   {
     path:'',component:HomeComponent,
@@ -28,7 +29,9 @@ export const ROUTER_CONFIG: Routes = [
       { path: 'order',component:OrderComponent},
       { path: 'accounts',component:AccountsComponent},
       { path: 'waiter',component:WaiterComponent},
-      { path: 'mytask',component:MyTaskComponent}
+      { path: 'mytask',component:MyTaskComponent},
+      { path: 'errortips',component:ErrorTipsComponent}
+
 
 
 
