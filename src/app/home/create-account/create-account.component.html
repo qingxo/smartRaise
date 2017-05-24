@@ -34,13 +34,11 @@
         <div class="line">
           <label for="">头像</label>
           <div class="inline head-img-line" >
-            <img id="headImg" src="{{imageUrl?imageUrl:'img/sidebar/user.png'}}" >
-            <div id="plus" class="plus">
-              <a class="pickfiles" id="pickfiles" href="#">
-                  <i class="g-plus"></i>
-                  <span>选择图片</span>
-              </a>
+            <div style="position:relative;width:60px;height:60px;">
+              <img id="headImg" src="{{imageUrl.length>1?imageUrl:'assets/img/sidebar/user.png'}}"  >
+                <app-upload-image (uploadDone) = 'getImageUrl($event)' ></app-upload-image>
             </div>
+            <input type="hidden" name="" value="" formControlName="headImgUrl">
           </div>
         </div>
         <div class="line">
@@ -59,7 +57,8 @@
         <div class="line">
           <label for="">生日</label>
           <div class="inline">
-
+            <ng2-flatpickr [config]="flatpickrOption" ></ng2-flatpickr>
+            <input type="hidden" name="" value="" formControlName="birdthDay">
           </div>
         </div>
         <div class="line">
@@ -89,9 +88,7 @@
         </div>
         <div style="margin-bottom: 1em">
          <button type="submit"
-                 [disabled]="accountForm.pristine" class="btn btn-success">Save</button> &nbsp;
-         <button type="reset" (click)="revert()"
-                 [disabled]="accountForm.pristine" class="btn btn-danger">Revert</button>
+                 [disabled]="accountForm.pristine" class="btn btn-success">Save</button>
        </div>
       </form>
 
