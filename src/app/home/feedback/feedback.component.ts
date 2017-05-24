@@ -17,6 +17,7 @@ export class FeedbackComponent implements OnInit {
 
   constructor(private feedbackService:FeedbackService,private sweetAlertService:SweetAlertService){}
   ngOnInit() {
+    this.feedbackList()
   }
 
   feedbackList() {
