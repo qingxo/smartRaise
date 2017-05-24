@@ -6,6 +6,7 @@ import { SearchLineComponent } from './search-line/search-line.component';
 import { PowerTableComponent } from './power-table/power-table.component';
 import { PagesComponent } from './pages/pages.component';
 import { UploadImageComponent } from './upload-image/upload-image.component';
+import { CardCheckDirective } from './moreDirective/card-check.directive';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { UploadImageComponent } from './upload-image/upload-image.component';
     SearchLineComponent,
     PowerTableComponent,
     PagesComponent,
-    UploadImageComponent
+    UploadImageComponent,
+    CardCheckDirective
   ],
   exports:[
     LineInfoComponent,
