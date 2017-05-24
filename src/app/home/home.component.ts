@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import storage from '../shared/storage';
 import {Router} from '@angular/router';
+import * as $ from 'jquery'
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -32,6 +33,21 @@ export class HomeComponent implements OnInit {
 
   toogleUserInfo() {
     this.toggleLogOutFlag = !this.toggleLogOutFlag
+  }
+
+  toggleMenu(e) {
+    const el = e.target
+    var foldFlag = $(el).siblings('ul').hasClass('menuShow')
+    if (foldFlag) {
+      $(el).siblings('ul').removeClass('menuShow')
+    } else {
+      $(el).siblings('ul').addClass('menuShow')
+    }
+    this.closeUserInfo()
+  }
+
+  closeUserInfo() {
+    this.toggleLogOutFlag = true
   }
 
 }

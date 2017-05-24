@@ -21,7 +21,7 @@
     <div class="inner">
       <div class="organization-menu">
         <ul class="first-level">
-          <li ><span   class="myAccount">平台管理</span>
+          <li ><span   class="myAccount"  (click)="toggleMenu($event)" >平台管理</span>
               <ul class="second-level">
                 <li class="dotHover"><span routerLink= '/home/client' routerLinkActive='active' class="">客户管理</span></li>
                 <li class="dotHover"><span routerLink="/home/servicepackage"  routerLinkActive="active">服务包管理</span></li>
@@ -30,17 +30,17 @@
                 <li class="dotHover"><span routerLink="/home/waiter"  routerLinkActive='active'>健康服务专员管理</span></li>
               </ul>
         </li>
-          <li ><span  ng-click="$ctrl.toggleMenu($event)"  class="carePatient">慢病管理</span>
+          <li ><span  (click)="toggleMenu($event)"  class="carePatient">慢病管理</span>
               <ul class="second-level">
-                <li class="dotHover"><span routerLink="/home/mytask"  outerLinkActive='active'>我的任务</span></li>
-                <li class="dotHover"><span routerLink="/home/errortips"  outerLinkActive='active'>异常提醒</span></li>
+                <li class="dotHover"><span routerLink="/home/mytask"  routerLinkActive='active'>我的任务</span></li>
+                <li class="dotHover"><span routerLink="/home/errortips"  routerLinkActive='active'>异常提醒</span></li>
 
               </ul>
           </li>
-          <li ><span  ng-click="$ctrl.toggleMenu($event)"  class="set">设置</span>
+          <li ><span   (click)="toggleMenu($event)"   class="set">设置</span>
               <ul class="second-level">
-                <li class="dotHover"><span routerLink="/home/feedback"  outerLinkActive='active'>意见反馈</span></li>
-                <li class="dotHover"><span routerLink="/home/syncdata"  outerLinkActive='active'>数据同步</span></li>
+                <li class="dotHover"><span routerLink="/home/feedback"  routerLinkActive='active'>意见反馈</span></li>
+                <li class="dotHover"><span routerLink="/home/syncdata"  routerLinkActive='active'>数据同步</span></li>
               </ul>
           </li>
         </ul>
