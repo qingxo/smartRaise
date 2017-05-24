@@ -20,7 +20,7 @@ export class ClientComponent implements OnInit {
   private pageSize:number = 10
   private pageNumber:number = 1
   private queryInfo:string = ''
-  constructor(private clientService:ClientService) { }
+  constructor(private clientService:ClientService,private sweetAlertService:SweetAlertService) { }
 
   ngOnInit() {
     this.initData()
@@ -34,9 +34,14 @@ export class ClientComponent implements OnInit {
         'query':this.queryInfo,
         'userId':storage.get('state')['userId']
     }
-    this.clientService.clientList(data).subscribe((data)=>{
-      this.listData = data.data.result
-      this.pages = data.data.linkPageNumbers
+    this.clientService.clientList(data).subscribe((res)=>{
+      if(res.success){
+        this.listData =res.data.result
+        this.pages = res.data.linkPageNumbers
+      }else{
+        this.sweetAlertService.swal(res.errMsg,'','error')
+      }
+
 
     })
   }
