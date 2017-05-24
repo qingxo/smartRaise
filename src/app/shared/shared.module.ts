@@ -5,6 +5,7 @@ import { LineInfoComponent } from './line-info/line-info.component';
 import { SearchLineComponent } from './search-line/search-line.component';
 import { PowerTableComponent } from './power-table/power-table.component';
 import { PagesComponent } from './pages/pages.component';
+import { UploadImageComponent } from './upload-image/upload-image.component';
 
 @NgModule({
   imports: [
@@ -16,13 +17,15 @@ import { PagesComponent } from './pages/pages.component';
     LineInfoComponent,
     SearchLineComponent,
     PowerTableComponent,
-    PagesComponent
+    PagesComponent,
+    UploadImageComponent
   ],
   exports:[
     LineInfoComponent,
     SearchLineComponent,
     PowerTableComponent,
-    PagesComponent
+    PagesComponent,
+    UploadImageComponent
   ]
 })
 export class SharedModule { }
