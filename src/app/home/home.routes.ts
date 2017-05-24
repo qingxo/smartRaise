@@ -14,6 +14,7 @@ import {WaiterComponent} from './waiter'
 import {MyTaskComponent} from './my-task'
 import {ErrorTipsComponent} from './error-tips'
 import {FeedbackComponent} from './feedback'
+import {SyncDataComponent} from './sync-data'
 export const ROUTER_CONFIG: Routes = [
   {
     path:'',component:HomeComponent,
@@ -32,13 +33,8 @@ export const ROUTER_CONFIG: Routes = [
       { path: 'waiter',component:WaiterComponent},
       { path: 'mytask',component:MyTaskComponent},
       { path: 'errortips',component:ErrorTipsComponent},
-      { path: 'feedback',component:FeedbackComponent}
-
-
-
-
-
-
+      { path: 'feedback',component:FeedbackComponent},
+      { path: 'syncdata',component:SyncDataComponent}
 
     ]
   }

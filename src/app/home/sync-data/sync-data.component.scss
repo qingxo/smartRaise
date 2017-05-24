@@ -1,0 +1,68 @@
+$clientMainColor:#6f4100;
+.info{
+  padding:20px;
+  table{
+    width:100%;
+    border:1px solid $clientMainColor;
+    border-radius: 2px;
+    text-align: center;
+    thead{
+      tr{
+         span{
+             border-bottom: 1px solid $clientMainColor;
+             color:$clientMainColor;
+             width:100%;
+             display:inline-block;
+             padding: 10px 0;
+             min-width:30px;
+         }
+      }
+    }
+
+    tbody{
+      tr{
+        span{
+          width: 100%;
+          display: inline-block;
+          padding: 10px 0;
+          min-width:30px;
+          color:#8995b4;
+          text-align: center;
+          em{
+            font-style: normal;
+            cursor:pointer;
+            display:inline-block;
+            padding:0 5px;
+            color:#03A9F4;
+          }
+        }
+      }
+
+      tr:nth-child(even){
+        background-color: rgba(217, 237, 247, 0.3);
+      }
+
+      tr:last-child{
+        span{
+          border-bottom:0;
+        }
+      }
+    }
+
+  }
+}
+
+
+.syn{
+  text-align: right;
+  margin:20px;
+  margin-bottom: 0;
+  span{
+    padding:10px 20px;
+    background-color: rgba(22, 155, 213, 1);
+    color:white;
+    border-radius: 5px;
+    cursor: pointer;
+    display:inline-block;
+  }
+}
