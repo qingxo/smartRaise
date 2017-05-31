@@ -8,6 +8,7 @@ import * as flatpickr_local from 'flatpickr/dist/l10n/zh'
 import {NormalAccount} from '../accounts-model'
 import "rxjs/Observable"
 import {forbiddenNameValidator} from '../../shared/moreDirective/forbidden-name.directive'
+import {CardCheckDirective} from '../../shared/moreDirective/card-check.directive'
 @Component({
   selector: 'app-create-account',
   templateUrl: './create-account.component.html',
@@ -40,9 +41,8 @@ export class CreateAccountComponent implements OnInit {
     'name': {
       'required':      'Name is required.',
       'minlength':     'Name must be at least 4 characters long.',
-      'maxlength':     'Name cannot be more than 24 characters long.',
-      'forbiddenName': 'Someone named "Bob" cannot be a hero.'
-    },
+      'maxlength':     'Name cannot be more than 24 characters long.'
+        },
     'power': {
       'required': 'Power is required.'
     }
@@ -55,7 +55,7 @@ export class CreateAccountComponent implements OnInit {
     this.accountForm = this.fb.group({
       role: ["客户",[Validators.required]], //0 系统账号，1 平台账号，2 健康专员账号， 3 客户账号
       name:["",[Validators.required,forbiddenNameValidator(/kaka/i)]],
-      cardId: null,
+      cardId: ["",[]],
       mobile: null,
       headImgUrl: null,
       healthPerson:null,
