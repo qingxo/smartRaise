@@ -1,8 +1,7 @@
 import {Injectable} from "@angular/core";
-import { ConnectionBackend, RequestOptions, Request, RequestOptionsArgs, Response, Http, Headers} from "@angular/http";
+import {XHRBackend, ConnectionBackend, RequestOptions, Request, RequestOptionsArgs, Response, Http, Headers} from "@angular/http";
 import {Observable} from "rxjs/Rx";
 // import {environment} from "../environments/environment";
-
 @Injectable()
 export class InterceptedHttp extends Http {
     constructor(backend: ConnectionBackend, defaultOptions: RequestOptions) {
@@ -45,8 +44,12 @@ export class InterceptedHttp extends Http {
         if (options.headers == null) {
             options.headers = new Headers();
         }
-        options.headers.append('Content-Type', 'application/json');
+        options.headers.append('Content-Type', 'application/x-www-form-urlencoded;charset=UTF-8');
 
         return options;
     }
+}
+
+export function httpFactory(xhrBackend: XHRBackend, requestOptions: RequestOptions): Http {
+    return new InterceptedHttp(xhrBackend, requestOptions);
 }
