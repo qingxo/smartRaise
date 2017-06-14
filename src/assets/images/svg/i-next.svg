@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>i-next</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="01-客户管理" transform="translate(-506.000000, -335.000000)" fill-rule="nonzero" fill="#333333">
+            <g id="Group-2" transform="translate(494.000000, 326.000000)">
+                <path d="M10.3543472,11.7295421 C10.159085,11.53428 9.84250256,11.53428 9.64724041,11.7295421 C9.45197827,11.9248043 9.45197827,12.2413868 9.64724041,12.4366489 L15.206313,17.9957215 L20.8492749,12.3527596 C21.044537,12.1574974 21.044537,11.840915 20.8492749,11.6456528 C20.6540127,11.4503907 20.3374303,11.4503907 20.1421681,11.6456528 L15.206313,16.5815079 L10.3543472,11.7295421 Z" id="i-next" transform="translate(15.248258, 14.747464) scale(1, -1) rotate(-270.000000) translate(-15.248258, -14.747464) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

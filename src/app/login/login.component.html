@@ -1,24 +1,31 @@
-<div class="login" ng-keypress="$ctrl.loginByEnter($event)">
+<div class="login" ng-keypress="loginByEnter($event)">
   <div class="login-wrap">
     <div class="login-center">
       <div class="login-cont">
         <div class="login-title">
-          <h1>智汇健康医养护平台</h1>
+          <div class="login-logo">
+            <span>Smart Care</span>
+            <span>智汇健康</span>
+          </div>
+          <h1>医养护融合服务平台</h1>
         </div>
         <div class="login-form">
-          <span class="login-errmsg" ng-show="$ctrl.loginErr">{{errorMsg}}</span>
+          <span class="login-errmsg" [hidden]="!loginErr">{{errorMsg}}</span>
           <div class="login-input">
-            <input type="text" class="form-text" placeholder="账号：" [(ngModel)]="loginName">
+            <span class="user-name"></span>
+            <input type="text" class="form-text" placeholder="请输入账号" [(ngModel)]="loginName">
           </div>
           <div class="login-input">
-            <input type="password" class="form-text" placeholder="密码：" [(ngModel)]="passWord"  >
-          </div>
-          <div class="login-input submit">
-            <span class="login-button" (click)="login()">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</span>
+            <span class="user-pwd"></span>
+            <input type="password" class="form-text" placeholder="请输入密码" [(ngModel)]="passWord">
           </div>
           <div class="login-input rememberPwd">
             <input type="checkbox" id="rememberPWD" [(ngModel)]="rememberPWD"><label for="rememberPWD">记住密码</label>
           </div>
+          <div class="login-input submit">
+            <span class="login-button" (click)="loginHandler()">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</span>
+          </div>
+
         </div>
       </div>
     </div>
