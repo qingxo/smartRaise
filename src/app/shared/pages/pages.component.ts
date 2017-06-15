@@ -1,4 +1,4 @@
-import { Component, OnInit ,Input,Output,EventEmitter} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-pages',
@@ -7,9 +7,10 @@ import { Component, OnInit ,Input,Output,EventEmitter} from '@angular/core';
 })
 export class PagesComponent implements OnInit {
 
-@Input() pages:Array<any> = []
-@Input() currentPage:number = 1
-@Output() pageInfo = new EventEmitter<any>()
+  @Input() pages: Array<any> = []
+  @Input() currentPage: number = 1
+  @Input() sum: number = 1
+  @Output() pageInfo = new EventEmitter<any>()
   constructor() { }
 
   ngOnInit() {
@@ -17,15 +18,18 @@ export class PagesComponent implements OnInit {
 
   changePage(num) {
     let pageNum = num
-    if(pageNum<1){
+    if (pageNum < 1) {
       pageNum = 1
     }
 
-    if(pageNum>this.pages[this.pages.length-1]){
-      pageNum = this.pages[this.pages.length-1]
+    if (pageNum > this.pages[this.pages.length - 1]) {
+      pageNum = this.pages[this.pages.length - 1]
     }
 
-    this.pageInfo.emit(pageNum)
+    if (pageNum != this.currentPage) {
+      this.pageInfo.emit(pageNum)
+    }
+
   }
 
 }

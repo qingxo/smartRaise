@@ -8,19 +8,20 @@ import {SweetAlertService} from 'ng2-sweetalert2'
   selector: 'app-client',
   templateUrl: './client.component.html',
   styleUrls: ['./client.component.scss'],
-  providers:[ClientService,SweetAlertService]
+  providers: [ClientService, SweetAlertService]
 })
 export class ClientComponent implements OnInit {
 
-  private clientHead:string[] = []
-  private operate:string = '操作'
-  private listData:Array<any> = []
-  private listName:Array<any> = []
-  private pages:Array<any> = []
-  private pageSize:number = 10
-  private pageNumber:number = 1
-  private queryInfo:string = ''
-  constructor(private clientService:ClientService,private sweetAlertService:SweetAlertService) { }
+  private clientHead: string[] = []
+  private operate: string = '操作'
+  private listData: Array<any> = []
+  private listName: Array<any> = []
+  private pages: Array<any> = []
+  private pageSize: number = 10
+  private pageNumber: number = 1
+  private queryInfo: string = ''
+  private totalPage: number
+  constructor(private clientService: ClientService, private sweetAlertService: SweetAlertService) { }
 
   ngOnInit() {
     this.initData()
@@ -29,17 +30,18 @@ export class ClientComponent implements OnInit {
 
   initAsyc() {
     let data = {
-        'pageSize': this.pageSize,
-        'pageNum': this.pageNumber,
-        'query':this.queryInfo,
-        'userId':storage.get('state')['userId']
+      'pageSize': this.pageSize,
+      'pageNum': this.pageNumber,
+      'query': this.queryInfo,
+      'userId': storage.get('state')['userId']
     }
-    this.clientService.clientList(data).subscribe((res)=>{
-      if(res.success){
-        this.listData =res.data.result
+    this.clientService.clientList(data).subscribe((res) => {
+      if (res.success) {
+        this.listData = res.data.result
         this.pages = res.data.linkPageNumbers
-      }else{
-        this.sweetAlertService.swal(res.errMsg,'','error')
+        this.totalPage = res.data.totalCount
+      } else {
+        this.sweetAlertService.swal(res.errMsg, '', 'error')
       }
 
 
@@ -47,14 +49,14 @@ export class ClientComponent implements OnInit {
   }
 
   initData() {
-    this.clientHead = ['编号','客户姓名','手机号码','意见']
-    this.listName = ['mobile','commissionerUserName','name','openId']
+    this.clientHead = ['编号', '客户姓名', '手机号码', '意见']
+    this.listName = ['mobile', 'commissionerUserName', 'name', 'openId']
 
   }
 
-  searchTable(queryInfo:string) {
+  searchTable(queryInfo: string) {
     this.queryInfo = queryInfo
-    this.pageNumber =1
+    this.pageNumber = 1
     this.initAsyc()
   }
 

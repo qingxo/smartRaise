@@ -1,37 +1,43 @@
-  <div class="right-content client-content">
-    <app-line-info  lineInfo="客户管理"></app-line-info>
-    <div class="highline">
-      <div class="lf">
-        <app-search-line placeHolderValue= "客户请输入" (search) = "searchTable($event)"></app-search-line>
-      </div>
-      <div class="rf" routerLink="/home/newaccount">
-          新增客户
-      </div>
+<div class="right-content client-content">
+  <app-line-info lineInfo="客户管理"></app-line-info>
+  <div class="highline">
+    <div class="lf">
+      <app-search-line placeHolderValue="客户请输入" (search)="searchTable($event)"></app-search-line>
     </div>
+    <div class="rf" routerLink="/home/newaccount">
+      新增客户
+    </div>
+  </div>
 
-    <div class="info">
-      <table cellpadding="0" cellspacing="0" border="0">
-        <thead>
-          <tr><td><span>姓名</span></td>
-            <td><span>手机号</span></td>
-            <td><span>性别</span></td>
-            <td><span>年龄</span></td>
-            <td><span>注册时间</span></td>
-            <td><span>是否监护人</span></td>
-            <td><span>身份证号</span></td>
-            <td><span>健康服务专员</span></td>
-            <td><span ui-sref="home.binding">绑定设备</span>
-            </td><td><span>操作</span></td></tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of listData">
-            <td><span><em routerLink="home.newaccount({'isEdit':true,'userId':item.customerId,'name':item.commissionerUserName})">{{item.name}}</em></span></td><td><span>{{item.mobile}}</span></td><td><span>{{item.sex === 'M' ? '男' : '女'}}</span></td><td><span>{{item.birdthday | date:'yyyy-MM-dd'}}</span></td>
-            <td><span>{{item.createDt | date:'yyyy-MM-dd'}}</span></td>
-            <td><span>{{item.guardian == '1'?'Y':''}}</span></td>
-            <td><span>{{item.cardId}}</span></td>
-            <td><span><em ui-sref="home.create({'userId':item.commissionerUserId})">{{item.commissionerUserName || '无'}}</em></span></td>
-            <td><span>{{item.equipmentNo || '未绑定'}}</span></td>
-            <td><span>
+  <div class="info">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+          <td><span>姓名</span></td>
+          <td><span>手机号</span></td>
+          <td><span>性别</span></td>
+          <td><span>年龄</span></td>
+          <td><span>注册时间</span></td>
+          <td><span>是否监护人</span></td>
+          <td><span>身份证号</span></td>
+          <td><span>健康服务专员</span></td>
+          <td><span ui-sref="home.binding">绑定设备</span>
+          </td>
+          <td><span>操作</span></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of listData">
+          <td><span><em routerLink="home.newaccount({'isEdit':true,'userId':item.customerId,'name':item.commissionerUserName})">{{item.name}}</em></span></td>
+          <td><span>{{item.mobile}}</span></td>
+          <td><span>{{item.sex === 'M' ? '男' : '女'}}</span></td>
+          <td><span>{{item.birdthday | date:'yyyy-MM-dd'}}</span></td>
+          <td><span>{{item.createDt | date:'yyyy-MM-dd'}}</span></td>
+          <td><span>{{item.guardian == '1'?'Y':''}}</span></td>
+          <td><span>{{item.cardId}}</span></td>
+          <td><span><em ui-sref="home.create({'userId':item.commissionerUserId})">{{item.commissionerUserName || '无'}}</em></span></td>
+          <td><span>{{item.equipmentNo || '未绑定'}}</span></td>
+          <td><span>
                <!-- <em routerLink="home.clientdetail({'userId':item.customerId,'equipNo':item.equipmentNo})">详情</em> -->
                <em routerLink="/home/client/detail">详情</em>
                <em routerLink="/home/client/planman" [queryParams]="{'customerId':item.customerId,'mobile':item.mobile,'name':item.name,'person':item.commissionerUserId}">安排专员</em>
@@ -40,11 +46,11 @@
               <em class="ng-class:{true:'active',false:'inactive'}[!!item.equipmentNo]"   ngClick="$ctrl.cancelSmartBed(item.customerId,item.equipmentNo,item)" style="color:#ab602f">取消绑定</em>
               <em routerLink="/home/orderpackage" [queryParams]="{'userId':item.customerId}">订购服务包</em>
             </span></td>
-          </tr>
-        </tbody>
-      </table>
-      <app-pages [pages] = pages (pageInfo)="pageTurning($event)" [currentPage] = pageNumber></app-pages>
-
-    </div>
+        </tr>
+      </tbody>
+    </table>
+    <app-pages [pages]=pages (pageInfo)="pageTurning($event)" [currentPage]=pageNumber [sum]=totalPage></app-pages>
 
   </div>
+
+</div>
