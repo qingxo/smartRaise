@@ -1,4 +1,4 @@
-import { Component, OnInit ,Output,Input,EventEmitter} from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter} from '@angular/core';
 @Component({
   selector: 'app-search-line',
   templateUrl: './search-line.component.html',
@@ -6,22 +6,23 @@ import { Component, OnInit ,Output,Input,EventEmitter} from '@angular/core';
 })
 export class SearchLineComponent implements OnInit {
 
-  @Input() searchInput:string = ''
+  @Input() searchInput: string = ''
   @Output() search = new EventEmitter<string>()
-  @Input() placeHolderValue:string = '请输入'
+  @Input() placeHolderValue: string = '请输入'
   constructor() { }
 
   ngOnInit() {
 
   }
 
-  searchInfo(event,flag=true) {
-    if(!flag){
-      if(event.keyCode != 13) {
-        return
-      }
-    }
+  searchFind() {
     this.search.emit(this.searchInput)
+  }
+
+  searchStart(event) {
+    if (event.keyCode == 13) {
+      this.searchFind()
+    }
   }
 
 

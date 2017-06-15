@@ -1,25 +1,29 @@
-$mainComponentColor:#6f4100;
-.search-line{
-  display:inline-block;
-  input{
+$mainComponentColor: #D2D2D2;
+
+.search-info {
+  display: inline-block;
+  position: relative;
+
+  input {
     border: 1px solid $mainComponentColor;
-    color: $mainComponentColor;
-    width: 200px;
+    color: #333333;
+    width: 300px;
     margin-right: 8px;
-    border-radius: 5px;
+    border-radius: 4px;
     padding-left: 8px;
-    height: 25px;
-  }
-  span{
-    border: 1px solid $mainComponentColor;
-    width: 50px;
-    display: inline-block;
-    background-color: white;
-    padding: 2px 5px;
-    border-radius: 5px;
-    vertical-align: top;
-    text-align: center;
-    cursor:pointer;
+    height: 26px;
+    line-height: 26px;
+    font-size: 12px;
   }
 
+  span {
+    cursor: pointer;
+    height: 18px;
+    position: absolute;
+    background: url("/assets/images/search.png") 0 0 no-repeat;
+    background-size: 17px 18px;
+    top: 8px;
+    right: 13px;
+    width: 20px;
+  }
 }

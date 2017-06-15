@@ -1,4 +1,4 @@
-<div class="search-line">
-  <input type="text" name="query"  (keydown)= 'searchInfo($event,false)'  placeholder="{{placeHolderValue}}" [(ngModel)]="searchInput" >
-  <span (click)="searchInfo($event)">查找</span>
+<div class="search-info">
+  <input type="text" (keydown)='searchStart($event)' placeholder="{{placeHolderValue}}" [(ngModel)]="searchInput">
+  <span (click)="searchFind()"></span>
 </div>
