@@ -7,6 +7,7 @@ import { PowerTableComponent } from './power-table/power-table.component';
 import { PagesComponent } from './pages/pages.component';
 import { UploadImageComponent } from './upload-image/upload-image.component';
 import { CardCheckDirective } from './moreDirective/card-check.directive';
+import { NothingComponent } from './nothing';
 
 @NgModule({
   imports: [
@@ -20,14 +21,16 @@ import { CardCheckDirective } from './moreDirective/card-check.directive';
     PowerTableComponent,
     PagesComponent,
     UploadImageComponent,
-    CardCheckDirective
+    CardCheckDirective,
+    NothingComponent
   ],
-  exports:[
+  exports: [
     LineInfoComponent,
     SearchLineComponent,
     PowerTableComponent,
     PagesComponent,
-    UploadImageComponent
+    UploadImageComponent,
+    NothingComponent
   ]
 })
 export class SharedModule { }
