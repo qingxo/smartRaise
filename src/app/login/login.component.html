@@ -17,7 +17,7 @@
           </div>
           <div class="login-input">
             <span class="user-pwd"></span>
-            <input type="password" class="form-text" placeholder="请输入密码" [(ngModel)]="passWord">
+            <input type="password" class="form-text" placeholder="请输入密码" [(ngModel)]="passWord" (keydown)="loginConfirm($event)">
           </div>
           <div class="login-input rememberPwd">
             <input type="checkbox" id="rememberPWD" [(ngModel)]="rememberPWD"><label for="rememberPWD">记住密码</label>

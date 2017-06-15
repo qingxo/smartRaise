@@ -18,14 +18,8 @@
   .login-wrap {
     height: 100%;
     min-height: 600px;
-    //   position: relative;
-    //   height: 600px;
-    //   background-repeat: no-repeat;
-    //   background-position: 75px 184px;
-    //   background-size: 512px 110px;
-    //   overflow: hidden;
+
     .login-center {
-      // max-width: 1600px;
       width: 100%;
       position: relative;
       height: 100%;
@@ -33,7 +27,7 @@
       background-color: #ffffff;
       background-image: url("/assets/images/image-bg.png");
       background-repeat: no-repeat;
-      background-size: 572px 760px;
+      background-size: 60% auto;
       overflow: hidden;
 
       .login-cont {

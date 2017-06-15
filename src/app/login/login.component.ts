@@ -25,6 +25,12 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  loginConfirm(e) {
+    if (e.keyCode == 13) {
+      this.loginHandler()
+    }
+  }
+
   loginHandler() {
     console.log("click")
     if (!this.passWord && !this.loginName) {
