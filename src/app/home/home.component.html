@@ -1,54 +1,76 @@
-<div class="container" >
-  <div class="toolbar clearfix" >
+<div class="container">
+  <div class="toolbar clearfix">
     <div class="logo">
-      <img src="assets/img/smart-care.png" width="85" height="23" alt="Smart Care"><span>后台管理</span>
+      <span>医养护融合服务平台</span>
     </div>
     <div class="statistical">
-      <a href="javascript:;" class="statistical-item icon-{{icon}}" (click)="toogleUserInfo()">
-        <img  src="{{icon}}?imageView2/2/w/80/h/80" class="head-icon" alt="">
-        {{userName}}</a>
+      <a class="statistical-item icon-{{!icon}}" (click)="toogleUserInfo()">
+        <img ng-hide="!icon" src="{{icon}}?imageView2/2/w/80/h/80" class="head-icon" alt="">
+        {{userNameState}}</a>
       <div class="user-info dis-{{toggleLogOutFlag}}">
         <div class="user-detail">
-          <span class="user-name" >{{userName}}</span>
-          <span class="logout" (click) = 'logOut()' >退出登录</span>
+          <span class="user-name" (click)="showMyAccount()">账号信息</span>
+          <span class="pwd" (click)="dispearBlock()">修改密码</span>
+          <span class="logout" (click)="logOut()">退出账号</span>
         </div>
       </div>
     </div>
 
   </div>
-  <div class="sidebar home-sidebar" style="position:fixed;top:80px;left:0;z-index:5" ng-class="{fold: fold}">
-    <h2 class="catalog">智汇健康医养护平台</h2>
+  <div class="sidebar home-sidebar" style="position:fixed;top:57px;z-index:5" ng-class="{fold: fold}">
     <div class="inner">
       <div class="organization-menu">
-        <ul class="first-level">
-          <li ><span   class="myAccount"  (click)="toggleMenu($event)" >平台管理</span>
-              <ul class="second-level">
-                <li class="dotHover"><span routerLink= '/home/client' routerLinkActive='active' class="">客户管理</span></li>
-                <li class="dotHover"><span routerLink="/home/servicepackage"  routerLinkActive="active">服务包管理</span></li>
-                <li class="dotHover"><span routerLink="/home/order"  routerLinkActive='active'>订单管理</span></li>
-                <li class="dotHover"><span routerLink="/home/accounts" routerLinkActive='active'>账号管理</span></li>
-                <li class="dotHover"><span routerLink="/home/waiter"  routerLinkActive='active'>健康服务专员管理</span></li>
-              </ul>
-        </li>
-          <li ><span  (click)="toggleMenu($event)"  class="carePatient">慢病管理</span>
-              <ul class="second-level">
-                <li class="dotHover"><span routerLink="/home/mytask"  routerLinkActive='active'>我的任务</span></li>
-                <li class="dotHover"><span routerLink="/home/errortips"  routerLinkActive='active'>异常提醒</span></li>
 
-              </ul>
+        <ul class="first-level" ng-show="role == 2">
+          <li><span (click)="toggleMenu($event)" class="myAccount">平台管理</span>
+            <ul class="second-level">
+              <li class="dotHover" routerLink='/home/client' routerLinkActive='active'><span>客户管理</span></li>
+              <li class="dotHover" routerLink='/home/servicepackage' routerLinkActive='active'><span>服务包管理</span></li>
+              <li class="dotHover" routerLink='/home/order' routerLinkActive='active'><span>订单管理</span></li>
+              <li class="dotHover" ng-if="role!=2" routerLink='/home/accounts' routerLinkActive='active'><span>账号管理</span></li>
+
+              <li class="dotHover" ng-if="role!=2" routerLink='/home/waiter' routerLinkActive='active'><span>健康服务专员管理</span></li>
+            </ul>
           </li>
-          <li ><span   (click)="toggleMenu($event)"   class="set">设置</span>
-              <ul class="second-level">
-                <li class="dotHover"><span routerLink="/home/feedback"  routerLinkActive='active'>意见反馈</span></li>
-                <li class="dotHover"><span routerLink="/home/syncdata"  routerLinkActive='active'>数据同步</span></li>
-              </ul>
+
+          <li><span (click)="toggleMenu($event)" class="carePatient">慢病管理</span>
+            <ul class="second-level">
+              <li class="dotHover"><span routerLink='/home/client' routerLinkActive='active'>我的任务</span></li>
+              <li class="dotHover"><span routerLink='/home/client' routerLinkActive='active'>异常提醒</span></li>
+            </ul>
+          </li>
+
+        </ul>
+
+        <ul class="first-level" ng-show="role != 2">
+          <li><span (click)="toggleMenu($event)" class="myAccount">平台管理</span>
+            <ul class="second-level">
+              <li class="dotHover"><span ui-sref="home.client" (click)="handerColorLevel2(1,$event)" class="">客户管理</span></li>
+              <li class="dotHover"><span ui-sref="home.servicepackage" (click)="handerColorLevel2(2,$event)" class="">服务包管理</span></li>
+              <li class="dotHover"><span ui-sref="home.order" (click)="handerColorLevel2(3,$event)" class="">订单管理</span></li>
+              <li class="dotHover"><span ui-sref="home.accounts" (click)="handerColorLevel2(4,$event)" class="">账号管理</span></li>
+              <li class="dotHover"><span ui-sref="home.health" (click)="handerColorLevel2(5,$event)" class="">健康服务专员管理</span></li>
+            </ul>
+          </li>
+
+          <li><span (click)="toggleMenu($event)" class="carePatient">慢病管理</span>
+            <ul class="second-level">
+              <li class="dotHover"><span ui-sref="home.mytask" (click)="handerColorLevel2(1,$event)" class="">我的任务</span></li>
+              <li class="dotHover"><span ui-sref="home.errortips" (click)="handerColorLevel2(2,$event)" class="">异常提醒</span></li>
+            </ul>
+          </li>
+          <li><span (click)="toggleMenu($event)" class="set">设置</span>
+            <ul class="second-level">
+              <li class="dotHover"><span ui-sref="home.feedback" (click)="handerColorLevel2(1,$event)" class="">意见反馈</span></li>
+              <li class="dotHover"><span ui-sref="home.syndata" (click)="handerColorLevel2(2,$event)" class="">数据同步</span></li>
+            </ul>
           </li>
         </ul>
+
       </div>
     </div>
   </div>
   <div class="content">
-
-  <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
   </div>
 </div>
