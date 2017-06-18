@@ -88,13 +88,11 @@
           position: relative;
           text-align: left;
           padding: 48px 80px;
-
-          input:focus {
-            outline-color: #FECA00;
-            outline-style: auto;
-            outline-width: 2px;
-          }
-
+          // input:focus {
+          //   outline-color: #FECA00;
+          //   outline-style: auto;
+          //   outline-width: 2px;
+          // }
           .login-errmsg {
             position: absolute;
             top: 22px;

@@ -23,6 +23,12 @@ body {
   font-family: -apple-system, 'Helvetica Neue', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
 }
 
+input:focus {
+  outline-color: #FECA00;
+  outline-style: auto;
+  outline-width: 2px;
+}
+
 a,
 a:hover {
   color: #35b3f8;
