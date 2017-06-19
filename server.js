@@ -42,7 +42,7 @@ app.get('/uploadToken',function(req,res) {
 // api proxy
 app.use('/api', proxy(config.api, {
   forwardPath: function (req, res) {
-    return require('url').parse(req.url).path;
+    return require('url').parse("/pc"+req.url).path;
   }
 }));
 
