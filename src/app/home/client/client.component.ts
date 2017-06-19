@@ -37,9 +37,9 @@ export class ClientComponent implements OnInit {
     }
     this.clientService.clientList(data).subscribe((res) => {
       if (res.success) {
-        this.listData = res.data.result
-        this.pages = res.data.linkPageNumbers
-        this.totalPage = res.data.totalCount
+        this.listData = res.data.list
+        this.pages = res.data.navigatepageNums
+        this.totalPage = res.data.total
       } else {
         this.sweetAlertService.swal(res.errMsg, '', 'error')
       }
