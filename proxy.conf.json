@@ -1,9 +1,11 @@
 {
-   "/api": {
-      "target": "http://172.16.150.173:8081",
-      "pathRewrite": {"^/api" : ""},
-      "changeOrigin": true,
-      "logLevel": "debug",
-      "secure": false
-   }
+  "/api": {
+    "target": "http://172.16.150.173:8081",
+    "pathRewrite": {
+      "^/api": "/pc"
+    },
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "secure": false
+  }
 }
