@@ -6,21 +6,22 @@ import { SweetAlertService} from 'ng2-sweetalert2'
   selector: 'app-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss'],
-  providers:[OrderService,SweetAlertService]
+  providers: [OrderService, SweetAlertService]
 })
 export class OrderComponent implements OnInit {
-  private pageSize:number = 10
-  private pageNumber:number = 1
-  private pages:Array<any> = []
-  private queryInfo:string = ''
-  private list:Array<any> = []
-  constructor(private orderService:OrderService,private sweetAlertService:SweetAlertService) { }
+  private pageSize: number = 10
+  private pageNumber: number = 1
+  private pages: Array<any> = []
+  private totalPage: number
+  private queryInfo: string = ''
+  private list: Array<any> = []
+  constructor(private orderService: OrderService, private sweetAlertService: SweetAlertService) { }
 
   ngOnInit() {
     this.orderList()
   }
 
-  searchTable(queryInfo:string) {
+  searchTable(queryInfo: string) {
     this.queryInfo = queryInfo
     this.orderList()
   }
@@ -35,16 +36,17 @@ export class OrderComponent implements OnInit {
     let data = {
       'pageSize': this.pageSize,
       'pageNum': this.pageNumber,
-      'userId':storage.get('state')['userId'],
-      'query':this.queryInfo
+      'userId': storage.get('state')['userId'],
+      'query': this.queryInfo
     }
     this.orderService.orderList(data).subscribe((res) => {
       if (res.success) {
         this.list = res.data.result
         this.pages = res.data.linkPageNumbers
         this.pageNumber = res.data.pageNumber
-      }else{
-        this.sweetAlertService.swal(res.errMsg,'','error')
+        this.totalPage = res.data.totalCount
+      } else {
+        this.sweetAlertService.swal(res.errMsg, '', 'error')
       }
 
     })

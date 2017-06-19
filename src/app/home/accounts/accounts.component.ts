@@ -5,23 +5,24 @@ import {AccountsService} from './accounts.service'
   selector: 'app-accounts',
   templateUrl: './accounts.component.html',
   styleUrls: ['./accounts.component.scss'],
-  providers:[AccountsService,SweetAlertService]
+  providers: [AccountsService, SweetAlertService]
 
 })
 export class AccountsComponent implements OnInit {
-  private pageSize:number =10
-  private pageNumber:number =1
-  private pages:Array<any> = []
-  private queryInfo:string = ''
-  private list:Array<any> = []
-  constructor(private accountsService:AccountsService,private sweetAlertService:SweetAlertService) { }
+  private pageSize: number = 10
+  private pageNumber: number = 1
+  private pages: Array<any> = []
+  private totalPage: number
+  private queryInfo: string = ''
+  private list: Array<any> = []
+  constructor(private accountsService: AccountsService, private sweetAlertService: SweetAlertService) { }
 
   ngOnInit() {
     this.accountsList()
   }
 
 
-  searchTable(queryInfo:string) {
+  searchTable(queryInfo: string) {
     this.queryInfo = queryInfo
     this.pageNumber = 1
     this.accountsList()
@@ -40,45 +41,46 @@ export class AccountsComponent implements OnInit {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: '确定',
-      cancelButtonText:'取消'
+      cancelButtonText: '取消'
     }).then(() => {
       this.delPerson(userId)
-        },(dismiss)=>{
-      })
+    }, (dismiss) => {
+    })
   }
 
-  delPerson(userId){
+  delPerson(userId) {
     this.accountsService.delPerson(userId).subscribe((res) => {
       if (res.success) {
-        this.sweetAlertService.swal('删除成功','','success')
+        this.sweetAlertService.swal('删除成功', '', 'success')
         this.delList(userId)
-      }else{
-        this.sweetAlertService.swal(res.errMsg,'','error')
+      } else {
+        this.sweetAlertService.swal(res.errMsg, '', 'error')
       }
     })
   }
 
   delList(userId) {
-    for(let i = 0;i<this.list.length;i++) {
-      if(this.list[i].userId == userId) {
-        this.list.splice(i,1)
+    for (let i = 0; i < this.list.length; i++) {
+      if (this.list[i].userId == userId) {
+        this.list.splice(i, 1)
       }
     }
   }
 
   accountsList() {
     let data = {
-      'pageSize':this.pageSize,
-      'pageNum':this.pageNumber,
-      'query':this.queryInfo
+      'pageSize': this.pageSize,
+      'pageNum': this.pageNumber,
+      'query': this.queryInfo
     }
     this.accountsService.accountsList(data).subscribe((res) => {
       if (res.success) {
         this.list = res.data.result
         this.pages = res.data.linkPageNumbers
         this.pageNumber = res.data.pageNumber
-      }else{
-        this.sweetAlertService.swal(res.errMsg,'','error')
+        this.totalPage = res.data.totalCount
+      } else {
+        this.sweetAlertService.swal(res.errMsg, '', 'error')
       }
     })
   }

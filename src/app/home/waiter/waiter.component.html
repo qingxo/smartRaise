@@ -1,28 +1,34 @@
-<div class="right-content">
-  <app-line-info  lineInfo="健康服务专员"></app-line-info>
-
+<div class="right-content-info">
   <div class="detail-content">
     <div class="highline">
       <div class="lf">
-        <app-search-line placeHolderValue= "请输入姓名、手机号" (search) = "searchTable($event)"></app-search-line>
+        <app-search-line placeHolderValue="请输入姓名、手机号" (search)="searchTable($event)"></app-search-line>
       </div>
-      <div class=" rf" ui-sref="home.create({'isHealth':true})">
+      <div class=" rf create-btn" ui-sref="home.create({'isHealth':true})">
         新增健康服务专员
       </div>
     </div>
-    <div class="info">
+    <div class="table-info">
       <div class="defalutComm">
-        默认健康专员:<span >{{defalutPerson.name}}</span>
+        默认健康专员:<span>{{defalutPerson.name}}</span>
       </div>
-      <table cellpadding="0" cellspacing="0" border="0" >
+      <table cellpadding="0" cellspacing="0" border="0">
         <thead>
-          <tr><td><span>用户名</span></td><td><span>姓名</span></td><td><span>手机号</span></td><td><span>邮箱</span></td>
+          <tr>
+            <td><span>用户名</span></td>
+            <td><span>姓名</span></td>
+            <td><span>手机号</span></td>
+            <td><span>邮箱</span></td>
             <!-- <td><span>客户数量</span></td> -->
-            <td><span>操作</span></td></tr>
+            <td><span>操作</span></td>
+          </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of list">
-            <td><span>{{item.userName}}</span></td><td><span>{{item.name}}</span></td><td><span>{{item.mobile}}</span></td><td><span>{{item.mail}}</span></td>
+            <td><span>{{item.userName}}</span></td>
+            <td><span>{{item.name}}</span></td>
+            <td><span>{{item.mobile}}</span></td>
+            <td><span>{{item.mail}}</span></td>
             <!-- <td><span>{{item.num?item.num:'0'}}</span></td> -->
             <td><span>
                <em ui-sref="home.create({'userId':item.userId,'isHealth':true})">编辑</em>
@@ -32,7 +38,7 @@
           </tr>
         </tbody>
       </table>
-      <app-pages [pages] = pages (pageInfo)="pageTurning($event)" [currentPage] = pageNumber></app-pages>
+      <app-pages [pages]=pages (pageInfo)="pageTurning($event)" [currentPage]=pageNumber [sum]=totalPage></app-pages>
 
     </div>
   </div>
