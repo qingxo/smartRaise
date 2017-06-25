@@ -4,6 +4,7 @@ import {ClientService} from './client.service';
 import storage from '../../shared/storage'
 import {SweetAlertService} from 'ng2-sweetalert2'
 
+
 @Component({
   selector: 'app-client',
   templateUrl: './client.component.html',
@@ -24,7 +25,7 @@ export class ClientComponent implements OnInit {
   constructor(private clientService: ClientService, private sweetAlertService: SweetAlertService) { }
 
   ngOnInit() {
-    this.initData()
+    // this.initData()
     this.initAsyc()
   }
 
@@ -35,23 +36,18 @@ export class ClientComponent implements OnInit {
       'query': this.queryInfo,
       'userId': storage.get('state')['userId']
     }
-    this.clientService.clientList(data).subscribe((res) => {
-      if (res.success) {
+    this.clientService.clientList(data).subscribe(
+      (res) => {
         this.listData = res.data.list
         this.pages = res.data.navigatepageNums
         this.totalPage = res.data.total
-      } else {
-        this.sweetAlertService.swal(res.errMsg, '', 'error')
       }
-
-
-    })
+    )
   }
 
   initData() {
     this.clientHead = ['编号', '客户姓名', '手机号码', '意见']
     this.listName = ['mobile', 'commissionerUserName', 'name', 'openId']
-
   }
 
   searchTable(queryInfo: string) {

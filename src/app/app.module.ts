@@ -6,15 +6,17 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ROUTER_CONFIG } from './app.routes';
 
-import { Http,HttpModule, XHRBackend, RequestOptions }    from '@angular/http';
+import { Http, HttpModule, XHRBackend, RequestOptions }    from '@angular/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { CoreComponent } from './core/core.component';
 import {LoginGuard} from './guard/LoginGuard';
-import { InterceptedHttp,httpFactory}   from './shared/base.http.interceptor';
+import { InterceptedHttp, httpFactory}   from './shared/base.http.interceptor';
 // import { requestOptionsProvider} from './shared/default.request.option';
 import { HomeModule } from './home';
 import {SharedModule} from './shared';
+import {SweetAlertService} from 'ng2-sweetalert2'
+
 
 @NgModule({
   declarations: [
@@ -32,12 +34,12 @@ import {SharedModule} from './shared';
 
   ],
   // providers: [requestOptionsProvider,LoginGuard],
-  providers:[
-      {
-           provide: Http,
-           useFactory: httpFactory,
-           deps: [XHRBackend, RequestOptions]
-       },LoginGuard
+  providers: [
+    {
+      provide: Http,
+      useFactory: httpFactory,
+      deps: [XHRBackend, RequestOptions]
+    }, LoginGuard, SweetAlertService
   ],
   bootstrap: [AppComponent]
 })

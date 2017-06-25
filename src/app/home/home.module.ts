@@ -7,7 +7,7 @@ import {RouterModule} from '@angular/router';
 import {SharedModule} from '../shared';
 import {PopoverModule} from 'ngx-popover'
 import { PlanmanComponent } from './planman/planman.component'
-import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { ClientDetailComponent } from './client-detail/client-detail.component'
 import { Ng2FlatpickrComponent } from 'ng2-flatpickr/ng2-flatpickr';
@@ -23,7 +23,7 @@ import { MyTaskComponent } from './my-task/my-task.component';
 import { ErrorTipsComponent } from './error-tips/error-tips.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { SyncDataComponent } from './sync-data/sync-data.component';
-
+import {SweetAlertService} from 'ng2-sweetalert2'
 @NgModule({
   imports: [
     CommonModule,
@@ -53,6 +53,6 @@ import { SyncDataComponent } from './sync-data/sync-data.component';
     FeedbackComponent,
     SyncDataComponent
   ],
-  providers:[]
+  providers: []
 })
 export class HomeModule { }

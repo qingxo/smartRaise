@@ -117,10 +117,10 @@ export class WaiterComponent implements OnInit {
     }
     this.waiterService.waiterList(data).subscribe((res) => {
       if (res.success) {
-        this.list = res.data.result
-        this.pages = res.data.linkPageNumbers
-        this.pageNumber = res.data.pageNumber
-        this.totalPage = res.data.totalCount
+        this.list = res.data.list
+        this.pages = res.data.navigatepageNums
+        this.pageNumber = res.data.pageNum
+        this.totalPage = res.data.total
       }
 
     })
