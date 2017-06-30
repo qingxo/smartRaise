@@ -1,11 +1,12 @@
 <div class="login" ng-keypress="loginByEnter($event)">
   <div class="login-wrap">
     <div class="login-center">
+      <div class="login-left">
+
+      </div>
       <div class="login-cont">
         <div class="login-title">
           <div class="login-logo">
-            <span>Smart Care</span>
-            <span>智汇健康</span>
           </div>
           <h1>医养护融合服务平台</h1>
         </div>
@@ -13,17 +14,17 @@
           <span class="login-errmsg" [hidden]="!loginErr">{{errorMsg}}</span>
           <div class="login-input">
             <span class="user-name"></span>
-            <input type="text" class="form-text" placeholder="请输入账号" [(ngModel)]="loginName">
+            <input type="text" class="form-text" placeholder="请输入账号" [(ngModel)]="loginName" (ngModelChange)="styleChange()">
           </div>
           <div class="login-input">
             <span class="user-pwd"></span>
-            <input type="password" class="form-text" placeholder="请输入密码" [(ngModel)]="passWord" (keydown)="loginConfirm($event)">
+            <input type="password" class="form-text" placeholder="请输入密码" [(ngModel)]="passWord" (keydown)="loginConfirm($event)" (ngModelChange)="styleChange()">
           </div>
           <div class="login-input rememberPwd">
             <input type="checkbox" id="rememberPWD" [(ngModel)]="rememberPWD"><label for="rememberPWD">记住密码</label>
           </div>
           <div class="login-input submit">
-            <span class="login-button" (click)="loginHandler()">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</span>
+            <span class="login-button" [ngClass]="{'login-not-allow':loginFlag}" (click)="loginHandler()">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</span>
           </div>
 
         </div>

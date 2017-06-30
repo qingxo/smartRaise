@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   private loginErr: boolean
   private role: number
   private rememberPWD: boolean
+  private loginFlag: boolean = true
   constructor(private loginService: LoginService, private router: Router) {
   }
 
@@ -28,6 +29,15 @@ export class LoginComponent implements OnInit {
   loginConfirm(e) {
     if (e.keyCode == 13) {
       this.loginHandler()
+    }
+  }
+
+  styleChange() {
+    console.log("tt")
+    if (this.passWord.length > 0 && this.loginName.length > 0) {
+      this.loginFlag = false
+    } else {
+      this.loginFlag = true
     }
   }
 

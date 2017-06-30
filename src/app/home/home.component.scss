@@ -284,13 +284,14 @@ $homeMainColor: #6f4100;
     opacity: 0.91;
     color: #7b520f;
     text-decoration: none;
-    background: url('/assets/img/sidebar/user.png') no-repeat;
+    background: url('/assets/images/user-head.png') no-repeat;
     min-width: 40px;
     height: 40px;
     background-size: 32px 32px;
     background-position-y: 5px;
     padding-left: 40px;
     line-height: 40px;
+    cursor: pointer;
 
     > em {
       font-style: normal;
@@ -326,17 +327,16 @@ $homeMainColor: #6f4100;
     color: #eb232a;
   }
 }
-
-.container {
-  padding-top: 0;
-
-  .content {
-    transition: all 0.3s;
-    margin-left: 235px;
-    padding-top: 80px;
-    min-height: 900px;
-  }
-}
+// .container {
+//   padding-top: 0;
+//
+//   .content {
+//     transition: all 0.3s;
+//     margin-left: 235px;
+//     padding-top: 80px;
+//     min-height: 900px;
+//   }
+// }
 
 .content.full {
   margin-left: 0;
