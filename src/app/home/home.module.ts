@@ -23,7 +23,7 @@ import { MyTaskComponent } from './my-task/my-task.component';
 import { ErrorTipsComponent } from './error-tips/error-tips.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { SyncDataComponent } from './sync-data/sync-data.component';
-import {SweetAlertService} from 'ng2-sweetalert2'
+import {SweetAlertService} from 'ng2-sweetalert2';
 @NgModule({
   imports: [
     CommonModule,

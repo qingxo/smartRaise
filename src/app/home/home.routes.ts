@@ -17,25 +17,25 @@ import {FeedbackComponent} from './feedback'
 import {SyncDataComponent} from './sync-data'
 export const ROUTER_CONFIG: Routes = [
   {
-    path:'',component:HomeComponent,
-    children:[
-      { path: '' , redirectTo:'/home/client', pathMatch:'full'},
-      { path: 'client' ,component:ClientComponent},
-      { path: 'client/detail' ,component:ClientDetailComponent},
-      { path: 'client/planman',component:PlanmanComponent},
-      { path: 'newaccount',component:CreateAccountComponent},
-      { path: 'smartbed',component:SmartBedComponent},
-      { path: 'orderpackage',component:OrderPackageComponent},
-      { path: 'orderdetail',component:OrderDetailComponent},
-      { path: 'servicepackage',component:ServicePackageComponent},
-      { path: 'order',component:OrderComponent},
-      { path: 'accounts',component:AccountsComponent},
-      { path: 'waiter',component:WaiterComponent},
-      { path: 'mytask',component:MyTaskComponent},
-      { path: 'errortips',component:ErrorTipsComponent},
-      { path: 'feedback',component:FeedbackComponent},
-      { path: 'syncdata',component:SyncDataComponent}
+    path: '', component: HomeComponent,
+    children: [
+      { path: '', redirectTo: '/home/client', pathMatch: 'full' },
+      { path: 'client', component: ClientComponent },
+      { path: 'xxx', component: ClientDetailComponent, outlet: 'walking' },
+      { path: 'client/planman', component: PlanmanComponent },
+      { path: 'newaccount', component: CreateAccountComponent },
+      { path: 'smartbed', component: SmartBedComponent },
+      { path: 'orderpackage', component: OrderPackageComponent },
+      { path: 'orderdetail', component: OrderDetailComponent },
+      { path: 'servicepackage', component: ServicePackageComponent },
+      { path: 'order', component: OrderComponent },
+      { path: 'accounts', component: AccountsComponent },
+      { path: 'waiter', component: WaiterComponent },
+      { path: 'mytask', component: MyTaskComponent },
+      { path: 'errortips', component: ErrorTipsComponent },
+      { path: 'feedback', component: FeedbackComponent },
+      { path: 'syncdata', component: SyncDataComponent }
 
     ]
   }
-  ];
+];

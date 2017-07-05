@@ -37,6 +37,13 @@
             <ul class="second-level">
               <li class="dotHover"><span routerLink='/home/client' routerLinkActive='active'>我的任务</span></li>
               <li class="dotHover"><span routerLink='/home/client' routerLinkActive='active'>异常提醒</span></li>
+              <li class="dotHover">
+                <span [routerLink]="[{outlets:{walking:['xxx']}}]">kakkakaka</span>
+                <!-- <span routerLink="/">ggg</span> -->
+              </li>
+              <li class="dotHover">
+                <span routerLink="/login">fff</span>
+              </li>
             </ul>
           </li>
 
@@ -45,7 +52,9 @@
       </div>
     </div>
   </div>
-  <div class="content">
+  <div class=" content ">
     <router-outlet></router-outlet>
+    <router-outlet name="walking"></router-outlet>
+
   </div>
 </div>

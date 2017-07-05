@@ -28,7 +28,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of listData">
-            <td><span><em routerLink="home.newaccount({'isEdit':true,'userId':item.customerId,'name':item.commissionerUserName})">{{item.name}}</em></span></td>
+            <td><span><a [routerLink]="[{outlets:{boom:['/popout']}}]" >{{item.name}}</a></span></td>
             <td><span>{{item.mobile}}</span></td>
             <td><span>{{item.sex === 'M' ? '男' : '女'}}</span></td>
             <td><span>{{item.birdthday | date:'yyyy-MM-dd'}}</span></td>

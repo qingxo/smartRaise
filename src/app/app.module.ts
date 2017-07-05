@@ -15,14 +15,16 @@ import { InterceptedHttp, httpFactory}   from './shared/base.http.interceptor';
 // import { requestOptionsProvider} from './shared/default.request.option';
 import { HomeModule } from './home';
 import {SharedModule} from './shared';
-import {SweetAlertService} from 'ng2-sweetalert2'
+import {SweetAlertService} from 'ng2-sweetalert2';
+import { DialogsComponent } from './dialogs/dialogs.component'
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    CoreComponent
+    CoreComponent,
+    DialogsComponent
   ],
   imports: [
     BrowserModule,
