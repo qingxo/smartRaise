@@ -33,6 +33,7 @@ export class ClientComponent implements OnInit {
 
   initBtnShow() {
     this.clientBtn = tools.initBtnShow(0, 0, 'clientBtn')
+    console.log(this.clientBtn)
   }
 
   initAsyc() {

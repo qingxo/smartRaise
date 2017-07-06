@@ -4,7 +4,7 @@
       <div class="lf">
         <app-search-line placeHolderValue="客户请输入" (search)="searchTable($event)"></app-search-line>
       </div>
-      <div class="rf  create-btn" routerLink="/home/newaccount">
+      <div class="rf  create-btn show-{{clientBtn[0].value}}" routerLink="/home/newaccount">
         新增客户
       </div>
     </div>
@@ -29,7 +29,13 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of listData">
-            <td><span><a [routerLink]="[{outlets:{boom:['/popout']}}]" >{{item.name}}</a></span></td>
+            <td><span>
+              <ng-container [ngSwitch]="clientBtn[1].value">
+                <em *ngSwitchCase="true"  class="client-name">{{item.name}}</em>
+                <em *ngSwitchCase="false" class="client-name-no-edit">{{item.name}}</em>
+              </ng-container>
+            </span>
+            </td>
             <td><span>{{item.mobile}}</span></td>
             <td><span>{{item.sex === 'M' ? '男' : '女'}}</span></td>
             <td><span>{{getAge(item.birdthday | date:'yyyy-MM-dd')}}</span></td>
@@ -39,31 +45,36 @@
             <td style="max-width:250px"><span *ngFor="let serviceInfo of item.serviceOrders">{{serviceInfo.servicePackName}}  </span></td>
             <td><span>{{item.cardId}}</span></td>
             <td><span>
-                <em class="health-rechange"  *ngIf="clientBtn[4].value" (click)="healthCareOpen($index)" [hidden]="!item.commissionerUserName">
+              <ng-container [ngSwitch]="clientBtn[4].value">
+                <em class="health-rechange show-{{!!item.commissionerUserName}}"  *ngSwitchCase="clientBtn[4].value" (click)="healthCareOpen($index)" >
                   {{item.commissionerUserName}}
                 </em>
-                <em style="color:#009EF9" *ngIf="clientBtn[4].value"  (click)="healthCareOpen($index)" [hidden]="!!item.commissionerUserName">
-                  安排专员
+                <em style="color:#009EF9"  *ngSwitchCase="clientBtn[4].value"  (click)="healthCareOpen($index)" class="show-{{!item.commissionerUserName}}">
+                  安排专员1
                 </em>
-                <em class="health-rechange-no-edit"  *ngIf="!clientBtn[4].value" [hidden]="!item.commissionerUserName">
+                <em class="health-rechange-no-edit show-{{!item.commissionerUserName}}"   *ngSwitchCase="!clientBtn[4].value">
                   {{item.commissionerUserName}}
                 </em>
-                <em style="color:#009EF9" class="health-rechange-no-edit" *ngIf="!clientBtn[4].value"   [hidden]="!!item.commissionerUserName">
-                  安排专员
+                <em style="color:#009EF9" class="health-rechange-no-edit show-{{!!item.commissionerUserName}}"  *ngSwitchCase="!clientBtn[4].value"   >
+                  安排专员2
                 </em>
+              </ng-container>
+
               </span>
             </td>
             <td><span>
-                <em [hidden]="!!item.equipmentNo" *ngIf="clientBtn[5].value" class="bind-equip"  (click)="bindSmartBedConfirm($index)" >{{item.equipmentNo || '未绑定'}}</em>
-                <em [hidden]="!item.equipmentNo"  *ngIf="clientBtn[5].value"  class="bind-equip"   (click)="cancelSmartBed(item.customerId,item.equipmentNo,item)" >{{item.equipmentNo || '未绑定'}}</em>
-                <em [hidden]="!!item.equipmentNo"  *ngIf="!clientBtn[5].value"  class="bind-equip-no-edit"    >{{item.equipmentNo || '未绑定'}}</em>
-                <em [hidden]="!item.equipmentNo"  *ngIf="!clientBtn[5].value"  class="bind-equip-no-edit"    >{{item.equipmentNo || '未绑定'}}</em>
+              <ng-container [ngSwitch]="clientBtn[5].value">
+                <em *ngSwitchCase="true"   class="bind-equip show-{{!item.equipmentNo}}"  (click)="bindSmartBedConfirm($index)" >{{item.equipmentNo || '未绑定1'}}</em>
+                <em *ngSwitchCase="true"   class="bind-equip show-{{!!item.equipmentNo}}"   (click)="cancelSmartBed(item.customerId,item.equipmentNo,item)" >{{item.equipmentNo || '未绑定2'}}</em>
+                <em *ngSwitchCase="false"    class="bind-equip-no-edit"    >{{item.equipmentNo || '未绑定3'}}</em>
+              </ng-container>
+
 
               </span></td>
             <td><span class="opt">
-                            <em ui-sref="home.clientdetail({'userId':item.customerId,'equipNo':item.equipmentNo})" [hidden]="clientBtn[3].value">详情</em>
-                           <em ui-sref="home.orderpackage({'userId':item.customerId})" *ngIf="clientBtn[6].value"  >订购服务包</em>
-                           <em (click)="delconfirm(item)" [hidden]="clientBtn[2].value">删除</em>
+                            <em ui-sref="home.clientdetail({'userId':item.customerId,'equipNo':item.equipmentNo})" class="show-{{clientBtn[3].value}}">详情</em>
+                           <em ui-sref="home.orderpackage({'userId':item.customerId})" class="show-{{clientBtn[6].value}}"  >订购服务包</em>
+                           <em (click)="delconfirm(item)" class="show-{{clientBtn[2].value}}" >删除</em>
             </span></td>
           </tr>
         </tbody>

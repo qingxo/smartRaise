@@ -27,7 +27,6 @@ export class HomeComponent implements OnInit {
       this.menu = eval(storage.get('menu'))
       for (let i = 0; i < this.menu.length; i++) {
         for (let j = 0; j < this.menu[i].children.length; j++) {
-          console.log(this.menu[i].children[j].url)
           let p = "/" + this.menu[i].children[j].url.replace(new RegExp(/\./g), '/')
           this.menu[i].children[j].url = p
         }
