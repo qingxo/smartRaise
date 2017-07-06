@@ -73,14 +73,25 @@ export class LoginComponent implements OnInit {
       .subscribe(
       (data) => {
         storage.set('state', data.data)
+        this.role = parseInt(storage.get('state')['role'])
         if (data.success) {
-          this.router.navigate(['/home/client'])
+          this.initMenu()
         } else {
           this.errorMsg = data.errMsg
           this.loginErr = true
         }
       }
       )
+  }
 
+  initMenu() {
+    let numId = this.role + 1
+    this.loginService.getMenuList(numId).subscribe((res) => {
+      if (res.success) {
+        storage.set('menu', res.data)
+        let menu = eval(res.data)
+        this.router.navigate(["/" + menu[0].children[0].url.replace(new RegExp(/\./g), '/')])
+      }
+    })
   }
 }

@@ -13,13 +13,8 @@ export class LoginService {
     return this.http.post('api/web/login?' + data, '').map((res) => { return res.json() })
   }
 
-  // isLogin() {
-  //   const state = storage.get('state')
-  //   return !!state
-  // }
-  //
-  // logout() {
-  //   storage.remove('state')
-  //   this.$state.go('login')
-  // }
+  getMenuList(roleId: any): Observable<any> {
+    return this.http.post(`api/com/yykj/sysMenu/getPageMenuByRoleId.json?id=${roleId}`, '').map((res) => { return res.json() })
+  }
+
 }

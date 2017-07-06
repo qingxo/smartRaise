@@ -17,12 +17,13 @@
             <td><span>手机号</span></td>
             <td><span>性别</span></td>
             <td><span>年龄</span></td>
+            <td><span>机构</span></td>
             <td><span>注册时间</span></td>
             <td><span>是否监护人</span></td>
+            <td><span>已购服务包</span></td>
             <td><span>身份证号</span></td>
             <td><span>健康服务专员</span></td>
-            <td><span ui-sref="home.binding">绑定设备</span>
-            </td>
+            <td><span ui-sref="home.binding">绑定设备</span></td>
             <td><span>操作</span></td>
           </tr>
         </thead>
@@ -31,20 +32,38 @@
             <td><span><a [routerLink]="[{outlets:{boom:['/popout']}}]" >{{item.name}}</a></span></td>
             <td><span>{{item.mobile}}</span></td>
             <td><span>{{item.sex === 'M' ? '男' : '女'}}</span></td>
-            <td><span>{{item.birdthday | date:'yyyy-MM-dd'}}</span></td>
+            <td><span>{{getAge(item.birdthday | date:'yyyy-MM-dd')}}</span></td>
+            <td><span>{{item.socialWelfareName}}</span></td>
             <td><span>{{item.createDt | date:'yyyy-MM-dd'}}</span></td>
             <td><span>{{item.guardian == '1'?'Y':''}}</span></td>
+            <td style="max-width:250px"><span *ngFor="let serviceInfo of item.serviceOrders">{{serviceInfo.servicePackName}}  </span></td>
             <td><span>{{item.cardId}}</span></td>
-            <td><span><em ui-sref="home.create({'userId':item.commissionerUserId})">{{item.commissionerUserName || '无'}}</em></span></td>
-            <td><span>{{item.equipmentNo || '未绑定'}}</span></td>
-            <td><span class="opt">
-               <!-- <em routerLink="home.clientdetail({'userId':item.customerId,'equipNo':item.equipmentNo})">详情</em> -->
-               <em routerLink="/home/client/detail">详情</em>
-               <em routerLink="/home/client/planman" [queryParams]="{'customerId':item.customerId,'mobile':item.mobile,'name':item.name,'person':item.commissionerUserId}">安排专员</em>
+            <td><span>
+                <em class="health-rechange"  *ngIf="clientBtn[4].value" (click)="healthCareOpen($index)" [hidden]="!item.commissionerUserName">
+                  {{item.commissionerUserName}}
+                </em>
+                <em style="color:#009EF9" *ngIf="clientBtn[4].value"  (click)="healthCareOpen($index)" [hidden]="!!item.commissionerUserName">
+                  安排专员
+                </em>
+                <em class="health-rechange-no-edit"  *ngIf="!clientBtn[4].value" [hidden]="!item.commissionerUserName">
+                  {{item.commissionerUserName}}
+                </em>
+                <em style="color:#009EF9" class="health-rechange-no-edit" *ngIf="!clientBtn[4].value"   [hidden]="!!item.commissionerUserName">
+                  安排专员
+                </em>
+              </span>
+            </td>
+            <td><span>
+                <em [hidden]="!!item.equipmentNo" *ngIf="clientBtn[5].value" class="bind-equip"  (click)="bindSmartBedConfirm($index)" >{{item.equipmentNo || '未绑定'}}</em>
+                <em [hidden]="!item.equipmentNo"  *ngIf="clientBtn[5].value"  class="bind-equip"   (click)="cancelSmartBed(item.customerId,item.equipmentNo,item)" >{{item.equipmentNo || '未绑定'}}</em>
+                <em [hidden]="!!item.equipmentNo"  *ngIf="!clientBtn[5].value"  class="bind-equip-no-edit"    >{{item.equipmentNo || '未绑定'}}</em>
+                <em [hidden]="!item.equipmentNo"  *ngIf="!clientBtn[5].value"  class="bind-equip-no-edit"    >{{item.equipmentNo || '未绑定'}}</em>
 
-              <em routerLink="/home/smartbed" [queryParams]="{'customerId':item.customerId,'mobile':item.mobile,'name':item.name}">绑定设备</em>
-              <em class="ng-class:{true:'active',false:'inactive'}[!!item.equipmentNo]"   ngClick="$ctrl.cancelSmartBed(item.customerId,item.equipmentNo,item)" style="color:#ab602f">取消绑定</em>
-              <em routerLink="/home/orderpackage" [queryParams]="{'userId':item.customerId}">订购服务包</em>
+              </span></td>
+            <td><span class="opt">
+                            <em ui-sref="home.clientdetail({'userId':item.customerId,'equipNo':item.equipmentNo})" [hidden]="clientBtn[3].value">详情</em>
+                           <em ui-sref="home.orderpackage({'userId':item.customerId})" *ngIf="clientBtn[6].value"  >订购服务包</em>
+                           <em (click)="delconfirm(item)" [hidden]="clientBtn[2].value">删除</em>
             </span></td>
           </tr>
         </tbody>

@@ -20,35 +20,21 @@
   <div class="sidebar home-sidebar" style="position:fixed;top:57px;z-index:5" ng-class="{fold: fold}">
     <div class="inner">
       <div class="organization-menu">
-
         <ul class="first-level">
-          <li><span (click)="toggleMenu($event)" class="myAccount">平台管理</span>
-            <ul class="second-level">
-              <li class="dotHover" routerLink='/home/client' routerLinkActive='active'><span>客户管理</span></li>
-              <li class="dotHover" routerLink='/home/servicepackage' routerLinkActive='active'><span>服务包管理</span></li>
-              <li class="dotHover" routerLink='/home/order' routerLinkActive='active'><span>订单管理</span></li>
-              <li class="dotHover" ng-if="role!=2" routerLink='/home/accounts' routerLinkActive='active'><span>账号管理</span></li>
 
-              <li class="dotHover" ng-if="role!=2" routerLink='/home/waiter' routerLinkActive='active'><span>健康服务专员管理</span></li>
-            </ul>
-          </li>
-
-          <li><span (click)="toggleMenu($event)" class="carePatient">慢病管理</span>
+          <li *ngFor="let item of menu;let firstIndex = index">
+            <span (click)="toggleMenu($event)" class="menu-{{firstIndex}}">
+              {{item.text}}
+            </span>
             <ul class="second-level">
-              <li class="dotHover"><span routerLink='/home/client' routerLinkActive='active'>我的任务</span></li>
-              <li class="dotHover"><span routerLink='/home/client' routerLinkActive='active'>异常提醒</span></li>
-              <li class="dotHover">
-                <span [routerLink]="[{outlets:{walking:['xxx']}}]">kakkakaka</span>
-                <!-- <span routerLink="/">ggg</span> -->
-              </li>
-              <li class="dotHover">
-                <span routerLink="/login">fff</span>
+              <li *ngFor="let child of item.children" class="dotHover" routerLink="{{child.url}}" routerLinkActive='active'>
+                <span>
+                  {{child.text}}
+                </span>
               </li>
             </ul>
           </li>
-
         </ul>
-
       </div>
     </div>
   </div>

@@ -28,36 +28,6 @@ $homeMainColor: #6f4100;
   line-height: 30px;
   background-color: white;
 
-  .accountsManage {
-    background: url('/assets/img/sidebar/app.png') no-repeat 0 0;
-    padding-left: 25px;
-    background-size: 18px 18px;
-  }
-
-  .healthManage {
-    background: url('/assets/img/sidebar/alarm.png') no-repeat 0 0;
-    padding-left: 25px;
-    background-size: 18px 18px;
-  }
-
-  .customerManager {
-    background: url('/assets/img/sidebar/customer.png') no-repeat 0 0;
-    padding-left: 25px;
-    background-size: 18px 18px;
-  }
-
-  .servicePackage {
-    background: url('/assets/img/sidebar/fuwu.png') no-repeat 0 0;
-    padding-left: 25px;
-    background-size: 18px 18px;
-  }
-
-  .orderManage {
-    background: url('/assets/img/sidebar/order.png') no-repeat 0 0;
-    padding-left: 25px;
-    background-size: 18px 18px;
-  }
-
   .menuShow {
     display: none;
   }
@@ -98,6 +68,35 @@ $homeMainColor: #6f4100;
       display: none;
     }
 
+    .first-level {
+      span.menu-0 {
+        background: url("/assets/images/svg/work-space.svg") no-repeat 0 16px;
+        padding-left: 25px;
+        background-size: 18px 18px;
+        height: 50px;
+        font-size: 16px;
+        line-height: 50px;
+      }
+
+      span.menu-1 {
+        background: url('/assets/images/svg/slow-patient.svg') no-repeat 0 16px;
+        padding-left: 25px;
+        background-size: 18px 18px;
+        height: 50px;
+        font-size: 16px;
+        line-height: 50px;
+      }
+
+      span.menu-2 {
+        background: url('/assets/images/svg/sys-set.svg') no-repeat 0 16px;
+        padding-left: 25px;
+        background-size: 18px 18px;
+        height: 50px;
+        font-size: 16px;
+        line-height: 50px;
+      }
+    }
+
     span {
       color: #666666;
       margin-left: 25px;
@@ -105,33 +104,6 @@ $homeMainColor: #6f4100;
       line-height: 40px;
       display: inline-block;
       font-size: 14px;
-    }
-
-    span.myAccount {
-      background: url("/assets/img/sidebar/main.png") no-repeat 0 16px;
-      padding-left: 25px;
-      background-size: 18px 18px;
-      height: 50px;
-      font-size: 16px;
-      line-height: 50px;
-    }
-
-    span.carePatient {
-      background: url('/assets/img/sidebar/care.png') no-repeat 0 16px;
-      padding-left: 25px;
-      background-size: 18px 18px;
-      height: 50px;
-      font-size: 16px;
-      line-height: 50px;
-    }
-
-    span.set {
-      background: url('/assets/img/sidebar/set.png') no-repeat 0 16px;
-      padding-left: 25px;
-      background-size: 18px 18px;
-      height: 50px;
-      font-size: 16px;
-      line-height: 50px;
     }
 
     li {
@@ -327,16 +299,6 @@ $homeMainColor: #6f4100;
     color: #eb232a;
   }
 }
-// .container {
-//   padding-top: 0;
-//
-//   .content {
-//     transition: all 0.3s;
-//     margin-left: 235px;
-//     padding-top: 80px;
-//     min-height: 900px;
-//   }
-// }
 
 .content.full {
   margin-left: 0;

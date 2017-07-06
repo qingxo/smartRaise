@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {ClientService} from './client.service';
 import storage from '../../shared/storage'
+import tools from '../../shared/tools'
 import {SweetAlertService} from 'ng2-sweetalert2'
-
+import SysData from '../../shared/sysData'
 
 @Component({
   selector: 'app-client',
@@ -22,11 +23,16 @@ export class ClientComponent implements OnInit {
   private pageNumber: number = 1
   private queryInfo: string = ''
   private totalPage: number
+  private clientBtn = []
   constructor(private clientService: ClientService, private sweetAlertService: SweetAlertService) { }
 
   ngOnInit() {
-    // this.initData()
+    this.initBtnShow()
     this.initAsyc()
+  }
+
+  initBtnShow() {
+    this.clientBtn = tools.initBtnShow(0, 0, 'clientBtn')
   }
 
   initAsyc() {
@@ -43,6 +49,10 @@ export class ClientComponent implements OnInit {
         this.totalPage = res.data.total
       }
     )
+  }
+
+  getAge(age) {
+    return tools.getAge(age)
   }
 
   initData() {
