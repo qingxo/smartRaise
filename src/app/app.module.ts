@@ -1,5 +1,3 @@
-;
-// import { SharedComponent } from './shared/shared.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -17,7 +15,7 @@ import { HomeModule } from './home';
 import {SharedModule} from './shared';
 import {SweetAlertService} from 'ng2-sweetalert2';
 import { DialogsComponent } from './dialogs/dialogs.component'
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -32,8 +30,8 @@ import { DialogsComponent } from './dialogs/dialogs.component'
     HttpModule,
     SharedModule,
     HomeModule,
-    RouterModule.forRoot(ROUTER_CONFIG)
-
+    RouterModule.forRoot(ROUTER_CONFIG),
+    NgbModule.forRoot()
   ],
   // providers: [requestOptionsProvider,LoginGuard],
   providers: [

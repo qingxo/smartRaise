@@ -5,6 +5,7 @@ import storage from '../../shared/storage'
 import tools from '../../shared/tools'
 import {SweetAlertService} from 'ng2-sweetalert2'
 import SysData from '../../shared/sysData'
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-client',
@@ -24,16 +25,35 @@ export class ClientComponent implements OnInit {
   private queryInfo: string = ''
   private totalPage: number
   private clientBtn = []
-  constructor(private clientService: ClientService, private sweetAlertService: SweetAlertService) { }
+  private closeResult: string
+  constructor(private clientService: ClientService, private sweetAlertService: SweetAlertService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.initBtnShow()
     this.initAsyc()
   }
 
+  open(content) {
+    console.log(this.modalService)
+    this.modalService.open(content).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+
   initBtnShow() {
     this.clientBtn = tools.initBtnShow(0, 0, 'clientBtn')
-    console.log(this.clientBtn)
   }
 
   initAsyc() {
