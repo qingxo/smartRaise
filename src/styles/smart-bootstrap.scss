@@ -1,6 +1,6 @@
-@import 'dialog';
-@import "flatpickr";
-@import "popover";
+// @import 'dialog';
+// @import "flatpickr";
+// @import "popover";
 $mainPageColor: #6f4100;
 
 body,
@@ -246,6 +246,91 @@ input:focus {
 
 .ngdialog.ngdialog-theme-default.handle-ngdialog {
   padding-top: 30px;
+}
+
+.t-sm-modal {
+  .modal-dialog {
+    width: 360px;
+
+    .modal-header {
+      background-color: #F7F7F7;
+      color: #333333;
+      font-size: 14px;
+      height: 40px;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+
+      .modal-title {
+        color: #333333;
+        font-size: 14px;
+        height: 40px;
+        line-height: 20px;
+        padding: 10px 0;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        font-weight: 200;
+      }
+    }
+
+    .modal-body {
+      .line {
+        padding: 10px 0 10px 10px;
+        font-size: 14px;
+        color: #333333;
+
+        label {
+          color: #666666;
+          margin-right: 10px;
+        }
+
+        .inline {
+          display: inline-block;
+
+          .nol {
+            width: 200px;
+            height: 30px;
+            color: #333333;
+            font-size: 14px;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #d2d2d2;
+          }
+        }
+
+        .beauty-sel {
+          select {
+            border: solid 1px #d2d2d2;
+            appearance: none;
+            -moz-appearance: none;
+            height: 30px;
+            outline: none;
+            padding: 0 5px;
+            width: 200px;
+            -webkit-appearance: none;
+            display: inline-block;
+            background: url("/assets/images/down-arrow.png") no-repeat scroll right center transparent;
+            background-size: 16px 16px;
+          }
+        }
+      }
+    }
+
+    .modal-footer {
+      border-top: 0;
+      padding: 0 0 15px;
+      margin: 0 auto;
+
+      .spec-btn {
+        width: 140px;
+        display: inline-block;
+        border-radius: 4px;
+        background-color: #6A4307;
+        color: white;
+        font-size: 14px;
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 .ngdialog.ngdialog-theme-default.handle-ngdialog .ngdialog-content {
@@ -693,4 +778,9 @@ input:focus {
       cursor: pointer;
     }
   }
+}
+//对swal弹出框的一些样式修改
+
+.swal-confirm-b {
+  margin-right: 40px;
 }

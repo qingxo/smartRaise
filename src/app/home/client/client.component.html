@@ -7,6 +7,7 @@
       <div class="rf  create-btn show-{{clientBtn[0].value}}" (click)="open()">
         新增客户
       </div>
+
     </div>
 
     <div class="table-info">
@@ -28,7 +29,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of listData">
+          <tr *ngFor="let item of listData;let index  =index">
             <td><span>
               <ng-container [ngSwitch]="clientBtn[1].value">
                 <em *ngSwitchCase="true"  class="client-name">{{item.name}}</em>
@@ -46,17 +47,17 @@
             <td><span>{{item.cardId}}</span></td>
             <td><span>
               <ng-container [ngSwitch]="clientBtn[4].value">
-                <em class="health-rechange show-{{!!item.commissionerUserName}}"  *ngSwitchCase="clientBtn[4].value" (click)="healthCareOpen($index)" >
+                <em class="health-rechange show-{{!!item.commissionerUserName}}"  *ngSwitchCase="clientBtn[4].value" (click)="healthCareOpen(index)" >
                   {{item.commissionerUserName}}
                 </em>
-                <em style="color:#009EF9"  *ngSwitchCase="clientBtn[4].value"  (click)="healthCareOpen($index)" class="show-{{!item.commissionerUserName}}">
-                  安排专员1
+                <em style="color:#009EF9"  *ngSwitchCase="clientBtn[4].value"  (click)="healthCareOpen(index)" class="show-{{!item.commissionerUserName}}">
+                  安排专员
                 </em>
                 <em class="health-rechange-no-edit show-{{!item.commissionerUserName}}"   *ngSwitchCase="!clientBtn[4].value">
                   {{item.commissionerUserName}}
                 </em>
                 <em style="color:#009EF9" class="health-rechange-no-edit show-{{!!item.commissionerUserName}}"  *ngSwitchCase="!clientBtn[4].value"   >
-                  安排专员2
+                  安排专员
                 </em>
               </ng-container>
 
@@ -64,9 +65,9 @@
             </td>
             <td><span>
               <ng-container [ngSwitch]="clientBtn[5].value">
-                <em *ngSwitchCase="true"   class="bind-equip show-{{!item.equipmentNo}}"  (click)="bindSmartBedConfirm($index)" >{{item.equipmentNo || '未绑定1'}}</em>
-                <em *ngSwitchCase="true"   class="bind-equip show-{{!!item.equipmentNo}}"   (click)="cancelSmartBed(item.customerId,item.equipmentNo,item)" >{{item.equipmentNo || '未绑定2'}}</em>
-                <em *ngSwitchCase="false"    class="bind-equip-no-edit"    >{{item.equipmentNo || '未绑定3'}}</em>
+                <em *ngSwitchCase="true"   class="bind-equip show-{{!item.equipmentNo}}"  (click)="bindSmartBedConfirm(index,content)" >{{item.equipmentNo || '未绑定'}}</em>
+                <em *ngSwitchCase="true"   class="bind-equip show-{{!!item.equipmentNo}}"   (click)="cancelSmartBed(index)" >{{item.equipmentNo || '未绑定'}}</em>
+                <em *ngSwitchCase="false"    class="bind-equip-no-edit"    >{{item.equipmentNo || '未绑定'}}</em>
               </ng-container>
 
 
@@ -85,22 +86,35 @@
   </div>
   <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
-      <h4 class="modal-title">Modal title</h4>
+      <h3 class="modal-title">绑定设备</h3>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
     </div>
     <div class="modal-body">
-
-      <p>One fine body&hellip;</p>
-      <p>One fine body&hellip;</p>
-      <p>One fine body&hellip;</p>
+      <div class="line">
+        <label for="inline">客户账号</label>
+        <span class="inline">
+          {{listData[itemTarget].name}}
+        </span><span style="float: right;padding-right: 30px;" [hidden]="!listData[itemTarget].mobile"><em style="color:#666666;font-style:normal">手机号码</em>{{listData[itemTarget].mobile}}</span>
+      </div>
+      <div class="line">
+        <label for="">智能床型号</label>
+        <div class="inline beauty-sel ">
+          <select class="" name="" style="min-width:154px" [(ngModel)]='sources'>
+            <option *ngFor="let opt of bedType" value="{{opt.value}}">{{opt.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="line">
+        <label for="">智能床编号</label>
+        <div class="inline">
+          <input class="nol" type="text" name="" value="" [(ngModel)]="smartBed">
+        </div>
+      </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+      <button type="button" class="btn btn-secondary spec-btn" (click)="saveSmartBed()">确定</button>
     </div>
   </ng-template>
-
-  <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
-
 </div>

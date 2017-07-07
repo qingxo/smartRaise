@@ -1,6 +1,7 @@
 import * as $ from 'jquery'
 import storage from './storage'
 import SysData from './sysData'
+import swal from 'sweetalert2'
 class Tools {
   private aCity: object = {
     11: "北京", 12: "天津", 13: "河北", 14: "山西",
@@ -13,6 +14,8 @@ class Tools {
     63: "青海", 64: "宁夏", 65: "新疆", 71: "台湾", 81: "香港",
     82: "澳门", 91: "国外"
   }
+
+  private TIMER = 2000
 
   getAge(ageNum: string) {
     if (typeof ageNum === 'undefined' || ageNum === '' || ageNum === null) {
@@ -77,6 +80,50 @@ class Tools {
       $('.loading').remove()
     }
   }
+
+  tips(msgTitle: string, msgDetail: string = "", msgType: any = 'success', timer: number = this.TIMER) {
+    swal({
+      title: msgTitle,
+      text: msgDetail,
+      type: msgType,
+      timer: timer
+    }).then(
+      () => { },
+      (dismiss) => {
+        if (dismiss === this.TIMER) {
+
+        }
+      }
+      )
+  }
+
+  tipsConfirm(msgTitle: string, msgText: string, msgType: any = 'success', callback) {
+    swal({
+      title: msgTitle,
+      text: msgText,
+      type: msgType,
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      confirmButtonClass: 'btn btn-success swal-confirm-b',
+      cancelButtonClass: 'btn btn-danger',
+      buttonsStyling: false
+    }).then(() => {
+      callback()
+
+    }, function(dismiss) {
+      if (dismiss === 'cancel') {
+
+      }
+    })
+  }
+
+  callback() {
+    console.log("test callback")
+  }
+
 
 }
 

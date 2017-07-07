@@ -18,8 +18,9 @@
     "testTsconfig": "tsconfig.spec.json",
     "prefix": "app",
     "styles": [
-      "styles/bootstrap.scss",
-      "../node_modules/sweetalert2/dist/sweetalert2.min.css"
+      "styles/smart-bootstrap.scss",
+      "../node_modules/sweetalert2/dist/sweetalert2.css",
+      "../node_modules/bootstrap/dist/css/bootstrap.css"
     ],
     "scripts": [
       "../node_modules/echarts/dist/echarts.js",

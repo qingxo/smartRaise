@@ -3,7 +3,6 @@ import {Router} from '@angular/router';
 import {ClientService} from './client.service';
 import storage from '../../shared/storage'
 import tools from '../../shared/tools'
-import {SweetAlertService} from 'ng2-sweetalert2'
 import SysData from '../../shared/sysData'
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
@@ -11,7 +10,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
   selector: 'app-client',
   templateUrl: './client.component.html',
   styleUrls: ['./client.component.scss'],
-  providers: [ClientService, SweetAlertService]
+  providers: [ClientService]
 })
 export class ClientComponent implements OnInit {
 
@@ -26,7 +25,20 @@ export class ClientComponent implements OnInit {
   private totalPage: number
   private clientBtn = []
   private closeResult: string
-  constructor(private clientService: ClientService, private sweetAlertService: SweetAlertService, private modalService: NgbModal) { }
+  private modalRef: any
+  private itemTarget: number = 0 //用户点击的列的值
+  private smartBed: string
+  private sources: string = 'A' //智能床默认值
+  private bedType: Array<any> = [
+    {
+      'name': '智能床A',
+      'value': 'A'
+    }, {
+      'name': '智能床B',
+      'value': 'B'
+    }
+  ]
+  constructor(private clientService: ClientService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.initBtnShow()
@@ -34,8 +46,9 @@ export class ClientComponent implements OnInit {
   }
 
   open(content) {
-    console.log(this.modalService)
-    this.modalService.open(content).result.then((result) => {
+    this.modalRef = this.modalService.open(content, { windowClass: 't-sm-modal' })
+
+    this.modalRef.result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -51,6 +64,93 @@ export class ClientComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+
+  bindSmartBedConfirm(index, content) {
+    this.itemTarget = index
+    this.smartBed = ''
+    this.sources = 'A'
+    this.open(content)
+  }
+
+  cancelSmartBed(index) {
+    console.log(index)
+    this.itemTarget = index
+    tools.tipsConfirm('确认解除绑定?', '', 'info', this.unBinding.bind(this))
+  }
+
+
+  unBinding() {
+    let customerId = this.listData[this.itemTarget].customerId,
+      equipId = this.listData[this.itemTarget].equipmentNo,
+      bedSources = this.listData[this.itemTarget].sources
+    let data = '?customerId=' + customerId + '&equipmentNo=' + equipId + '&sources=' + bedSources
+
+    this.clientService.unbind(data).subscribe((res) => {
+      if (res.success) {
+        tools.tips("解绑成功", '', 'success')
+        this.listData[this.itemTarget].equipmentNo = ''
+      } else {
+        tools.tips(res.data.errormsg, '', 'error')
+      }
+    })
+  }
+
+  reBunding() {
+    if (!this.smartBed) {
+      return
+    }
+
+    let data = {
+      'customerId': this.listData[this.itemTarget].customerId,
+      'mobile': this.listData[this.itemTarget].mobile,
+      'name': this.listData[this.itemTarget].name,
+      'equipmentNo': this.smartBed,
+      'sources': this.sources
+    }
+
+    this.clientService.reBunding(data).subscribe((res) => {
+      if (!res)
+        return
+      if (res.code === 200) {
+        tools.tips('强制绑定成功')
+        this.modalRef.close()
+
+        this.initAsyc()
+      } else {
+        tools.tips(res.errormsg)
+      }
+    })
+  }
+
+
+  saveSmartBed() {
+    if (!this.smartBed) {
+      return
+    }
+
+    var data = {
+      'customerId': this.listData[this.itemTarget].customerId,
+      'mobile': this.listData[this.itemTarget].mobile,
+      'name': this.listData[this.itemTarget].name,
+      'sources': this.sources,
+      'equipmentNo': this.smartBed
+    }
+    this.clientService.save(data).subscribe((res) => {
+
+      if (res.code === 200) {
+        tools.tips('成功', '', 'success')
+        this.listData[this.itemTarget].equipmentNo = this.smartBed
+        this.listData[this.itemTarget].sources = this.sources
+        this.modalRef.close()
+      } else if (res.code === 404) {
+        tools.tips(res.errormsg, '', 'error')
+      } else {
+        tools.tipsConfirm(res.errormsg, '', 'warning', this.reBunding.bind(this))
+
+      }
+    })
+  }
+
 
   initBtnShow() {
     this.clientBtn = tools.initBtnShow(0, 0, 'clientBtn')
