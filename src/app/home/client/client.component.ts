@@ -29,6 +29,8 @@ export class ClientComponent implements OnInit {
   private itemTarget: number = 0 //用户点击的列的值
   private smartBed: string
   private sources: string = 'A' //智能床默认值
+  private healthpersonlist: Array<any> = [] //健康专员列表
+  private healthCarePerson: string //用户默认的健康专员
   private bedType: Array<any> = [
     {
       'name': '智能床A',
@@ -54,6 +56,58 @@ export class ClientComponent implements OnInit {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
+
+  openHealth(content) {
+    this.modalRef = this.modalService.open(content, { windowClass: 't-sm-modal' })
+
+    this.modalRef.result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  healthCareOpen(index, content) {
+    this.itemTarget = index
+    this.openHealth(content)
+    this.initHealthCarePerson()
+  }
+
+  initHealthCarePerson() {
+    this.clientService.healthList('?pageSize=20&pageNum=1&role=2').subscribe((res) => {
+      if (res.success) {
+        this.healthpersonlist = res.data.list
+        if (!this.listData[this.itemTarget].commissionerUserId) {
+          this.healthCarePerson = res.data.result[0].userId
+        } else {
+          this.healthCarePerson = this.listData[this.itemTarget].commissionerUserId
+        }
+
+      }
+    })
+  }
+
+  saveHealthCare() {
+    let data = {
+      'customerId': this.listData[this.itemTarget].customerId,
+      'commissionerUserId': this.healthCarePerson
+    }
+    this.clientService.saveHealthPerson(data).subscribe((res) => {
+      if (res.success) {
+        tools.tips('分配专员成功')
+        this.modalRef.close()
+        this.listData[this.itemTarget].commissionerUserId = this.healthCarePerson
+        for (var i = 0; i < this.healthpersonlist.length; i++) {
+          if (this.healthpersonlist[i].userId == this.healthCarePerson) {
+            this.listData[this.itemTarget].commissionerUserName = this.healthpersonlist[i].name
+          }
+        }
+      } else {
+        tools.tips('错误', '', 'error')
+      }
+    })
+  }
+
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {

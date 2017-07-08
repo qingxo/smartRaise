@@ -32,4 +32,23 @@ export class ClientService extends BaseService {
 
   //smartbed api endd
 
+  //----------health person api start-------------
+  healthList(data) {
+    return this.postInfo('api/account/listByPage' + data, '')
+  }
+
+  delPerson(data) {
+    return this.postInfo('api/account/delete/' + data, '')
+  }
+
+  saveHealthPerson(data) {
+    return this.postInfo('api/customer/fixSpecialist/' + data.customerId + '/' + data.commissionerUserId, '')
+  }
+
+  defaultPerson(id) {
+    return this.postInfo('api/account/setDefaultCommissioner/' + id, '')
+  }
+
+  //--------------health person api end -------------------
+
 }

@@ -47,10 +47,10 @@
             <td><span>{{item.cardId}}</span></td>
             <td><span>
               <ng-container [ngSwitch]="clientBtn[4].value">
-                <em class="health-rechange show-{{!!item.commissionerUserName}}"  *ngSwitchCase="clientBtn[4].value" (click)="healthCareOpen(index)" >
+                <em class="health-rechange show-{{!!item.commissionerUserName}}"  *ngSwitchCase="clientBtn[4].value" (click)="healthCareOpen(index,healthPerson)" >
                   {{item.commissionerUserName}}
                 </em>
-                <em style="color:#009EF9"  *ngSwitchCase="clientBtn[4].value"  (click)="healthCareOpen(index)" class="show-{{!item.commissionerUserName}}">
+                <em style="color:#009EF9"  *ngSwitchCase="clientBtn[4].value"  (click)="healthCareOpen(index,healthPerson)" class="show-{{!item.commissionerUserName}}">
                   安排专员
                 </em>
                 <em class="health-rechange-no-edit show-{{!item.commissionerUserName}}"   *ngSwitchCase="!clientBtn[4].value">
@@ -115,6 +115,35 @@
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary spec-btn" (click)="saveSmartBed()">确定</button>
+    </div>
+  </ng-template>
+
+
+  <ng-template #healthPerson let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h3 class="modal-title">安排健康服务专员</h3>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+      <div class="line">
+        <label for="inline">客户账号</label>
+        <span class="inline">
+          {{listData[itemTarget].name}}
+        </span>
+      </div>
+      <div class="line">
+        <label for="">健康专员</label>
+        <div class="inline beauty-sel ">
+          <select class="" name="" style="min-width:154px" [(ngModel)]='healthCarePerson'>
+            <option *ngFor="let opt of healthpersonlist" value="{{opt.userId}}">{{opt.name}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary spec-btn" (click)="saveHealthCare()">确定</button>
     </div>
   </ng-template>
 </div>
