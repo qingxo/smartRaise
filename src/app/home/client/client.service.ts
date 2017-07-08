@@ -51,4 +51,18 @@ export class ClientService extends BaseService {
 
   //--------------health person api end -------------------
 
+
+  //编辑和新增客户的 api start------------------
+  personInfo(userId) {
+    return this.postInfo('api/customer/detail/' + userId, '')
+  }
+
+  groupList(data) {
+    return this.postInfo('api/socialWelfare/listByPage', storage.serialize(data))
+  }
+
+
+
+  //编辑和新增客户api end -------------------
+
 }

@@ -32,7 +32,7 @@
           <tr *ngFor="let item of listData;let index  =index">
             <td><span>
               <ng-container [ngSwitch]="clientBtn[1].value">
-                <em *ngSwitchCase="true"  class="client-name">{{item.name}}</em>
+                <em *ngSwitchCase="true"  class="client-name" (click)="clientActive(index,clientDetail)">{{item.name}}</em>
                 <em *ngSwitchCase="false" class="client-name-no-edit">{{item.name}}</em>
               </ng-container>
             </span>
@@ -146,4 +146,143 @@
       <button type="button" class="btn btn-secondary spec-btn" (click)="saveHealthCare()">确定</button>
     </div>
   </ng-template>
+
+
+
+
+
+  <ng-template #clientDetail let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h3 class="modal-title">{{itemTarget==-1?'新增':'编辑'}}客户账号</h3>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+      <div class="msg-info">
+
+
+        <div class="lf dis-bl">
+          <label for=""><em>*</em>姓名</label>
+          <div class="inline">
+            <input type="text" name="" value="" [(ngModel)]="realname" ng-class="{true:'redBorder',false:''}[errorRealname.length>1]">
+          </div>
+        </div>
+        <div class="error" ng-class="{true:'error-true',false:''}[errorRealname.length>1]">
+          <span>{{errorRealname}}</span>
+        </div>
+        <div class="lf dis-in">
+          <label for="">身份证号</label>
+          <div class="inline">
+            <input type="text" name="" value="" [(ngModel)]="cardId" ng-class="{true:'redBorder',false:''}[errorCardId.length>1]">
+          </div>
+        </div>
+        <div class="lf dis-in">
+          <label for="">手机号</label>
+          <div class="inline">
+            <input type="number" name="" value="" [(ngModel)]="mobile" ng-class="{true:'redBorder',false:''}[errorMobile.length>1]">
+          </div>
+        </div>
+        <div class="error" ng-class="{true:'error-true',false:''}[bothNumber.length>1]">
+          <span>{{errorCardId}}</span>
+          <span class="sec">{{errorMobile}}</span>
+        </div>
+        <div class="lf dis-in">
+          <label for="">性别</label>
+          <div class="inline sex-opt">
+            <span (click)="sexChoosed('M')" [ngClass]="{true:'choosed',false:''}[sex == 'M']">男</span><span [ngClass]="{true:'choosed',false:''}[sex == 'F']" (click)="sexChoosed('F')">女</span>
+          </div>
+        </div>
+        <div class="lf dis-in">
+          <label for="">生日</label>
+
+        </div>
+        <div class="lf dis-in">
+          <label for="">身高</label>
+          <div class="inline pos-rev">
+            <input ng-class="{true:'redBorder',false:''}[errorHeight.length>1]" type="number" name="" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" value="" [(ngModel)]="height"><span class="pos-ab tail-pos">cm</span>
+          </div>
+        </div>
+
+        <div class="lf dis-in">
+          <label for="">体重</label>
+          <div class="inline pos-rev">
+            <input ng-class="{true:'redBorder',false:''}[errorWeight.length>1]" type="number" name="" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" value="" [(ngModel)]="weight"><span class="pos-ab tail-pos">kg</span>
+          </div>
+        </div>
+        <div class="error" ng-class="{true:'error-true',false:''}[bothhw.length>1]">
+          <span>{{errorHeight}}</span>
+          <span class="sel sec">{{errorWeight}}</span>
+        </div>
+        <div class="lf dis-bl">
+          <label for="">机构</label>
+          <div class="inline more-w">
+            <select class="nice-sel" name="" style="min-width:154px" [(ngModel)]="myGroup">
+              <option value="{{item.socialWelfareId}}"  *ngFor=" let item  of group">{{item.socialWelfareName}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="lf dis-bl">
+          <label for="">住址</label>
+          <div class="inline more-w">
+            <input type="text" name="" value="" [(ngModel)]="address">
+          </div>
+        </div>
+        <div class="lf dis-bl">
+          <label for="">监护人</label>
+          <div class="inline more-w more-label">
+            <input type="text" name="" value="" [(ngModel)]="controlInfo" class="dotShow" (click)="showHelpPanel()" readonly="true">
+            <div class="la">
+              <span *ngFor="let item of checkList">{{item.name}}<em (click)="killCheckListNum(item.id)" class="remove-x"></em></span>
+            </div>
+
+            <div class="find" style="display:none">
+              <div class="s-input">
+                <input type="text" name="" value="" [(ngModel)]="queryHelpInfo" ng-keydown="searchKeydown($event)" placeholder="请输入用户名/手机号">
+                <span (click)='initHelpList()'></span>
+              </div>
+              <div class="" style="overflow:auto;height:150px;">
+                <table class="helpMan" cellpadding="0" cellspacing="0" border="0">
+                  <thead>
+                    <tr>
+                      <td><span>选择</span></td>
+                      <td><span>姓名</span></td>
+                      <td><span>手机号</span></td>
+                      <td><span>性别</span></td>
+                      <td><span>年龄</span></td>
+                      <td><span>注册时间</span></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor=" let item of helpList;let index=index">
+                      <td><span><input type="checkbox" name="" value="" [(ngModel)]="item.isChecked" (ngModelChange)="changeState(item.isChecked,index)"></span></td>
+                      <td><span>{{item.name}}</span></td>
+                      <td><span>{{item.mobile}}</span></td>
+                      <td><span>{{item.sex == 'M'?'男':'女'}}</span></td>
+                      <td><span>{{getAge(item.birdthday)}}</span></td>
+                      <td><span>{{item.createDt | date:'yyyy-MM-dd'}}</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary spec-btn" (click)="saveClientDetail()">确定</button>
+    </div>
+  </ng-template>
+
+
+
+
+
+
+
+
+
+
 </div>

@@ -4,6 +4,7 @@ import {ClientService} from './client.service';
 import storage from '../../shared/storage'
 import tools from '../../shared/tools'
 import SysData from '../../shared/sysData'
+import * as $ from 'jquery'
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -40,6 +41,25 @@ export class ClientComponent implements OnInit {
       'value': 'B'
     }
   ]
+  private realname = ''
+  private mobile = null
+  private sex = ''
+  private userName = ''
+  private weight = ''
+  private height = ''
+  private email = ''
+  private address = ''
+  private remark = ''
+  private birdthday = ''
+  private relationShip = ''
+  private cardId = ''
+  private checkList = []
+  private myGroup = ''
+  private isEdit: boolean = false
+  private commissionerUserId: string
+  private group: Array<any> //监护人列表
+  private helpList: Array<any>
+  private queryHelpInfo: string
   constructor(private clientService: ClientService, private modalService: NgbModal) { }
 
   ngOnInit() {
@@ -65,6 +85,173 @@ export class ClientComponent implements OnInit {
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
+  }
+
+  openClientDetail(content) {
+    this.modalRef = this.modalService.open(content, { windowClass: 't-l-modal' })
+
+    this.modalRef.result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  clientActive(index, clientDetail) {
+    this.itemTarget = index
+    this.clearInfo()
+    if (index == -1) {
+      this.isEdit = false
+    } else {
+      this.isEdit = true
+      this.initEditData()
+    }
+    this.initHelpList()
+    this.initGroupList()
+    this.openClientDetail(clientDetail)
+  }
+
+  initGroupList() {
+    let data = {
+      'pageSize': 100,
+      'pageNum': 1
+    }
+    this.clientService.groupList(data).subscribe((res) => {
+      if (res.success) {
+        this.group = []
+        this.group = res.data.list
+        this.group.unshift({ 'socialWelfareId': '', 'socialWelfareName': '请选择' })
+      }
+    })
+  }
+
+  initEditData() {
+    let customerId = this.listData[this.itemTarget].customerId
+    this.clientService.personInfo(customerId).subscribe((res) => {
+      if (res.success) {
+        let info = res.data
+        this.realname = info.name
+        this.mobile = parseInt(info.mobile)
+        this.sex = info.sex
+        this.userName = info.userName
+        this.weight = info.weight
+        this.height = info.height
+        this.email = info.mail
+        this.address = info.address
+        this.remark = info.remark
+        this.birdthday = info.birdthday
+        this.relationShip = info.relationToCustomer
+        // this.imageUrl = info.imgUrl
+        if (info.socialWelfareId) {
+          this.myGroup = info.socialWelfareId
+        } else {
+          this.myGroup = ''
+        }
+        if (info.cardId) {
+          this.cardId = info.cardId
+        }
+
+        if (info.commissionerUserId) {
+          this.commissionerUserId = info.commissionerUserId
+        }
+
+        this.initGuardians(info.guardians)
+      }
+    })
+  }
+
+  initGuardians(array) {
+    this.checkList = []
+    for (var i = 0; i < array.length; i++) {
+      this.checkList.push({ "name": array[i].name, "mobile": array[i].mobile, "id": array[i].customerId })
+    }
+  }
+
+  initHelpList() {
+    let data = {
+      'pageSize': 100,
+      'pageNum': 1,
+      'query': this.queryHelpInfo
+    }
+    data['userId'] = storage.get('state')['userId']
+    this.clientService.clientList(data).subscribe((res) => {
+      if (res.success) {
+        this.helpList = res.data.list
+        this.expceptSelf()
+      }
+    })
+  }
+
+  expceptSelf() {
+    for (var i = 0; i < this.helpList.length; i++) {
+      if (this.itemTarget != -1) {
+        if (this.helpList[i].customerId == this.listData[this.itemTarget].customerId) {
+          this.helpList.splice(i, 1)
+        }
+      }
+
+    }
+    this.initCheckBox()
+  }
+
+  initCheckBox() {
+    for (var i = 0; i < this.helpList.length; i++) {
+      this.helpList[i].isChecked = false
+    }
+    for (var i = 0; i < this.checkList.length; i++) {
+      var tmp = this.checkList[i].id
+      for (var j = 0; j < this.helpList.length; j++) {
+        if (tmp == this.helpList[j].customerId) {
+          this.helpList[j].isChecked = true
+        }
+      }
+    }
+  }
+
+  changeState(flag, num) {
+    if (flag) {
+      this.checkList.push({ 'name': this.helpList[num].name, 'mobile': this.helpList[num].mobile, 'id': this.helpList[num].customerId })
+    } else {
+      for (var i = 0; i < this.checkList.length; i++) {
+        if (this.checkList[i].id == this.helpList[num].customerId) {
+          this.checkList.splice(i, 1)
+        }
+      }
+    }
+  }
+
+  killCheckListNum(id) {
+    for (var i = 0; i < this.checkList.length; i++) {
+      if (this.checkList[i].id == id) {
+        this.checkList.splice(i, 1)
+        for (var i = 0; i < this.helpList.length; i++) {
+          if (this.helpList[i].customerId == id) {
+            this.helpList[i].isChecked = false
+            return
+          }
+        }
+      }
+    }
+  }
+
+
+
+
+  clearInfo() {
+    this.realname = ''
+    this.mobile = null
+    this.sex = ''
+    this.userName = ''
+    this.weight = ''
+    this.height = ''
+    this.email = ''
+    this.address = ''
+    this.remark = ''
+    this.birdthday = ''
+    this.relationShip = ''
+    this.cardId = ''
+    this.checkList = []
+    this.myGroup = ''
   }
 
   healthCareOpen(index, content) {
@@ -244,6 +431,11 @@ export class ClientComponent implements OnInit {
   pageTurning(number) {
     this.pageNumber = number
     this.initAsyc()
+  }
+
+  showHelpPanel() {
+    $(".find").toggle()
+    this.initCheckBox()
   }
 
 }

@@ -33,3 +33,67 @@
     cursor: auto;
   }
 }
+
+.find {
+  position: absolute;
+  top: 30px;
+  width: 480px;
+  height: 200px;
+  background: #FFFFFF;
+  box-shadow: 0 0 4px 0 #D2D2D2;
+
+  .s-input {
+    position: relative;
+    text-align: center;
+    margin: 10px 0;
+
+    input {
+      width: 460px;
+      height: 30px;
+      background: #FAFAFB;
+      border: 1px solid #F7F7F7;
+      border-radius: 100px;
+      outline: none;
+      padding-left: 10px;
+    }
+
+    span {
+      cursor: pointer;
+      position: absolute;
+      background: url("/assets/images/search.png") 3px 6px no-repeat;
+      background-size: 17px 18px;
+      top: 0;
+      right: 14px;
+      width: 32px;
+      height: 30px;
+    }
+  }
+
+  table.helpMan {
+    width: 480px;
+    background: #FAFAFB;
+
+    span {
+      width: 100%;
+      display: inline-block;
+      text-align: center;
+
+      input[type='checkbox'] {
+        width: auto;
+        height: auto;
+      }
+    }
+
+    tbody {
+      background-color: white;
+
+      tr {
+        td {
+          span {
+            border-bottom: 1px solid #FAFAFB;
+          }
+        }
+      }
+    }
+  }
+}
