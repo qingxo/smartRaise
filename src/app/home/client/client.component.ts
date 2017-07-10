@@ -452,6 +452,24 @@ export class ClientComponent implements OnInit {
     this.initCheckBox()
   }
 
+  delconfirm(index) {
+    this.itemTarget = index
+    tools.tipsConfirm('确认需要删除账号？', '', 'warning', this.delClient.bind(this))
+  }
+
+  delClient() {
+    let customerId = this.listData[this.itemTarget].customerId
+    this.clientService.del(customerId).subscribe((res) => {
+
+      if (res.success) {
+        tools.tips("删除成功")
+        this.initAsyc()
+      } else {
+        tools.tips(res.errMsg, '', 'error')
+      }
+    })
+  }
+
   saveClientAddOrEdit() {
     this.errorRealname = ""
     this.errorCardId = ""

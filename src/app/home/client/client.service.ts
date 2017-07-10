@@ -17,6 +17,10 @@ export class ClientService extends BaseService {
     return this.postInfo('api/customer/listByPage', storage.serialize(data))
   }
 
+  del(customerId) {
+    return this.postInfo(`api/customer/delete/${customerId}`, '')
+  }
+
   addClient(data) {
     return this.postInfo('api/customer/add', storage.serialize(data))
   }
