@@ -5,7 +5,11 @@ import storage from '../../shared/storage'
 import tools from '../../shared/tools'
 import SysData from '../../shared/sysData'
 import * as $ from 'jquery'
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { FlatpickrOptions } from 'ng2-flatpickr/ng2-flatpickr';
+import * as Flatpickr from 'flatpickr'
+import * as zh_lang from 'flatpickr/dist/l10n/zh.js'
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap'
+import * as moment from 'moment'
 
 @Component({
   selector: 'app-client',
@@ -69,12 +73,26 @@ export class ClientComponent implements OnInit {
   private errorWeight = ""
   private bothhw = ""
   private bothNumber = ""
+  private exampleOptions: FlatpickrOptions = {
+    enableTime: false,
+    static: true,
+    time_24hr: true,
+    dateFormat: 'Y-m-d',
+    onChange: this.changeBirthday.bind(this)
+  }
+  private birthTime: any
   constructor(private clientService: ClientService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.role = storage.get('state')['role']
+    Flatpickr.localize(zh_lang.zh)
+    moment.locale('zh-cn')
+
     this.initBtnShow()
     this.initAsyc()
+  }
+  changeBirthday(val) {
+    this.birdthday = moment(new Date(val)).format('YYYY-MM-DD')
   }
 
   open(content) {
@@ -483,6 +501,7 @@ export class ClientComponent implements OnInit {
       tmpIds += (this.checkList[i].id + ',')
     }
     tmpIds = tmpIds.substr(0, tmpIds.length - 1)
+    console.log(this.birdthday)
 
     var data = {
       'commissionerUserId': storage.get('state')['userId'],

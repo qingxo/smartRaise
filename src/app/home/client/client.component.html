@@ -4,8 +4,11 @@
       <div class="lf">
         <app-search-line placeHolderValue="客户请输入" (search)="searchTable($event)"></app-search-line>
       </div>
+
+
       <div class="rf  create-btn show-{{clientBtn[0].value}}" (click)="clientActive(-1,clientDetail)">
         新增客户
+
       </div>
 
     </div>
@@ -195,7 +198,10 @@
         </div>
         <div class="lf dis-in">
           <label for="">生日</label>
+          <div class="inline bt-pos">
+            <ng2-flatpickr [config]="exampleOptions" [setDate]="birdthday"></ng2-flatpickr>
 
+          </div>
         </div>
         <div class="lf dis-in">
           <label for="">身高</label>

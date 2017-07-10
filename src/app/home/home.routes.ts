@@ -21,6 +21,8 @@ export const ROUTER_CONFIG: Routes = [
     children: [
       { path: '', redirectTo: '/home/client', pathMatch: 'full' },
       { path: 'client', component: ClientComponent },
+      { path: 'create', component: CreateAccountComponent },
+
       { path: 'xxx', component: ClientDetailComponent, outlet: 'walking' },
       { path: 'client/planman', component: PlanmanComponent },
       { path: 'newaccount', component: CreateAccountComponent },

@@ -15,7 +15,8 @@ import { HomeModule } from './home';
 import {SharedModule} from './shared';
 import {SweetAlertService} from 'ng2-sweetalert2';
 import { DialogsComponent } from './dialogs/dialogs.component'
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap'
+
 
 @NgModule({
   declarations: [

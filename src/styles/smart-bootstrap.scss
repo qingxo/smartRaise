@@ -91,7 +91,8 @@ input:focus {
 .content {
   transition: all 0.3s;
   margin-left: 235px;
-  margin-top: 57px;
+  // margin-top: 57px;
+  padding-top: 57px;
   margin-right: 10px;
 
   .right-content-info {
@@ -447,7 +448,8 @@ input:focus {
         width: 200px;
         position: relative;
 
-        input {
+        & > input,
+        input.ng2-flatpickr-input {
           width: 200px;
           height: 30px;
           border: 1px solid #d2d2d2;
