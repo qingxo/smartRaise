@@ -32,6 +32,7 @@ export class ClientComponent implements OnInit {
   private sources: string = 'A' //智能床默认值
   private healthpersonlist: Array<any> = [] //健康专员列表
   private healthCarePerson: string //用户默认的健康专员
+  private role: number
   private bedType: Array<any> = [
     {
       'name': '智能床A',
@@ -60,9 +61,18 @@ export class ClientComponent implements OnInit {
   private group: Array<any> //监护人列表
   private helpList: Array<any>
   private queryHelpInfo: string
+
+  private errorRealname = ""
+  private errorCardId = ""
+  private errorMobile = ""
+  private errorHeight = ""
+  private errorWeight = ""
+  private bothhw = ""
+  private bothNumber = ""
   constructor(private clientService: ClientService, private modalService: NgbModal) { }
 
   ngOnInit() {
+    this.role = storage.get('state')['role']
     this.initBtnShow()
     this.initAsyc()
   }
@@ -95,6 +105,10 @@ export class ClientComponent implements OnInit {
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
+  }
+
+  sexChoosed(val) {
+    this.sex = val
   }
 
   clientActive(index, clientDetail) {
@@ -240,7 +254,7 @@ export class ClientComponent implements OnInit {
   clearInfo() {
     this.realname = ''
     this.mobile = null
-    this.sex = ''
+    this.sex = 'F'
     this.userName = ''
     this.weight = ''
     this.height = ''
@@ -436,6 +450,109 @@ export class ClientComponent implements OnInit {
   showHelpPanel() {
     $(".find").toggle()
     this.initCheckBox()
+  }
+
+  saveClientAddOrEdit() {
+    this.errorRealname = ""
+    this.errorCardId = ""
+    this.errorMobile = ""
+    this.errorHeight = ""
+    this.errorWeight = ""
+    this.bothhw = ""
+    this.bothNumber = ""
+    let tmpIds = ''
+    for (var i = 0; i < this.checkList.length; i++) {
+      tmpIds += (this.checkList[i].id + ',')
+    }
+    tmpIds = tmpIds.substr(0, tmpIds.length - 1)
+
+    var data = {
+      'commissionerUserId': storage.get('state')['userId'],
+      'name': this.realname,
+      'mobile': this.mobile,
+      'sex': this.sex,
+      'birdthday': this.birdthday,
+      'height': this.height,
+      'weight': this.weight,
+      'address': this.address,
+      'role': this.role,
+      // 'imgUrl': this.imageUrl,
+      'cardId': this.cardId,
+      'socialWelfareId': this.myGroup,
+      'guardianIds': tmpIds
+    }
+
+    if (this.realname.trim().length < 1) {
+      this.errorRealname = "请输入姓名"
+    } else if (this.realname.trim().length > 30) {
+      this.errorRealname = "名字的长度不能超过30个字符"
+    }
+
+    if (this.mobile != null) {
+      if (isNaN(this.mobile)) {
+        this.errorMobile = ''
+        this.bothNumber = ""
+      } else if (!tools.checkMobile(this.mobile)) {
+        this.errorMobile = '手机号码格式错误'
+        this.bothNumber = "xxxx"
+      }
+    } else {
+      this.errorMobile = ''
+      this.bothNumber = ""
+
+    }
+
+    if (this.cardId.length != 0) {
+      var flag = tools.isCardID(this.cardId)
+      if (typeof flag !== 'boolean') {
+        this.errorCardId = flag
+        this.bothNumber = 'xxxxx'
+      }
+    }
+
+    if (typeof this.height != 'undefined') {
+      if (parseInt(this.height) < 50 || parseInt(this.height) > 250) {
+        this.errorHeight = '身高的取值范围在50~250之间'
+        this.bothhw = 'xxx'
+      }
+    }
+
+    if (typeof this.weight != 'undefined') {
+      if (parseInt(this.weight) < 1 || parseInt(this.weight) > 300) {
+        this.errorWeight = '体重的取值范围在1~300之间'
+        this.bothhw = 'xxx'
+      }
+    }
+
+    if (this.bothhw != "" || this.errorCardId != "" || this.errorRealname != "" || this.errorMobile != '') {
+      return
+    }
+
+    if (this.isEdit) {
+      if (isNaN(data.mobile)) {
+        delete data.mobile
+      }
+      data['customerId'] = this.listData[this.itemTarget].customerId
+      this.clientService.editClient(data).subscribe((res) => {
+        if (res.success) {
+          tools.tips('编辑成功')
+          this.modalRef.close()
+          this.initAsyc()
+        } else {
+          tools.tips(res.errMsg, '', 'error')
+        }
+      })
+    } else {
+      this.clientService.addClient(data).subscribe((res) => {
+        if (res.success) {
+          tools.tips('新增成功')
+          this.modalRef.close()
+          this.initAsyc()
+        } else {
+          tools.tips(res.errMsg, '', 'error')
+        }
+      })
+    }
   }
 
 }

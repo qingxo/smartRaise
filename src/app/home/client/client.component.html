@@ -4,7 +4,7 @@
       <div class="lf">
         <app-search-line placeHolderValue="客户请输入" (search)="searchTable($event)"></app-search-line>
       </div>
-      <div class="rf  create-btn show-{{clientBtn[0].value}}" (click)="open()">
+      <div class="rf  create-btn show-{{clientBtn[0].value}}" (click)="clientActive(-1,clientDetail)">
         新增客户
       </div>
 
@@ -165,25 +165,25 @@
         <div class="lf dis-bl">
           <label for=""><em>*</em>姓名</label>
           <div class="inline">
-            <input type="text" name="" value="" [(ngModel)]="realname" ng-class="{true:'redBorder',false:''}[errorRealname.length>1]">
+            <input type="text" name="" value="" [(ngModel)]="realname" [ngClass]="{true:'redBorder',false:''}[errorRealname.length>1]">
           </div>
         </div>
-        <div class="error" ng-class="{true:'error-true',false:''}[errorRealname.length>1]">
+        <div class="error" [ngClass]="{true:'error-true',false:''}[errorRealname.length>1]">
           <span>{{errorRealname}}</span>
         </div>
         <div class="lf dis-in">
           <label for="">身份证号</label>
           <div class="inline">
-            <input type="text" name="" value="" [(ngModel)]="cardId" ng-class="{true:'redBorder',false:''}[errorCardId.length>1]">
+            <input type="text" name="" value="" [(ngModel)]="cardId" [ngClass]="{true:'redBorder',false:''}[errorCardId.length>1]">
           </div>
         </div>
         <div class="lf dis-in">
           <label for="">手机号</label>
           <div class="inline">
-            <input type="number" name="" value="" [(ngModel)]="mobile" ng-class="{true:'redBorder',false:''}[errorMobile.length>1]">
+            <input type="number" name="" value="" [(ngModel)]="mobile" [ngClass]="{true:'redBorder',false:''}[errorMobile.length>1]">
           </div>
         </div>
-        <div class="error" ng-class="{true:'error-true',false:''}[bothNumber.length>1]">
+        <div class="error" [ngClass]="{true:'error-true',false:''}[bothNumber.length>1]">
           <span>{{errorCardId}}</span>
           <span class="sec">{{errorMobile}}</span>
         </div>
@@ -200,17 +200,17 @@
         <div class="lf dis-in">
           <label for="">身高</label>
           <div class="inline pos-rev">
-            <input ng-class="{true:'redBorder',false:''}[errorHeight.length>1]" type="number" name="" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" value="" [(ngModel)]="height"><span class="pos-ab tail-pos">cm</span>
+            <input [ngClass]="{true:'redBorder',false:''}[errorHeight.length>1]" type="number" name="" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" value="" [(ngModel)]="height"><span class="pos-ab tail-pos">cm</span>
           </div>
         </div>
 
         <div class="lf dis-in">
           <label for="">体重</label>
           <div class="inline pos-rev">
-            <input ng-class="{true:'redBorder',false:''}[errorWeight.length>1]" type="number" name="" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" value="" [(ngModel)]="weight"><span class="pos-ab tail-pos">kg</span>
+            <input [ngClass]="{true:'redBorder',false:''}[errorWeight.length>1]" type="number" name="" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" value="" [(ngModel)]="weight"><span class="pos-ab tail-pos">kg</span>
           </div>
         </div>
-        <div class="error" ng-class="{true:'error-true',false:''}[bothhw.length>1]">
+        <div class="error" [ngClass]="{true:'error-true',false:''}[bothhw.length>1]">
           <span>{{errorHeight}}</span>
           <span class="sel sec">{{errorWeight}}</span>
         </div>
@@ -272,7 +272,7 @@
       </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary spec-btn" (click)="saveClientDetail()">确定</button>
+      <button type="button" class="btn btn-secondary spec-btn" (click)="saveClientAddOrEdit()">确定</button>
     </div>
   </ng-template>
 

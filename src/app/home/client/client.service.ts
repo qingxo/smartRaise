@@ -17,6 +17,14 @@ export class ClientService extends BaseService {
     return this.postInfo('api/customer/listByPage', storage.serialize(data))
   }
 
+  addClient(data) {
+    return this.postInfo('api/customer/add', storage.serialize(data))
+  }
+
+  editClient(data) {
+    return this.postInfo('api/customer/modify', storage.serialize(data))
+  }
+
   //smartbed api start
   save(data: any) {
     return this.postInfo('api/customer/bunding', storage.serialize(data))
