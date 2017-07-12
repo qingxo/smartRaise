@@ -1,7 +1,7 @@
 import { Component, OnInit, Input} from '@angular/core';
 
 @Component({
-  selector: 'app-nothing',
+  selector: 'nothing',
   templateUrl: './nothing.component.html',
   styleUrls: ['./nothing.component.scss']
 })
