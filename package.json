@@ -29,6 +29,7 @@
     "compression": "^1.6.2",
     "core-js": "^2.4.1",
     "echarts": "^3.6.2",
+    "echarts-ng2": "^1.4.1",
     "express": "^4.15.3",
     "express-http-proxy": "^1.0.4",
     "flatpickr": "^2.6.3",
