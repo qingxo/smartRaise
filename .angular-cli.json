@@ -18,14 +18,14 @@
     "testTsconfig": "tsconfig.spec.json",
     "prefix": "app",
     "styles": [
-      "../node_modules/sweetalert2/dist/sweetalert2.css",
+      "../node_modules/sweetalert/dist/sweetalert.css",
       "../node_modules/bootstrap/dist/css/bootstrap.css",
       "../node_modules/flatpickr/dist/flatpickr.min.css",
       "styles/smart-bootstrap.scss"
     ],
     "scripts": [
       "../node_modules/echarts/dist/echarts.js",
-      "../node_modules/sweetalert2/dist/sweetalert2.min.js"
+      "../node_modules/sweetalert/dist/sweetalert.min.js"
     ],
     "environmentSource": "environments/environment.ts",
     "environments": {
