@@ -1,7 +1,7 @@
 import * as $ from 'jquery'
 import storage from './storage'
 import SysData from './sysData'
-import swal from 'sweetalert2'
+import * as swal from 'sweetalert'
 class Tools {
   private aCity: object = {
     11: "北京", 12: "天津", 13: "河北", 14: "山西",
@@ -86,16 +86,14 @@ class Tools {
       title: msgTitle,
       text: msgDetail,
       type: msgType,
-      timer: timer
-    }).then(
-      () => { },
-      (dismiss) => {
-        if (dismiss === this.TIMER) {
+      timer: timer,
+      showConfirmButton: false,
+      showCancelButton: true,
+      cancelButtonText: '确定'
+    })
 
-        }
-      }
-      )
   }
+
 
   tipsConfirm(msgTitle: string, msgText: string, msgType: any = 'success', callback) {
     swal({
@@ -104,18 +102,14 @@ class Tools {
       type: msgType,
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
       confirmButtonText: '确定',
       cancelButtonText: '取消',
-      confirmButtonClass: 'btn btn-success swal-confirm-b',
-      cancelButtonClass: 'btn btn-danger',
-      buttonsStyling: false
-    }).then(() => {
-      callback()
-
-    }, function(dismiss) {
-      if (dismiss === 'cancel') {
-
+      // confirmButtonClass: 'btn btn-success swal-confirm-b',
+      // cancelButtonClass: 'btn btn-danger',
+      // buttonsStyling: false
+    }, (isConfirm) => {
+      if (isConfirm) {
+        callback()
       }
     })
   }
