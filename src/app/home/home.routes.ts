@@ -23,7 +23,7 @@ export const ROUTER_CONFIG: Routes = [
       { path: 'client', component: ClientComponent },
       { path: 'create', component: CreateAccountComponent },
 
-      { path: 'xxx', component: ClientDetailComponent, outlet: 'walking' },
+      { path: 'clientDetail/:userId', component: ClientDetailComponent },
       { path: 'client/planman', component: PlanmanComponent },
       { path: 'newaccount', component: CreateAccountComponent },
       { path: 'smartbed', component: SmartBedComponent },

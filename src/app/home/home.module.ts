@@ -24,6 +24,8 @@ import { ErrorTipsComponent } from './error-tips/error-tips.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { SyncDataComponent } from './sync-data/sync-data.component';
 import {SweetAlertService} from 'ng2-sweetalert2';
+import { BmiMonitorComponent } from './bmi-monitor/bmi-monitor.component';
+import { EchartsNg2Module } from 'echarts-ng2';
 
 @NgModule({
   imports: [
@@ -33,6 +35,7 @@ import {SweetAlertService} from 'ng2-sweetalert2';
     AngularEchartsModule,
     ReactiveFormsModule,
     PopoverModule,
+    EchartsNg2Module,
     RouterModule.forChild(ROUTER_CONFIG)
 
   ],
@@ -53,7 +56,8 @@ import {SweetAlertService} from 'ng2-sweetalert2';
     MyTaskComponent,
     ErrorTipsComponent,
     FeedbackComponent,
-    SyncDataComponent
+    SyncDataComponent,
+    BmiMonitorComponent
   ],
   providers: []
 })
