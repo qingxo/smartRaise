@@ -1,3 +1,72 @@
-.demo-chart{
+.demo-chart {
   height: 400px;
+}
+
+.info-head-inline {
+  font-size: 14px;
+  color: #333333;
+  padding: 10px;
+  text-align: left;
+  background-color: white;
+  border-bottom: 1px solid #E5E5E5;
+  background-image: url("/assets/images/head-bg.png");
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: 4px 5px;
+}
+
+.data-info-inline {
+  position: relative;
+  min-height: 300px;
+
+  .order-info {
+    float: left;
+    margin-top: 10px;
+    width: 49.5%;
+    min-width: 480px;
+    display: inline-block;
+    background-color: white;
+    min-height: 280px;
+    overflow: auto;
+
+    .table-info {
+      padding: 5px !important;
+      background-color: white!important;
+
+      table {
+        tr td {
+          padding: 8px 0;
+        }
+      }
+    }
+  }
+
+  .health-report {
+    float: right;
+  }
+}
+
+.mybox-half {
+  width: 49%;
+  display: inline-block;
+  min-height: 350px;
+  float: left;
+}
+
+.bor {
+  border-right: 1px solid #e5e5e5;
+}
+
+.no-data-half {
+  // margin: 150px;
+}
+
+.overflow-table {
+  height: 220px;
+  overflow: auto;
+}
+
+.show-info-0 {
+  visibility: hidden;
+  height: 0 !important;
 }

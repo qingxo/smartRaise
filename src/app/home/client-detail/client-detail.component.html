@@ -1,78 +1,172 @@
-<div class="right-content">
-  <app-line-info  lineInfo="客户详情"></app-line-info>
-
-  <div class="detail-content">
-
-      <div class="info">
+<div class="right-content-info" style="min-width:1021px">
+  <div class="head-tips">
+    <span class=tips-info>平台管理 / 客户管理 / <em>客户详情</em></span>
+  </div>
+  <div class="detail-content detail-content-pad txt-pos">
+    <div class="person-info-block">
+      <div class="info-head">
+        <span>账号信息</span>
+      </div>
+      <div class="table-info-person">
         <table cellpadding="0" cellspacing="0" border="0">
           <thead>
-            <tr><td><span>姓名</span></td><td><span>手机号</span></td><td><span>性别</span></td><td><span>年龄</span></td><td><span>注册时间</span></td><td><span>健康服务专员</span></td><td><span>操作</span></td></tr>
+            <tr>
+              <td><span>姓名</span></td>
+              <td><span>手机号</span></td>
+              <td><span>性别</span></td>
+              <td><span>年龄</span></td>
+              <td><span>注册时间</span></td>
+              <td><span>健康服务专员</span></td>
+            </tr>
           </thead>
           <tbody>
-            <tr >
-              <!-- <td><span>{{userInfo.name}}</span></td><td><span>{{userInfo.mobile}}</span></td><td><span>{{userInfo.sex === 'M' ? '男' : '女'}}</span></td><td><span>{{getAge(userInfo.birdthday | date:'yyyy-MM-dd')}}</span></td>
-              <td><span>{{userInfo.createDt | date:'yyyy-MM-dd'}}</span></td><td><span>{{userInfo.commissionerUserName?userInfo.commissionerUserName:'无'}}</span></td>
+            <tr>
+              <td><span>{{!!userInfo.name?userInfo.name:'未知'}}</span></td>
+              <td><span>{{userInfo.mobile}}</span></td>
+              <td><span>{{userInfo.sex === 'M' ? '男' : '女'}}</span></td>
+              <td><span>{{getAge(userInfo.birdthday | date:'yyyy-MM-dd')}}</span></td>
+              <td><span>{{userInfo.createDt | date:'yyyy-MM-dd'}}</span></td>
+              <td><span>{{userInfo.commissionerUserName?userInfo.commissionerUserName:'无'}}</span></td>
 
-              <td><span>
-                 <em ui-sref="home.newaccount({'isEdit':true,'userId':userInfo.customerId})">编辑</em>
-              </span></td> -->
             </tr>
           </tbody>
         </table>
       </div>
-      <h3 class="titleH3">订单数据</h3>
+    </div>
 
-            <div class="info">
-              <table cellpadding="0" cellspacing="0" border="0">
-                <thead>
-                  <tr><td><span>订单编号</span></td><td><span>服务包</span></td><td><span>购买时间</span></td><td><span>订单状态</span></td></tr>
-                </thead>
-                <tbody>
-                  <!-- <tr ng-repeat="item in list">
-                    <td><span><em ui-sref="home.orderdetail({'pkgId':item.serviceOrderId})">{{item.serviceOrderId}}</em></span></td><td><span><em ui-sref="home.newpackages({'packageId':item.servicePackId,'isEdit':true})">{{item.servicePackName}}</em></span></td><td><span>{{item.buyDt | date:'yyyy-MM-dd'}}</span></td><td><span>{{item.statue == '0'?'停止':'启动'}}</span></td>
+    <div class="data-info-inline">
 
-                  </tr> -->
-                </tbody>
-              </table>
-              <div class="page-turning" ng-show="morePage">
-                <span ng-click="ngPageUp()">上一页</span><span ng-repeat="page in pagination" class="{{page == pageNumber? 'cur' : ''}}" ng-click='goDetailPage(page)'>{{page}}</span><span ng-click="ngPageDown()">下一页</span>
-              </div>
-            </div>
+      <div class="order-info">
+        <div class="info-head-inline">
+          <span>订单数据</span>
+        </div>
+        <div class="table-info overflow-table" [hidden]="list.length == 0?true:false">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <thead>
+              <tr>
+                <td><span>订单编号</span></td>
+                <td><span>服务包</span></td>
+                <td><span>购买时间</span></td>
+                <td><span>订单状态</span></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor=" let item of list">
+                <td><span class="opt"><em ui-sref="home.orderdetail({'pkgId':item.serviceOrderId})">{{item.serviceOrderId}}</em></span></td>
+                <td><span>{{item.servicePackName}}</span></td>
+                <td><span>{{item.buyDt | date:'yyyy-MM-dd'}}</span></td>
+                <td><span>{{item.statue == '0'?'已停止':'已启动'}}</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <nothing [isHidden]="list.length==0?false:true"></nothing>
 
-        <h3 class="titleH3">智能床数据</h3>
-        <div class="living">
-          <div class="halfpart">
-            <span>心率/HR:</span><span ng-bind="heartBeating" id="ht{{equipNo}}"></span> 次/分
-          </div>
-          <div class="halfpart">
-            <span>呼吸率/RR:</span><span ng-bind="breathLevel" id="bl{{equipNo}}"></span> 次/分
-          </div>
+      </div>
+
+      <div class=" order-info health-report">
+        <div class="info-head-inline">
+          <span>健康报告</span>
+        </div>
+        <div class="table-info overflow-table" [hidden]="reportList.length==0?'true':false">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <thead>
+              <tr>
+                <td><span>报告名称</span></td>
+                <td><span>创建时间</span></td>
+                <td><span>操作</span></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of reportList">
+                <td><span>{{item.reportTitle}}</span></td>
+                <td [hidden]="!!item.customerId"><span>{{item.createdAt | slice:0:19}}</span></td>
+                <td [hidden]="!item.customerId"><span>{{item.createDt | date:'yyyy-MM-dd HH:mm:ss'}}</span></td>
+                <td [hidden]="item.customerId"><a target="_blank" style="text-decoration: none;color: #03a9f4;" href="{{reportDomain}}{{item.reportUrl}}">详情</a></td>
+                <td [hidden]="!item.customerId"><a target="_blank" style="text-decoration: none;color: #03a9f4;" href="{{healthReportDomain}}{{item.reportUrl}}">详情</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <nothing [isHidden]="reportList.length==0?false:true"></nothing>
+      </div>
+
+    </div>
+
+    <div class="mybox mybox-lit">
+      <div class="info-head-inline">
+        <span>实时数据</span>
+      </div>
+      <div class="halfpart">
+        <span>心率/HR:</span><span ng-bind="heartBeating" id="ht{{equipNo}}"></span> 次/分
+      </div>
+      <div class="halfpart">
+        <span>呼吸率/RR:</span><span ng-bind="breathLevel" id="bl{{equipNo}}"></span> 次/分
+      </div>
+      <div class="halfpart">
+        <span>设备状态:</span><span id="sta{{equipNo}}">-</span>
+      </div>
+    </div>
+
+    <div class="mybox mybox-h1 mybox-h1-{{bedList.length}}">
+      <div class="box-head">
+        <div class="box-head-line">智能床数据</div>
+        <div class="box-tools">
+          <span class="day-1-{{periodDay}}" (click)="changePeriodDay(1)">最近一天</span><span class="day-7-{{periodDay}}" (click)="changePeriodDay(7)">最近七天</span><span class="day-30-{{periodDay}}" (click)="changePeriodDay(30)">最近一月</span>
+        </div>
+      </div>
+      <div class="show-info-{{bedList.length}}">
+        <echarts-ng2 [option]="optionOne"></echarts-ng2>
+        <echarts-ng2 [option]="optionFour"></echarts-ng2>
+
+        <!-- <div class="echarts-box show-info-{{bedList.length}}" style="height: 800px" echarts="instance"></div> -->
+        <!-- <div class="echarts-box show-info-{{bedList.length}}" style="height: 400px" echarts="instance4"></div> -->
+      </div>
+      <nothing [isHidden]="bedList.length == 0?false:true"></nothing>
+    </div>
+
+
+    <div class="mybox" style="height:700px">
+      <div class="box-head">
+        <div class="box-head-line">健康监测数据</div>
+        <div class="box-tools">
+          <span class="day-1-{{periodDay}}" (click)="changePeriodDay(1)">最近一天</span><span class="day-7-{{periodDay}}" (click)="changePeriodDay(7)">最近七天</span><span class="day-30-{{periodDay}}" (click)="changePeriodDay(30)">最近一月</span> <i ui-sref="home.monitorData({'userId':userId})">全部</i>
+        </div>
+      </div>
+      <div class="mybox-half bor">
+        <div class="show-info-{{bloodPressureList.length}}">
+          <echarts-ng2 [option]="optionTwo" [style]="{'height': '350px'}"></echarts-ng2>
         </div>
 
-        <div class="periodDayChoosed">
-            <span class="day-1-{{periodDay}}" ng-click="changePeriodDay(1)">今天</span><span class="day-7-{{periodDay}}" ng-click="changePeriodDay(7)">最近七天</span><span class="day-30-{{periodDay}}" ng-click="changePeriodDay(30)">最近一月</span>
+        <div class="no-data-half" [hidden]="bloodPressureList.length!=0">
+          <nothing [isHidden]="false" myTips="暂无血压数据"></nothing>
+        </div>
+      </div>
+
+
+      <div class="mybox-half">
+        <div class="show-info-{{bloodSugarFlag}}">
+          <echarts-ng2 [option]="optionThree" [style]="{'height': '350px'}"></echarts-ng2>
+
         </div>
 
-          <div class="no-data" ng-show="bedList.length==0">
-            暂无智能床相应数据
-          </div>
-          <div echarts [options]="chartOption" class="demo-chart"></div>
-        <h3 class="titleH3">健康监测数据</h3>
-        <div class="mybox">
-          <div class="mybox-half" >
-            <div class="no-data-half" ng-show="bloodPressureList.length==0">
-              暂无血压数据
-            </div>
-          </div>
+        <div class="no-data-half" [hidden]="bloodSugarFlag!='0'">
+          <nothing [isHidden]="false" myTips="暂无血糖数据"></nothing>
+        </div>
+      </div>
 
-
-          <div class="mybox-half" >
-            <div class="no-data-half" ng-show="bloodSugarListBefore.length==0">
-              暂无血糖数据
-            </div>
-          </div>
+      <div class="mybox-half" style="width:100%;border-top: 1px solid #e5e5e5;">
+        <div class="show-info-{{bmiList.length}}">
+          <echarts-ng2 [option]="optionFive" [style]="{'height': '350px'}"></echarts-ng2>
 
         </div>
+
+        <div class="no-data-half" [hidden]="bmiList.length!=0">
+          <nothing [isHidden]="false" myTips="暂无BMI数据"></nothing>
+        </div>
+      </div>
+
+    </div>
 
 
 
