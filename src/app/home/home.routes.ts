@@ -27,7 +27,7 @@ export const ROUTER_CONFIG: Routes = [
       { path: 'client/planman', component: PlanmanComponent },
       { path: 'newaccount', component: CreateAccountComponent },
       { path: 'smartbed', component: SmartBedComponent },
-      { path: 'orderpackage', component: OrderPackageComponent },
+      { path: 'orderpackage/:userId', component: OrderPackageComponent },
       { path: 'orderdetail', component: OrderDetailComponent },
       { path: 'servicepackage', component: ServicePackageComponent },
       { path: 'order', component: OrderComponent },

@@ -78,7 +78,7 @@
             <td><span class="opt">
               <!-- ({'userId':item.customerId,'equipNo':item.equipmentNo}) -->
                             <em [routerLink]="['/home/clientDetail',item.customerId,{'equipNo':item.equipmentNo}]" class="show-{{clientBtn[3].value}}">详情</em>
-                           <em ui-sref="home.orderpackage({'userId':item.customerId})" class="show-{{clientBtn[6].value}}"  >订购服务包</em>
+                           <em [routerLink]="['/home/orderpackage',item.customerId]" class="show-{{clientBtn[6].value}}"  >订购服务包</em>
                            <em (click)="delconfirm(index)" class="show-{{clientBtn[2].value}}" >删除</em>
             </span></td>
           </tr>

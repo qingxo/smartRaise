@@ -1,47 +1,36 @@
 import { Injectable } from '@angular/core';
 import {Http} from '@angular/http'
 import storage from '../../shared/storage'
+import {BaseService} from '../../shared/base.service'
 @Injectable()
-export class OrderPackageService {
+export class OrderPackageService extends BaseService {
 
-  constructor(private http:Http) { }
+  constructor(public http: Http) {
+    super(http)
+  }
+  personInfo(userId) {
+    return this.postInfo('api/customer/detail/' + userId, '')
+  }
 
+  personBuyPkg(data) {
+    return this.postInfo('api/customer/packBuyDetail', storage.serialize(data))
+  }
 
-    personInfo(userId:any) {
-      return this.http.post('api/customer/detail/' + userId,'').map((res)=>{
-        return res.json()
-      })
-    }
+  pkgStart(data) {
+    return this.postInfo('api/serviceOrder/start', storage.serialize(data))
+  }
 
-    personBuyPkg(data:any) {
-      return this.http.post('api/customer/packBuyDetail' ,storage.serialize(data)).map((res)=>{
-        return res.json()
-      })
-    }
+  pkgEnd(data) {
+    return this.postInfo('api/serviceOrder/stop', storage.serialize(data))
+  }
 
-    pkgStart(data:any) {
-      return this.http.post('api/serviceOrder/start', storage.serialize(data) ).map((res)=>{
-        return res.json()
-      })
-    }
+  pkgBuy(data) {
+    return this.postInfo('api/servicePack/buy', storage.serialize(data))
+  }
 
-    pkgEnd(data:any) {
-      return this.http.post('api/serviceOrder/stop', storage.serialize(data) ).map((res)=>{
-        return res.json()
-      })
-    }
+  unSubscriptionPkg(data) {
+    return this.postInfo('api/servicePack/unsubscribe', storage.serialize(data))
 
-    pkgBuy(data:any) {
-      return this.http.post('api/servicePack/buy', storage.serialize(data)).map((res)=>{
-        return res.json()
-      })
-    }
-
-    unSubscriptionPkg(data:any) {
-      return this.http.post('api/servicePack/unsubscribe', storage.serialize(data)).map((res)=>{
-        return res.json()
-      })
-
-    }
+  }
 
 }

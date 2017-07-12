@@ -11,7 +11,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { ClientDetailComponent } from './client-detail/client-detail.component'
 import { Ng2FlatpickrComponent } from 'ng2-flatpickr/ng2-flatpickr';
-import { AngularEchartsModule } from 'angular2-echarts';
 import { SmartBedComponent } from './smart-bed';
 import { OrderPackageComponent } from './order-package';
 import { OrderDetailComponent } from './order-detail';
@@ -32,7 +31,6 @@ import { EchartsNg2Module } from 'echarts-ng2';
     CommonModule,
     SharedModule,
     FormsModule,
-    AngularEchartsModule,
     ReactiveFormsModule,
     PopoverModule,
     EchartsNg2Module,

@@ -1,32 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import {OrderPackageService} from './order-package.service'
 import {ActivatedRoute} from '@angular/router'
+import * as swal from 'sweetalert'
 import tools from '../../shared/tools'
-import {SweetAlertService} from 'ng2-sweetalert2'
 @Component({
   selector: 'app-order-package',
   templateUrl: './order-package.component.html',
   styleUrls: ['./order-package.component.scss'],
-  providers:[OrderPackageService,SweetAlertService]
+  providers: [OrderPackageService]
 })
 export class OrderPackageComponent implements OnInit {
 
-  private userId:string = ''
-  private pageSize:number = 10
-  private pageNumber:number =1
-  private personBuyPkg:Array<any> =[]
-  private personInfo:any = {}
-  private pages:Array<any> = []
+  private userId: string = ''
+  private pageSize: number = 100
+  private pageNumber: number = 1
+  private personBuyPkg: Array<any> = []
+  private personInfo: any = {}
+  private pages: Array<any> = []
+  private targetItem: object = {}
+  private targetIndex: number = -1
 
-
-  constructor(private orderPackageService:OrderPackageService,private activatedRoute:ActivatedRoute,private sweetAlertService:SweetAlertService) { }
+  constructor(private orderPackageService: OrderPackageService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.userId = this.activatedRoute.snapshot.queryParams['userId']
+    this.userId = this.route.snapshot.params['userId']
     let data = {
       'pageSize': this.pageSize,
       'pageNum': this.pageNumber,
-      'customerId':this.userId
+      'customerId': this.userId
     }
 
     this.personDetail(this.userId)
@@ -38,7 +39,7 @@ export class OrderPackageComponent implements OnInit {
     let data = {
       'pageSize': this.pageSize,
       'pageNum': this.pageNumber,
-      'customerId':this.userId
+      'customerId': this.userId
     }
     this.personBuyPkgInfo(data)
   }
@@ -52,159 +53,132 @@ export class OrderPackageComponent implements OnInit {
     })
   }
 
-  unSubscriptionPkgConfirm(item,index){
-    this.sweetAlertService.swal({
-      title: '确认退订服务?',
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: '确定',
-      cancelButtonText:'取消'
-    }).then(() => {
-      this.unSubscriptionPkg(item,index)
-        },(dismiss)=>{
-      })
+  unSubscriptionPkgConfirm(item, index) {
+    this.targetItem = item
+    this.targetIndex = index
+    tools.tipsConfirm('确认退订服务?', '', 'warning', this.unSubscriptionPkg.bind(this))
+
   }
 
-  unSubscriptionPkg(item,index){
+  unSubscriptionPkg() {
     let data = {
-        'customerId':this.personInfo.customerId,
-        'servicePackId':item.servicePackId
+      'customerId': this.personInfo.customerId,
+      'servicePackId': this.targetItem['servicePackId']
     }
-    this.orderPackageService.unSubscriptionPkg(data).subscribe((res)=>{
+    this.orderPackageService.unSubscriptionPkg(data).subscribe((res) => {
       if (res.success) {
-        this.sweetAlertService.swal("退订成功",'','success')
-        this.personBuyPkg[index].myBuyCounts = 0
-      }else{
-        this.sweetAlertService.swal(res.errMsg,'','error')
+        tools.tips("退订成功", '', 'success')
+        this.personBuyPkg[this.targetIndex].myBuyCounts = 0
+      } else {
+        tools.tips(res.errMsg, '', 'error')
       }
     })
   }
 
-  endOrderConfirm(item,index){
-    this.sweetAlertService.swal({
-      title: '确认停止服务?',
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: '确定',
-      cancelButtonText:'取消'
-    }).then(() => {
-      this.endOrder(item,index)
-        },(dismiss)=>{
-      })
+  endOrderConfirm(item, index) {
+    this.targetItem = item
+    this.targetIndex = index
+
+    tools.tipsConfirm('确认停止服务?', '', 'warning', this.endOrder.bind(this))
   }
 
-  endOrder(item,index) {
+  endOrder() {
     let data = {
-        'serviceOrderId':item.serviceOrderId,
+      'serviceOrderId': this.targetItem['serviceOrderId'],
     }
     tools.loading(true)
-    this.orderPackageService.pkgEnd(data).subscribe((res)=>{
+    this.orderPackageService.pkgEnd(data).subscribe((res) => {
       tools.loading(false)
       if (res.success) {
-        this.sweetAlertService.swal("结束订单成功",'','success')
-        console.log(this.personBuyPkg[index])
-        console.log(this.personBuyPkg,index)
-        this.personBuyPkg[index].orderStatus = 2
-      }else{
-        this.sweetAlertService.swal(res.errMsg,'','error')
+        tools.tips("结束订单成功", '', 'success')
+        this.personBuyPkg[this.targetIndex].orderStatus = 2
+      } else {
+        tools.tips(res.errMsg, '', 'error')
       }
     })
   }
 
-  startOrderConfirm(item,index){
-    this.sweetAlertService.swal({
-      title: '确认启动服务?',
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: '确定',
-      cancelButtonText:'取消'
-    }).then(() => {
-      this.startOrder(item,index)
-        },(dismiss)=>{
-      })
+  startOrderConfirm(item, index) {
+    this.targetItem = item
+    this.targetIndex = index
+    tools.tipsConfirm('确认启动服务?', '', 'warning', this.startOrder.bind(this))
   }
 
-  startOrder(item,index) {
+  startOrder() {
     let data = {
-        'serviceOrderId':item.serviceOrderId,
+      'serviceOrderId': this.targetItem['serviceOrderId'],
     }
     tools.loading(true)
-    this.orderPackageService.pkgStart(data).subscribe((res)=>{
+    this.orderPackageService.pkgStart(data).subscribe((res) => {
       tools.loading(false)
       if (res.success) {
-        this.sweetAlertService.swal("启动成功",'','success')
-        this.personBuyPkg[index].orderStatus = '1'
-      }else{
-        this.sweetAlertService.swal(res.errMsg)
+        tools.tips("启动成功", '', 'success')
+        this.personBuyPkg[this.targetIndex].orderStatus = '1'
+      } else {
+        tools.tips(res.errMsg)
       }
 
-    },(res)=>{
-        tools.loading(false)
-        this.sweetAlertService.swal("网络错误",'','error')
+    }, (res) => {
+      tools.loading(false)
+      tools.tips("网络错误", '', 'error')
     })
   }
 
-  sellPackageConfirm(pkgId,item) {
-    if(typeof this.personInfo.cardId!= 'undefined' && this.personInfo.cardId.length>1){ //用户有身份证时
-      this.sweetAlertService.swal({
-        title: '确定订购服务包?',
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: '确定',
-        cancelButtonText:'取消'
-      }).then(() => {
-        this.sellPackage(pkgId,item)
-          },(dismiss)=>{
-        })
-    }else{ //用户身份证不存在时，需要输入身份证
-      this.sweetAlertService.swal({
+  sellPackageConfirm(pkgId, item) {
+    this.targetItem = item
+    if (item.sources != 'hele') {
+      tools.tipsConfirm('确定订购服务包?', '', 'warning', this.sellPackage.bind(this))
+    } else {
+
+      if (typeof this.personInfo.cardId != 'undefined' && this.personInfo.cardId != null && this.personInfo.cardId != 'null') { //用户有身份证时
+        tools.tipsConfirm('确定订购服务包?', '', 'warning', this.sellPackage.bind(this))
+      } else { //用户身份证不存在时，需要输入身份证
+        swal({
           title: '需要填写身份证号才能购买',
-          input: 'text',
+          type: 'input',
           showCancelButton: true,
+          closeOnConfirm: false,
           confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
           confirmButtonText: '确定',
-          cancelButtonText:'取消',
-          inputValidator: (value)=> {
-            return new Promise( (resolve, reject)=> {
-              if (value) {
-                let flag = tools.isCardID(value)
-                if(typeof flag!== 'boolean'){
-                  reject(flag)
-                }
-                resolve()
+          cancelButtonText: '取消'
+        },
+          (inputValue) => {
+            if (inputValue) {
+              let flag = tools.isCardID(inputValue)
+              if (typeof flag !== 'boolean') {
+                swal.showInputError(flag)
+                return false
               } else {
-                reject('请输入身份证号')
+                this.sellPackage(inputValue)
+                swal.close()
+                return true
               }
-            })
-          }
-        }).then((result)=> {
-          this.sellPackage(pkgId,item)
-        },(res)=>{
-        })
+            }
+            if (inputValue === "") {
+              swal.showInputError('请输入身份证号')
+              return false
+            }
+          })
+      }
     }
   }
 
-  sellPackage(pkgId,item) {
-    let data = {
-      'servicePackId':pkgId,
-      'customerId':this.personInfo.customerId,
-      'cardId':this.personInfo.cardId
+  sellPackage(val?: any) {
+    let card = ''
+    if (val) {
+      card = val
     }
-    this.orderPackageService.pkgBuy(data).subscribe((res)=>{
+    let data = {
+      'servicePackId': this.targetItem['servicePackId'],
+      'customerId': this.personInfo.customerId,
+      'cardId': card
+    }
+    this.orderPackageService.pkgBuy(data).subscribe((res) => {
       if (res.success) {
-        this.sweetAlertService.swal("订购成功",'','success')
+        tools.tips("订购成功", '', 'success')
         this.refreshPersonBuyPkg()
-      }else{
-        this.sweetAlertService.swal(res.errMsg,'','error')
+      } else {
+        tools.tips(res.errMsg, '', 'error')
       }
     })
   }
@@ -213,7 +187,7 @@ export class OrderPackageComponent implements OnInit {
     var data = {
       'pageSize': this.pageSize,
       'pageNum': 1,
-      'customerId':this.userId
+      'customerId': this.userId
     }
     this.personBuyPkgInfo(data)
   }
@@ -223,14 +197,18 @@ export class OrderPackageComponent implements OnInit {
     this.orderPackageService.personBuyPkg(data).subscribe((res) => {
       if (res.success) {
         this.personBuyPkg = []
-        this.pages = res.data.linkPageNumbers
-        for(let i =0; i<res.data.result.length;i++) {
-          if(res.data.result[i].statue ==1) { //根据statue标志，剔除掉没有上架的服务包
-            this.personBuyPkg.push(res.data.result[i])
+        this.pages = res.data.navigatepageNums
+        for (let i = 0; i < res.data.list.length; i++) {
+          if (res.data.list[i].statue == 1) { //根据statue标志，剔除掉没有上架的服务包
+            this.personBuyPkg.push(res.data.list[i])
           }
         }
       }
     })
+  }
+
+  getAge(num) {
+    return tools.getAge(num)
   }
 
 }

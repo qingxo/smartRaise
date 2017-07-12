@@ -1,61 +1,102 @@
-<div class="right-content">
-  <app-line-info  lineInfo="订购服务包"></app-line-info>
-  <div class="detail-content">
-      <div class="info">
+<div class="right-content-info">
+  <div class="head-tips">
+    <span class=tips-info>平台管理 / 订单管理 / <em>订购服务包</em></span>
+  </div>
+  <div class="detail-content detail-content-pad txt-pos">
+    <div class="person-info-block">
+      <div class="info-head">
+        <span>账号信息</span>
+      </div>
+      <div class="table-info-person">
         <table cellpadding="0" cellspacing="0" border="0">
           <thead>
-            <tr><td><span>姓名</span></td><td><span>手机号</span></td><td><span>性别</span></td><td><span>年龄</span></td><td><span>注册时间</span></td><td><span>健康服务专员</span></td></tr>
+            <tr>
+              <td><span>姓名</span></td>
+              <td><span>手机号</span></td>
+              <td><span>性别</span></td>
+              <td><span>年龄</span></td>
+              <td><span>注册时间</span></td>
+              <td><span>健康服务专员</span></td>
+            </tr>
           </thead>
           <tbody>
             <tr>
-              <td><span>{{personInfo.name}}</span></td><td><span>{{personInfo.mobile}}</span></td><td><span>{{personInfo.sex === 'M' ? '男' : '女'}}</span></td><td><span>{{personInfo.birdthday | date:'yyyy-MM-dd'}}</span></td>
-              <td><span>{{personInfo.createDt | date:'yyyy-MM-dd'}}</span></td><td><span>{{personInfo.commissionerUserName || '无'}}</span></td>
+              <td><span>{{personInfo.name}}</span></td>
+              <td><span>{{personInfo.mobile}}</span></td>
+              <td><span>{{personInfo.sex === 'M' ? '男' : '女'}}</span></td>
+              <td><span>{{getAge(personInfo.birdthday | date:'yyyy-MM-dd')}}</span></td>
+              <td><span>{{personInfo.createDt | date:'yyyy-MM-dd'}}</span></td>
+              <td><span>{{personInfo.commissionerUserName || '无'}}</span></td>
             </tr>
           </tbody>
         </table>
       </div>
+    </div>
 
-      <h3 class="titleH3">已购服务包</h3>
+    <div class="mybox" style="height:350px">
+      <div class="box-head">
+        <div class="box-head-line">已购服务包</div>
+      </div>
 
-            <div class="info">
-              <table cellpadding="0" cellspacing="0" border="0">
-                <thead>
-                  <tr><td><span>订单编号</span></td><td><span>服务包</span></td><td><span>购买时间</span></td><td><span>订单状态</span></td><td><span>操作</span></td></tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let item of personBuyPkg; let index = index" [hidden]="!item.myBuyCounts>0">
-                    <td><span><em routerLink="/home/orderdetail" [queryParams]="{'pkgId':item.serviceOrderId}">{{item.serviceOrderId}}</em></span></td>
-                    <td><span> <em ui-sref="home.newpackages({'packageId':item.servicePackId,'isEdit':true})">{{item.servicePackName}}</em></span></td>
-                    <td><span>{{item.buyDt | date:'yyyy-MM-dd'}}</span></td>
-                    <td><span>{{item.orderStatus == '1'?'已启动':item.orderStatus=='0'?'未启动':'已停止'}}</span></td>
-                    <td><span>
-                      <em [hidden]="item.orderStatus==1" (click)="startOrderConfirm(item,index)">启动</em>
-                      <em [hidden]="item.orderStatus!=1" (click)="endOrderConfirm(item,index)">停止</em>
-                      <em [hidden]="item.orderStatus==1" (click)="unSubscriptionPkgConfirm(item,index)">退订</em></span></td>
-                  </tr>
-                </tbody>
-              </table>
-              <app-pages [pages] = pages (pageInfo)="pageTurning($event)" [currentPage] = pageNumber></app-pages>
-            </div>
+      <div class="table-info" style="padding:5px;height:290px;overflow:auto;background-color:white" ng-show="hasBuy">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <thead>
+            <tr>
+              <td><span>订单编号</span></td>
+              <td><span>服务包</span></td>
+              <td><span>购买时间</span></td>
+              <td><span>订单状态</span></td>
+              <td><span>操作</span></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of personBuyPkg;let index =index" [hidden]="item.myBuyCounts>0?false:true">
+              <td><span class="opt"><em ui-sref="home.orderdetail({'pkgId':item.serviceOrderId})">{{item.serviceOrderId}}</em></span></td>
+              <td><span class="opt"> <em (click)="handlePackageInfo(item.servicePackId)">{{item.servicePackName}}</em></span></td>
+              <td><span>{{item.buyDt | date:'yyyy-MM-dd'}}</span></td>
+              <td><span>{{item.orderStatus == '1'?'已启动':item.orderStatus=='0'?'未启动':'已停止'}}</span></td>
+              <td><span class="opt">
+                      <em [hidden]="item.orderStatus =='1'" (click)="startOrderConfirm(item,index)">启动</em>
+                      <em [hidden]="item.orderStatus !='1'" (click)="endOrderConfirm(item,index)">停止</em>
+                      <em [hidden]="item.orderStatus =='1'" (click)="unSubscriptionPkgConfirm(item,index)">退订</em></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <nothing [isHidden]="!hasBuy"></nothing>
+    </div>
 
-        <h3 class="titleH3">未订购服务包</h3>
-        <div class="info">
-          <table cellpadding="0" cellspacing="0" border="0">
-            <thead>
-              <tr><td><span>服务包</span></td><td><span>上架时间</span></td><td><span>价格</span></td><td><span>状态</span></td><td><span>操作</span></td></tr>
-            </thead>
-            <tbody>
-              <tr *ngFor=" let item of personBuyPkg"  [hidden]="item.myBuyCounts!=0">
-                <td><span>{{item.servicePackName}}</span></td><td><span>{{item.createDt |  date:'yyyy-MM-dd'}}</span></td><td><span>{{item.priceNew}}</span></td><td><span>{{item.statue =='1'?'上架':'下架'}}</span></td>
-                <td><span>
+    <div class="mybox" style="height:350px">
+      <div class="box-head">
+        <div class="box-head-line">未订购服务包</div>
+      </div>
+      <div class="table-info" style="padding:5px;height:290px;overflow:auto;background-color:white" ng-show="hasNotBuy">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <thead>
+            <tr>
+              <td><span>服务包</span></td>
+              <td><span>上架时间</span></td>
+              <td><span>价格</span></td>
+              <td><span>状态</span></td>
+              <td><span>操作</span></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of personBuyPkg" [hidden]="item.myBuyCounts!=0&&item.statue== 1">
+              <td><span>{{item.servicePackName}}</span></td>
+              <td><span>{{item.createDt |  date:'yyyy-MM-dd'}}</span></td>
+              <td><span>{{item.priceNew}}</span></td>
+              <td><span>{{item.statue =='1'?'上架':'下架'}}</span></td>
+              <td><span class="opt">
                     <em (click)="sellPackageConfirm(item.servicePackId,item)">订购</em>
                 </span></td>
-              </tr>
-            </tbody>
-          </table>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <nothing [isHidden]="!hasNotBuy"></nothing>
 
-        </div>
-
+    </div>
 
 
   </div>
