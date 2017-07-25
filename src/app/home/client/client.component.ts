@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
+import {trigger, state, style, animate, transition} from '@angular/animations'
 import {Router} from '@angular/router';
 import {ClientService} from './client.service';
 import storage from '../../shared/storage'
@@ -10,12 +11,13 @@ import * as Flatpickr from 'flatpickr'
 import * as zh_lang from 'flatpickr/dist/l10n/zh.js'
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap'
 import * as moment from 'moment'
-
+import baseAnimation from '../../shared/myAnimation'
 @Component({
   selector: 'app-client',
   templateUrl: './client.component.html',
   styleUrls: ['./client.component.scss'],
-  providers: [ClientService]
+  providers: [ClientService],
+  animations: baseAnimation
 })
 export class ClientComponent implements OnInit {
 
@@ -81,8 +83,13 @@ export class ClientComponent implements OnInit {
     onChange: this.changeBirthday.bind(this)
   }
   private birthTime: any
+  private chameleon: string = 'inactive'
   constructor(private clientService: ClientService, private modalService: NgbModal) { }
 
+
+  changeMe() {
+    this.chameleon == 'inactive' ? this.chameleon = 'active' : this.chameleon = 'inactive'
+  }
   ngOnInit() {
     this.role = storage.get('state')['role']
     Flatpickr.localize(zh_lang.zh)

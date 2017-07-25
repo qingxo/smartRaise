@@ -6,7 +6,7 @@
       </div>
 
 
-      <div class="rf  create-btn show-{{clientBtn[0].value}}" (click)="clientActive(-1,clientDetail)">
+      <div class="rf  create-btn show-{{clientBtn[0].value}}" (click)="clientActive(-1,clientDetail)" [@newState]="chameleon" (mouseover)="changeMe()" (mouseout)="changeMe()">
         新增客户
 
       </div>

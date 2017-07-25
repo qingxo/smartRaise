@@ -16,6 +16,7 @@ import {SharedModule} from './shared';
 import { DialogsComponent } from './dialogs/dialogs.component'
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap'
 import { EchartsNg2Module } from 'echarts-ng2';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 
 
 
@@ -33,6 +34,7 @@ import { EchartsNg2Module } from 'echarts-ng2';
     SharedModule,
     HomeModule,
     EchartsNg2Module,
+    BrowserAnimationsModule,
     RouterModule.forRoot(ROUTER_CONFIG),
     NgbModule.forRoot()
   ],
