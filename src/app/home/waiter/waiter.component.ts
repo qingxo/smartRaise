@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {WaiterService} from './waiter.service'
-import { SweetAlertService} from 'ng2-sweetalert2';
+import tools from '../../shared/tools'
 @Component({
   selector: 'app-waiter',
   templateUrl: './waiter.component.html',
   styleUrls: ['./waiter.component.scss'],
-  providers: [WaiterService, SweetAlertService]
+  providers: [WaiterService]
 })
 export class WaiterComponent implements OnInit {
   private pageSize: number = 10
@@ -15,8 +15,9 @@ export class WaiterComponent implements OnInit {
   private list: Array<any> = []
   private queryInfo: string = ''
   private defalutPerson: object = {}
+  private userId: any
 
-  constructor(private waiterService: WaiterService, private sweetAlertService: SweetAlertService) { }
+  constructor(private waiterService: WaiterService) { }
 
   ngOnInit() {
     this.waiterList()
@@ -35,27 +36,18 @@ export class WaiterComponent implements OnInit {
   }
 
   delConfirm(userId) {
-    this.sweetAlertService.swal({
-      title: `确认需要删除该专员吗?`,
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: '确定',
-      cancelButtonText: '取消'
-    }).then(() => {
-      this.delDefaultCommissioner(userId)
-    }, (dismiss) => {
-    })
+    this.userId = userId
+
+    tools.tipsConfirm(`确认需要删除该专员吗?`, '', 'warning', this.delDefaultCommissioner.bind(this))
   }
 
   delDefaultCommissioner(userId) {
     this.waiterService.delPerson(userId).subscribe((res) => {
       if (res.success) {
-        this.sweetAlertService.swal('删除成功', '', 'success')
+        tools.tips('删除成功', '', 'success')
         this.delList(userId)
       } else {
-        this.sweetAlertService.swal(res.errMsg, '', 'error')
+        tools.tips(res.errMsg, '', 'error')
       }
     })
   }
@@ -70,27 +62,18 @@ export class WaiterComponent implements OnInit {
   }
 
   defaultTips(userId) {
-    this.sweetAlertService.swal({
-      title: `确认需要设置成默认专员吗?`,
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: '确定',
-      cancelButtonText: '取消'
-    }).then(() => {
-      this.setDefaultCommissioner(userId)
-    }, (dismiss) => {
-    })
+    this.userId = userId
+
+    tools.tipsConfirm(`确认需要设置成默认专员吗?`, '', 'warning', this.setDefaultCommissioner.bind(this))
   }
 
-  setDefaultCommissioner(userId) {
-    this.waiterService.defaultPerson(userId).subscribe((res) => {
+  setDefaultCommissioner() {
+    this.waiterService.defaultPerson(this.userId).subscribe((res) => {
       if (res.success) {
-        this.sweetAlertService.swal('设置成功', '', 'success')
-        this.refreshList(userId)
+        tools.tips('设置成功', '', 'success')
+        this.refreshList(this.userId)
       } else {
-        this.sweetAlertService.swal(res.errMsg, '', 'error')
+        tools.tips(res.errMsg, '', 'error')
       }
     })
   }
@@ -131,7 +114,7 @@ export class WaiterComponent implements OnInit {
       if (res.success) {
         this.defalutPerson = res.data
       } else {
-        this.sweetAlertService.swal(res.errMsg, '', 'error')
+        tools.tips(res.errMsg, '', 'error')
       }
     })
   }

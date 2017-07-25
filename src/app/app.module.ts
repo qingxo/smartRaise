@@ -13,7 +13,6 @@ import { InterceptedHttp, httpFactory}   from './shared/base.http.interceptor';
 // import { requestOptionsProvider} from './shared/default.request.option';
 import { HomeModule } from './home';
 import {SharedModule} from './shared';
-import {SweetAlertService} from 'ng2-sweetalert2';
 import { DialogsComponent } from './dialogs/dialogs.component'
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap'
 import { EchartsNg2Module } from 'echarts-ng2';
@@ -43,7 +42,7 @@ import { EchartsNg2Module } from 'echarts-ng2';
       provide: Http,
       useFactory: httpFactory,
       deps: [XHRBackend, RequestOptions]
-    }, LoginGuard, SweetAlertService
+    }, LoginGuard
   ],
   bootstrap: [AppComponent]
 })

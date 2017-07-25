@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import {FeedbackService} from './feedback.service'
-import {SweetAlertService} from 'ng2-sweetalert2'
+import tools from '../../shared/tools'
 import * as $ from 'jquery'
 @Component({
   selector: 'app-feedback',
   templateUrl: './feedback.component.html',
   styleUrls: ['./feedback.component.scss'],
-  providers:[FeedbackService,SweetAlertService]
+  providers: [FeedbackService]
 })
 export class FeedbackComponent implements OnInit {
-  private list:Array<any> = []
-  private pages:Array<any> = []
-  private pageSize:number = 10
-  private pageNumber:number = 1
-  private feedback:number = 1
+  private list: Array<any> = []
+  private pages: Array<any> = []
+  private pageSize: number = 10
+  private pageNumber: number = 1
+  private feedback: number = 1
 
-  constructor(private feedbackService:FeedbackService,private sweetAlertService:SweetAlertService){}
+  constructor(private feedbackService: FeedbackService) { }
   ngOnInit() {
     this.feedbackList()
   }
@@ -25,7 +25,7 @@ export class FeedbackComponent implements OnInit {
       'pageSize': this.pageSize,
       'pageNum': this.pageNumber
     }
-    if(this.feedback == 1){
+    if (this.feedback == 1) {
       this.feedbackService.customerFeedBackList(data).subscribe((res) => {
         if (res.success) {
           this.list = res.data.result
@@ -34,7 +34,7 @@ export class FeedbackComponent implements OnInit {
         }
 
       })
-    }else{
+    } else {
       this.feedbackService.userFeedBackList(data).subscribe((res) => {
         if (res.success) {
           this.list = res.data.result
@@ -46,50 +46,51 @@ export class FeedbackComponent implements OnInit {
     }
 
   }
-  handleFeedBack(id,item) {
-    this.sweetAlertService.swal({
-      title: `处理意见`,
-      type: 'warning',
-      input:'textarea',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: '确定',
-      cancelButtonText:'取消'
-    }).then(() => {
-      this.doneFeedBack(id,item)
-        },(dismiss)=>{
-      })
+  handleFeedBack(id, item) {
+    // tools.tips({
+    //   title: `处理意见`,
+    //   type: 'warning',
+    //   input: 'textarea',
+    //   showCancelButton: true,
+    //   confirmButtonColor: '#3085d6',
+    //   cancelButtonColor: '#d33',
+    //   confirmButtonText: '确定',
+    //   cancelButtonText: '取消'
+    // }).then(() => {
+    //   this.doneFeedBack(id, item)
+    // }, (dismiss) => {
+    // })
+    tools.tipsConfirm('处理意见', '', 'warning', this.doneFeedBack.bind(this))
   }
 
-  doneFeedBack(id,item) {
-    var data ={
-      'dealRemark':$("#feedbackMark").val(),
+  doneFeedBack(id, item) {
+    var data = {
+      'dealRemark': $("#feedbackMark").val(),
     }
-    if(this.feedback == 1) {
-        data['opinionId'] = id
-        this.feedbackService.customerHandler(data).subscribe((res) =>{
-          if(res.success){
-            this.sweetAlertService.swal("处理成功",'','success')
-            item.dealRemark = data.dealRemark
-          }else{
-            this.sweetAlertService.swal(res.errMsg,'','error')
-          }
-        })
-    }else{
-      data['opinionUserId'] = id
-      this.feedbackService.userHandler(data).subscribe((res) =>{
-        if(res.success){
-          this.sweetAlertService.swal("处理成功",'','success')
+    if (this.feedback == 1) {
+      data['opinionId'] = id
+      this.feedbackService.customerHandler(data).subscribe((res) => {
+        if (res.success) {
+          tools.tips("处理成功", '', 'success')
           item.dealRemark = data.dealRemark
-        }else{
-          this.sweetAlertService.swal(res.errMsg,'','error')
+        } else {
+          tools.tips(res.errMsg, '', 'error')
+        }
+      })
+    } else {
+      data['opinionUserId'] = id
+      this.feedbackService.userHandler(data).subscribe((res) => {
+        if (res.success) {
+          tools.tips("处理成功", '', 'success')
+          item.dealRemark = data.dealRemark
+        } else {
+          tools.tips(res.errMsg, '', 'error')
         }
       })
     }
   }
 
-  toogleChoosed(e,flag) {
+  toogleChoosed(e, flag) {
     $('.fbchoose').find('span').removeClass('choosed')
     $(e.target).addClass('choosed')
     this.feedback = parseInt(flag)

@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { fromPromise } from 'rxjs/observable/fromPromise';
 import storage from './storage'
-import swal from 'sweetalert2'
+import * as swal from 'sweetalert'
 
 @Injectable()
 export class BaseService {

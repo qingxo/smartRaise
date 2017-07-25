@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {OrderService} from './order.service'
 import storage from '../../shared/storage'
-import { SweetAlertService} from 'ng2-sweetalert2'
+import tools from '../../shared/tools'
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss'],
-  providers: [OrderService, SweetAlertService]
+  providers: [OrderService]
 })
 export class OrderComponent implements OnInit {
   private pageSize: number = 10
@@ -15,7 +15,7 @@ export class OrderComponent implements OnInit {
   private totalPage: number
   private queryInfo: string = ''
   private list: Array<any> = []
-  constructor(private orderService: OrderService, private sweetAlertService: SweetAlertService) { }
+  constructor(private orderService: OrderService) { }
 
   ngOnInit() {
     this.orderList()
@@ -46,7 +46,7 @@ export class OrderComponent implements OnInit {
         this.pageNumber = res.data.pageNum
         this.totalPage = res.data.total
       } else {
-        this.sweetAlertService.swal(res.errMsg, '', 'error')
+        tools.tips(res.errMsg, '', 'error')
       }
 
     })

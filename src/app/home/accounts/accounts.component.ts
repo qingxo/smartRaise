@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {SweetAlertService} from 'ng2-sweetalert2'
 import {AccountsService} from './accounts.service'
+import tools from '../../shared/tools'
+
 @Component({
   selector: 'app-accounts',
   templateUrl: './accounts.component.html',
   styleUrls: ['./accounts.component.scss'],
-  providers: [AccountsService, SweetAlertService]
+  providers: [AccountsService]
 
 })
 export class AccountsComponent implements OnInit {
@@ -15,7 +16,8 @@ export class AccountsComponent implements OnInit {
   private totalPage: number
   private queryInfo: string = ''
   private list: Array<any> = []
-  constructor(private accountsService: AccountsService, private sweetAlertService: SweetAlertService) { }
+  private userId: any = -1
+  constructor(private accountsService: AccountsService) { }
 
   ngOnInit() {
     this.accountsList()
@@ -34,27 +36,17 @@ export class AccountsComponent implements OnInit {
   }
 
   delConfirm(userId) {
-    this.sweetAlertService.swal({
-      title: `确认删除吗?`,
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: '确定',
-      cancelButtonText: '取消'
-    }).then(() => {
-      this.delPerson(userId)
-    }, (dismiss) => {
-    })
+    this.userId = userId
+    tools.tipsConfirm('确认删除吗?', '', 'warning', this.delPerson.bind(this))
   }
 
-  delPerson(userId) {
-    this.accountsService.delPerson(userId).subscribe((res) => {
+  delPerson() {
+    this.accountsService.delPerson(this.userId).subscribe((res) => {
       if (res.success) {
-        this.sweetAlertService.swal('删除成功', '', 'success')
-        this.delList(userId)
+        tools.tips('删除成功', '', 'success')
+        this.delList(this.userId)
       } else {
-        this.sweetAlertService.swal(res.errMsg, '', 'error')
+        tools.tips(res.errMsg, '', 'error')
       }
     })
   }
@@ -80,7 +72,7 @@ export class AccountsComponent implements OnInit {
         this.pageNumber = res.data.pageNum
         this.totalPage = res.data.total
       } else {
-        this.sweetAlertService.swal(res.errMsg, '', 'error')
+        tools.tips(res.errMsg, '', 'error')
       }
     })
   }
