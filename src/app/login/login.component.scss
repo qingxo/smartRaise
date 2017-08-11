@@ -177,6 +177,7 @@
   }
 
   .rememberPwd {
+    position: relative;
     margin-bottom: 0;
     text-align: left;
 
@@ -187,6 +188,7 @@
       height: 12px;
       border: 1px solid #979797;
       cursor: pointer;
+      visibility: hidden;
     }
 
     label {
@@ -194,6 +196,23 @@
       font-size: 14px;
       color: #808799;
       cursor: pointer;
+      vertical-align: top;
+    }
+
+    .checkbox-nice {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      border: 1px solid #efe9e9;
+      border-radius: 2px;
+      top: 2px;
+      cursor: pointer;
+    }
+
+    .checkbox-nice-true {
+      background-image: url('/assets/images/right.png');
+      background-repeat: no-repeat;
+      background-size: 13px;
     }
   }
 }

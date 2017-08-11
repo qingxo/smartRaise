@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
 
   private loginAction: Observable<any>
   private passWord: string = ''
-  private loginName: string = 'sys'
+  private loginName: string = ''
   private errorMsg: string = ''
   private loginErr: boolean
   private role: number
@@ -24,6 +24,12 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (storage.get('ywLogin')) {
+      this.rememberPWD = true
+      this.loginName = storage.get('ywLogin')['userName']
+      this.passWord = window.atob(storage.get('ywLogin')['password'])
+      this.loginFlag = false
+    }
   }
 
   loginConfirm(e) {
@@ -32,8 +38,11 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  rememberChange() {
+    this.rememberPWD = !this.rememberPWD
+  }
+
   styleChange() {
-    console.log("tt")
     if (this.passWord.length > 0 && this.loginName.length > 0) {
       this.loginFlag = false
     } else {

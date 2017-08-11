@@ -21,6 +21,7 @@
             <input type="password" class="form-text" placeholder="请输入密码" [(ngModel)]="passWord" (keydown)="loginConfirm($event)" (ngModelChange)="styleChange()">
           </div>
           <div class="login-input rememberPwd">
+            <span class="checkbox-nice " [ngClass]="{true:'checkbox-nice-true',false:''}[rememberPWD]" (click)="rememberChange()"></span>
             <input type="checkbox" id="rememberPWD" [(ngModel)]="rememberPWD"><label for="rememberPWD">记住密码</label>
           </div>
           <div class="login-input submit">
