@@ -107,7 +107,7 @@
       </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary spec-btn" (click)="saveSmartBed()">确定</button>
+      <button type="button" class="btn btn-secondary spec-btn" (click)="saveSmartBed()" [@newState]="chameleon" (mouseover)="changeMe()" (mouseout)="changeMe()">确定</button>
     </div>
   </ng-template>
 
@@ -136,7 +136,7 @@
       </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary spec-btn" (click)="saveHealthCare()">确定</button>
+      <button type="button" class="btn btn-secondary spec-btn" (click)="saveHealthCare()" [@newState]="chameleon" (mouseover)="changeMe()" (mouseout)="changeMe()">确定</button>
     </div>
   </ng-template>
 
@@ -196,14 +196,14 @@
         <div class="lf dis-in">
           <label for="">身高</label>
           <div class="inline pos-rev">
-            <input [ngClass]="{true:'redBorder',false:''}[errorHeight.length>1]" type="number" name="" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" value="" [(ngModel)]="height"><span class="pos-ab tail-pos">cm</span>
+            <input [ngClass]="{true:'redBorder',false:''}[errorHeight.length>1]" type="text" name="" (ngModelChange)="makeSpecH($event)" [ngModel]="height" value=""><span class="pos-ab tail-pos">cm</span>
           </div>
         </div>
 
         <div class="lf dis-in">
           <label for="">体重</label>
           <div class="inline pos-rev">
-            <input [ngClass]="{true:'redBorder',false:''}[errorWeight.length>1]" type="number" name="" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" value="" [(ngModel)]="weight"><span class="pos-ab tail-pos">kg</span>
+            <input [ngClass]="{true:'redBorder',false:''}[errorWeight.length>1]" type="text" name="" (ngModelChange)="makeSpecW($event)" [(ngModel)]="weight"><span class="pos-ab tail-pos">kg</span>
           </div>
         </div>
         <div class="error" [ngClass]="{true:'error-true',false:''}[bothhw.length>1]">
@@ -268,7 +268,7 @@
       </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary spec-btn" (click)="saveClientAddOrEdit()">确定</button>
+      <button type="button" class="btn btn-secondary spec-btn" (click)="saveClientAddOrEdit()" [@newState]="chameleon" (mouseover)="changeMe()" (mouseout)="changeMe()">确定</button>
     </div>
   </ng-template>
 

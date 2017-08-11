@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChange } from '@angular/core';
 import {trigger, state, style, animate, transition} from '@angular/animations'
 import {Router} from '@angular/router';
 import {ClientService} from './client.service';
@@ -53,7 +53,7 @@ export class ClientComponent implements OnInit {
   private sex = ''
   private userName = ''
   private weight = ''
-  private height = ''
+  private height: string = ''
   private email = ''
   private address = ''
   private remark = ''
@@ -98,6 +98,8 @@ export class ClientComponent implements OnInit {
     this.initBtnShow()
     this.initAsyc()
   }
+
+
   changeBirthday(val) {
     this.birdthday = moment(new Date(val)).format('YYYY-MM-DD')
   }
@@ -334,6 +336,17 @@ export class ClientComponent implements OnInit {
     })
   }
 
+  makeSpecH(val) {
+    let tmp = tools.numberFixed(val)
+    this.height = tmp
+  }
+
+  makeSpecW(val) {
+    this.weight = tools.numberFixed(val)
+  }
+
+
+
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -485,11 +498,12 @@ export class ClientComponent implements OnInit {
   delClient() {
     let customerId = this.listData[this.itemTarget].customerId
     this.clientService.del(customerId).subscribe((res) => {
-
+      console.log(res)
       if (res.success) {
         tools.tips("删除成功")
         this.initAsyc()
       } else {
+        console.log("here?")
         tools.tips(res.errMsg, '', 'error')
       }
     })

@@ -82,7 +82,8 @@ class Tools {
   }
 
   tips(msgTitle: string, msgDetail: string = "", msgType: any = 'success', timer: number = this.TIMER) {
-    swal({
+    console.log("from the tips~", msgTitle, msgType)
+    new swal({
       title: msgTitle,
       text: msgDetail,
       type: msgType,
@@ -96,7 +97,7 @@ class Tools {
 
 
   tipsConfirm(msgTitle: string, msgText: string, msgType: any = 'success', callback) {
-    swal({
+    new swal({
       title: msgTitle,
       text: msgText,
       type: msgType,
@@ -123,6 +124,22 @@ class Tools {
     let reg = /^1[3|4|5|7|8][0-9]{9}$/ // 验证规则
     let flag = reg.test(phoneNum) // true
     return flag
+  }
+
+
+  //能输入数字和小数点的判断
+  numberFixed(target: any) {
+    let newH = target.replace(/[^\d\.]*/g, '')
+    if (String(newH).split('.').length > 2) {
+      target = target.substr(0, target.length - 1)
+    }
+    if (String(newH).substr(-1, 1) != '.') {
+      let tmp = String(parseFloat(newH).toFixed(1))
+      let p = parseFloat(tmp)
+      target = p
+    }
+    return target
+
   }
 
 
