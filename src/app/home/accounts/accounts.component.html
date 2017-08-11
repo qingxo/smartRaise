@@ -28,9 +28,9 @@
             <td><span>{{item.mobile}}</span></td>
             <td><span>{{item.mail}}</span></td>
 
-            <td><span>
+            <td><span class="opt">
                <em ui-sref="home.create({'userId':item.userId})">编辑</em>
-               <em (click)="delConfirm(item.userId)">删除</em>
+               <em (click)="delConfirm(item.userId)" class="del">删除</em>
             </span></td>
           </tr>
         </tbody>
