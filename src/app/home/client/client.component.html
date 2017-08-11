@@ -27,7 +27,6 @@
             <td><span>已购服务包</span></td>
             <td><span>身份证号</span></td>
             <td><span>健康服务专员</span></td>
-            <td><span ui-sref="home.binding">绑定设备</span></td>
             <td><span>操作</span></td>
           </tr>
         </thead>
@@ -66,20 +65,10 @@
 
               </span>
             </td>
-            <td><span>
-              <ng-container [ngSwitch]="clientBtn[5].value">
-                <em *ngSwitchCase="true"   class="bind-equip show-{{!item.equipmentNo}}"  (click)="bindSmartBedConfirm(index,content)" >{{item.equipmentNo || '未绑定'}}</em>
-                <em *ngSwitchCase="true"   class="bind-equip show-{{!!item.equipmentNo}}"   (click)="cancelSmartBed(index)" >{{item.equipmentNo || '未绑定'}}</em>
-                <em *ngSwitchCase="false"    class="bind-equip-no-edit"    >{{item.equipmentNo || '未绑定'}}</em>
-              </ng-container>
-
-
-              </span></td>
             <td><span class="opt">
-              <!-- ({'userId':item.customerId,'equipNo':item.equipmentNo}) -->
                             <em [routerLink]="['/home/clientDetail',item.customerId,{'equipNo':item.equipmentNo}]" class="show-{{clientBtn[3].value}}">详情</em>
                            <em [routerLink]="['/home/orderpackage',item.customerId]" class="show-{{clientBtn[6].value}}"  >订购服务包</em>
-                           <em (click)="delconfirm(index)" class="show-{{clientBtn[2].value}}" >删除</em>
+                           <em (click)="delconfirm(index)" class="show-{{clientBtn[2].value}} del"  >删除</em>
             </span></td>
           </tr>
         </tbody>

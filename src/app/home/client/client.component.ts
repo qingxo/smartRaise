@@ -520,7 +520,6 @@ export class ClientComponent implements OnInit {
       'weight': this.weight,
       'address': this.address,
       'role': this.role,
-      // 'imgUrl': this.imageUrl,
       'cardId': this.cardId,
       'socialWelfareId': this.myGroup,
       'guardianIds': tmpIds
