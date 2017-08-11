@@ -552,11 +552,12 @@ input:focus {
         color: #F4333C;
         padding-left: 80px;
         display: inline-block;
+      }
 
-        .sec {
-          position: absolute;
-          left: 200px;
-        }
+      & > span.sec {
+        float: right;
+        width: 200px;
+        padding: 0;
       }
     }
 
