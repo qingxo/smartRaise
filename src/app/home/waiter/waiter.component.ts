@@ -37,15 +37,15 @@ export class WaiterComponent implements OnInit {
 
   delConfirm(userId) {
     this.userId = userId
-
     tools.tipsConfirm(`确认需要删除该专员吗?`, '', 'warning', this.delDefaultCommissioner.bind(this))
   }
 
-  delDefaultCommissioner(userId) {
-    this.waiterService.delPerson(userId).subscribe((res) => {
+  delDefaultCommissioner() {
+
+    this.waiterService.delPerson(this.userId).subscribe((res) => {
       if (res.success) {
         tools.tips('删除成功', '', 'success')
-        this.delList(userId)
+        this.delList(this.userId)
       } else {
         tools.tips(res.errMsg, '', 'error')
       }

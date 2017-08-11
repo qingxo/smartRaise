@@ -25,12 +25,12 @@
             <td><span>{{item.servicePackName}}</span></td>
             <td><span>{{item.createDt | date:'yyyy-MM-dd'}}</span></td>
             <td><span>{{item.priceNew}}</span></td>
-            <td><span><em ui-sref="home.order({'query':item.servicePackName})">{{item.serviceNum}}</em></span></td>
+            <td><span class="opt"><em [routerLink]="['/home/order']" [queryParams]="{'query':item.servicePackName}">{{item.serviceNum}}</em></span></td>
 
-            <td><span>{{item.statue == '1'?'上架':'下架'}}</span></td>
-            <td><span>
+            <td><span>{{item.statue == '1'?'已上架':'已下架'}}</span></td>
+            <td><span class="opt">
                  <em  ui-sref="home.newpackages({'isEdit':true,'packageId':item.servicePackId})">编辑</em>
-                 <em  (click)="handlePackageConfirm({'item':item})" class="color-{{item.statue}}">{{item.statue =='0'?'上架':'下架'}}</em>
+                 <em  (click)="handlePackageConfirm({'item':item})" class="color-{{item.statue}} del">{{item.statue =='0'?'上架':'下架'}}</em>
               </span></td>
           </tr>
         </tbody>

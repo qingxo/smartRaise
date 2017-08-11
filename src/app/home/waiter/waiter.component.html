@@ -30,9 +30,9 @@
             <td><span>{{item.mobile}}</span></td>
             <td><span>{{item.mail}}</span></td>
             <!-- <td><span>{{item.num?item.num:'0'}}</span></td> -->
-            <td><span>
+            <td><span class="opt">
                <em ui-sref="home.create({'userId':item.userId,'isHealth':true})">编辑</em>
-               <em (click)="delConfirm(item.userId)">删除</em>
+               <em (click)="delConfirm(item.userId)" class="del">删除</em>
                <em   [hidden] = 'item.isDefaultCommissioner==1'   (click)="defaultTips(item.userId)">设置为默认专员</em>
             </span></td>
           </tr>

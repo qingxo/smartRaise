@@ -32,7 +32,7 @@ export const ROUTER_CONFIG: Routes = [
       { path: 'servicepackage', component: ServicePackageComponent },
       { path: 'order', component: OrderComponent },
       { path: 'accounts', component: AccountsComponent },
-      { path: 'waiter', component: WaiterComponent },
+      { path: 'health', component: WaiterComponent },
       { path: 'mytask', component: MyTaskComponent },
       { path: 'errortips', component: ErrorTipsComponent },
       { path: 'feedback', component: FeedbackComponent },
