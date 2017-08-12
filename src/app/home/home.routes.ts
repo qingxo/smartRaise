@@ -15,6 +15,7 @@ import {MyTaskComponent} from './my-task'
 import {ErrorTipsComponent} from './error-tips'
 import {FeedbackComponent} from './feedback'
 import {SyncDataComponent} from './sync-data'
+import {GroupManageComponent} from './group-manage'
 export const ROUTER_CONFIG: Routes = [
   {
     path: '', component: HomeComponent,
@@ -36,7 +37,8 @@ export const ROUTER_CONFIG: Routes = [
       { path: 'mytask', component: MyTaskComponent },
       { path: 'errortips', component: ErrorTipsComponent },
       { path: 'feedback', component: FeedbackComponent },
-      { path: 'syncdata', component: SyncDataComponent }
+      { path: 'syncdata', component: SyncDataComponent },
+      { path: 'groupmanage', component: GroupManageComponent }
 
     ]
   }
