@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {GroupManageService} from './group-manage.service';
+import { GroupManageService } from './group-manage.service';
 import tools from '../../shared/tools'
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap'
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap'
 
 @Component({
   selector: 'app-group-manage',
@@ -23,10 +23,18 @@ export class GroupManageComponent implements OnInit {
 
   private groupCode: string
   private groupName: string
-  private tel: string
-  private groupContact: string
+  private connectPeople: string
+  private mobile: string
   private address: string
 
+  private errorGroupCode: string = ''
+  private errorAddress: string = ''
+  private errorConnectPeople: string = ''
+  private errorGroupName: string = ''
+  private bothGroup: string = ''
+  private bothInfo: string = ''
+  private errorMobile: string = ''
+  private isEdit: boolean = false
 
   constructor(private groupManageService: GroupManageService, private modalService: NgbModal) { }
 
@@ -36,10 +44,30 @@ export class GroupManageComponent implements OnInit {
 
   showTpl(index, groupDetail) {
     this.itemTarget = index
-
+    index == -1 ? this.isEdit = true : this.isEdit = false
+    this.initEditInfo(index)
     this.openGroup(groupDetail)
 
   }
+
+  initEditInfo(index) {
+
+    if (index == -1) {
+      this.groupCode = ''
+      this.groupName = ''
+      this.connectPeople = ''
+      this.address = ''
+      this.mobile = ''
+    } else {
+      this.groupCode = this.list[index]['socialWelfareCode']
+      this.groupName = this.list[index]['socialWelfareName']
+      this.connectPeople = this.list[index]['contact']
+      this.address = this.list[index]['address']
+      this.mobile = this.list[index]['tel']
+    }
+
+  }
+
 
   openGroup(content) {
     this.modalRef = this.modalService.open(content, { windowClass: 't-l-modal' })
@@ -94,6 +122,75 @@ export class GroupManageComponent implements OnInit {
         tools.tips(res.errMsg, '', 'error')
       }
     })
+  }
+
+
+
+  saveGroupAddOrEdit() {
+    this.errorGroupCode = ''
+    this.errorGroupName = ''
+    this.errorConnectPeople = ''
+    this.errorMobile = ''
+    this.errorAddress = ''
+    this.bothGroup = ''
+    this.bothInfo = ''
+
+    if (!this.groupName) {
+      this.errorGroupName = '机构名必填'
+      this.bothGroup = 'xxx'
+    }
+    if (this.mobile) {
+      if (this.mobile.toString().length > 18) {
+        if (!tools.checkMobile(this.mobile)) {
+          this.errorMobile = '电话号码太长'
+          this.bothInfo = "xxx"
+        }
+      }
+
+    }
+
+    if (!this.groupCode) {
+      this.errorGroupCode = '机构代码必填'
+      this.bothGroup = 'xxx'
+    }
+
+    if (this.bothGroup != '' || this.bothInfo != '') {
+      return
+    }
+    var data = {
+      'contact': this.connectPeople,
+      'socialWelfareCode': this.groupCode,
+      'socialWelfareName': this.groupName,
+      'tel': this.mobile,
+      'address': this.address
+    }
+
+    if (this.isEdit) {
+      this.groupManageService.groupAdd(data).subscribe((res) => {
+        console.log("res:" + res)
+        if (res.success) {
+          tools.tips("新增成功")
+          this.modalRef.close()
+          this.groupManageList()
+        } else {
+          tools.tips(res.data.errMsg, '', 'error')
+        }
+      })
+    } else {
+      data['socialWelfareId'] = this.list[this.itemTarget]['socialWelfareId']
+      this.groupManageService.groupEdit(data).subscribe((res) => {
+        console.log("res:", res)
+
+        if (res.success) {
+          this.modalRef.close()
+          tools.tips("编辑成功")
+          this.groupManageList()
+        } else {
+          tools.tips(res.data.errMsg, '', 'error')
+        }
+      })
+    }
+
   }
 
 }

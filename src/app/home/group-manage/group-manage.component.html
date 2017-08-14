@@ -1,0 +1,97 @@
+<div class="right-content-info">
+  <div class="detail-content">
+    <div class="highline">
+      <div class="rf create-btn" (click)="showTpl(-1,groupUI)">
+        新增机构
+      </div>
+    </div>
+    <div class="table-info">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <thead>
+          <tr>
+            <td><span>机构编码</span></td>
+            <td><span>机构名称</span></td>
+            <td><span>联系人</span></td>
+            <td><span>电话</span></td>
+            <td><span>地址</span></td>
+            <td><span>操作</span></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of list;let i = index">
+            <td><span>{{item.socialWelfareCode}}</span></td>
+            <td><span>{{item.socialWelfareName}}</span></td>
+            <td><span>{{item.contact}}</span></td>
+            <td><span>{{item.tel}}</span></td>
+            <td><span>{{item.address}}</span></td>
+
+            <td><span class="opt">
+               <em (click)="showTpl(i,groupUI)">编辑</em>
+               <em (click)="handleDel(item.socialWelfareId)" class="del">删除</em>
+            </span></td>
+          </tr>
+        </tbody>
+      </table>
+      <app-pages [pages]=pages (pageInfo)="pageTurning($event)" [sum]=totalPage [currentPage]=pageNumber></app-pages>
+
+    </div>
+  </div>
+
+
+  <ng-template #groupUI let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h3 class="modal-title">{{itemTarget==-1?'新增':'编辑'}}客户账号</h3>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+      <div class="msg-info">
+
+
+        <div class="lf dis-in">
+          <label for=""><em>*</em>机构代码</label>
+          <div class="inline">
+            <input type="text" name="" value="" [(ngModel)]="groupCode" [ngClass]="{true:'redBorder',false:''}[errorGroupCode.length>1]">
+          </div>
+        </div>
+        <div class="lf dis-in">
+          <label for=""><em>*</em>机构名称</label>
+          <div class="inline">
+            <input type="text" name="" value="" [(ngModel)]="groupName" [ngClass]="{true:'redBorder',false:''}[errorGroupName.length>1]">
+          </div>
+        </div>
+        <div class="error" [ngClass]="{true:'error-true',false:''}[bothGroup.length>1]">
+          <span>{{errorGroupCode}}</span>
+          <span class="sec">{{errorGroupName}}</span>
+        </div>
+        <div class="lf dis-in">
+          <label for="">联系人</label>
+          <div class="inline">
+            <input type="text" name="" value="" [(ngModel)]="connectPeople" [ngClass]="{true:'redBorder',false:''}[errorConnectPeople.length>1]">
+          </div>
+        </div>
+        <div class="lf dis-in">
+          <label for="">电话</label>
+          <div class="inline sex-opt">
+            <input type="number" name="" value="" [(ngModel)]="mobile" [ngClass]="{true:'redBorder',false:''}[errorMobile.length>1]">
+          </div>
+        </div>
+        <div class="error" [ngClass]="{true:'error-true',false:''}[bothInfo.length>1]">
+          <span>{{errorConnectPeople}}</span>
+          <span class="sec">{{errorMobile}}</span>
+        </div>
+        <div class="lf dis-bl">
+          <label for="">住址</label>
+          <div class="inline more-w">
+            <input type="text" name="" value="" [(ngModel)]="address">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary spec-btn" (click)="saveGroupAddOrEdit()">确定</button>
+    </div>
+  </ng-template>
+
+</div>
