@@ -1,0 +1,3 @@
+<div class="line-btn" #kk>
+  <span *ngFor="let item of totalBtn;let index=index" [ngClass]="{true:'tips',false:'choosed'}[index!=0]" (click)="btnFired(index)">{{item}}</span>
+</div>
