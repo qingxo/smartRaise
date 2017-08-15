@@ -1,28 +1,24 @@
 import { Injectable } from '@angular/core';
-import {Http} from '@angular/http'
+import { Http } from '@angular/http'
 import storage from '../../shared/storage'
-@Injectable()
-export class MyTaskService {
+import { BaseService } from '../../shared/base.service';
 
-  constructor(private http:Http) { }
+@Injectable()
+export class MyTaskService extends BaseService {
+
+  constructor(http: Http) { super(http) }
 
   missionList() {
-    return this.http.post('api/servicePack/listMission','').map((res)=>{
-      return res.json()
-    })
-
+    return this.postInfo('api/servicePack/listMission', '')
   }
 
   taskList(data) {
-    return this.http.post('api/commissionerTask/listByPage', storage.serialize(data) ).map((res)=>{
-      return res.json()
-    })
+    return this.postInfo('api/commissionerTask/listByPage', storage.serialize(data))
   }
 
   handlerPkgDoen(data) {
-    return this.http.post('api/commissionerTask/deal/' +data,'').map((res)=>{
-      return res.json()
-    })
+    return this.postInfo('api/commissionerTask/deal/' + data, '')
+
   }
 
 }

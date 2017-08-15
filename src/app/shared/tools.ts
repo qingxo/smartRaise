@@ -17,15 +17,19 @@ class Tools {
 
   private TIMER = 2000
 
-  getAge(ageNum: string) {
+  getAge(ageNum: string, spec: number = 0) {
     if (typeof ageNum === 'undefined' || ageNum === '' || ageNum === null) {
       return '未知'
     } else {
-      var newYear = new Date().getFullYear()
-      var num = Number(newYear) - parseInt(ageNum.split('-')[0])
-      return num
-    }
+      let newYear = new Date().getFullYear()
+      if (spec === 0) {
+        let num = Number(newYear) - parseInt(ageNum.split('-')[0])
+        return num
+      } else if (spec == 4) {
 
+      }
+
+    }
   }
 
   initBtnShow(topLevel, secondLevel, btnKey) {

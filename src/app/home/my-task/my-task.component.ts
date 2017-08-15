@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {MyTaskService} from './my-task.service'
+import { Component, OnInit, ViewChild, Renderer, ElementRef } from '@angular/core';
+import { MyTaskService } from './my-task.service'
 import storage from '../../shared/storage'
 import tools from '../../shared/tools'
 @Component({
@@ -15,13 +15,14 @@ export class MyTaskComponent implements OnInit {
   private pages: Array<any> = []
   private pageSize: number = 10
   private pageNumber: number = 1
+  private totalPage: number
   private missionList: Array<any> = []
   private taskId: any = -1
   private taskProgress: number = 0 //0 未完成任务，1 已完成任务
   private tableProgress: number = 0 // 0 健康监测，1 健康报表 ， 2 建档任务
   private missionName: string = 'missionName'
-
-  constructor(private myTaskService: MyTaskService) { }
+  @ViewChild('tables') el: ElementRef
+  constructor(private myTaskService: MyTaskService, private elRef: ElementRef) { }
 
   ngOnInit() {
     this.missionListMethod()
@@ -43,6 +44,15 @@ export class MyTaskComponent implements OnInit {
   toogleTableProgress(index) {
     this.tableProgress = index
     this.pageNumber = 1
+    let array = this.el.nativeElement.children
+    for (let i = 0; i < array.length; i++) {
+      if (index == i) {
+        array[i].className = 'choosed'
+      } else {
+        array[i].className = ""
+      }
+
+    }
     this.taskList()
   }
 
@@ -74,7 +84,6 @@ export class MyTaskComponent implements OnInit {
     this.myTaskService.missionList().subscribe((res) => {
       if (res.success) {
         this.missionList = res.data
-        console.log(this.missionList)
         this.taskList()
       } else {
         tools.tips(res.errMsg, '', 'error')
@@ -94,15 +103,17 @@ export class MyTaskComponent implements OnInit {
     }
     this.myTaskService.taskList(data).subscribe((res) => {
       if (res.success) {
-        this.list = res.data.result
+        this.list = []
+        this.list = res.data.list
         for (var i = 0; i < this.list.length; i++) {
           this.list[i].rateCn = 'test'
           if (typeof this.list[i].rate != 'undefined') {
             this.initRateCn(i)
           }
         }
-        this.pages = res.data.linkPageNumbers
-        this.pageNumber = res.data.pageNumber
+        this.pages = res.data.navigatepageNums
+        this.pageNumber = res.data.pageNum
+        this.totalPage = res.data.total
       } else {
         tools.tips(res.errMsg, '', 'error')
       }
@@ -135,14 +146,7 @@ export class MyTaskComponent implements OnInit {
   }
 
   getAge(ageNum) {
-    if (typeof ageNum === 'undefined' || ageNum === '') {
-      return '未知'
-    } else {
-      let newYear = Number(new Date().getFullYear())
-      let num = newYear - parseInt(ageNum.split('-')[0])
-      return num
-    }
-
+    return tools.getAge(ageNum)
   }
 
 }

@@ -1,143 +1,38 @@
-$myTaskMainColor:#6f4100;
-.right-content{
-  background-color: white;
-  min-height: 900px;
-  border-radius: 5px;
-  .detail-content{
-    text-align: center;
-    .highline{
-      position: relative;
-      height: 50px;
-      padding:20px;
-      &>div{
-        display: inline-block;
-      }
-      .lf.choose{
-        float:left;
-        padding:5px 0;
-        ul.taskChoose{
-          padding:8px 20px 8px 0;
-          margin-bottom: 20px;
-          text-align: left;
-          span{
-            color:$myTaskMainColor;
-            border: 1px solid $myTaskMainColor;
-            padding: 8px 12px;
-            border-radius: 2px;
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-            cursor: pointer;
-          }
+.my-task {
+  .choose {
+    padding: 20px 0 0 20px;
+    text-align: left;
+  }
 
-          span.task-finish-1,span.task-unfinish-0{
-            background-color: $myTaskMainColor;
-            color:white;
-          }
+  ul.taskChoose {
+    padding: 8px 20px 8px 0;
+    text-align: left;
+    position: relative;
+    margin-bottom: -10px;
+    margin-top: 10px;
 
-          span:last-child{
-            border-left:0px;
-            border-top-right-radius: 2;
-            border-bottom-right-radius: 2;
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
-          }
-        }
-        ul.taskChoose2{
-          padding:8px 20px 8px 0;
-          margin-bottom: 10px;
-          text-align: left;
-          position:relative;
-          span{
-            float:left;
-            color:$myTaskMainColor;
-            border: 1px solid $myTaskMainColor;
-            border-radius:0;
-            border-right:0px;
-            cursor: pointer;
-          }
-
-          span.table-0-0,  span.table-1-1,  span.table-2-2,  span.table-3-3,span.table-4-4,span.table-5-5,span.table-6-6{
-            background-color:$myTaskMainColor;
-            color:white;
-          }
-          span:first-child{
-            border-top-left-radius: 2px;
-            border-bottom-left-radius: 2px;
-          }
-          span:last-child{
-            border-top-right-radius: 2px;
-            border-bottom-right-radius: 2px;
-            border-right:1px solid #747380;
-          }
-        }
-        ul.taskChoose2:after{
-          clear: both;
-        }
+    li {
+      span:first-child {
+        padding-left: 0;
       }
 
-      .rf{
-        float: right;
-        padding: 5px 10px;
-        border: 1px solid rgba(47, 64, 6, 0.7);
-        border-radius: 3px;
+      span:last-child {
+        border-right: 0;
+      }
+
+      span {
+        float: left;
+        color: #333333;
+        border-right: 1px solid #D9D9D9;
+        border-radius: 0;
         cursor: pointer;
+        padding: 0 7px;
+        font-size: 14px;
+      }
+
+      span.choosed {
+        color: #6f4101;
       }
     }
-
-    .info{
-        padding:20px;
-        table{
-          width:100%;
-          border:1px solid #979797;
-          border-radius: 2px;
-          text-align: center;
-          thead{
-            tr{
-               span{
-                   border-bottom: 1px solid #979797;
-               }
-            }
-          }
-          tr{
-            em.missionName{
-              color:#8995b4;
-              font-style: normal;
-            }
-            span{
-
-              width: 100%;
-              display: inline-block;
-              padding: 10px 0;
-              min-width:30px;
-              color:#8995b4;
-              text-align: center;
-              em{
-                font-style: normal;
-                cursor:pointer;
-                padding:0 5px;
-              }
-
-              em.hasDone{
-                color:#c9c6c7;
-                cursor:none;
-              }
-            }
-          }
-
-          tr:nth-child(even){
-            background-color: #f7fafc;
-          }
-
-          tbody{
-            tr:last-child{
-              span{
-                border-bottom:0;
-              }
-            }
-          }
-
-        }
-    }
-
   }
 }

@@ -1,27 +1,28 @@
-<div class="right-content">
-  <app-line-info  lineInfo="我的任务"></app-line-info>
-
+<div class="right-content-info my-task">
   <div class="detail-content">
-      <div class="highline">
-        <div class="lf choose">
-          <ul class="taskChoose">
-            <li><span class="task-unfinish-{{taskProgress}}" (click)="toogleTaskProgress(0)">未完成任务</span><span class="task-finish-{{taskProgress}}" (click)="toogleTaskProgress(1)">已完成任务</span></li>
-          </ul>
-          <ul class="taskChoose2">
-            <li>
-              <span class="table-{{tableProgress}}-{{index}}" *ngFor="let item of missionList; let index = index" data-id="{{item.missionId}}" (click)="toogleTableProgress(index)">{{item.missionName}}</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="info">
-        <table cellpadding="0" cellspacing="0" border="0">
-          <thead>
-            <tr><td><span>姓名</span></td>
-              <td><span>性别</span></td>
-              <td><span>年龄</span></td>
-              <td><span>时间</span></td><td>
-              <span >
+    <div class="lf choose">
+      <app-line-btn [totalBtn]="['未完成任务','已完成任务']" (btnInfo)="toogleTaskProgress($event)"></app-line-btn>
+      <ul class="taskChoose">
+        <li #tables>
+          <span [ngClass]="{true:'choosed',false:''}[index==0]" *ngFor="let item of missionList; let index = index" data-id="{{item.missionId}}" (click)="toogleTableProgress(index)">{{item.missionName}}</span>
+        </li>
+      </ul>
+    </div>
+    <div class="table-info">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <thead>
+          <tr>
+            <td><span>姓名</span></td>
+            <td><span>性别</span></td>
+            <td><span>年龄</span></td>
+            <td>
+              <span [hidden]="taskProgress ==1">要求完成时间</span>
+              <span [hidden]="taskProgress == 0">实际完成时间</span>
+
+            </td>
+            <td [hidden]="taskProgress == 0"><span>要求完成时间</span></td>
+            <td>
+              <span>
                 <ng-container *ngFor="let item of missionList; let i = index">
                   <ng-container *ngIf="tableProgress == i">{{item['missionName'] == '建档'?'服务包':''}}</ng-container>
                   <ng-container *ngIf="tableProgress == i">{{item['missionName'] == '月度报告'?'报告类型':''}}</ng-container>
@@ -29,36 +30,51 @@
                   <ng-container *ngIf="tableProgress == i">{{item['missionName'].indexOf('异常')!=-1?'异常情况':''}}</ng-container>
                 </ng-container>
               </span>
-          </td>
-          <td><span>健康服务专员</span></td><td><span>操作</span></td></tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of list">
-              <td><span>{{item.customerName}}</span></td>
-              <td><span>{{item.customerSex === 'M' ? '男' : '女'}}</span></td>
-              <td><span>{{getAge(item.customerBirdthday)}}</span></td>
-              <td><span>{{ taskProgress == 0?item.endDt:item.dealDt | date:'yyyy-MM-dd'}}</span></td>
+            </td>
+            <td><span>健康服务专员</span></td>
+            <td><span>操作</span></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of list">
+            <td><span>{{item.customerName}}</span></td>
+            <td><span>{{item.customerSex === 'M' ? '男' : '女'}}</span></td>
+            <td><span>{{getAge(item.customerBirdthday)}}</span></td>
+            <td><span>{{(taskProgress == '0'?item.endDt:item.dealDt) | date:'yyyy-MM-dd'}}</span></td>
+            <td [hidden]="taskProgress==0"><span>{{item.endDt | date:'yyyy-MM-dd'}}</span></td>
+            <td>
+              <em class="missionName" [hidden]="item.missionName != '建档'">{{item.servicePackName}}</em>
+              <em class="missionName" [hidden]="item.missionName.indexOf('监测')==-1">{{item.missionName}}</em>
+              <em class="missionName" [hidden]="item.missionName.indexOf('报告')==-1">{{item.rateCn}}</em>
 
-              <td>
-                <em class="missionName"  [hidden]="item.missionName != '建档'">{{item.servicePackName}}</em>
-                <em class="missionName" [hidden]="item.missionName.indexOf('监测')==-1">{{item.missionName}}</em>
-                <em class="missionName" [hidden]="item.missionName.indexOf('报告')==-1">{{item.rateCn}}</em>
+            </td>
+            <td><span>{{item.commissionerName}}</span></td>
+            <td><span class="opt">
 
-                  <!-- <span ng-show="tableProgress == 1">{{item.servicePackName}}</span>
-                  <span ng-show="tableProgress == 2">{{item.servicePackName}}</span> -->
-              </td>
-              <td><span>{{item.commissionerName}}</span></td>
-              <td><span>
-                <em  *ngIf="item.missionName == '血糖监测'" ui-sref="home.healthmonitor({'userId':item.customerId,'type':2,'commissionerTaskId':item.commissionerTaskId})" [hidden]="taskProgress != 0">处理</em>
-                 <em *ngIf="item.missionName == '血压监测'" ui-sref="home.healthmonitor({'userId':item.customerId,'type':1,'commissionerTaskId':item.commissionerTaskId})" [hidden]="taskProgress != 0">处理</em>
-                 <em *ngIf="item.missionName != '血压监测' && item.missionName!='血糖监测'"  [hidden]="taskProgress != 0" (click)="handlerPkgConfirm(item.commissionerTaskId)">完成</em>
-                 <em  [hidden]="taskProgress != 1" class="hasDone">已完成</em>
+                 <em  *ngIf="item.missionName == '血糖监测'&& taskProgress == 0" ui-sref="home.healthmonitor({'userId':item.customerId,'type':2,'commissionerTaskId':item.commissionerTaskId})" >处理</em>
+                 <em *ngIf="item.missionName == '血压监测' &&taskProgress == 0" ui-sref="home.healthmonitor({'userId':item.customerId,'type':1,'commissionerTaskId':item.commissionerTaskId})" >处理</em>
+                 <em *ngIf="item.missionName == 'BMI监测' && taskProgress == 0" ui-sref="home.bmimonitor({'customerId':item.customerId,'type':1,'commissionerTaskId':item.commissionerTaskId,'userId':item.userId})" >处理</em>
+                 <em *ngIf="item.missionName == '血氧监测'  && taskProgress == 0" ui-sref="home.oxygenmonitor({'customerId':item.customerId,'type':1,'commissionerTaskId':item.commissionerTaskId,'userId':item.userId})" >处理</em>
+                 <em *ngIf="item.missionName == '体温监测'&&taskProgress == 0 " ui-sref="home.heatmonitor({'customerId':item.customerId,'type':1,'commissionerTaskId':item.commissionerTaskId,'userId':item.userId})">处理</em>
+
+
+                 <em *ngIf="(item.missionName == '建档' || item.missionName=='月度报告')  && taskProgress == 0"  (click)="handlerPkgConfirm(item.commissionerTaskId)">完成</em>
+                 <em *ngIf="(item.missionName == '建档' || item.missionName=='月度报告' ) && taskProgress == 0"  (click)="handleDealTask(item,1)">处理</em>
+
+                 <em *ngIf="item.missionName == 'BMI监测'&&taskProgress == 1" ui-sref="home.bmimonitor({'customerId':item.customerId,'type':2,'commissionerTaskId':item.commissionerTaskId,'userId':item.userId})" >查看</em>
+                 <em  *ngIf="(item.missionName == '建档' || item.missionName=='月度报告')&&taskProgress == 1 "  (click)="$ctrl.handleDealTask(item,-1)">查看</em>
+                 <em  *ngIf="item.missionName == '血糖监测' && taskProgress == 1" ui-sref="home.healthmonitor({'customerId':item.customerId,'type':2,'commissionerTaskId':item.commissionerTaskId,'userId':item.userId,'isChecked':'isChecked'})" >查看</em>
+                 <em *ngIf="item.missionName == '血压监测' && taskProgress == 1" ui-sref="home.healthmonitor({'customerId':item.customerId,'type':1,'commissionerTaskId':item.commissionerTaskId,'userId':item.userId,'isChecked':'isChecked'})">查看</em>
+                 <em *ngIf="item.missionName == '血氧监测' && taskProgress == 1" ui-sref="home.oxygenmonitor({'customerId':item.customerId,'type':2,'commissionerTaskId':item.commissionerTaskId,'userId':item.userId,'isChecked':'isChecked'})" >查看</em>
+                 <em *ngIf="item.missionName == '体温监测' &&taskProgress == 1" ui-sref="home.heatmonitor({'customerId':item.customerId,'type':2,'commissionerTaskId':item.commissionerTaskId,'userId':item.userId,'isChecked':'isChecked'})" >查看</em>
+
+
               </span></td>
-            </tr>
-          </tbody>
-        </table>
-        <app-pages [pages] = pages (pageInfo)="pageTurning($event)" [currentPage] = pageNumber></app-pages>
+          </tr>
+        </tbody>
+      </table>
+      <app-pages [pages]=pages (pageInfo)="pageTurning($event)" [currentPage]=pageNumber [sum]=totalPage></app-pages>
 
-      </div>
+    </div>
   </div>
 </div>
