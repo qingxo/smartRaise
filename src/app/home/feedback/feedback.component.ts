@@ -75,12 +75,13 @@ export class FeedbackComponent implements OnInit {
     var data = {
       'dealRemark': this.dealInfo,
     }
-    if (this.feedback == 1) {
+    if (this.feedback == 0) {
       data['opinionId'] = this.clickItemId
       this.feedbackService.customerHandler(data).subscribe((res) => {
         if (res.success) {
           tools.tips("处理成功", '', 'success')
           this.item.dealRemark = data.dealRemark
+          this.modalRef.close()
         } else {
           tools.tips(res.errMsg, '', 'error')
         }
@@ -90,6 +91,8 @@ export class FeedbackComponent implements OnInit {
       this.feedbackService.userHandler(data).subscribe((res) => {
         if (res.success) {
           tools.tips("处理成功", '', 'success')
+          this.modalRef.close()
+
           this.item.dealRemark = data.dealRemark
         } else {
           tools.tips(res.errMsg, '', 'error')
