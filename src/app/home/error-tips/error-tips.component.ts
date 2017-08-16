@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import storage from '../../shared/storage'
-import {ErrorTipsService} from './error-tips.service'
+import { ErrorTipsService } from './error-tips.service'
+
 import tools from '../../shared/tools'
 @Component({
   selector: 'app-error-tips',
@@ -16,6 +17,9 @@ export class ErrorTipsComponent implements OnInit {
   private pageNumber: number = 1
   private queryInfo: string = ''
   private taskProgress = 0 //0 客户数据，1 健康专员数据
+  private totalPage: number
+  private modalRef: any
+  private closeResult: string
 
   constructor(private errorTipsService: ErrorTipsService) { }
 
@@ -23,6 +27,17 @@ export class ErrorTipsComponent implements OnInit {
     this.showList()
   }
 
+  handleErrorDealing(item) {
+    this.errorTipsService.errorHandler(item.commissionerUserId, item.commissionerMobile, item.cardId).subscribe((res) => {
+      if (res.success) {
+        console.log(res);
+        window.open(res.data.accessUrl)
+      } else {
+        tools.tips(res.errMsg, '', 'error')
+
+      }
+    })
+  }
 
   showList() {
     let data = {
@@ -34,9 +49,10 @@ export class ErrorTipsComponent implements OnInit {
     if (this.taskProgress == 0) {
       this.errorTipsService.errorList(data).subscribe((res) => {
         if (res.success) {
-          this.list = res.data.result
-          this.pages = res.data.linkPageNumbers
-          this.pageNumber = res.data.pageNumber
+          this.list = res.data.list
+          this.pages = res.data.navigatepageNums
+          this.pageNumber = res.data.pageNum
+          this.totalPage = res.data.total
         } else {
           tools.tips(res.errMsg, '', 'error')
         }
@@ -70,7 +86,7 @@ export class ErrorTipsComponent implements OnInit {
   }
 
   cultOpinion(msg) {
-    if (typeof msg == 'undefined') {
+    if (typeof msg == 'undefined' || msg == null || msg == 'null') {
       return ''
     }
     if (msg.length > 22) {

@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
-import {Http} from '@angular/http'
+import { Http } from '@angular/http'
 import storage from '../../shared/storage'
-@Injectable()
-export class ErrorTipsService {
+import { BaseService } from '../../shared/base.service';
 
-  constructor(private http:Http) { }
+@Injectable()
+export class ErrorTipsService extends BaseService {
+
+  constructor(http: Http) { super(http) }
 
   errorList(data) {
-    return this.http.post('api/webAbnormalHealth/listByPage', storage.serialize(data) ).map((res)=>{
-      return res.json()
-    })
+    return this.postInfo('api/webAbnormalHealth/listByPage', storage.serialize(data))
   }
+
+  errorHandler(commissionerUserId, commissionerMobile, cardId) {
+    return this.postInfo(`api/commissionerTask/dealHele/${commissionerUserId}/${commissionerMobile}/${cardId}`, '')
+  }
+
 
 }
