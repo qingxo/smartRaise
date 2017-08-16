@@ -17,6 +17,7 @@ import { FeedbackComponent } from './feedback'
 import { SyncDataComponent } from './sync-data'
 import { GroupManageComponent } from './group-manage'
 import { SleepManageComponent } from './sleep-manage'
+import { JurisdictionComponent } from './jurisdiction'
 export const ROUTER_CONFIG: Routes = [
   {
     path: '', component: HomeComponent,
@@ -40,7 +41,9 @@ export const ROUTER_CONFIG: Routes = [
       { path: 'feedback', component: FeedbackComponent },
       { path: 'syncdata', component: SyncDataComponent },
       { path: 'groupmanage', component: GroupManageComponent },
-      { path: 'sleepdata', component: SleepManageComponent }
+      { path: 'sleepdata', component: SleepManageComponent },
+      { path: 'jurisdiction', component: JurisdictionComponent }
+
 
 
     ]

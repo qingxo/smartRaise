@@ -1,0 +1,56 @@
+.jurisdiction-info {
+  .jurisdiction-choose {
+    margin: 20px;
+    text-align: center;
+  }
+
+  .tree-info {
+    background-color: white;
+    display: inline-block;
+    text-align: left;
+    padding: 20px;
+    border-radius: 4px;
+    min-width: 500px;
+
+    .tree-list {
+      display: block;
+      text-align: left;
+      font-size: 14px;
+
+      .first-level {
+        padding: 10px 0 0;
+
+        span {
+          cursor: pointer;
+        }
+      }
+
+      .second-level {
+        padding: 10px 0 0 14px;
+
+        span {
+          cursor: pointer;
+        }
+      }
+
+      .third-level {
+        padding: 10px 0 0 28px;
+      }
+    }
+  }
+
+  .tree-save {
+    width: 140px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #6A4307;
+    color: white;
+    top: 150px;
+    display: inline-block;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    text-align: center;
+  }
+}

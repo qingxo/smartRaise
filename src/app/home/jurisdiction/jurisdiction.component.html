@@ -1,0 +1,34 @@
+<div class="right-content-info jurisdiction-info">
+  <div class="detail-content">
+    <div class="box-head" style="text-align:left;position:relative">
+      <div class="box-tools jurisdiction-choose">
+        <app-line-btn [totalBtn]="this.rolesName" (btnInfo)="changeRole($event)"></app-line-btn>
+      </div>
+    </div>
+    <div class="jurisdiction-info">
+      <div class=" tree-info">
+
+        <div *ngFor='let item of tree' class="tree-list">
+          <div class="first-level">
+            <input type="checkbox" (ngModelChange)="changeCheckBox(item,1)" [ngModel]="item.checked"><span (click)="toogleLevel($event)">{{item.text}}</span>
+          </div>
+          <div *ngFor='let child of item.children'>
+            <div class="second-level">
+              <input type="checkbox" (ngModelChange)="changeCheckBox(child,1)" [ngModel]="child.checked"> <span (click)="toogleLevel($event)">{{child.text}}</span>
+            </div>
+            <div *ngFor='let grandSon of child.children'>
+              <div class="third-level">
+                <input type="checkbox" (ngModelChange)="changeCheckBox(grandSon,1)" [ngModel]="grandSon.checked"> <span (click)="toogleLevel($event)">{{grandSon.text}}</span>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="tree-save-block">
+      <span (click)="save()" class="tree-save">保存</span>
+    </div>
+  </div>
+</div>

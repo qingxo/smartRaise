@@ -18,7 +18,6 @@ export class LineBtnComponent implements OnInit {
 
   btnFired(index) {
     this.btnInfo.emit(index)
-    console.log(this.el)
     let array = this.el.nativeElement.children
     for (let i = 0; i < array.length; i++) {
       if (i == index) {
