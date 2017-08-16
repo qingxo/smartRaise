@@ -1,29 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import {SyncDataService} from './sync-data.service'
 import storage from '../../shared/storage'
 import tools from '../../shared/tools'
+import { SynDataService } from './syn-data.service'
 @Component({
-  selector: 'app-sync-data',
-  templateUrl: './sync-data.component.html',
-  styleUrls: ['./sync-data.component.scss'],
-  providers: [SyncDataService]
+  selector: 'app-syn-data',
+  templateUrl: './syn-data.component.html',
+  styleUrls: ['./syn-data.component.scss'],
+  providers: [SynDataService]
 })
-export class SyncDataComponent implements OnInit {
-  private pageSize: number = 10
-  private pageNumber: number = 1
-  private pages: Array<any> = []
-  private list: Array<any> = []
-  private taskProgress: number = 0 //0 客户数据，1 健康专员数据
+export class SynDataComponent implements OnInit {
 
-  constructor(private syncDataService: SyncDataService) { }
+  private pageSize: number = 10
+  private pages: Array<any> = []
+  private pageNumber: number = 1
+  private taskProgress: number = 1
+  private list: Array<any> = []
+  constructor(private synDataService: SynDataService) { }
 
   ngOnInit() {
-    this.showList()
   }
 
   synData() {
     tools.loading(true)
-    this.syncDataService.synTask().subscribe((res) => {
+    this.synDataService.synTask().subscribe((res) => {
       if (res.success) {
         tools.tips("同步成功", '', 'success')
         this.showList()
@@ -35,16 +34,6 @@ export class SyncDataComponent implements OnInit {
     })
   }
 
-  getAge(ageNum) {
-    if (typeof ageNum === 'undefined' || ageNum === '') {
-      return '未知'
-    } else {
-      var newYear = Number(new Date().getFullYear())
-      var num = newYear - parseInt(ageNum.split('-')[0])
-      return num
-    }
-
-  }
 
 
   showList() {
@@ -55,11 +44,11 @@ export class SyncDataComponent implements OnInit {
       'sendheleFlag': 0  // 0表示客户查询
     }
     if (this.taskProgress == 0) {
-      this.syncDataService.clientProblemList(data).subscribe((res) => {
+      this.synDataService.clientProblemList(data).subscribe((res) => {
         if (res.success) {
-          this.list = res.data.result
-          this.pages = res.data.linkPageNumbers
-          this.pageNumber = res.data.pageNumber
+          this.list = res.data.list
+          this.pages = res.data.navigatepageNums
+          this.pageNumber = res.data.pageNum
         } else {
           tools.tips(res.errMsg, '', 'error')
         }
@@ -73,6 +62,10 @@ export class SyncDataComponent implements OnInit {
   pageTurning(number) {
     this.pageNumber = number
     this.showList()
+  }
+
+  getAge(ageNum) {
+    return tools.getAge(ageNum)
   }
 
 }

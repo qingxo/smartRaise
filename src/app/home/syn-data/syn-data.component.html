@@ -1,15 +1,19 @@
-<div class="right-content">
-  <app-line-info lineInfo="数据同步"></app-line-info>
+<div class="right-content-info syn-data-info">
+
 
   <div class="detail-content">
-    <div class="syn">
-      <span (click)="synData()">同步到慢病系统</span>
+    <div class="highline">
+      <div class="rf  create-btn " (click)="synData()">
+        同步到慢病系统
+      </div>
     </div>
     <div class="" style="text-align: left;  padding: 20px 0 0 20px;">
       以下数据未同步到慢病系统
     </div>
-
-    <div class="info">
+    <div class="choose-line">
+      <app-line-btn [totalBtn]="['客户数据','健康专员数据']"></app-line-btn>
+    </div>
+    <div class="table-info">
       <table cellpadding="0" cellspacing="0" border="0" [hidden]="taskProgress != 0">
         <thead>
           <tr>
@@ -30,8 +34,7 @@
           </tr>
         </tbody>
       </table>
-      <app-pages [pages]=pages (pageInfo)="pageTurning($event)" [currentPage]=pageNumber></app-pages>
+      <app-pages [pages]=pages (pageInfo)="pageTurning($event)" [currentPage]=pageNumber [sum]=totalPage></app-pages>
     </div>
-    <!-- <app-nothing [isHidden]="false"></app-nothing> -->
   </div>
 </div>

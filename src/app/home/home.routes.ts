@@ -14,10 +14,10 @@ import { WaiterComponent } from './waiter'
 import { MyTaskComponent } from './my-task'
 import { ErrorTipsComponent } from './error-tips'
 import { FeedbackComponent } from './feedback'
-import { SyncDataComponent } from './sync-data'
 import { GroupManageComponent } from './group-manage'
 import { SleepManageComponent } from './sleep-manage'
 import { JurisdictionComponent } from './jurisdiction'
+import { SynDataComponent } from './syn-data'
 export const ROUTER_CONFIG: Routes = [
   {
     path: '', component: HomeComponent,
@@ -39,10 +39,10 @@ export const ROUTER_CONFIG: Routes = [
       { path: 'mytask', component: MyTaskComponent },
       { path: 'errortips', component: ErrorTipsComponent },
       { path: 'feedback', component: FeedbackComponent },
-      { path: 'syncdata', component: SyncDataComponent },
       { path: 'groupmanage', component: GroupManageComponent },
       { path: 'sleepdata', component: SleepManageComponent },
-      { path: 'jurisdiction', component: JurisdictionComponent }
+      { path: 'jurisdiction', component: JurisdictionComponent },
+      { path: 'syndata', component: SynDataComponent }
 
 
 

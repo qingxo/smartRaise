@@ -1,25 +1,25 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SyncDataComponent } from './sync-data.component';
+import { SynDataComponent } from './syn-data.component';
 
-describe('SyncDataComponent', () => {
-  let component: SyncDataComponent;
-  let fixture: ComponentFixture<SyncDataComponent>;
+describe('SynDataComponent', () => {
+  let component: SynDataComponent;
+  let fixture: ComponentFixture<SynDataComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SyncDataComponent ]
+      declarations: [ SynDataComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SyncDataComponent);
+    fixture = TestBed.createComponent(SynDataComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should be created', () => {
     expect(component).toBeTruthy();
   });
 });

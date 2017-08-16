@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {HomeComponent} from './home.component';
+import { HomeComponent } from './home.component';
 import { ClientComponent } from './client/client.component';
 import { ROUTER_CONFIG } from './home.routes';
-import {RouterModule} from '@angular/router';
-import {SharedModule} from '../shared';
-import {PopoverModule} from 'ngx-popover'
+import { RouterModule } from '@angular/router';
+import { SharedModule } from '../shared';
+import { PopoverModule } from 'ngx-popover'
 import { PlanmanComponent } from './planman/planman.component'
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { ClientDetailComponent } from './client-detail/client-detail.component'
 import { Ng2FlatpickrComponent } from 'ng2-flatpickr/ng2-flatpickr';
@@ -21,12 +21,12 @@ import { WaiterComponent } from './waiter/waiter.component';
 import { MyTaskComponent } from './my-task/my-task.component';
 import { ErrorTipsComponent } from './error-tips/error-tips.component';
 import { FeedbackComponent } from './feedback/feedback.component';
-import { SyncDataComponent } from './sync-data/sync-data.component';
 import { BmiMonitorComponent } from './bmi-monitor/bmi-monitor.component';
 import { EchartsNg2Module } from 'echarts-ng2';
 import { GroupManageComponent } from './group-manage/group-manage.component';
 import { SleepManageComponent } from './sleep-manage/sleep-manage.component';
 import { JurisdictionComponent } from './jurisdiction/jurisdiction.component';
+import { SynDataComponent } from './syn-data/syn-data.component';
 
 @NgModule({
   imports: [
@@ -56,11 +56,11 @@ import { JurisdictionComponent } from './jurisdiction/jurisdiction.component';
     MyTaskComponent,
     ErrorTipsComponent,
     FeedbackComponent,
-    SyncDataComponent,
     BmiMonitorComponent,
     GroupManageComponent,
     SleepManageComponent,
-    JurisdictionComponent
+    JurisdictionComponent,
+    SynDataComponent
   ],
   providers: []
 })
