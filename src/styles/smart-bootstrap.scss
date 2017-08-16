@@ -366,6 +366,12 @@ input:focus {
               em.inactive {
                 display: none!important;
               }
+
+              em.bind-equip {
+                background: url('/assets/images/svg/i-associated.svg') right 0 no-repeat;
+                background-size: 12px 12px;
+                padding-right: 15px;
+              }
             }
           }
 

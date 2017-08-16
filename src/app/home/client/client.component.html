@@ -77,40 +77,6 @@
 
     </div>
   </div>
-  <ng-template #content let-c="close" let-d="dismiss">
-    <div class="modal-header">
-      <h3 class="modal-title">绑定设备</h3>
-      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    </div>
-    <div class="modal-body">
-      <div class="line">
-        <label for="inline">客户账号</label>
-        <span class="inline">
-          {{listData[itemTarget].name}}
-        </span><span style="float: right;padding-right: 30px;" [hidden]="!listData[itemTarget].mobile"><em style="color:#666666;font-style:normal">手机号码</em>{{listData[itemTarget].mobile}}</span>
-      </div>
-      <div class="line">
-        <label for="">智能床型号</label>
-        <div class="inline beauty-sel ">
-          <select class="" name="" style="min-width:154px" [(ngModel)]='sources'>
-            <option *ngFor="let opt of bedType" value="{{opt.value}}">{{opt.name}}</option>
-          </select>
-        </div>
-      </div>
-      <div class="line">
-        <label for="">智能床编号</label>
-        <div class="inline">
-          <input class="nol" type="text" name="" value="" [(ngModel)]="smartBed">
-        </div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary spec-btn" (click)="saveSmartBed()" [@newState]="chameleon" (mouseover)="changeMe()" (mouseout)="changeMe()">确定</button>
-    </div>
-  </ng-template>
-
 
   <ng-template #healthPerson let-c="close" let-d="dismiss">
     <div class="modal-header">

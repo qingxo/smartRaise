@@ -1,7 +1,7 @@
 import { Component, OnInit, OnChanges, SimpleChange } from '@angular/core';
-import {trigger, state, style, animate, transition} from '@angular/animations'
-import {Router} from '@angular/router';
-import {ClientService} from './client.service';
+import { trigger, state, style, animate, transition } from '@angular/animations'
+import { Router } from '@angular/router';
+import { ClientService } from './client.service';
 import storage from '../../shared/storage'
 import tools from '../../shared/tools'
 import SysData from '../../shared/sysData'
@@ -9,7 +9,7 @@ import * as $ from 'jquery'
 import { FlatpickrOptions } from 'ng2-flatpickr/ng2-flatpickr';
 import * as Flatpickr from 'flatpickr'
 import * as zh_lang from 'flatpickr/dist/l10n/zh.js'
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap'
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap'
 import * as moment from 'moment'
 import baseAnimation from '../../shared/myAnimation'
 @Component({
@@ -356,92 +356,6 @@ export class ClientComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
-  }
-
-  bindSmartBedConfirm(index, content) {
-    this.itemTarget = index
-    this.smartBed = ''
-    this.sources = 'A'
-    this.open(content)
-  }
-
-  cancelSmartBed(index) {
-    console.log(index)
-    this.itemTarget = index
-    tools.tipsConfirm('确认解除绑定?', '', 'info', this.unBinding.bind(this))
-  }
-
-
-  unBinding() {
-    let customerId = this.listData[this.itemTarget].customerId,
-      equipId = this.listData[this.itemTarget].equipmentNo,
-      bedSources = this.listData[this.itemTarget].sources
-    let data = '?customerId=' + customerId + '&equipmentNo=' + equipId + '&sources=' + bedSources
-
-    this.clientService.unbind(data).subscribe((res) => {
-      if (res.success) {
-        tools.tips("解绑成功", '', 'success')
-        this.listData[this.itemTarget].equipmentNo = ''
-      } else {
-        tools.tips(res.data.errormsg, '', 'error')
-      }
-    })
-  }
-
-  reBunding() {
-    if (!this.smartBed) {
-      return
-    }
-
-    let data = {
-      'customerId': this.listData[this.itemTarget].customerId,
-      'mobile': this.listData[this.itemTarget].mobile,
-      'name': this.listData[this.itemTarget].name,
-      'equipmentNo': this.smartBed,
-      'sources': this.sources
-    }
-
-    this.clientService.reBunding(data).subscribe((res) => {
-      if (!res)
-        return
-      if (res.code === 200) {
-        tools.tips('强制绑定成功')
-        this.modalRef.close()
-
-        this.initAsyc()
-      } else {
-        tools.tips(res.errormsg)
-      }
-    })
-  }
-
-
-  saveSmartBed() {
-    if (!this.smartBed) {
-      return
-    }
-
-    var data = {
-      'customerId': this.listData[this.itemTarget].customerId,
-      'mobile': this.listData[this.itemTarget].mobile,
-      'name': this.listData[this.itemTarget].name,
-      'sources': this.sources,
-      'equipmentNo': this.smartBed
-    }
-    this.clientService.save(data).subscribe((res) => {
-
-      if (res.code === 200) {
-        tools.tips('成功', '', 'success')
-        this.listData[this.itemTarget].equipmentNo = this.smartBed
-        this.listData[this.itemTarget].sources = this.sources
-        this.modalRef.close()
-      } else if (res.code === 404) {
-        tools.tips(res.errormsg, '', 'error')
-      } else {
-        tools.tipsConfirm(res.errormsg, '', 'warning', this.reBunding.bind(this))
-
-      }
-    })
   }
 
 

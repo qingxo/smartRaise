@@ -1,21 +1,22 @@
 import { Routes } from '@angular/router'
-import {HomeComponent} from './home.component'
-import {ClientComponent} from './client'
-import {ClientDetailComponent} from './client-detail'
-import {PlanmanComponent} from './planman'
-import {CreateAccountComponent} from './create-account'
-import {SmartBedComponent} from './smart-bed'
-import {OrderPackageComponent} from './order-package'
-import {OrderDetailComponent} from './order-detail'
-import {ServicePackageComponent} from './service-package'
-import {OrderComponent} from './order'
-import {AccountsComponent} from './accounts'
-import {WaiterComponent} from './waiter'
-import {MyTaskComponent} from './my-task'
-import {ErrorTipsComponent} from './error-tips'
-import {FeedbackComponent} from './feedback'
-import {SyncDataComponent} from './sync-data'
-import {GroupManageComponent} from './group-manage'
+import { HomeComponent } from './home.component'
+import { ClientComponent } from './client'
+import { ClientDetailComponent } from './client-detail'
+import { PlanmanComponent } from './planman'
+import { CreateAccountComponent } from './create-account'
+import { SmartBedComponent } from './smart-bed'
+import { OrderPackageComponent } from './order-package'
+import { OrderDetailComponent } from './order-detail'
+import { ServicePackageComponent } from './service-package'
+import { OrderComponent } from './order'
+import { AccountsComponent } from './accounts'
+import { WaiterComponent } from './waiter'
+import { MyTaskComponent } from './my-task'
+import { ErrorTipsComponent } from './error-tips'
+import { FeedbackComponent } from './feedback'
+import { SyncDataComponent } from './sync-data'
+import { GroupManageComponent } from './group-manage'
+import { SleepManageComponent } from './sleep-manage'
 export const ROUTER_CONFIG: Routes = [
   {
     path: '', component: HomeComponent,
@@ -38,7 +39,9 @@ export const ROUTER_CONFIG: Routes = [
       { path: 'errortips', component: ErrorTipsComponent },
       { path: 'feedback', component: FeedbackComponent },
       { path: 'syncdata', component: SyncDataComponent },
-      { path: 'groupmanage', component: GroupManageComponent }
+      { path: 'groupmanage', component: GroupManageComponent },
+      { path: 'sleepdata', component: SleepManageComponent }
+
 
     ]
   }

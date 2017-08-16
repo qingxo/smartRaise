@@ -25,6 +25,7 @@ import { SyncDataComponent } from './sync-data/sync-data.component';
 import { BmiMonitorComponent } from './bmi-monitor/bmi-monitor.component';
 import { EchartsNg2Module } from 'echarts-ng2';
 import { GroupManageComponent } from './group-manage/group-manage.component';
+import { SleepManageComponent } from './sleep-manage/sleep-manage.component';
 
 @NgModule({
   imports: [
@@ -56,7 +57,8 @@ import { GroupManageComponent } from './group-manage/group-manage.component';
     FeedbackComponent,
     SyncDataComponent,
     BmiMonitorComponent,
-    GroupManageComponent
+    GroupManageComponent,
+    SleepManageComponent
   ],
   providers: []
 })

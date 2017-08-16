@@ -1,0 +1,85 @@
+<div class="right-content-info">
+  <div class="detail-content">
+    <div class="highline">
+      <div class="lf">
+        <app-search-line placeHolderValue="姓名/手机号/机构" (search)="searchTable($event)"></app-search-line>
+      </div>
+    </div>
+    <div class="table-info errorInfo">
+      <table cellpadding="0" cellspacing="0" border="0" ng-show="taskProgress == 0">
+        <thead>
+          <tr>
+            <td><span>客户姓名</span></td>
+            <td><span>手机号</span></td>
+            <td><span>性别</span></td>
+            <td><span>年龄</span></td>
+            <td><span>所属机构</span></td>
+            <td><span>注册时间</span></td>
+            <td><span>身份证号</span></td>
+            <td><span>健康服务专员</span></td>
+            <td><span>绑定设备</span></td>
+            <td><span>操作</span></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of list;let index = index">
+            <td><span>{{item.name}}</span></td>
+            <td><span>{{item.mobile}}</span></td>
+            <td><span>{{item.sex=='M'?'男':'女'}}</span></td>
+            <td><span>{{item.missionName}}</span></td>
+            <td><span>{{item.socialWelfareName}}</span></td>
+            <td><span>{{item.createDt | date:'yyyy-MM-dd'}}</span></td>
+            <td><span>{{item.cardId}}</span></td>
+            <td><span>{{item.commissionerUserName}}</span></td>
+            <td><span>
+                <em [hidden]="item.equipmentNo"  class="bind-equip"  (click)="bindSmartBedConfirm(index,content)" > {{item.equipmentNo || '未绑定'}}</em>
+                <em [hidden]="!item.equipmentNo"    class="bind-equip"   (click)="cancelSmartBed(index)" >{{item.sources}}({{item.equipmentNo }})</em>
+                <!-- <em [hidden]="item.equipmentNo"    class="bind-equip-no-edit"    >{{item.equipmentNo || '未绑定'}}</em> -->
+                <!-- <em [hidden]="!item.equipmentNo"   class="bind-equip-no-edit"    >{{item.equipmentNo || '未绑定'}}</em> -->
+
+              </span></td>
+            <td><span class="opt">
+              <em [hidden]="!item.equipmentNo"   ui-sref="home.sleepmonitor({'userId':item.customerId,'equipNo':item.equipmentNo})" >监测数据</em>
+              <em  ui-sref="home.sleeptest({'userId':item.customerId,'equipNo':item.equipmentNo})" >365睡眠评估</em> </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <app-pages [pages]=pages (pageInfo)="pageTurning($event)" [currentPage]=pageNumber [sum]=totalCount></app-pages>
+    </div>
+  </div>
+
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h3 class="modal-title">绑定设备</h3>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+      <div class="line">
+        <label for="inline">客户账号</label>
+        <span class="inline">
+          {{list[itemTarget].name}}
+        </span><span style="float: right;padding-right: 30px;" [hidden]="!list[itemTarget].mobile"><em style="color:#666666;font-style:normal">手机号码</em>{{list[itemTarget].mobile}}</span>
+      </div>
+      <div class="line">
+        <label for="">智能床型号</label>
+        <div class="inline beauty-sel ">
+          <select class="" name="" style="min-width:154px" [(ngModel)]='sources'>
+            <option *ngFor="let opt of bedType" value="{{opt.value}}">{{opt.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="line">
+        <label for="">智能床编号</label>
+        <div class="inline">
+          <input class="nol" type="text" name="" value="" [(ngModel)]="smartBed">
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary spec-btn" (click)="saveSmartBed()">确定</button>
+    </div>
+  </ng-template>
+</div>

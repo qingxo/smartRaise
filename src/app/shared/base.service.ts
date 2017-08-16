@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {Http} from '@angular/http'
-import {Observable} from 'rxjs/Rx'
+import { Http } from '@angular/http'
+import { Observable } from 'rxjs/Rx'
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { fromPromise } from 'rxjs/observable/fromPromise';
@@ -29,8 +29,10 @@ export class BaseService {
     let body = res.json();
     if (!body.success) {
       if (body.errCode == '10000000') {
-        storage.remove('state')
-        window.location.href = "/login"
+        setTimeout(() => {
+          storage.remove('state')
+          window.location.href = "/login"
+        }, 2000)
       } else if (body.errCode == '10000001') {
         swal('错误', body.errMsg)
       }
