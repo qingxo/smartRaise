@@ -161,7 +161,6 @@ export class SleepManageComponent implements OnInit {
       'userId': storage.get('state')['userId']
     }
     this.clientService.clientList(data).subscribe((res) => {
-      console.log(res)
       if (res.success) {
         this.list = res.data.list
         this.pages = res.data.navigatepageNums
