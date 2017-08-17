@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="table-info">
-      <table cellpadding="0" cellspacing="0" border="0">
+      <table cellpadding="0" cellspacing="0" border="0" [hidden]="list.length==0">
         <thead>
           <tr>
             <td><span>订单编号</span></td>
@@ -29,12 +29,14 @@
             <td><span>{{item.customerMobile}}</span></td>
             <td><span>{{item.commissionerUserName || '无'}}</span></td>
             <td><span>{{item.statue =='1'?'已启动':item.statue=='2'?'已停止':'未启动'}}</span></td>
-            <td><span>
+            <td><span class="opt">
                  <em routerLink="/home/orderdetail" [queryParams]="{'pkgId':item.serviceOrderId}">详情</em>
               </span></td>
           </tr>
         </tbody>
       </table>
+      <nothing [isHidden]="list.length!=0"></nothing>
+
       <app-pages [pages]=pages (pageInfo)="pageTurning($event)" [currentPage]=pageNumber [sum]=totalPage></app-pages>
     </div>
   </div>

@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="table-info">
-      <table cellpadding="0" cellspacing="0" border="0">
+      <table cellpadding="0" cellspacing="0" border="0" [hidden]="list.length==0">
         <thead>
           <tr>
             <td><span>机构编码</span></td>
@@ -32,6 +32,8 @@
           </tr>
         </tbody>
       </table>
+      <nothing [isHidden]="list.length!=0"></nothing>
+
       <app-pages [pages]=pages (pageInfo)="pageTurning($event)" [sum]=totalPage [currentPage]=pageNumber></app-pages>
 
     </div>
