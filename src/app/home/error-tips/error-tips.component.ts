@@ -20,11 +20,16 @@ export class ErrorTipsComponent implements OnInit {
   private totalPage: number
   private modalRef: any
   private closeResult: string
-
+  private errorBtn: any
   constructor(private errorTipsService: ErrorTipsService) { }
 
   ngOnInit() {
     this.showList()
+    this.initBtnShow()
+  }
+
+  initBtnShow() {
+    this.errorBtn = tools.initBtnShow(1, 1, 'errorBtn')
   }
 
   handleErrorDealing(item) {

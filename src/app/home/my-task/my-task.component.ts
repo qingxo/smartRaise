@@ -21,11 +21,18 @@ export class MyTaskComponent implements OnInit {
   private taskProgress: number = 0 //0 未完成任务，1 已完成任务
   private tableProgress: number = 0 // 0 健康监测，1 健康报表 ， 2 建档任务
   private missionName: string = 'missionName'
+  private myTaskBtn: any
   @ViewChild('tables') el: ElementRef
   constructor(private myTaskService: MyTaskService, private elRef: ElementRef) { }
 
   ngOnInit() {
     this.missionListMethod()
+    this.initBtnShow()
+  }
+
+
+  initBtnShow() {
+    this.myTaskBtn = tools.initBtnShow(1, 0, 'myTaskBtn')
   }
 
 

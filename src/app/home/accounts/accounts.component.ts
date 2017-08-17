@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AccountsService} from './accounts.service'
+import { AccountsService } from './accounts.service'
 import tools from '../../shared/tools'
 
 @Component({
@@ -17,10 +17,15 @@ export class AccountsComponent implements OnInit {
   private queryInfo: string = ''
   private list: Array<any> = []
   private userId: any = -1
+  private accountsBtn: any
   constructor(private accountsService: AccountsService) { }
 
   ngOnInit() {
     this.accountsList()
+    this.initBtnShow()
+  }
+  initBtnShow() {
+    this.accountsBtn = tools.initBtnShow(2, 0, 'accountsBtn')
   }
 
 

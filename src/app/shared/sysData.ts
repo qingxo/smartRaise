@@ -110,6 +110,11 @@ var SysData = {
       'key': '处理',
       'value': false
     }
+  ],
+  sleepBtn: [
+    { 'key': '绑定设备', 'value': false },
+    { 'key': '睡眠监测', 'value': false },
+    { 'key': '365睡眠评估', 'value': false }
   ]
 }
 

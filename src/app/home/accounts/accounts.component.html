@@ -4,7 +4,7 @@
       <div class="lf">
         <app-search-line placeHolderValue="请输入姓名、手机号" (search)="searchTable($event)"></app-search-line>
       </div>
-      <div class="rf create-btn" ui-sref="home.create">
+      <div class="rf create-btn" ui-sref="home.create" [hidden]="accountsBtn['新增账号']">
         新建账号
       </div>
     </div>
@@ -29,8 +29,8 @@
             <td><span>{{item.mail}}</span></td>
 
             <td><span class="opt">
-               <em ui-sref="home.create({'userId':item.userId})">编辑</em>
-               <em (click)="delConfirm(item.userId)" class="del">删除</em>
+               <em ui-sref="home.create({'userId':item.userId})" [hidden]="accountsBtn['编辑账号']">编辑</em>
+               <em (click)="delConfirm(item.userId)" class="del" [hidden]="accountsBtn['删除账号']">删除</em>
             </span></td>
           </tr>
         </tbody>

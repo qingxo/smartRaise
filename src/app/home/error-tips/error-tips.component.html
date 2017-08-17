@@ -18,7 +18,7 @@
             <td><span>异常情况</span></td>
             <td><span>处理意见</span></td>
             <td><span>健康服务专员</span></td>
-            <td><span>操作</span></td>
+            <td [hidden]="errorBtn['处理']"><span>操作</span></td>
           </tr>
         </thead>
         <tbody>
@@ -34,8 +34,8 @@
               <span>{{cultOpinion(item.opinion)}}</span>
             </td>
             <td><span>{{item.commissionerName}}</span></td>
-            <td><span class="opt">
-              <em class="" (click)="handleErrorDealing(item)">处理</em>
+            <td [hidden]="errorBtn['处理']"><span class="opt">
+              <em class="" (click)="handleErrorDealing(item)" >处理</em>
             </span></td>
           </tr>
         </tbody>

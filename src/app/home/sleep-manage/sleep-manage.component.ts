@@ -21,7 +21,7 @@ export class SleepManageComponent implements OnInit {
   private list: Array<any> = []
   private itemTarget: number
   private smartBed: string
-
+  private sleepBtn: any
   private bedType: Array<any> = [
     {
       'name': '智能床A',
@@ -38,6 +38,12 @@ export class SleepManageComponent implements OnInit {
 
   ngOnInit() {
     this.clientList()
+    this.initBtnShow()
+  }
+
+
+  initBtnShow() {
+    this.sleepBtn = tools.initBtnShow(1, 2, 'sleepBtn')
   }
 
   searchTable(str) {

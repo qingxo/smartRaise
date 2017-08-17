@@ -17,7 +17,7 @@
             <td><span>注册时间</span></td>
             <td><span>身份证号</span></td>
             <td><span>健康服务专员</span></td>
-            <td><span>绑定设备</span></td>
+            <td><span>智能床</span></td>
             <td><span>操作</span></td>
           </tr>
         </thead>
@@ -32,15 +32,15 @@
             <td><span>{{item.cardId}}</span></td>
             <td><span>{{item.commissionerUserName}}</span></td>
             <td><span>
-                <em [hidden]="item.equipmentNo"  class="bind-equip"  (click)="bindSmartBedConfirm(index,content)" > {{item.equipmentNo || '未绑定'}}</em>
-                <em [hidden]="!item.equipmentNo"    class="bind-equip"   (click)="cancelSmartBed(index)" >{{item.sources}}({{item.equipmentNo }})</em>
-                <!-- <em [hidden]="item.equipmentNo"    class="bind-equip-no-edit"    >{{item.equipmentNo || '未绑定'}}</em> -->
-                <!-- <em [hidden]="!item.equipmentNo"   class="bind-equip-no-edit"    >{{item.equipmentNo || '未绑定'}}</em> -->
+                <!-- <em [hidden]="item.equipmentNo"  class="bind-equip"  (click)="bindSmartBedConfirm(index,content)" > {{item.equipmentNo || '未绑定'}}</em>
+                <em [hidden]="!item.equipmentNo"    class="bind-equip"   (click)="cancelSmartBed(index)" >{{item.sources}}({{item.equipmentNo }})</em> -->
+                <em [hidden]="item.equipmentNo"    class="bind-equip-no-edit"    >{{item.equipmentNo || '未绑定'}}</em>
+                <em [hidden]="!item.equipmentNo"   class="bind-equip-no-edit"    >{{item.equipmentNo || '未绑定'}}</em>
 
               </span></td>
             <td><span class="opt">
-              <em [hidden]="!item.equipmentNo"   ui-sref="home.sleepmonitor({'userId':item.customerId,'equipNo':item.equipmentNo})" >监测数据</em>
-              <em  ui-sref="home.sleeptest({'userId':item.customerId,'equipNo':item.equipmentNo})" >365睡眠评估</em> </span>
+              <em [hidden]="!item.equipmentNo"   ui-sref="home.sleepmonitor({'userId':item.customerId,'equipNo':item.equipmentNo})" [hidden]="sleepBtn['监测数据']">监测数据</em>
+              <em  ui-sref="home.sleeptest({'userId':item.customerId,'equipNo':item.equipmentNo})" [hidden]="sleepBtn['365睡眠评估']">365睡眠评估</em> </span>
             </td>
           </tr>
         </tbody>
