@@ -5,7 +5,7 @@
   </div>
   <div class="detail-content">
     <div class="table-info">
-      <table cellpadding="0" cellspacing="0" border="0">
+      <table cellpadding="0" cellspacing="0" border="0" [hidden]="list.length==0">
         <thead>
           <tr>
             <td><span>{{feedback == '0'?'客户':'健康专员'}}姓名</span></td>
@@ -29,7 +29,7 @@
         </tbody>
       </table>
       <app-pages [pages]=pages (pageInfo)="pageTurning($event)" [currentPage]=pageNumber></app-pages>
-
+      <nothing [isHidden]="list.length!=0"></nothing>
     </div>
   </div>
 

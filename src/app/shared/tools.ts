@@ -76,10 +76,10 @@ class Tools {
 
   loading(flag) {
     var html = `<div class="loading">
-     <img src="assets/img/loading.jpg">
+     <img src="/assets/images/loading.jpg">
    </div>`
     if (flag) {
-      $('.container').append(html)
+      $('.smart-container').append(html)
     } else {
       $('.loading').remove()
     }
