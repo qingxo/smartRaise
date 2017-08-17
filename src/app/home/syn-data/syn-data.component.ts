@@ -13,11 +13,13 @@ export class SynDataComponent implements OnInit {
   private pageSize: number = 10
   private pages: Array<any> = []
   private pageNumber: number = 1
-  private taskProgress: number = 1
+  private taskProgress: number = 0
   private list: Array<any> = []
+  private missionList: Array<any> = []
   constructor(private synDataService: SynDataService) { }
 
   ngOnInit() {
+    this.showList()
   }
 
   synData() {
@@ -55,12 +57,22 @@ export class SynDataComponent implements OnInit {
 
       })
     } else {
+      this.synDataService.healthProblemList(data).subscribe((res) => {
+        if (res.success) {
+          this.missionList = res.data.list
+          this.pageNumber = res.data.pageNum
+          this.pages = res.data.navigatepageNums
+        } else {
+          tools.tips(res.errMsg, '', 'error')
+        }
 
+      })
     }
   }
 
   pageTurning(number) {
-    this.pageNumber = number
+    this.pageNumber = 1
+    this.taskProgress = parseInt(number)
     this.showList()
   }
 
