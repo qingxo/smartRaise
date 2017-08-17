@@ -30,7 +30,7 @@ export class ClientComponent implements OnInit {
   private pageNumber: number = 1
   private queryInfo: string = ''
   private totalPage: number
-  private clientBtn = []
+  private clientBtn: any
   private closeResult: string
   private modalRef: any
   private itemTarget: number = 0 //用户点击的列的值
@@ -306,7 +306,7 @@ export class ClientComponent implements OnInit {
       if (res.success) {
         this.healthpersonlist = res.data.list
         if (!this.listData[this.itemTarget].commissionerUserId) {
-          this.healthCarePerson = res.data.result[0].userId
+          this.healthCarePerson = res.data.list[0].userId
         } else {
           this.healthCarePerson = this.listData[this.itemTarget].commissionerUserId
         }

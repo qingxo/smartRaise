@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Router, ActivatedRoute, Params} from '@angular/router';
-import {OrderService} from './order.service'
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { OrderService } from './order.service'
 import storage from '../../shared/storage'
 import tools from '../../shared/tools'
 @Component({
@@ -16,11 +16,17 @@ export class OrderComponent implements OnInit {
   private totalPage: number
   private queryInfo: string = ''
   private list: Array<any> = []
+  private orderBtn: any
   constructor(private orderService: OrderService, private activedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.queryInfo = this.activedRoute.queryParams['value']['query']
     this.orderList()
+    this.initBtnShow()
+  }
+
+  initBtnShow() {
+    this.orderBtn = tools.initBtnShow(0, 2, 'orderBtn')
   }
 
   searchTable(queryInfo: string) {

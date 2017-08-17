@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {WaiterService} from './waiter.service'
+import { WaiterService } from './waiter.service'
 import tools from '../../shared/tools'
 @Component({
   selector: 'app-waiter',
@@ -16,12 +16,18 @@ export class WaiterComponent implements OnInit {
   private queryInfo: string = ''
   private defalutPerson: object = {}
   private userId: any
+  private waiterBtn: any
 
   constructor(private waiterService: WaiterService) { }
 
   ngOnInit() {
     this.waiterList()
     this.geDefaultPerson()
+    this.initBtnShow()
+  }
+
+  initBtnShow() {
+    this.waiterBtn = tools.initBtnShow(0, 3, 'waiterBtn')
   }
 
   searchTable(queryInfo: string) {

@@ -6,7 +6,7 @@
       </div>
 
 
-      <div class="rf  create-btn show-{{clientBtn[0].value}}" (click)="clientActive(-1,clientDetail)" [@newState]="chameleon" (mouseover)="changeMe()" (mouseout)="changeMe()">
+      <div class="rf  create-btn" (click)="clientActive(-1,clientDetail)" [@newState]="chameleon" (mouseover)="changeMe()" (mouseout)="changeMe()" [hidden]="clientBtn['新增客户']">
         新增客户
 
       </div>
@@ -33,9 +33,9 @@
         <tbody>
           <tr *ngFor="let item of listData;let index  =index">
             <td><span>
-              <ng-container [ngSwitch]="clientBtn[1].value">
-                <em *ngSwitchCase="true"  class="client-name" (click)="clientActive(index,clientDetail)">{{item.name}}</em>
-                <em *ngSwitchCase="false" class="client-name-no-edit">{{item.name}}</em>
+              <ng-container [ngSwitch]="clientBtn['编辑客户']">
+                <em *ngSwitchCase="false"  class="client-name" (click)="clientActive(index,clientDetail)">{{item.name}}</em>
+                <em *ngSwitchCase="true" class="client-name-no-edit">{{item.name}}</em>
               </ng-container>
             </span>
             </td>
@@ -48,17 +48,17 @@
             <td style="max-width:250px"><span *ngFor="let serviceInfo of item.serviceOrders">{{serviceInfo.servicePackName}}  </span></td>
             <td><span>{{item.cardId}}</span></td>
             <td><span>
-              <ng-container [ngSwitch]="clientBtn[4].value">
-                <em class="health-rechange show-{{!!item.commissionerUserName}}"  *ngSwitchCase="clientBtn[4].value" (click)="healthCareOpen(index,healthPerson)" >
+              <ng-container [ngSwitch]="clientBtn['安排专员']">
+                <em class="health-rechange show-{{!!item.commissionerUserName}}"  *ngSwitchCase="false" (click)="healthCareOpen(index,healthPerson)" >
                   {{item.commissionerUserName}}
                 </em>
-                <em style="color:#009EF9"  *ngSwitchCase="clientBtn[4].value"  (click)="healthCareOpen(index,healthPerson)" class="show-{{!item.commissionerUserName}}">
+                <em style="color:#009EF9"  *ngSwitchCase="false"  (click)="healthCareOpen(index,healthPerson)" class="show-{{!item.commissionerUserName}}">
                   安排专员
                 </em>
-                <em class="health-rechange-no-edit show-{{!item.commissionerUserName}}"   *ngSwitchCase="!clientBtn[4].value">
+                <em class="health-rechange-no-edit show-{{!item.commissionerUserName}}"   *ngSwitchCase="true">
                   {{item.commissionerUserName}}
                 </em>
-                <em style="color:#009EF9" class="health-rechange-no-edit show-{{!!item.commissionerUserName}}"  *ngSwitchCase="!clientBtn[4].value"   >
+                <em style="color:#009EF9" class="health-rechange-no-edit show-{{!!item.commissionerUserName}}"  *ngSwitchCase="true"   >
                   安排专员
                 </em>
               </ng-container>
@@ -66,9 +66,9 @@
               </span>
             </td>
             <td><span class="opt">
-                            <em [routerLink]="['/home/clientDetail',item.customerId,{'equipNo':item.equipmentNo}]" class="show-{{clientBtn[3].value}}">详情</em>
-                           <em [routerLink]="['/home/orderpackage',item.customerId]" class="show-{{clientBtn[6].value}}"  >订购服务包</em>
-                           <em (click)="delconfirm(index)" class="show-{{clientBtn[2].value}} del"  >删除</em>
+                            <em [routerLink]="['/home/clientDetail',item.customerId,{'equipNo':item.equipmentNo}]" [hidden]="clientBtn['客户详情']">详情</em>
+                           <em [routerLink]="['/home/orderpackage',item.customerId]" [hidden]="clientBtn['订购服务包']"  >订购服务包</em>
+                           <em (click)="delconfirm(index)" class="del"  [hidden]="clientBtn['删除']" >删除</em>
             </span></td>
           </tr>
         </tbody>

@@ -34,7 +34,7 @@ class Tools {
 
   initBtnShow(topLevel, secondLevel, btnKey) {
     let menu = eval(storage.get('menu')),
-      jurisdiction = [], myBtn = []
+      jurisdiction = [], myBtn: any
     for (var i = 0; i < menu.length; i++) {
       if (menu[i].text == SysData['level_top_array'][topLevel]) {
         let child = menu[i].children
@@ -45,18 +45,24 @@ class Tools {
         }
       }
     }
+
+    let backTarget = {}
     myBtn = SysData[btnKey]
-    for (var i = 0; i < myBtn.length; i++) {
-      myBtn[i].value = false
+    for (let i = 0; i < jurisdiction.length; i++) {
+      backTarget[jurisdiction[i].text] = jurisdiction[i].checked;
     }
-    for (var i = 0; i < jurisdiction.length; i++) {
-      for (var j = 0; j < myBtn.length; j++) {
-        if (myBtn[j].key == jurisdiction[i].text) {
-          myBtn[j].value = true
-        }
+
+    for (let key of myBtn) {
+      if (backTarget[key['key']] == undefined) {
+        backTarget[key['key']] = false
       }
     }
-    return myBtn
+
+    for (let key in backTarget) {
+      backTarget[key] = !backTarget[key]
+    }
+
+    return backTarget
   }
 
   //身份证校验

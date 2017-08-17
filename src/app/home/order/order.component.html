@@ -23,14 +23,17 @@
         <tbody>
           <tr *ngFor="let item of list">
             <td><span>{{item.serviceOrderId}}</span></td>
-            <td><span class="opt"><em [routerLink]="['/home/newpackages']" [queryParams]="{'packageId':item.servicePackId,'isEdit':true}">{{item.servicePackName}}</em></span></td>
+            <td><span class="opt"><em [routerLink]="['/home/newpackages']" [queryParams]="{'packageId':item.servicePackId,'isEdit':true}" >{{item.servicePackName}}</em></span></td>
             <td><span>{{item.buyDt | date:'yyyy-MM-dd'}}</span></td>
             <td><span><em routerLink="/home/client/detail" [queryParams]="{'userId':item.customerId}">{{!!item.customerName?item.customerName:'未知'}}</em></span></td>
             <td><span>{{item.customerMobile}}</span></td>
             <td><span>{{item.commissionerUserName || '无'}}</span></td>
             <td><span>{{item.statue =='1'?'已启动':item.statue=='2'?'已停止':'未启动'}}</span></td>
             <td><span class="opt">
-                 <em routerLink="/home/orderdetail" [queryParams]="{'pkgId':item.serviceOrderId}">详情</em>
+                 <em routerLink="/home/orderdetail" [queryParams]="{'pkgId':item.serviceOrderId}" [hidden]="orderBtn['详情']">详情</em>
+                 <em routerLink="/home/orderdetail" [queryParams]="{'pkgId':item.serviceOrderId}"  [hidden]="orderBtn['退订']">退订</em>
+                 <em routerLink="/home/orderdetail" [queryParams]="{'pkgId':item.serviceOrderId}"  [hidden]="orderBtn['启动']">启动</em>
+
               </span></td>
           </tr>
         </tbody>

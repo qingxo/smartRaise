@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ServicePackageService} from './service-package.service'
+import { ServicePackageService } from './service-package.service'
 import tools from '../../shared/tools'
 @Component({
   selector: 'app-service-package',
@@ -15,10 +15,17 @@ export class ServicePackageComponent implements OnInit {
   private queryInfo: string = ''
   private totalPage: string
   private clickItem: any
+  private servicePackageBtn: any
   constructor(private servicePackageService: ServicePackageService) { }
 
   ngOnInit() {
     this.packageList()
+    this.initBtnShow()
+  }
+
+  initBtnShow() {
+    this.servicePackageBtn = tools.initBtnShow(0, 1, 'servicePackageBtn')
+    console.log(this.servicePackageBtn)
   }
 
   handlePackageConfirm(data) {

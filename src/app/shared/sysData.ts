@@ -7,16 +7,16 @@ var SysData = {
   healthReportDomain: "http://mhc.smartcare.org.cn",
   // healthReportDomain: "http://xukq1.dev.317hu.com",
   level_top_array: [
-    '平台管理', '慢病管理', '设置'
+    '平台管理', '健康管理', '设置'
   ],
   level_sec_array: [
     [
-      '客户管理', '服务包管理', '订单管理', '账号管理', '健康服务专员管理'
+      '客户管理', '服务包管理', '订单管理', '健康服务专员管理'
     ],
     [
-      '我的任务', '异常提醒'
+      '我的任务', '异常提醒', '睡眠管理'
     ],
-    ['意见反馈', '数据同步']
+    ['账号管理', '机构管理', '权限管理', '意见反馈', '同步数据']
   ],
   clientBtn: [
     {
@@ -81,7 +81,7 @@ var SysData = {
       'value': false
     }
   ],
-  healthPeopleBtn: [
+  waiterBtn: [
     {
       'key': '新增',
       'value': false
