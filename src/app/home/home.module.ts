@@ -32,6 +32,7 @@ import { BloodSugarComponent } from './blood-sugar/blood-sugar.component';
 import { BmiLineComponent } from './bmi-line/bmi-line.component';
 import { BloodOxygenComponent } from './blood-oxygen/blood-oxygen.component';
 import { HeatLineComponent } from './heat-line/heat-line.component';
+import { HealthReportComponent } from './health-report/health-report.component';
 
 @NgModule({
   imports: [
@@ -70,7 +71,8 @@ import { HeatLineComponent } from './heat-line/heat-line.component';
     BloodSugarComponent,
     BmiLineComponent,
     BloodOxygenComponent,
-    HeatLineComponent
+    HeatLineComponent,
+    HealthReportComponent
   ],
   providers: []
 })

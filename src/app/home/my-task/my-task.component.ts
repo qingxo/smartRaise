@@ -83,6 +83,31 @@ export class MyTaskComponent implements OnInit {
     })
   }
 
+
+  handleDealTask(item, index) {
+    let specialId = item.customerId
+
+    this.myTaskService.dealTask(item.commissionerUserId, item.commissionerMobile, specialId, item.commissionerTaskId).subscribe((res) => {
+
+      if (res.success) {
+        window.open(res.data.accessUrl, '_blank');
+      } else {
+        if (res.errCode == '10000201') { //自己生成的报告指令
+          if (item.missionName === '月度报告') {
+            // this.state.go('home.healthreport', {
+            //   'customerId': item.customerId,
+            //   'taskId': item.commissionerTaskId,
+            //   'index': index
+            // })
+          } else {
+            tools.tips(res.errMsg, '', 'error')
+          }
+
+        }
+      }
+    })
+  }
+
   missionListMethod() {
     let data = {
       'pageSize': this.pageSize,

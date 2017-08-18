@@ -18,6 +18,7 @@ import { GroupManageComponent } from './group-manage'
 import { SleepManageComponent } from './sleep-manage'
 import { JurisdictionComponent } from './jurisdiction'
 import { SynDataComponent } from './syn-data'
+import { HealthReportComponent } from './health-report'
 export const ROUTER_CONFIG: Routes = [
   {
     path: '', component: HomeComponent,
@@ -42,7 +43,8 @@ export const ROUTER_CONFIG: Routes = [
       { path: 'groupmanage', component: GroupManageComponent },
       { path: 'sleepdata', component: SleepManageComponent },
       { path: 'jurisdiction', component: JurisdictionComponent },
-      { path: 'syndata', component: SynDataComponent }
+      { path: 'syndata', component: SynDataComponent },
+      { path: 'healthreport/:customerId', component: HealthReportComponent }
 
 
 

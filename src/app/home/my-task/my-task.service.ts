@@ -16,6 +16,10 @@ export class MyTaskService extends BaseService {
     return this.postInfo('api/commissionerTask/listByPage', storage.serialize(data))
   }
 
+  dealTask(commissionerUserId, commissionerMobile, cardId, commissionerTaskId) {
+    return this.postInfo(`api/commissionerTask/dealHele/${commissionerUserId}/${commissionerMobile}/${cardId}/${commissionerTaskId}`, '')
+  }
+
   handlerPkgDoen(data) {
     return this.postInfo('api/commissionerTask/deal/' + data, '')
 
