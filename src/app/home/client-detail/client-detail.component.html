@@ -93,7 +93,7 @@
 
     </div>
 
-    <div class="mybox mybox-lit">
+    <!-- <div class="mybox mybox-lit">
       <div class="info-head-inline">
         <span>实时数据</span>
       </div>
@@ -106,9 +106,9 @@
       <div class="halfpart">
         <span>设备状态:</span><span id="sta{{equipNo}}">-</span>
       </div>
-    </div>
+    </div> -->
 
-    <div class="mybox mybox-h1 mybox-h1-{{bedList.length}}">
+    <!-- <div class="mybox mybox-h1 mybox-h1-{{bedList.length}}">
       <div class="box-head">
         <div class="box-head-line">智能床数据</div>
         <div class="box-tools">
@@ -118,12 +118,9 @@
       <div class="show-info-{{bedList.length}}">
         <echarts-ng2 [option]="optionOne"></echarts-ng2>
         <echarts-ng2 [option]="optionFour"></echarts-ng2>
-
-        <!-- <div class="echarts-box show-info-{{bedList.length}}" style="height: 800px" echarts="instance"></div> -->
-        <!-- <div class="echarts-box show-info-{{bedList.length}}" style="height: 400px" echarts="instance4"></div> -->
       </div>
       <nothing [isHidden]="bedList.length == 0?false:true"></nothing>
-    </div>
+    </div> -->
 
 
     <div class="mybox" style="height:700px">
@@ -134,13 +131,14 @@
         </div>
       </div>
       <div class="mybox-half bor">
-        <div class="show-info-{{bloodPressureList.length}}">
+        <!-- <div class="show-info-{{bloodPressureList.length}}">
           <echarts-ng2 [option]="optionTwo" [style]="{'height': '350px'}"></echarts-ng2>
         </div>
 
         <div class="no-data-half" [hidden]="bloodPressureList.length!=0">
           <nothing [isHidden]="false" myTips="暂无血压数据"></nothing>
-        </div>
+        </div> -->
+        <app-blood-pressure [userId]="userId" [periodDay]="periodDay"></app-blood-pressure>
       </div>
 
 

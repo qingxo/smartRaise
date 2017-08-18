@@ -27,6 +27,7 @@ import { GroupManageComponent } from './group-manage/group-manage.component';
 import { SleepManageComponent } from './sleep-manage/sleep-manage.component';
 import { JurisdictionComponent } from './jurisdiction/jurisdiction.component';
 import { SynDataComponent } from './syn-data/syn-data.component';
+import { BloodPressureComponent } from './blood-pressure/blood-pressure.component';
 
 @NgModule({
   imports: [
@@ -60,7 +61,8 @@ import { SynDataComponent } from './syn-data/syn-data.component';
     GroupManageComponent,
     SleepManageComponent,
     JurisdictionComponent,
-    SynDataComponent
+    SynDataComponent,
+    BloodPressureComponent
   ],
   providers: []
 })
