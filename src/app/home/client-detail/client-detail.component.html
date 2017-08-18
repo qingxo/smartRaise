@@ -131,26 +131,12 @@
         </div>
       </div>
       <div class="mybox-half bor">
-        <!-- <div class="show-info-{{bloodPressureList.length}}">
-          <echarts-ng2 [option]="optionTwo" [style]="{'height': '350px'}"></echarts-ng2>
-        </div>
-
-        <div class="no-data-half" [hidden]="bloodPressureList.length!=0">
-          <nothing [isHidden]="false" myTips="暂无血压数据"></nothing>
-        </div> -->
         <app-blood-pressure [userId]="userId" [periodDay]="periodDay"></app-blood-pressure>
       </div>
 
 
       <div class="mybox-half">
-        <div class="show-info-{{bloodSugarFlag}}">
-          <echarts-ng2 [option]="optionThree" [style]="{'height': '350px'}"></echarts-ng2>
-
-        </div>
-
-        <div class="no-data-half" [hidden]="bloodSugarFlag!='0'">
-          <nothing [isHidden]="false" myTips="暂无血糖数据"></nothing>
-        </div>
+        <app-blood-sugar [userId]="userId" [periodDay]="periodDay"></app-blood-sugar>
       </div>
 
       <div class="mybox-half" style="width:100%;border-top: 1px solid #e5e5e5;">

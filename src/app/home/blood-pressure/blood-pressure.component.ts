@@ -45,7 +45,6 @@ export class BloodPressureComponent implements OnInit, OnChanges {
     this.bloodPressureService.getBloodPressList({ 'customerId': this.userId, 'day': this.periodDay }).subscribe((res) => {
       if (res.success) {
         this.bloodPressureList = eval(res.data)
-        console.log("the all list:", this.bloodPressureList)
         if (this.bloodPressureList instanceof Array) {
           for (var i = 0; i < this.bloodPressureList.length; i++) {
             this.bloodPressureHigh[i] = this.bloodPressureList[i].systolicPressure
@@ -67,7 +66,6 @@ export class BloodPressureComponent implements OnInit, OnChanges {
           this.el.nativeElement.className = "black-hole"
 
         }
-        console.log("flag:" + this.nothingFlag + ",this.heartRateValue:" + this.heartRateValue + ", strechtPressure:" + this.bloodPressureList)
         this.startEchartPress()
       }
     })

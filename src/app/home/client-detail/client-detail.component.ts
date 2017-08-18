@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ClientDetailService} from './client-detail.service'
-import {BmiMonitorService} from '../bmi-monitor/bmi-monitor.service'
+import { ClientDetailService } from './client-detail.service'
+import { BmiMonitorService } from '../bmi-monitor/bmi-monitor.service'
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import * as moment from 'moment'
 import tools from '../../shared/tools'
@@ -329,59 +329,6 @@ export class ClientDetailComponent implements OnInit {
         this.optionFive = this.initBMIEcharts()
       }
     })
-
-    this.clientDetailService.getBloodPressList({ 'customerId': this.userId, 'day': this.periodDay }).subscribe((res) => {
-      if (res.success) {
-        this.bloodPressureList = eval(res.data)
-        for (var i = 0; i < this.bloodPressureList.length; i++) {
-          this.bloodPressureHigh[i] = this.bloodPressureList[i].systolicPressure
-          this.bloodPressureLower[i] = this.bloodPressureList[i].stretchPressure
-          this.heartRateValue[i] = this.bloodPressureList[i].heartRateValue
-          if (this.periodDay === 1) {
-            this.bloodPressureDate[i] = this.bloodPressureList[i].measurementTime.split(' ')[1]
-          } else {
-            this.bloodPressureDate[i] = this.bloodPressureList[i].measurementTime.split(' ')[0]
-          }
-        }
-        this.optionTwo = this.startEchartPress()
-      }
-    })
-
-    this.clientDetailService.getBloodSugarList({ 'customerId': this.userId, 'day': this.periodDay }).subscribe((res) => {
-      if (res.success) {
-        console.log(res)
-        if (res.data.bloodSugarAfters) {
-          this.bloodSugarListAfter = eval(res.data.bloodSugarAfters)
-        }
-
-        if (res.data.bloodSugarBegins) {
-          this.bloodSugarListBefore = eval(res.data.bloodSugarBegins)
-        }
-
-        this.bloodSugarFlag = '1'
-        for (var i = 0; i < this.bloodSugarListAfter.length; i++) {
-          this.bloodSugarAfter[i] = this.bloodSugarListAfter[i].sugarValue
-          if (this.periodDay === 1) {
-            this.bloodSugarDateAfter[i] = this.bloodSugarListAfter[i].measurementTime.split(' ')[1]
-          } else {
-            this.bloodSugarDateAfter[i] = this.bloodSugarListAfter[i].measurementTime.split(' ')[0]
-          }
-        }
-        for (var i = 0; i < this.bloodSugarListBefore.length; i++) {
-          this.bloodSugarBefore[i] = this.bloodSugarListBefore[i].sugarValue
-          if (this.periodDay === 1) {
-            this.bloodSugarDateBefore[i] = this.bloodSugarListBefore[i].measurementTime.split(' ')[1]
-          } else {
-            this.bloodSugarDateBefore[i] = this.bloodSugarListBefore[i].measurementTime.split(' ')[0]
-          }
-        }
-        if (this.bloodSugarListBefore.length == 0 && this.bloodSugarListAfter.length == 0) {
-          this.bloodSugarFlag = '0'
-        }
-
-        this.optionThree = this.startEchartSugar()
-      }
-    })
   }
 
   initBMIEcharts(): EChartOption {
@@ -414,101 +361,6 @@ export class ClientDetailComponent implements OnInit {
         }
       ]
     }
-  }
-
-  startEchartPress(): EChartOption {
-    return {
-      title: {
-        text: '血压监测'
-      },
-      tooltip: {
-        trigger: 'axis'
-      },
-      legend: {
-        data: ['舒张压', '收缩压', '心率']
-      },
-      xAxis: {
-        type: 'category',
-        boundaryGap: false,
-        data: this.bloodPressureDate
-      },
-      yAxis: {
-        type: 'value',
-        axisLabel: {
-          formatter: '{value} '
-        }
-      },
-      series: [
-        {
-          name: '舒张压',
-          type: 'line',
-          data: this.bloodPressureLower,
-          markLine: {
-            data: [
-              {
-                yAxis: '140',
-                name: '最高值'
-              }, {
-                yAxis: '90',
-                name: '最低值'
-              }
-            ]
-          }
-        }, {
-          name: '收缩压',
-          type: 'line',
-          data: this.bloodPressureHigh
-        }, {
-          name: '心率',
-          type: 'line',
-          data: this.heartRateValue
-        }
-      ]
-    }
-  }
-
-
-  startEchartSugar(): EChartOption {
-    return {
-      title: {
-        text: '血糖监测'
-      },
-      tooltip: {
-        trigger: 'axis'
-      },
-      legend: {
-        data: ['餐前血糖', '餐后血糖']
-      },
-      xAxis: [
-        {
-          type: 'category',
-          boundaryGap: false,
-          data: this.bloodSugarDateBefore
-        }, {
-          type: 'category',
-          boundaryGap: false,
-          data: this.bloodSugarDateAfter
-        }
-      ],
-      yAxis: {
-        type: 'value',
-        axisLabel: {
-          formatter: '{value} '
-        }
-      },
-      series: [
-        {
-          name: '餐前血糖',
-          type: 'line',
-          data: this.bloodSugarBefore
-        }, {
-          name: '餐后血糖',
-          type: 'line',
-          data: this.bloodSugarAfter
-        }
-      ]
-    }
-
   }
 
   getUserInfo() {
