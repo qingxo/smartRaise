@@ -30,6 +30,7 @@ import { SynDataComponent } from './syn-data/syn-data.component';
 import { BloodPressureComponent } from './blood-pressure/blood-pressure.component';
 import { BloodSugarComponent } from './blood-sugar/blood-sugar.component';
 import { BmiLineComponent } from './bmi-line/bmi-line.component';
+import { BloodOxygenComponent } from './blood-oxygen/blood-oxygen.component';
 
 @NgModule({
   imports: [
@@ -66,7 +67,8 @@ import { BmiLineComponent } from './bmi-line/bmi-line.component';
     SynDataComponent,
     BloodPressureComponent,
     BloodSugarComponent,
-    BmiLineComponent
+    BmiLineComponent,
+    BloodOxygenComponent
   ],
   providers: []
 })
