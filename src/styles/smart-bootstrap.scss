@@ -208,6 +208,34 @@ input:focus {
       text-align: left;
     }
 
+    .normal-box {
+      background-color: white;
+      margin: 0 20px;
+      min-height: 390px;
+
+      .box-head {
+        font-size: 14px;
+        color: #333333;
+        padding: 10px;
+        text-align: left;
+        background-color: white;
+        border-bottom: 1px solid #E5E5E5;
+        background-image: url("/assets/images/head-bg.png");
+        background-repeat: no-repeat;
+        background-position: left;
+        background-size: 4px 5px;
+      }
+
+      .box-content {
+        margin: 4px;
+
+        .connect-box {
+          padding: 4px !important;
+          background-color: white;
+        }
+      }
+    }
+
     .person-info-block {
       .info-head {
         font-size: 14px;

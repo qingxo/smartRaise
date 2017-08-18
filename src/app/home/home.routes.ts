@@ -31,7 +31,7 @@ export const ROUTER_CONFIG: Routes = [
       { path: 'newaccount', component: CreateAccountComponent },
       { path: 'smartbed', component: SmartBedComponent },
       { path: 'orderpackage/:userId', component: OrderPackageComponent },
-      { path: 'orderdetail', component: OrderDetailComponent },
+      { path: 'orderdetail/:pkgId', component: OrderDetailComponent },
       { path: 'servicepackage', component: ServicePackageComponent },
       { path: 'order', component: OrderComponent },
       { path: 'accounts', component: AccountsComponent },

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {OrderDetailService} from './order-detail.service'
-import {OrderPackageService} from '../order-package/order-package.service'
-import {ActivatedRoute, Router} from '@angular/router'
+import { OrderDetailService } from './order-detail.service'
+import { OrderPackageService } from '../order-package/order-package.service'
+import { ActivatedRoute, Router } from '@angular/router'
 import tools from '../../shared/tools'
 @Component({
   selector: 'app-order-detail',
@@ -19,10 +19,10 @@ export class OrderDetailComponent implements OnInit {
   private orderId: any = -1
   private unsubscribeUserId: any = 0
   private unsubscribePkgId: any = 0
-  constructor(private orderDetailService: OrderDetailService, private orderPackageService: OrderPackageService, private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(private orderDetailService: OrderDetailService, private orderPackageService: OrderPackageService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.pkgId = this.activatedRoute.snapshot.queryParams['pkgId']
+    this.pkgId = this.route.snapshot.params['pkgId']
     this.orderDetail()
   }
 

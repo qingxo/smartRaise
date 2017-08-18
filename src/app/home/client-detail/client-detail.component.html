@@ -52,7 +52,7 @@
             </thead>
             <tbody>
               <tr *ngFor=" let item of list">
-                <td><span class="opt"><em ui-sref="home.orderdetail({'pkgId':item.serviceOrderId})">{{item.serviceOrderId}}</em></span></td>
+                <td><span class="opt"><em [routerLink]="['/home/orderdetail',item.serviceOrderId]">{{item.serviceOrderId}}</em></span></td>
                 <td><span>{{item.servicePackName}}</span></td>
                 <td><span>{{item.buyDt | date:'yyyy-MM-dd'}}</span></td>
                 <td><span>{{item.statue == '0'?'已停止':'已启动'}}</span></td>
