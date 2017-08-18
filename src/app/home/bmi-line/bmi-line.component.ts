@@ -58,13 +58,20 @@ export class BmiLineComponent implements OnInit, OnChanges {
   initBMIEcharts(): EChartOption {
     return {
       title: {
-        text: 'BMI监测'
+        text: 'BMI监测',
+        textStyle: {
+          fontSize: '14'
+        },
+        top: '2%',
+        left: '2%'
       },
       tooltip: {
         trigger: 'axis'
       },
       legend: {
-        data: ['BMI']
+        data: ['BMI'],
+        right: '2%'
+
       },
       xAxis: {
         type: 'category',

@@ -40,26 +40,11 @@ export class ClientDetailComponent implements OnInit {
   private reportDomain: string
   private healthReportDomain: string
   private periodDay: any = 1
-  private bmiList: Array<any> = []
-  private xBMIData: Array<any> = []
-  private bloodPressureList: Array<any> = []
-  private bloodSugarListAfter: Array<any> = []
-  private bloodSugarListBefore: Array<any> = []
-  private bloodSugarAfter: Array<any> = []
-  private bloodSugarBefore: Array<any> = []
-  private bloodSugarDateBefore: Array<any> = []
-  private bloodSugarDateAfter: Array<any> = []
-  private bloodPressureHigh: Array<any> = []
-  private bloodPressureLower: Array<any> = []
   private heartRateValue: Array<any> = []
-  private bloodPressureDate: Array<any> = []
-  private bloodSugarFlag: string = '0'
   private yBreathData: Array<any> = []
   private yHeartData: Array<any> = []
   private ySignData: Array<any> = []
   private xData: Array<any> = []
-  private bloodSugarDate: Array<any> = []
-  private bloodPressure: Array<any> = []
   private optionOne: EChartOption
   private optionTwo: EChartOption
   private optionThree: EChartOption
@@ -75,41 +60,25 @@ export class ClientDetailComponent implements OnInit {
     this.getUserInfo()
     this.userOrderList()
     this.reportListSelf()
-    this.initEcharts()
-
     this.reportDomain = SysData.reportDomain
     this.healthReportDomain = SysData.healthReportDomain
   }
 
   changePeriodDay(num) {
-    this.periodDay = num
+    switch (num) {
+      case 0: this.periodDay = 1;
+        break;
+      case 1: this.periodDay = 7;
+        break;
+      case 2: this.periodDay = 30;
+        break;
+      default:
+    }
     this.yBreathData = []
     this.yHeartData = []
     this.ySignData = []
-    this.bloodPressureHigh = []
-    this.bloodPressureLower = []
-    this.bloodPressureList = []
-    this.bloodPressureDate = []
-    this.bloodSugarListBefore = []
-    this.bloodSugarListAfter = []
-    this.bloodSugarDateBefore = []
-    this.bloodSugarDateAfter = []
     this.xData = []
-    this.initSugarDatas()
-    this.initEcharts()
     this.smartBedData()
-  }
-
-  initSugarDatas() {
-    this.bloodSugarDate = []
-    this.bloodSugarBefore = []
-    this.bloodSugarAfter = []
-  }
-
-  initPressData() {
-    this.bloodPressureList = []
-    this.bloodPressure = []
-    this.bloodPressureDate = []
   }
 
   smartBedData() {
@@ -310,10 +279,6 @@ export class ClientDetailComponent implements OnInit {
     }
   }
 
-
-  initEcharts() {
-
-  }
 
   getUserInfo() {
     this.clientDetailService.getUserInfo(this.userId).subscribe((res) => {

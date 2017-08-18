@@ -123,11 +123,18 @@
     </div> -->
 
 
-    <div class="mybox" style="height:700px">
+    <div class="mybox" style="height:1100px">
       <div class="box-head">
         <div class="box-head-line">健康监测数据</div>
         <div class="box-tools">
-          <span class="day-1-{{periodDay}}" (click)="changePeriodDay(1)">最近一天</span><span class="day-7-{{periodDay}}" (click)="changePeriodDay(7)">最近七天</span><span class="day-30-{{periodDay}}" (click)="changePeriodDay(30)">最近一月</span> <i ui-sref="home.monitorData({'userId':userId})">全部</i>
+          <div class="tools-other">
+            <app-line-btn [totalBtn]="['最近一天','最近七天','最近一月']" (btnInfo)="changePeriodDay($event)"></app-line-btn>
+
+          </div>
+          <div class="tools-all">
+            <i ui-sref="home.monitorData({'userId':userId})">全部</i>
+          </div>
+
         </div>
       </div>
       <div class="mybox-half bor">
@@ -142,8 +149,11 @@
       <div class="mybox-half" style="border-top: 1px solid #e5e5e5;border-right: 1px solid #e5e5e5;">
         <app-bmi-line [userId]="userId" [periodDay]="periodDay"></app-bmi-line>
       </div>
-      <div class="mybox-half">
+      <div class="mybox-half" style="border-bottom: 1px solid #e5e5e5;">
         <app-blood-oxygen [userId]="userId" [periodDay]="periodDay"></app-blood-oxygen>
+      </div>
+      <div class="mybox-half" style="border-top: 1px solid #e5e5e5;border-right: 1px solid #e5e5e5;">
+        <app-heat-line [userId]="userId" [periodDay]="periodDay"></app-heat-line>
       </div>
     </div>
 

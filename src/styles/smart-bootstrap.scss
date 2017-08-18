@@ -162,10 +162,9 @@ input:focus {
           }
 
           i {
-            height: 30px;
             border: 1px solid #D2D2D2;
             display: inline-block;
-            line-height: 30px;
+            line-height: 34px;
             width: 82px;
             cursor: pointer;
             font-style: normal;
@@ -173,7 +172,7 @@ input:focus {
           }
 
           span {
-            height: 30px;
+            // height: 30px;
             border: 1px solid #D2D2D2;
             display: inline-block;
             line-height: 30px;
