@@ -135,19 +135,12 @@
       </div>
 
 
-      <div class="mybox-half">
+      <div class="mybox-half" style="border-bottom: 1px solid #e5e5e5;">
         <app-blood-sugar [userId]="userId" [periodDay]="periodDay"></app-blood-sugar>
       </div>
 
-      <div class="mybox-half" style="width:100%;border-top: 1px solid #e5e5e5;">
-        <div class="show-info-{{bmiList.length}}">
-          <echarts-ng2 [option]="optionFive" [style]="{'height': '350px'}"></echarts-ng2>
-
-        </div>
-
-        <div class="no-data-half" [hidden]="bmiList.length!=0">
-          <nothing [isHidden]="false" myTips="暂无BMI数据"></nothing>
-        </div>
+      <div class="mybox-half" style="border-top: 1px solid #e5e5e5;border-right: 1px solid #e5e5e5;">
+        <app-bmi-line [userId]="userId" [periodDay]="periodDay"></app-bmi-line>
       </div>
 
     </div>

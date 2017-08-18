@@ -29,6 +29,7 @@ import { JurisdictionComponent } from './jurisdiction/jurisdiction.component';
 import { SynDataComponent } from './syn-data/syn-data.component';
 import { BloodPressureComponent } from './blood-pressure/blood-pressure.component';
 import { BloodSugarComponent } from './blood-sugar/blood-sugar.component';
+import { BmiLineComponent } from './bmi-line/bmi-line.component';
 
 @NgModule({
   imports: [
@@ -64,7 +65,8 @@ import { BloodSugarComponent } from './blood-sugar/blood-sugar.component';
     JurisdictionComponent,
     SynDataComponent,
     BloodPressureComponent,
-    BloodSugarComponent
+    BloodSugarComponent,
+    BmiLineComponent
   ],
   providers: []
 })

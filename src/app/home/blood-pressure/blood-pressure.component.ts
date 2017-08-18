@@ -19,6 +19,8 @@ export class BloodPressureComponent implements OnInit, OnChanges {
   private nothingFlag: boolean = false
   @Input() userId: string = ''
   @Input() periodDay: number = 1
+  @Input() echartsStyle: any = { 'height': '350px' }
+
   @ViewChild('tt') el: ElementRef
   constructor(private bloodPressureService: BloodPressureService, private render: Renderer) { }
 

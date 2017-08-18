@@ -19,6 +19,7 @@ export class BloodSugarComponent implements OnInit, OnChanges {
   private option: EChartOption
   @Input() userId: string = ''
   @Input() periodDay: number = 1
+  @Input() echartsStyle: any = { 'height': '350px' }
   @ViewChild('tt') el: ElementRef
   constructor(private bloodSugarService: BloodSugarService) { }
 

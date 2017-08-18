@@ -65,7 +65,6 @@ export class ClientDetailComponent implements OnInit {
   private optionThree: EChartOption
   private optionFour: EChartOption
   private optionFive: EChartOption
-
   constructor(public clientDetailService: ClientDetailService, public bmiMonitorService: BmiMonitorService, private route: ActivatedRoute, private router: Router) {
 
   }
@@ -313,54 +312,7 @@ export class ClientDetailComponent implements OnInit {
 
 
   initEcharts() {
-    this.bmiMonitorService.bmiList({ 'customerId': this.userId, 'day': this.periodDay, 'signType': 'bf' }).subscribe((res) => {
-      if (res.success) {
-        this.bmiList = []
-        this.xBMIData = []
 
-        for (var i = 0; i < res.data.length; i++) {
-          this.bmiList.push(Number(res.data[i].bmi))
-          if (this.periodDay == 1) {
-            this.xBMIData[i] = moment(res.data[i].createDt).format('HH:mm')
-          } else {
-            this.xBMIData[i] = moment(res.data[i].createDt).format('YYYY-MM-DD')
-          }
-        }
-        this.optionFive = this.initBMIEcharts()
-      }
-    })
-  }
-
-  initBMIEcharts(): EChartOption {
-    return {
-      title: {
-        text: 'BMI监测'
-      },
-      tooltip: {
-        trigger: 'axis'
-      },
-      legend: {
-        data: ['BMI']
-      },
-      xAxis: {
-        type: 'category',
-        boundaryGap: false,
-        data: this.xBMIData
-      },
-      yAxis: {
-        type: 'value',
-        axisLabel: {
-          formatter: '{value} '
-        }
-      },
-      series: [
-        {
-          name: 'BMI',
-          type: 'line',
-          data: this.bmiList
-        }
-      ]
-    }
   }
 
   getUserInfo() {
