@@ -44,7 +44,7 @@ export const ROUTER_CONFIG: Routes = [
       { path: 'sleepdata', component: SleepManageComponent },
       { path: 'jurisdiction', component: JurisdictionComponent },
       { path: 'syndata', component: SynDataComponent },
-      { path: 'healthreport/:customerId', component: HealthReportComponent }
+      { path: 'healthreport/:customerId/:taskId', component: HealthReportComponent }
 
 
 

@@ -50,6 +50,7 @@ export class HealthReportComponent implements OnInit {
   ngOnInit() {
     Flatpickr.localize(zh_lang.zh)
     this.customerId = this.route.snapshot.params['customerId']
+    this.taskId = this.route.snapshot.params['taskId']
 
     this.getUserInfo()
     this.getList()

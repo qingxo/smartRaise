@@ -16,7 +16,7 @@ export class HealthReportService extends BaseService {
   }
 
   createList(commissionerTaskId, customerId, data) {
-    return this.postInfo(`api/commissionerTask/dealReprot/${commissionerTaskId}/${customerId}`, data)
+    return this.postInfo(`api/commissionerTask/dealReprot/${commissionerTaskId}/${customerId}`, storage.serialize(data))
   }
 
   deleteReport(reportId) {

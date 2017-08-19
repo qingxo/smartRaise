@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, Renderer, ElementRef } from '@angular/core';
+import { Router } from '@angular/router'
 import { MyTaskService } from './my-task.service'
 import storage from '../../shared/storage'
 import tools from '../../shared/tools'
@@ -23,7 +24,7 @@ export class MyTaskComponent implements OnInit {
   private missionName: string = 'missionName'
   private myTaskBtn: any
   @ViewChild('tables') el: ElementRef
-  constructor(private myTaskService: MyTaskService, private elRef: ElementRef) { }
+  constructor(private myTaskService: MyTaskService, private elRef: ElementRef, private router: Router) { }
 
   ngOnInit() {
     this.missionListMethod()
@@ -94,11 +95,7 @@ export class MyTaskComponent implements OnInit {
       } else {
         if (res.errCode == '10000201') { //自己生成的报告指令
           if (item.missionName === '月度报告') {
-            // this.state.go('home.healthreport', {
-            //   'customerId': item.customerId,
-            //   'taskId': item.commissionerTaskId,
-            //   'index': index
-            // })
+            this.router.navigate(['/healthreport', item.customerId, item.commissionerTaskId]);
           } else {
             tools.tips(res.errMsg, '', 'error')
           }
