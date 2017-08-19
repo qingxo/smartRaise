@@ -1,0 +1,57 @@
+<div class="right-content-info health-monitor-info">
+  <div class="head-tips">
+    <span class=tips-info>健康管理 /我的任务 / <em>健康监测</em></span>
+  </div>
+  <div class="detail-content detail-content-pad txt-pos">
+    <div class="person-info-block">
+      <div class="info-head">
+        <span>个人信息</span>
+      </div>
+      <div class="table-info-person">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <thead>
+            <tr>
+              <td><span>姓名</span></td>
+              <td><span>手机号</span></td>
+              <td><span>性别</span></td>
+              <td><span>年龄</span></td>
+              <td><span>注册时间</span></td>
+              <td><span>健康服务专员</span></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span>{{!!userInfo.name?userInfo.name:'未知'}}</span></td>
+              <td><span>{{userInfo.mobile}}</span></td>
+              <td><span>{{userInfo.sex === 'M' ? '男' : '女'}}</span></td>
+              <td><span>{{getAge(userInfo.birdthday | date:'yyyy-MM-dd')}}</span></td>
+              <td><span>{{userInfo.createDt | date:'yyyy-MM-dd'}}</span></td>
+              <td><span>{{userInfo.commissionerUserName?userInfo.commissionerUserName:'无'}}</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="mybox">
+      <div class="box-head">
+        <div class="box-head-line">
+          <ng-container [ngSwitch]="type">
+            <ng-container *ngSwitchCase="1">血糖监测</ng-container>
+          </ng-container>
+        </div>
+        <div class="box-tools">
+          <app-line-btn [totalBtn]="['最近一天','最近七天','最近一月']" (btnInfo)="handlePeriod($event)"></app-line-btn>
+        </div>
+      </div>
+      <div class="" *ngIf="type == 1">
+        <app-blood-sugar [periodDay]="periodDay" [userId]="customerId"></app-blood-sugar>
+      </div>
+    </div>
+
+    <div class="addData">
+
+    </div>
+
+  </div>
+</div>

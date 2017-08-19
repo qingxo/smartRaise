@@ -51,7 +51,7 @@
             <td><span>{{item.commissionerName}}</span></td>
             <td><span class="opt">
 
-                 <em  *ngIf="item.missionName == '血糖监测'&& taskProgress == 0" routerLink="home.healthmonitor({'userId':item.customerId,'type':2,'commissionerTaskId':item.commissionerTaskId})" [hidden]="myTaskBtn['处理']">处理</em>
+                 <em  *ngIf="item.missionName == '血糖监测'&& taskProgress == 0" [routerLink]="['/home/healthmonitor',item.userId,item.customerId,item.commissionerTaskId,1]" [hidden]="myTaskBtn['处理']">处理</em>
                  <em *ngIf="item.missionName == '血压监测' &&taskProgress == 0" ui-sref="home.healthmonitor({'userId':item.customerId,'type':1,'commissionerTaskId':item.commissionerTaskId})" [hidden]="myTaskBtn['处理']">处理</em>
                  <em *ngIf="item.missionName == 'BMI监测' && taskProgress == 0" ui-sref="home.bmimonitor({'customerId':item.customerId,'type':1,'commissionerTaskId':item.commissionerTaskId,'userId':item.userId})" [hidden]="myTaskBtn['处理']">处理</em>
                  <em *ngIf="item.missionName == '血氧监测'  && taskProgress == 0" ui-sref="home.oxygenmonitor({'customerId':item.customerId,'type':1,'commissionerTaskId':item.commissionerTaskId,'userId':item.userId})" [hidden]="myTaskBtn['处理']">处理</em>

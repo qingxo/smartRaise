@@ -19,6 +19,7 @@ import { SleepManageComponent } from './sleep-manage'
 import { JurisdictionComponent } from './jurisdiction'
 import { SynDataComponent } from './syn-data'
 import { HealthReportComponent } from './health-report'
+import { HealthMonitorComponent } from './health-monitor'
 export const ROUTER_CONFIG: Routes = [
   {
     path: '', component: HomeComponent,
@@ -44,7 +45,8 @@ export const ROUTER_CONFIG: Routes = [
       { path: 'sleepdata', component: SleepManageComponent },
       { path: 'jurisdiction', component: JurisdictionComponent },
       { path: 'syndata', component: SynDataComponent },
-      { path: 'healthreport/:customerId/:taskId', component: HealthReportComponent }
+      { path: 'healthreport/:customerId/:taskId', component: HealthReportComponent },
+      { path: 'healthmonitor/:userId/:customerId/:taskId/:type', component: HealthMonitorComponent }
 
 
 
