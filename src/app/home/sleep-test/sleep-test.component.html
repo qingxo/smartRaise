@@ -1,0 +1,50 @@
+<div class="right-content-info sleep-test">
+  <div class="head-tips">
+    <span class=tips-info>睡眠管理 / <em>365睡眠评估</em></span>
+  </div>
+  <div class="detail-content detail-content-pad txt-pos">
+    <div class="person-info-block">
+      <div class="info-head"> 客户信息</div>
+      <div class="table-info-person">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <thead>
+            <tr>
+              <td><span>姓名</span></td>
+              <td><span>手机号</span></td>
+              <td><span>性别</span></td>
+              <td><span>年龄</span></td>
+              <td><span>注册时间</span></td>
+              <td><span>健康服务专员</span></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span>{{item.name}}</span></td>
+              <td><span><em>{{item.mobile}}</em></span></td>
+              <td><span>{{item.sex =='M'?'男':'女' }}</span></td>
+              <td><span>{{getAge(item.age)}}</span></td>
+              <td><span>{{item.createDt | date:'yyyy-MM-dd'}}</span></td>
+              <td><span>{{item.commissionerUserName || '无'}}</span></td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="mybox" style="height:auto;min-height:390px;text-align:left">
+      <div class="box-head">
+        <span>好睡眠365评估结果</span>
+      </div>
+      <div class="echart-width">
+        <app-best-sleep-line subText="睡眠质量-PSQI" optTitle="正常睡眠质量:0~4分" [lineData]="sleepQuality" [timeData]="xData"></app-best-sleep-line>
+      </div>
+      <div class="echart-width">
+        <app-best-sleep-line subText="焦虑情绪-GAD7" optTitle="正常睡眠质量:0~4分" [lineData]="sleepFeeling" [timeData]="xData"></app-best-sleep-line>
+      </div>
+      <div class="echart-width">
+        <app-best-sleep-line subText="抑郁情绪-PHG9" optTitle="正常睡眠质量:0~4分" [lineData]="sleepBlue" [timeData]="xData"></app-best-sleep-line>
+      </div>
+    </div>
+
+  </div>
+</div>

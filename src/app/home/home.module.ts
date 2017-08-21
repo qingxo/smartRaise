@@ -36,6 +36,8 @@ import { HealthReportComponent } from './health-report/health-report.component';
 import { HealthMonitorComponent } from './health-monitor/health-monitor.component';
 import { InputGroupComponent } from './input-group/input-group.component';
 import { TaskInfoComponent } from './task-info/task-info.component';
+import { SleepTestComponent } from './sleep-test/sleep-test.component';
+import { BestSleepLineComponent } from './best-sleep-line/best-sleep-line.component';
 
 @NgModule({
   imports: [
@@ -78,7 +80,9 @@ import { TaskInfoComponent } from './task-info/task-info.component';
     HealthReportComponent,
     HealthMonitorComponent,
     InputGroupComponent,
-    TaskInfoComponent
+    TaskInfoComponent,
+    SleepTestComponent,
+    BestSleepLineComponent
   ],
   providers: []
 })

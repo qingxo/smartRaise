@@ -49,7 +49,6 @@ export class InputGroupComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes)
     if (typeof changes['weight']['currentValue'] != 'undefined' && typeof changes['height']['currentValue'] != 'undefined') {
       this.bmi = Number((this.weight * 10000 / Math.pow(this.height, 2)).toFixed(2))
     }

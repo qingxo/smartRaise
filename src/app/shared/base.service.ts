@@ -13,7 +13,7 @@ export class BaseService {
   public SYS_ERROR: string = '10000001' //系统操作错误
   constructor(public http: Http) { }
 
-  getInfo(url: any, data: any): Observable<any> {
+  getInfo(url: any): Observable<any> {
     return this.http.get(url)
       .map(this.extractData)
       .catch(this.handleError)

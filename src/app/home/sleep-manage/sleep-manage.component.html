@@ -39,8 +39,8 @@
 
               </span></td>
             <td><span class="opt">
-              <em [hidden]="!item.equipmentNo"   ui-sref="home.sleepmonitor({'userId':item.customerId,'equipNo':item.equipmentNo})" [hidden]="sleepBtn['监测数据']">监测数据</em>
-              <em  ui-sref="home.sleeptest({'userId':item.customerId,'equipNo':item.equipmentNo})" [hidden]="sleepBtn['365睡眠评估']">365睡眠评估</em> </span>
+              <em [hidden]="sleepBtn['监测数据']&&!item.equipmentNo"   ui-sref="home.sleepmonitor({'userId':item.customerId,'equipNo':item.equipmentNo})" >监测数据</em>
+              <em [hidden]="sleepBtn['365睡眠评估']"   [routerLink]="['/home/sleeptest',item.customerId]"  >365睡眠评估</em> </span>
             </td>
           </tr>
         </tbody>
