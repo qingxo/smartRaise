@@ -35,6 +35,7 @@ import { HeatLineComponent } from './heat-line/heat-line.component';
 import { HealthReportComponent } from './health-report/health-report.component';
 import { HealthMonitorComponent } from './health-monitor/health-monitor.component';
 import { InputGroupComponent } from './input-group/input-group.component';
+import { TaskInfoComponent } from './task-info/task-info.component';
 
 @NgModule({
   imports: [
@@ -76,7 +77,8 @@ import { InputGroupComponent } from './input-group/input-group.component';
     HeatLineComponent,
     HealthReportComponent,
     HealthMonitorComponent,
-    InputGroupComponent
+    InputGroupComponent,
+    TaskInfoComponent
   ],
   providers: []
 })

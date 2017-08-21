@@ -61,12 +61,12 @@
                  <em *ngIf="(item.missionName == '建档' || item.missionName=='月度报告')  && taskProgress == 0"  (click)="handlerPkgConfirm(item.commissionerTaskId)" [hidden]="myTaskBtn['完成']">完成</em>
                  <em *ngIf="(item.missionName == '建档' || item.missionName=='月度报告' ) && taskProgress == 0"  (click)="handleDealTask(item,1)" [hidden]="myTaskBtn['处理']">处理</em>
 
-                 <em *ngIf="item.missionName == 'BMI监测'&&taskProgress == 1" ui-sref="home.bmimonitor({'customerId':item.customerId,'type':2,'commissionerTaskId':item.commissionerTaskId,'userId':item.userId})" [hidden]="myTaskBtn['查看']">查看</em>
-                 <em  *ngIf="(item.missionName == '建档' || item.missionName=='月度报告')&&taskProgress == 1 "  (click)="$ctrl.handleDealTask(item,-1)" [hidden]="myTaskBtn['查看']">查看</em>
-                 <em  *ngIf="item.missionName == '血糖监测' && taskProgress == 1" ui-sref="home.healthmonitor({'customerId':item.customerId,'type':2,'commissionerTaskId':item.commissionerTaskId,'userId':item.userId,'isChecked':'isChecked'})" [hidden]="myTaskBtn['查看']">查看</em>
-                 <em *ngIf="item.missionName == '血压监测' && taskProgress == 1" ui-sref="home.healthmonitor({'customerId':item.customerId,'type':1,'commissionerTaskId':item.commissionerTaskId,'userId':item.userId,'isChecked':'isChecked'})" [hidden]="myTaskBtn['查看']">查看</em>
-                 <em *ngIf="item.missionName == '血氧监测' && taskProgress == 1" ui-sref="home.oxygenmonitor({'customerId':item.customerId,'type':2,'commissionerTaskId':item.commissionerTaskId,'userId':item.userId,'isChecked':'isChecked'})" [hidden]="myTaskBtn['查看']">查看</em>
-                 <em *ngIf="item.missionName == '体温监测' &&taskProgress == 1" ui-sref="home.heatmonitor({'customerId':item.customerId,'type':2,'commissionerTaskId':item.commissionerTaskId,'userId':item.userId,'isChecked':'isChecked'})" [hidden]="myTaskBtn['查看']">查看</em>
+                 <em  *ngIf="(item.missionName == '建档' || item.missionName=='月度报告')&&taskProgress == 1 "  (click)="handleDealTask(item,-1)" [hidden]="myTaskBtn['查看']">查看</em>
+                 <em  *ngIf="item.missionName == '血糖监测' && taskProgress == 1" [routerLink]="['/home/taskinfo',item.userId,item.customerId,item.commissionerTaskId,1]" [hidden]="myTaskBtn['查看']">查看</em>
+                 <em *ngIf="item.missionName == '血压监测' && taskProgress == 1" [routerLink]="['/home/taskinfo',item.userId,item.customerId,item.commissionerTaskId,2]"  [hidden]="myTaskBtn['查看']">查看</em>
+                 <em *ngIf="item.missionName == 'BMI监测'&&taskProgress == 1"   [routerLink]="['/home/taskinfo',item.userId,item.customerId,item.commissionerTaskId,3]"  [hidden]="myTaskBtn['查看']">查看</em>
+                 <em *ngIf="item.missionName == '血氧监测' && taskProgress == 1" [routerLink]="['/home/taskinfo',item.userId,item.customerId,item.commissionerTaskId,4]"  [hidden]="myTaskBtn['查看']">查看</em>
+                 <em *ngIf="item.missionName == '体温监测' &&taskProgress == 1"  [routerLink]="['/home/taskinfo',item.userId,item.customerId,item.commissionerTaskId,5]"  [hidden]="myTaskBtn['查看']">查看</em>
 
 
               </span></td>
