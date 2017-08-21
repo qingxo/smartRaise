@@ -1,0 +1,86 @@
+$borderColor: #d2d2d2;
+
+.input-group {
+  padding: 20px 0;
+
+  & > form {
+    margin: auto;
+    text-align: left;
+
+    label {
+      min-width: 100px;
+      text-align: right;
+      padding-right: 10px;
+    }
+
+    input[type='number'],
+    input[type='text'] {
+      border: 1px solid $borderColor;
+      border-radius: 4px;
+      height: 30px;
+      width: 150px;
+      padding: 0 2px;
+    }
+
+    .line {
+      display: blcok;
+
+      .inline {
+        display: inline-block;
+        position: relative;
+      }
+
+      .units {
+        span {
+          position: absolute;
+          top: 3px;
+          right: 7px;
+          color: #a5a5a5;
+        }
+      }
+    }
+
+    .remark {
+      label {
+        vertical-align: top;
+      }
+
+      textarea {
+        border: 1px solid $borderColor;
+        border-radius: 4px;
+        width: 410px;
+        padding: 6px;
+        resize: none;
+      }
+    }
+
+    .sub {
+      text-align: center;
+
+      button {
+        color: white;
+        width: 100px;
+        height: 30px;
+        line-height: 30px;
+        display: inline-block;
+        margin: 0 auto;
+        text-align: center;
+        background-color: #6A4307;
+        border-radius: 4px;
+        border: 0;
+        cursor: pointer;
+        outline: none;
+      }
+    }
+
+    .ck {
+      padding-left: 110px;
+
+      label {
+        text-align: left;
+        padding-left: 10px;
+        min-width: 60px;
+      }
+    }
+  }
+}

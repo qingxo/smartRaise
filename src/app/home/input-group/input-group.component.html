@@ -1,0 +1,137 @@
+<div class="input-group">
+  <form class="blood-sugar" *ngIf="inputType ==1">
+    <div class="line ck">
+      <input type="radio" name="dinner" [value]="0" id="bd" [(ngModel)]="lunchTime"><label for="bd">餐前</label>
+      <input type="radio" name="dinner" [value]="1" id="ad" [(ngModel)]="lunchTime"><label for="ad">餐后</label>
+    </div>
+    <div class="line">
+      <div class="inline times">
+        <label for="">测量时间</label>
+        <ng2-flatpickr [config]="exampleOptions" [setDate]="chooseDate"></ng2-flatpickr>
+      </div>
+      <div class="inline units">
+        <label for="ss">血糖值</label>
+        <input type="number" name="ss" value="" [(ngModel)]="sugarLevel">
+        <span>mmol/L</span>
+      </div>
+    </div>
+    <div class="line remark">
+      <label for="remark">备注</label>
+      <textarea name="remark" rows="6" cols="80" id="remark" [(ngModel)]="remark"></textarea>
+    </div>
+    <div class="line sub">
+      <button type="button" name="button" (click)="save()">保存</button>
+    </div>
+  </form>
+  <form class="" *ngIf="inputType==2">
+    <div class="line">
+      <div class="inline times">
+        <label for="">测量时间</label>
+        <ng2-flatpickr [config]="exampleOptions" [setDate]="chooseDate"></ng2-flatpickr>
+      </div>
+      <div class="inline units">
+        <label for="ss">收缩压(高压)</label>
+        <input type="number" name="ss" value="" [(ngModel)]="highPressure">
+        <span>mmHg</span>
+      </div>
+    </div>
+    <div class="line">
+      <div class="inline units">
+        <label for="ll">舒张压(低压)</label>
+        <input type="number" name="ll" value="" [(ngModel)]="lowerPressure">
+        <span>mmHg</span>
+      </div>
+      <div class="inline units">
+        <label for="hh">心率</label>
+        <input type="number" name="hh" value="" [(ngModel)]='heartBeat'>
+        <span>次/分</span>
+      </div>
+    </div>
+    <div class="line remark">
+      <label for="remark">备注</label>
+      <textarea name="remark" rows="6" cols="80" id="remark" [(ngModel)]="remark"></textarea>
+    </div>
+    <div class="line sub">
+      <button type="button" name="button" (click)="save()">保存</button>
+    </div>
+  </form>
+
+  <form class="" *ngIf="inputType==3">
+    <div class="line">
+      <div class="inline times">
+        <label for="">测量时间</label>
+        <ng2-flatpickr [config]="exampleOptions" [setDate]="chooseDate"></ng2-flatpickr>
+      </div>
+      <div class="inline units">
+        <label for="ss">身高</label>
+        <input type="number" name="ss" value="" [(ngModel)]="height" (ngModelChange)="makeChange()">
+        <span>cm</span>
+      </div>
+    </div>
+    <div class="line">
+      <div class="inline units">
+        <label for="ll">体重</label>
+        <input type="number" name="ll" value="" [(ngModel)]="weight" (ngModelChange)="makeChange()">
+        <span>kg</span>
+      </div>
+      <div class="inline units">
+        <label for="hh">BMI</label>
+        <input type="number" name="hh" value="" readonly [(ngModel)]='bmi'>
+        <span>次/分</span>
+      </div>
+    </div>
+    <div class="line remark">
+      <label for="remark">备注</label>
+      <textarea name="remark" rows="6" cols="80" id="remark" [(ngModel)]="remark"></textarea>
+    </div>
+    <div class="line sub">
+      <button type="button" name="button" (click)="save()">保存</button>
+    </div>
+  </form>
+
+
+  <form class="" *ngIf="inputType==4">
+    <div class="line">
+      <div class="inline times">
+        <label for="">测量时间</label>
+        <ng2-flatpickr [config]="exampleOptions" [setDate]="chooseDate"></ng2-flatpickr>
+      </div>
+      <div class="inline units">
+        <label for="ss">血氧</label>
+        <input type="number" name="ss" value="" [(ngModel)]="bloodOxygen">
+        <span>%</span>
+      </div>
+    </div>
+    <div class="line remark">
+      <label for="remark">备注</label>
+      <textarea name="remark" rows="6" cols="80" id="remark" [(ngModel)]="remark"></textarea>
+    </div>
+    <div class="line sub">
+      <button type="button" name="button" (click)="save()">保存</button>
+    </div>
+  </form>
+
+
+  <form class="" *ngIf="inputType==5">
+    <div class="line">
+      <div class="inline times">
+        <label for="">测量时间</label>
+        <ng2-flatpickr [config]="exampleOptions" [setDate]="chooseDate"></ng2-flatpickr>
+      </div>
+      <div class="inline units">
+        <label for="ss">体温</label>
+        <input type="number" name="ss" value="" [(ngModel)]="heat">
+        <span>℃</span>
+      </div>
+    </div>
+    <div class="line remark">
+      <label for="remark">备注</label>
+      <textarea name="remark" rows="6" cols="80" id="remark" [(ngModel)]="remark"></textarea>
+    </div>
+    <div class="line sub">
+      <button type="button" name="button" (click)="save()">保存</button>
+    </div>
+  </form>
+
+
+</div>

@@ -33,24 +33,47 @@
       </div>
     </div>
 
-    <div class="mybox">
+    <div class="mybox" style="overflow:hidden">
       <div class="box-head">
         <div class="box-head-line">
           <ng-container [ngSwitch]="type">
             <ng-container *ngSwitchCase="1">血糖监测</ng-container>
+            <ng-container *ngSwitchCase="2">血压监测</ng-container>
+            <ng-container *ngSwitchCase="3">BMI监测</ng-container>
+            <ng-container *ngSwitchCase="4">血氧监测</ng-container>
+            <ng-container *ngSwitchCase="5">体温监测</ng-container>
+
           </ng-container>
         </div>
         <div class="box-tools">
           <app-line-btn [totalBtn]="['最近一天','最近七天','最近一月']" (btnInfo)="handlePeriod($event)"></app-line-btn>
         </div>
       </div>
-      <div class="" *ngIf="type == 1">
-        <app-blood-sugar [periodDay]="periodDay" [userId]="customerId"></app-blood-sugar>
+      <div class="">
+        <ng-container *ngIf="type == 1">
+          <app-blood-sugar [periodDay]="periodDay" [userId]="customerId"></app-blood-sugar>
+
+        </ng-container>
+        <ng-container *ngIf="type == 2">
+          <app-blood-pressure [periodDay]="periodDay" [userId]="customerId"></app-blood-pressure>
+        </ng-container>
+        <ng-container *ngIf="type == 3">
+          <app-bmi-line [periodDay]="periodDay" [userId]="customerId"></app-bmi-line>
+        </ng-container>
+
+        <ng-container *ngIf="type == 4">
+          <app-blood-oxygen [periodDay]="periodDay" [userId]="customerId"></app-blood-oxygen>
+        </ng-container>
+
+        <ng-container *ngIf="type == 5">
+          <app-heat-line [periodDay]="periodDay" [userId]="customerId"></app-heat-line>
+        </ng-container>
+
       </div>
     </div>
 
     <div class="addData">
-
+      <app-input-group [inputType]="type" [customerId]="customerId" [taskId]="taskId" [height]="userInfo.height" [weight]="userInfo.weight"></app-input-group>
     </div>
 
   </div>

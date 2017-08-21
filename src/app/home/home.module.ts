@@ -34,6 +34,7 @@ import { BloodOxygenComponent } from './blood-oxygen/blood-oxygen.component';
 import { HeatLineComponent } from './heat-line/heat-line.component';
 import { HealthReportComponent } from './health-report/health-report.component';
 import { HealthMonitorComponent } from './health-monitor/health-monitor.component';
+import { InputGroupComponent } from './input-group/input-group.component';
 
 @NgModule({
   imports: [
@@ -74,7 +75,8 @@ import { HealthMonitorComponent } from './health-monitor/health-monitor.componen
     BloodOxygenComponent,
     HeatLineComponent,
     HealthReportComponent,
-    HealthMonitorComponent
+    HealthMonitorComponent,
+    InputGroupComponent
   ],
   providers: []
 })
