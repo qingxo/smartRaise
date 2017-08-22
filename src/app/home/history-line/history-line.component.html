@@ -1,0 +1,11 @@
+<div class="historyLine">
+  <div class="box-tools box-r">
+    <app-line-btn [totalBtn]="['最近一天','最近七天','最近一月']" (btnInfo)="changeDay($event)"></app-line-btn>
+  </div>
+  <div class="black-hole lines" #tt>
+    <echarts-ng2 [option]="option" [style]="echartsStyle"></echarts-ng2>
+    <echarts-ng2 [option]="option2" [style]="echartsStyle2"></echarts-ng2>
+
+  </div>
+  <nothing [isHidden]="nothingFlag"></nothing>
+</div>

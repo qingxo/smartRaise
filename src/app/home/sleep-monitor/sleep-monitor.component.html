@@ -62,7 +62,7 @@
       </div>
 
       <div class="historyLine " *ngIf="showTable == 1">
-        <!-- <history-line equip-no='equipNo' sources="sources"></history-line> -->
+        <app-history-line [equipNo]='equipNo' [sources]="sources"></app-history-line>
       </div>
       <div class="bedAna" *ngIf="showTable == 2">
         <!-- <bed-analysis equip-no='equipNo' sources="sources"></bed-analysis> -->

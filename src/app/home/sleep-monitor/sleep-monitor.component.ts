@@ -49,6 +49,7 @@ export class SleepMonitorComponent implements OnInit {
   }
 
   showChoosed(e, index) {
+    this.showTable = index
     for (let i = 0; i < this.el.nativeElement.children.length; i++) {
       this.el.nativeElement.children[i].className = 'mission-table'
     }
