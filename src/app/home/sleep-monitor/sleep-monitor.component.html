@@ -35,17 +35,17 @@
     <div class="mybox mybox-lit">
       <div class="box-head">
         <div class="box-head-line">
-          实时数据
+          实时数据 <span>{{moveInfo}}</span>
         </div>
       </div>
       <div class="halfpart">
-        <span>心率/HR:</span><span ng-bind="heartBeating" id="ht{{equipNo}}"></span> 次/分
+        <span>心率/HR:</span><span id="ht{{equipNo}}">{{heartBeating}}</span> 次/分
       </div>
       <div class="halfpart">
-        <span>呼吸率/RR:</span><span ng-bind="breathLevel" id="bl{{equipNo}}"></span> 次/分
+        <span>呼吸率/RR:</span><span id="bl{{equipNo}}">{{breathLevel}}</span> 次/分
       </div>
       <div class="halfpart">
-        <span>设备状态:</span><span id="sta{{equipNo}}">-</span>
+        <span>设备状态:</span><span id="sta{{equipNo}}">{{bedStatus}}</span>
       </div>
     </div>
 
@@ -57,17 +57,17 @@
     </ul>
     <div class="mybox allLines" style="min-height:350px;height:auto;width:100%;border-top: 1px solid #e5e5e5;margin-top:10px;">
 
-      <div class="" ng-if="showTable == 0">
-        <!-- <real-line equip-no='equipNo' sources="sources"></real-line> -->
+      <div class="" *ngIf="showTable == 0">
+        <app-real-line [breath]="breathInfo" [heart]="heartBeating" [move]="moveInfo" [time]="realTime"></app-real-line>
       </div>
 
-      <div class="historyLine " ng-if="showTable == 1">
+      <div class="historyLine " *ngIf="showTable == 1">
         <!-- <history-line equip-no='equipNo' sources="sources"></history-line> -->
       </div>
-      <div class="bedAna" ng-if="showTable ==2">
+      <div class="bedAna" *ngIf="showTable == 2">
         <!-- <bed-analysis equip-no='equipNo' sources="sources"></bed-analysis> -->
       </div>
-      <div class="sleepAna" ng-if="showTable ==3">
+      <div class="sleepAna" *ngIf="showTable == 3">
         <!-- <sleep-quality equip-no='equipNo' sources="sources"></sleep-quality> -->
       </div>
     </div>

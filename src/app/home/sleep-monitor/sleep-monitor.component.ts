@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router'
 import tools from '../../shared/tools'
+import * as $ from 'jquery'
 import { ClientDetailService } from '../client-detail/client-detail.service'
 @Component({
   selector: 'app-sleep-monitor',
@@ -14,6 +15,9 @@ export class SleepMonitorComponent implements OnInit {
   private pageNumber: number = 1
   private heartBeating: string = '-'
   private breathLevel: string = '-'
+  private bedStatus: string = '-'
+  private moveInfo: string = '-'
+  private realTime: string = ''
   private missionList: Array<string> = ['实时曲线', '历史曲线', '在离床分析', '睡眠质量分析']
   private missionListB: Array<string> = ['实时曲线', '历史曲线']
   private showTable: number = 0
@@ -21,6 +25,7 @@ export class SleepMonitorComponent implements OnInit {
   private equipNo: string = ''
   private item: any = {}
   private sources: string = ''
+
   @ViewChild('tt') el: ElementRef
   constructor(private route: ActivatedRoute, private clientDetailService: ClientDetailService) { }
 
@@ -97,8 +102,28 @@ export class SleepMonitorComponent implements OnInit {
       }
       $("#sta" + this.equipNo).text(status)
     } else {
-      $("#ht" + this.equipNo).text(data.Data.HR)
-      $("#bl" + this.equipNo).text(data.Data.RR)
+      // console.log(data)
+      this.breathLevel = data.Data.RR
+      this.heartBeating = data.Data.HR
+      this.moveInfo = data.Data.MV
+      this.realTime = data.Data.Time
+      let status: string = ''
+
+      switch (data.Data.BedStatus) {
+        case '1':
+          status = "在床"
+          break;
+        case '2':
+          status = '离床'
+          break;
+        case '3':
+          status = '异常'
+          break;
+        default: status = '未知'
+      }
+      this.bedStatus = status
+      // $("#ht" + this.equipNo).text(data.Data.HR)
+      // $("#bl" + this.equipNo).text(data.Data.RR)
     }
   }
 

@@ -39,6 +39,7 @@ import { TaskInfoComponent } from './task-info/task-info.component';
 import { SleepTestComponent } from './sleep-test/sleep-test.component';
 import { BestSleepLineComponent } from './best-sleep-line/best-sleep-line.component';
 import { SleepMonitorComponent } from './sleep-monitor/sleep-monitor.component';
+import { RealLineComponent } from './real-line/real-line.component';
 
 @NgModule({
   imports: [
@@ -84,7 +85,8 @@ import { SleepMonitorComponent } from './sleep-monitor/sleep-monitor.component';
     TaskInfoComponent,
     SleepTestComponent,
     BestSleepLineComponent,
-    SleepMonitorComponent
+    SleepMonitorComponent,
+    RealLineComponent
   ],
   providers: []
 })
