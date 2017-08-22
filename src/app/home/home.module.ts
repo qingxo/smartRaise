@@ -41,6 +41,7 @@ import { BestSleepLineComponent } from './best-sleep-line/best-sleep-line.compon
 import { SleepMonitorComponent } from './sleep-monitor/sleep-monitor.component';
 import { RealLineComponent } from './real-line/real-line.component';
 import { HistoryLineComponent } from './history-line/history-line.component';
+import { BedAnalysisComponent } from './bed-analysis/bed-analysis.component';
 
 @NgModule({
   imports: [
@@ -88,7 +89,8 @@ import { HistoryLineComponent } from './history-line/history-line.component';
     BestSleepLineComponent,
     SleepMonitorComponent,
     RealLineComponent,
-    HistoryLineComponent
+    HistoryLineComponent,
+    BedAnalysisComponent
   ],
   providers: []
 })

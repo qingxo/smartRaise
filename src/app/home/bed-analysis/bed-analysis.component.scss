@@ -1,0 +1,14 @@
+.bedAna {
+  margin-top: 10px;
+
+  & > div:first-child {
+    text-align: left;
+    padding-left: 10px;
+    margin-bottom: 20px;
+  }
+
+  .black-hole {
+    visibility: hidden;
+    height: 0!important;
+  }
+}
