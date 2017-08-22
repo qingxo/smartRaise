@@ -10,7 +10,7 @@
       <div class="user-info dis-{{toggleLogOutFlag}}">
         <div class="user-detail">
           <span class="user-name" (click)="showMyAccount()">账号信息</span>
-          <span class="pwd" (click)="dispearBlock()">修改密码</span>
+          <span class="pwd" (click)="open(content)">修改密码</span>
           <span class="logout" (click)="logOut()">退出账号</span>
         </div>
       </div>
@@ -42,5 +42,44 @@
     <router-outlet></router-outlet>
     <router-outlet name="walking"></router-outlet>
 
+
   </div>
+
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h3 class="modal-title">修改用户密码</h3>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="line specLine">
+        <label for=""><em class="">*</em>原密码</label>
+        <div class="inline">
+          <input class="nol sm-input" type="password" name="" value="" [(ngModel)]="oldPwd">
+        </div>
+      </div>
+      <div class="error-line">
+        {{errorOldPwd}}
+      </div>
+      <div class="line specLine">
+        <label for=""><em>*</em>新密码</label>
+        <div class="inline">
+          <input class="nol sm-input" type="password" name="" value="" [(ngModel)]="newPwd">
+        </div>
+      </div>
+      <div class="error-line">
+        {{errorNewPwd}}
+      </div>
+      <div class="line specLine">
+        <label for=""><em>*</em>确认新密码</label>
+        <div class="inline">
+          <input class="nol sm-input" type="password" name="" value="" [(ngModel)]="confirmNewPwd">
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary spec-btn" (click)="changePwd()">保存</button>
+    </div>
+  </ng-template>
 </div>

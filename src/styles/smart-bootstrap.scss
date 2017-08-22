@@ -490,6 +490,30 @@ input:focus {
           }
         }
       }
+
+      .specLine {
+        label {
+          min-width: 85px;
+          text-align: right;
+
+          em {
+            color: #F4333C;
+          }
+        }
+
+        .inline {
+          .sm-input {
+            width: 140px;
+          }
+        }
+      }
+
+      .error-line {
+        color: red;
+        padding-left: 110px;
+        margin-top: -10px;
+        font-size: 14px;
+      }
     }
   }
 }

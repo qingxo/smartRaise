@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {LoginService} from './login.service';
-import {Observable} from'rxjs/Rx';
-import {Router} from '@angular/router';
+import { LoginService } from './login.service';
+import { Observable } from 'rxjs/Rx';
+import { Router } from '@angular/router';
 import * as md5 from 'md5';
 import storage from '../shared/storage';
 @Component({
@@ -81,9 +81,9 @@ export class LoginComponent implements OnInit {
     this.loginService.login(loginParam)
       .subscribe(
       (data) => {
-        storage.set('state', data.data)
-        this.role = parseInt(storage.get('state')['role'])
         if (data.success) {
+          storage.set('state', data.data)
+          this.role = parseInt(storage.get('state')['role'])
           this.initMenu()
         } else {
           this.errorMsg = data.errMsg

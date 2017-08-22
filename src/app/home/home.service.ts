@@ -1,19 +1,22 @@
-import { Injectable} from '@angular/core';
-import {Http, Response} from '@angular/http';
-import {Observable} from 'rxjs/Rx';
-import { fromPromise } from 'rxjs/observable/fromPromise';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
+import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
+import storage from '../shared/storage'
+import { BaseService } from '../shared/base.service'
 @Injectable()
-export class HomeService {
-  constructor(public http: Http) {
+export class HomeService extends BaseService {
+  constructor(http: Http) {
+    super(http)
   }
 
-  logout(): Observable<any> {
-    return this.http.post('api/web/loginOut', '').map((res) => { return res.json() })
+  logout() {
+    return this.postInfo('api/web/loginOut', '')
   }
 
-  getMenuList(roleId: any): Observable<any> {
-    return this.http.post(`api/com/yykj/sysMenu/getPageMenuByRoleId.json?id=${roleId}`, '').map((res) => { return res.json() })
+  save(data) {
+    return this.postInfo('api/account/modifyPsd', storage.serialize(data))
+  }
+
+  getMenuList(roleId: any) {
+    return this.postInfo(`api/com/yykj/sysMenu/getPageMenuByRoleId.json?id=${roleId}`, '')
   }
 }
