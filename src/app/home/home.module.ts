@@ -38,6 +38,7 @@ import { InputGroupComponent } from './input-group/input-group.component';
 import { TaskInfoComponent } from './task-info/task-info.component';
 import { SleepTestComponent } from './sleep-test/sleep-test.component';
 import { BestSleepLineComponent } from './best-sleep-line/best-sleep-line.component';
+import { SleepMonitorComponent } from './sleep-monitor/sleep-monitor.component';
 
 @NgModule({
   imports: [
@@ -82,7 +83,8 @@ import { BestSleepLineComponent } from './best-sleep-line/best-sleep-line.compon
     InputGroupComponent,
     TaskInfoComponent,
     SleepTestComponent,
-    BestSleepLineComponent
+    BestSleepLineComponent,
+    SleepMonitorComponent
   ],
   providers: []
 })

@@ -1,0 +1,76 @@
+<div class="right-content-info sleep-monitor">
+  <div class="head-tips">
+    <span class=tips-info>睡眠管理 / <em>睡眠监测</em></span>
+  </div>
+  <div class="detail-content detail-content-pad txt-pos">
+    <div class="person-info-block">
+      <div class="info-head"> 客户信息</div>
+      <div class="table-info-person">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <thead>
+            <tr>
+              <td><span>姓名</span></td>
+              <td><span>手机号</span></td>
+              <td><span>性别</span></td>
+              <td><span>年龄</span></td>
+              <td><span>注册时间</span></td>
+              <td><span>健康服务专员</span></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span>{{item.name}}</span></td>
+              <td><span><em>{{item.mobile}}</em></span></td>
+              <td><span>{{item.sex =='M'?'男':'女' }}</span></td>
+              <td><span>{{getAge(item.age)}}</span></td>
+              <td><span>{{item.createDt | date:'yyyy-MM-dd'}}</span></td>
+              <td><span>{{item.commissionerUserName || '无'}}</span></td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="mybox mybox-lit">
+      <div class="box-head">
+        <div class="box-head-line">
+          实时数据
+        </div>
+      </div>
+      <div class="halfpart">
+        <span>心率/HR:</span><span ng-bind="heartBeating" id="ht{{equipNo}}"></span> 次/分
+      </div>
+      <div class="halfpart">
+        <span>呼吸率/RR:</span><span ng-bind="breathLevel" id="bl{{equipNo}}"></span> 次/分
+      </div>
+      <div class="halfpart">
+        <span>设备状态:</span><span id="sta{{equipNo}}">-</span>
+      </div>
+    </div>
+
+    <ul class="mission-list">
+      <li #tt>
+        <span [hidden]="sources!='A'" class="mission-table " [ngClass]="{true:'show-table',false:''}[index==0]" *ngFor="let item of missionList;let index=index" (click)="showChoosed($event,index)">{{item}}</span>
+        <span [hidden]="sources!='B'" class="mission-table" [ngClass]="{true:'show-table',false:''}[index==0]" *ngFor="let item of missionListB;let index=index " (click)="showChoosed($event,index)">{{item}}</span>
+      </li>
+    </ul>
+    <div class="mybox allLines" style="min-height:350px;height:auto;width:100%;border-top: 1px solid #e5e5e5;margin-top:10px;">
+
+      <div class="" ng-if="showTable == 0">
+        <!-- <real-line equip-no='equipNo' sources="sources"></real-line> -->
+      </div>
+
+      <div class="historyLine " ng-if="showTable == 1">
+        <!-- <history-line equip-no='equipNo' sources="sources"></history-line> -->
+      </div>
+      <div class="bedAna" ng-if="showTable ==2">
+        <!-- <bed-analysis equip-no='equipNo' sources="sources"></bed-analysis> -->
+      </div>
+      <div class="sleepAna" ng-if="showTable ==3">
+        <!-- <sleep-quality equip-no='equipNo' sources="sources"></sleep-quality> -->
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -39,7 +39,7 @@
 
               </span></td>
             <td><span class="opt">
-              <em [hidden]="sleepBtn['监测数据']&&!item.equipmentNo"   ui-sref="home.sleepmonitor({'userId':item.customerId,'equipNo':item.equipmentNo})" >监测数据</em>
+              <em [hidden]="sleepBtn['睡眠监测']||!item.equipmentNo"   [routerLink]="['/home/sleepmonitor',item.customerId,item.equipmentNo]" >监测数据</em>
               <em [hidden]="sleepBtn['365睡眠评估']"   [routerLink]="['/home/sleeptest',item.customerId]"  >365睡眠评估</em> </span>
             </td>
           </tr>

@@ -1,0 +1,30 @@
+.sleep-monitor {
+  .mission-list {
+    padding: 8px 20px 8px 0;
+    margin-bottom: 10px;
+    text-align: left;
+    position: relative;
+    margin-top: 10px;
+
+    li {
+      span:first-child {
+        border-left: 0;
+        padding-left: 0;
+      }
+
+      span.show-table {
+        color: #6f4101;
+      }
+
+      span {
+        float: left;
+        color: #333333;
+        border-left: 1px solid #D9D9D9;
+        border-radius: 0;
+        cursor: pointer;
+        padding: 0 7px;
+        font-size: 14px;
+      }
+    }
+  }
+}
