@@ -3,7 +3,7 @@
   <div class="detail-content">
     <div class="highline">
       <div class="lf">
-        <app-search-line placeHolderValue="服务包名/姓名/手机号" (search)="searchTable($event)"></app-search-line>
+        <app-search-line placeHolderValue="服务包名/姓名/手机号" (search)="searchTable($event)" [searchInput]="queryInfo"></app-search-line>
       </div>
     </div>
     <div class="table-info">
