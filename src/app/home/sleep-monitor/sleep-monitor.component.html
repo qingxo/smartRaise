@@ -58,7 +58,7 @@
     <div class="mybox allLines" style="min-height:350px;height:auto;width:100%;border-top: 1px solid #e5e5e5;margin-top:10px;">
 
       <div class="" *ngIf="showTable == 0">
-        <app-real-line [breath]="breathInfo" [heart]="heartBeating" [move]="moveInfo" [time]="realTime"></app-real-line>
+        <app-real-line [breath]="breathLevel" [heart]="heartBeating" [move]="moveInfo" [time]="realTime"></app-real-line>
       </div>
 
       <div class="historyLine " *ngIf="showTable == 1">

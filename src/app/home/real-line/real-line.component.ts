@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, ViewChild, ElementRef } from '@angular/core';
 import { EChartOption } from 'echarts-ng2';
 import * as moment from 'moment'
 import * as $ from 'jquery'
@@ -16,11 +16,13 @@ export class RealLineComponent implements OnInit, OnChanges {
   private moveInfo: Array<any> = []
   private heartInfo: Array<any> = []
   private realTime: Array<any> = []
-  @Input('breath') breathDot: string = ''
-  @Input('move') moveDot: string = ''
-  @Input('heart') heartDot: string = ''
-  @Input('time') timeDot: string = ''
+  private nothingFlag: boolean = false
+  @Input('breath') breathDot: number = 0
+  @Input('move') moveDot: number = 0
+  @Input('heart') heartDot: number = 0
+  @Input('time') timeDot: string = undefined
   @Input() echartsStyle: any = { 'height': '350px' }
+  @ViewChild('tt') el: ElementRef
 
   constructor() { }
 
@@ -28,14 +30,36 @@ export class RealLineComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+
     if (changes['timeDot']) {
-      console.log("the change", changes)
-      if (this.breathInfo.length > 30) {
-        this.breathInfo.shift()
-        this.heartInfo.shift()
-        this.moveInfo.shift()
-        this.realTime.shift()
+      if (changes['timeDot']['currentValue'] != undefined) {
+        if (!isNaN(this.breathDot) && !isNaN(this.moveDot) && !isNaN(this.heartDot)) {
+          changes['breathDot'] ? this.breathInfo.push([changes['timeDot']['currentValue'], changes['breathDot']['currentValue']]) : this.breathInfo.push([changes['timeDot']['currentValue'], this.breathDot])
+          changes['moveDot'] ? this.moveInfo.push([changes['timeDot']['currentValue'], changes['moveDot']['currentValue']]) : this.moveInfo.push([changes['timeDot']['currentValue'], this.moveDot])
+          changes['heartDot'] ? this.heartInfo.push([changes['timeDot']['currentValue'], changes['heartDot']['currentValue']]) : this.heartInfo.push([changes['timeDot']['currentValue'], this.heartDot])
+          changes['timeDot'] ? this.realTime.push(changes['timeDot']['currentValue']) : this.realTime.push(this.timeDot)
+          this.el.nativeElement.className = "realTimeLine"
+          this.nothingFlag = true;
+          if (this.breathInfo.length > 30) {
+            this.breathInfo.shift()
+            this.heartInfo.shift()
+            this.moveInfo.shift()
+            this.realTime.shift()
+          }
+
+          this.initBreathEcharts()
+          this.initMoveEcharts()
+          this.initHeartEcharts()
+        }
+
+      } else {
+        this.el.nativeElement.className = "realTimeLine black-hole"
+        this.nothingFlag = false
+
       }
+
+
+
 
     }
   }
@@ -171,33 +195,6 @@ export class RealLineComponent implements OnInit, OnChanges {
       ]
     }
   }
-
-  // // 获取实时数据
-  // getRealTimeData() {
-  //   var self = this
-  //   let option = {}
-  //   if (this.equipNo == '' || this.equipNo == null) {
-  //     return
-  //   }
-  //   if (this.sources == 'A') {
-  //     option = {
-  //       topics: [
-  //         window['mqttHelper']['subscribeTopic'].getSingleBcgData('' + this.equipNo), // 主题-体征数据（呼吸、心率）
-  //         window['mqttHelper']['subscribeTopic'].getSingleLeaveBedData('' + this.equipNo) // 主题-设备状态（设备状态：0，离床；1，在床；2，异常）
-  //       ],
-  //       dealData: (topic, data) => {
-  //         this.livingData(data)
-  //       }
-  //     }
-  //     window['mqttHelper'].connect(option)
-  //
-  //   } else {
-  //
-  //     window['sleepcareAPI'].beginReceiveData(this.equipNo, (res) => {
-  //       this.livingData(res)
-  //     })
-  //   }
-  // }
 
   livingData(data) {
     if ($('.realTimeLine').hasClass('black-hole')) {
