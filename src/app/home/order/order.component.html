@@ -30,9 +30,11 @@
             <td><span>{{item.commissionerUserName || '无'}}</span></td>
             <td><span>{{item.statue =='1'?'已启动':item.statue=='2'?'已停止':'未启动'}}</span></td>
             <td><span class="opt">
-                 <em routerLink="/home/orderdetail" [queryParams]="{'pkgId':item.serviceOrderId}" [hidden]="orderBtn['详情']">详情</em>
-                 <em routerLink="/home/orderdetail" [queryParams]="{'pkgId':item.serviceOrderId}"  [hidden]="orderBtn['退订']">退订</em>
-                 <em routerLink="/home/orderdetail" [queryParams]="{'pkgId':item.serviceOrderId}"  [hidden]="orderBtn['启动']">启动</em>
+                 <em  [routerLink]="['/home/orderdetail',item.serviceOrderId]" [hidden]="orderBtn['详情']">详情</em>
+                 <em  [hidden]="item.statue!='1'"  (click)="handleStop(item.serviceOrderId)" >停止</em>
+                 <em  [hidden]="item.statue=='1'"  (click)="unPkg(item.servicePackId,item.customerId)" >退订</em>
+
+                 <em  [hidden]="item.statue=='1'|| orderBtn['启动']" (click)="handleStart(item.serviceOrderId)" >启动</em>
 
               </span></td>
           </tr>

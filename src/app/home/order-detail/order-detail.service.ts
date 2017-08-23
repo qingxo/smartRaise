@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
-import {Http} from '@angular/http'
+import { Http } from '@angular/http'
 import storage from '../../shared/storage'
+import { BaseService } from '../../shared/base.service'
 
 @Injectable()
-export class OrderDetailService {
+export class OrderDetailService extends BaseService {
 
-  constructor(private http:Http) { }
+  constructor(http: Http) { super(http) }
 
   orderDetail(data) {
-    return this.http.post('api/serviceOrder/detail/' + data ,'').map((res)=>{
-      return res.json()
-    })
+    return this.postInfo('api/serviceOrder/detail/' + data, '')
   }
 
 

@@ -17,10 +17,15 @@ export class OrderComponent implements OnInit {
   private queryInfo: string = ''
   private list: Array<any> = []
   private orderBtn: any
+  private orderId: string = ''
+  private pkgId: string = ''
+  private customerId: string = ''
   constructor(private orderService: OrderService, private activedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.queryInfo = this.activedRoute.queryParams['value']['query']
+    if (this.activedRoute.queryParams['value']) {
+      this.queryInfo = this.activedRoute.queryParams['value']['query']
+    }
     this.orderList()
     this.initBtnShow()
   }
@@ -57,6 +62,73 @@ export class OrderComponent implements OnInit {
         tools.tips(res.errMsg, '', 'error')
       }
 
+    })
+  }
+
+  unPkg(pkgId, customerId) {
+    this.pkgId = pkgId
+    this.customerId = customerId
+
+    tools.tipsConfirm('确认退订该服务？', '', 'warning', this.unSubscriptionPkg.bind(this))
+  }
+
+  unSubscriptionPkg() {
+    let data = {
+      'servicePackId': this.pkgId,
+      'customerId': this.customerId
+    }
+    tools.loading(true)
+    this.orderService.unSubscriptionPkg(data).subscribe((res) => {
+      tools.loading(false)
+      if (res.success) {
+        tools.tips("退订成功")
+        this.orderList()
+      } else {
+        tools.tips(res.errMsg, '', 'error')
+      }
+    })
+  }
+
+  handleStop(orderId) {
+    this.orderId = orderId
+    tools.tipsConfirm('确认退订该服务？', '', 'warning', this.pkgEnd.bind(this))
+  }
+
+  pkgEnd() {
+    let data = {
+      'serviceOrderId': this.orderId
+    }
+    tools.loading(true)
+
+    this.orderService.pkgEnd(data).subscribe((res) => {
+      tools.loading(false)
+      if (res.success) {
+        tools.tips("停止成功")
+        this.orderList()
+      } else {
+        tools.tips(res.errMsg, '', 'error')
+      }
+    })
+  }
+
+  handleStart(orderId) {
+    this.orderId = orderId
+    tools.tipsConfirm('确认启动该服务？', '', 'warning', this.pkgStart.bind(this))
+  }
+
+  pkgStart() {
+    let data = {
+      'serviceOrderId': this.orderId
+    }
+    tools.loading(true)
+    this.orderService.pkgStart(data).subscribe((res) => {
+      tools.loading(false)
+      if (res.success) {
+        tools.tips("启动成功")
+        this.orderList()
+      } else {
+        tools.tips(res.errMsg, '', 'error')
+      }
     })
   }
 
