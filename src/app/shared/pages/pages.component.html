@@ -1,7 +1,10 @@
 <div class="page-turning" *ngIf="pages.length>1">
+  <span class=" p-head black-hole" (click)="changePage(1)" #hh> </span>
   <span class="fc" (click)="changePage(currentPage-1)"> </span>
   <span *ngFor="let page of pages" class="{{page == currentPage ? 'cur' : ''}}" (click)="changePage(page)">{{page}}</span>
   <span class="la" (click)="changePage(currentPage+1)"></span>
+  <span class=" p-tail black-hole" (click)="goLastPage()" #tt> </span>
+
   <div class="page-info">
     共 <span>{{sum}}</span> 条数据
   </div>
