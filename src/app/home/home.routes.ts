@@ -23,6 +23,7 @@ import { HealthMonitorComponent } from './health-monitor'
 import { TaskInfoComponent } from './task-info'
 import { SleepTestComponent } from './sleep-test'
 import { SleepMonitorComponent } from './sleep-monitor'
+import { MonitorListComponent } from './monitor-list'
 export const ROUTER_CONFIG: Routes = [
   {
     path: '', component: HomeComponent,
@@ -52,7 +53,8 @@ export const ROUTER_CONFIG: Routes = [
       { path: 'healthmonitor/:userId/:customerId/:taskId/:type', component: HealthMonitorComponent },
       { path: 'taskinfo/:userId/:customerId/:taskId/:type', component: TaskInfoComponent },
       { path: 'sleeptest/:userId', component: SleepTestComponent },
-      { path: 'sleepmonitor/:customerId/:equipNo', component: SleepMonitorComponent }
+      { path: 'sleepmonitor/:customerId/:equipNo', component: SleepMonitorComponent },
+      { path: 'monitorlist/:userId', component: MonitorListComponent }
     ]
   }
 ];

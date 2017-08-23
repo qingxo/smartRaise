@@ -1,0 +1,156 @@
+<div class="right-content-info monitor-list-info">
+  <div class="head-tips">
+    <span class=tips-info>平台管理 /客户监测 / <em>监测数据</em></span>
+  </div>
+  <div class="detail-content detail-content-pad txt-pos">
+    <div class="person-info-block">
+      <div class="info-head">
+        <span>用户详情</span>
+      </div>
+      <div class="table-info-person">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <thead>
+            <tr>
+              <td><span>姓名</span></td>
+              <td><span>手机号</span></td>
+              <td><span>性别</span></td>
+              <td><span>年龄</span></td>
+              <td><span>注册时间</span></td>
+              <td><span>健康服务专员</span></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span>{{!!userInfo.name?userInfo.name:'未知'}}</span></td>
+              <td><span>{{userInfo.mobile}}</span></td>
+              <td><span>{{userInfo.sex === 'M' ? '男' : '女'}}</span></td>
+              <td><span>{{getAge(userInfo.birdthday | date:'yyyy-MM-dd')}}</span></td>
+              <td><span>{{userInfo.createDt | date:'yyyy-MM-dd'}}</span></td>
+              <td><span>{{userInfo.commissionerUserName?userInfo.commissionerUserName:'无'}}</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="mybox" style="overflow:hidden;height:auto">
+      <div class="box-head">
+        <div class="box-head-line">
+          <span>数据监测</span>
+        </div>
+        <div class="tools-other">
+          <app-line-btn [totalBtn]="['血压数据','血糖数据','BMI数据','血氧数据','体温数据']" (btnInfo)="handleClick($event)"></app-line-btn>
+        </div>
+      </div>
+
+      <div class="table-info" style="padding:5px;min-height:380px;background-color:white" [hidden]="list.length == 0">
+        <table cellpadding="0" cellspacing="0" border="0" [hidden]="taskProgress != 0">
+          <thead>
+            <tr>
+              <td><span>测量时间</span></td>
+              <td><span>舒张压(mmHG)</span></td>
+              <td><span>收缩压(mmHG)</span></td>
+              <td><span>心率(bpm)</span></td>
+              <td><span>来源</span></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of list">
+              <td><span>{{item.measurementTime}}</span></td>
+              <td><span>{{item.stretchPressure}}</span></td>
+              <td><span>{{item.systolicPressure}}</span></td>
+              <td><span>{{item.heartRateValue}}</span></td>
+              <td><span>{{item.sources == '0'?'自己输入':item.sources=='1'?'专员输入':'设备测量'}}</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table cellpadding="0" cellspacing="0" border="0" [hidden]="taskProgress != 1">
+          <thead>
+            <tr>
+              <td><span>测量时间</span></td>
+              <td><span>类型</span></td>
+              <td><span>血糖(mmol/L)</span></td>
+              <td><span>来源</span></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of list">
+              <td><span>{{item.measurementTime}}</span></td>
+              <td><span>{{item.timeSlot == '0'?'餐前':'餐后'}}</span></td>
+              <td><span>{{item.sugarValue}}</span></td>
+              <td><span>{{item.sources == '0'?'自己输入':item.sources=='1'?'专员输入':'设备测量'}}</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table cellpadding="0" cellspacing="0" border="0" [hidden]="taskProgress != 2">
+          <thead>
+            <tr>
+              <td><span>测量时间</span></td>
+              <td><span>身高</span></td>
+              <td><span>体重</span></td>
+              <td><span>BMI</span></td>
+              <td><span>来源</span></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of list">
+              <td><span>{{item.occurDt | date:'yyyy-MM-dd HH:mm:ss'}}</span></td>
+              <td><span>{{item.height}}</span></td>
+              <td><span>{{item.weight}}</span></td>
+              <td><span>{{item.bmi}}</span></td>
+              <td><span>{{item.sources == 'YYH-my'?'自己输入':item.sources=='YYH-zy'?'专员输入':'设备测量'}}</span></td>
+
+            </tr>
+          </tbody>
+        </table>
+
+        <table cellpadding="0" cellspacing="0" border="0" [hidden]="taskProgress != 3">
+          <thead>
+            <tr>
+              <td><span>测量时间</span></td>
+              <td><span>血氧</span></td>
+              <td><span>备注</span></td>
+              <td><span>来源</span></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of list" ng-if="item.signType=='spo2'">
+              <td><span>{{item.occurDt | date:'yyyy-MM-dd HH:mm:ss'}}</span></td>
+              <td><span>{{item.spo2}}</span></td>
+              <td><span>{{item.remark}}</span></td>
+              <td><span>{{item.sources == 'YYH-my'?'自己输入':item.sources=='YYH-zy'?'专员输入':'设备测量'}}</span></td>
+
+            </tr>
+          </tbody>
+        </table>
+
+        <table cellpadding="0" cellspacing="0" border="0" [hidden]="taskProgress != 4">
+          <thead>
+            <tr>
+              <td><span>测量时间</span></td>
+              <td><span>体温</span></td>
+              <td><span>备注</span></td>
+              <td><span>来源</span></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of list" [hidden]="item.signType!='temp'">
+              <td><span>{{item.occurDt | date:'yyyy-MM-dd HH:mm:ss'}}</span></td>
+              <td><span>{{item.temp}}</span></td>
+              <td><span>{{item.remark}}</span></td>
+              <td><span>{{item.sources == 'YYH-my'?'自己输入':item.sources=='YYH-zy'?'专员输入':'设备测量'}}</span></td>
+
+            </tr>
+          </tbody>
+        </table>
+
+        <app-pages [pages]=pagination (pageInfo)="pageTurning($event)" [currentPage]=pageNumber [sum]=totalCount></app-pages>
+      </div>
+      <nothing [isHidden]="list.length != 0"></nothing>
+
+
+    </div>
+  </div>
+</div>

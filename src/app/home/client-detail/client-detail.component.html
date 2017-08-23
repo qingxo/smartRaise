@@ -93,36 +93,6 @@
 
     </div>
 
-    <!-- <div class="mybox mybox-lit">
-      <div class="info-head-inline">
-        <span>实时数据</span>
-      </div>
-      <div class="halfpart">
-        <span>心率/HR:</span><span ng-bind="heartBeating" id="ht{{equipNo}}"></span> 次/分
-      </div>
-      <div class="halfpart">
-        <span>呼吸率/RR:</span><span ng-bind="breathLevel" id="bl{{equipNo}}"></span> 次/分
-      </div>
-      <div class="halfpart">
-        <span>设备状态:</span><span id="sta{{equipNo}}">-</span>
-      </div>
-    </div> -->
-
-    <!-- <div class="mybox mybox-h1 mybox-h1-{{bedList.length}}">
-      <div class="box-head">
-        <div class="box-head-line">智能床数据</div>
-        <div class="box-tools">
-          <span class="day-1-{{periodDay}}" (click)="changePeriodDay(1)">最近一天</span><span class="day-7-{{periodDay}}" (click)="changePeriodDay(7)">最近七天</span><span class="day-30-{{periodDay}}" (click)="changePeriodDay(30)">最近一月</span>
-        </div>
-      </div>
-      <div class="show-info-{{bedList.length}}">
-        <echarts-ng2 [option]="optionOne"></echarts-ng2>
-        <echarts-ng2 [option]="optionFour"></echarts-ng2>
-      </div>
-      <nothing [isHidden]="bedList.length == 0?false:true"></nothing>
-    </div> -->
-
-
     <div class="mybox" style="height:1100px">
       <div class="box-head">
         <div class="box-head-line">健康监测数据</div>
@@ -132,7 +102,7 @@
 
           </div>
           <div class="tools-all">
-            <i ui-sref="home.monitorData({'userId':userId})">全部</i>
+            <i [routerLink]="['/home/monitorlist',userId]">全部</i>
           </div>
 
         </div>
