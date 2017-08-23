@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, OnChanges, SimpleChanges, Renderer, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Output, OnChanges, SimpleChanges, Renderer, ElementRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { EChartOption } from 'echarts-ng2';
 import { BedAnalysisService } from './bed-analysis.service'
 import * as moment from 'moment'
@@ -9,7 +9,8 @@ import * as zh_lang from 'flatpickr/dist/l10n/zh.js'
   selector: 'app-bed-analysis',
   templateUrl: './bed-analysis.component.html',
   styleUrls: ['./bed-analysis.component.scss'],
-  providers: [BedAnalysisService]
+  providers: [BedAnalysisService],
+  encapsulation: ViewEncapsulation.None
 })
 export class BedAnalysisComponent implements OnInit, OnChanges {
 
@@ -27,6 +28,7 @@ export class BedAnalysisComponent implements OnInit, OnChanges {
     time_24hr: true,
     dateFormat: 'Y-m-d',
     defaultDate: this.focusDay,
+    maxDate: moment(new Date()).format('YYYY-MM-DD'),
     onChange: this.chooseDay.bind(this)
   }
 

@@ -1,0 +1,69 @@
+.sleep-quality {
+  margin-top: 10px;
+
+  & > div:first-child {
+    text-align: left;
+    padding-left: 10px;
+    margin-bottom: 20px;
+  }
+
+  .black-hole {
+    visibility: hidden;
+    height: 0!important;
+  }
+
+  .circle-line {
+    width: 30%;
+    display: inline-block;
+  }
+
+  .period-zoom {
+    .ques {
+      display: inline-block;
+      background-color: #cccccc;
+      width: 30px;
+      height: 30px;
+      border-radius: 100px;
+      vertical-align: top;
+      text-align: center;
+
+      span {
+        vertical-align: top;
+        line-height: 30px;
+      }
+    }
+
+    #moreInput {
+      display: inline-block;
+
+      div.flatpickr-wrapper {
+        div.ng2-flatpickr-input-container {
+          .flatpickr-input[readonly] {
+            background: url('/assets/images/calender-i.png') right 0 no-repeat!important;
+            background-size: 30px 30px;
+            width: 200px;
+            height: 30px;
+            border: 1px solid #d2d2d2;
+            border-radius: 4px;
+            color: #333333;
+            padding: 2px 4px;
+          }
+        }
+      }
+    }
+
+    .ques:hover {
+      background-color: #bbbbbb;
+    }
+
+    .block-table {
+      position: absolute;
+      top: 33px;
+      left: 315px;
+      border: 1px solid #bbbbbb;
+      padding: 10px 20px;
+      z-index: 10;
+      background-color: white;
+    }
+  }
+}

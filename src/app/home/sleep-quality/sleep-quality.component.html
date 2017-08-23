@@ -1,0 +1,44 @@
+<div class="sleep-quality">
+
+  <div class="period-zoom" style="position:relative">
+    <label for="">分析时段</label>
+    <div class="inline date-input" id="moreInput" style="position:relative;display:inline-block;width:200px">
+      <ng2-flatpickr [config]="exampleOptions"></ng2-flatpickr>
+    </div>
+    <div class="ques" style="display:inline-block" (mouseover)="showSomething(true)" (mouseout)="showSomething(false)">
+      <span>?</span>
+    </div>
+    <div class="block-table black-hole" #bb>
+      <p>恢复程度：恢复程度百分比越大,夜晚睡眠对消除疲劳,恢复精力的作用程度越好</p>
+      <p>放松程度：放松程度百分比越大，身体放松程度越好</p>
+      <p>睡眠质量：睡眠质量百分比越大睡眠状况越好</p>
+      <p>平均呼吸：夜晚睡眠时间呼吸平均值</p>
+      <p>平均心率：夜晚睡眠时间心率平均值</p>
+      <p>睡眠占比：进入睡眠后的深睡、浅睡和快速眼动占比，深睡占比越大睡眠程度越好</p>
+    </div>
+  </div>
+  <div class="circle-zoom black-hole" #tt>
+    <div class="circle-line">
+      <echarts-ng2 [option]="option" [style]="echartsStyle"></echarts-ng2>
+    </div>
+    <div class="circle-line">
+      <echarts-ng2 [option]="option2" [style]="echartsStyle"></echarts-ng2>
+
+    </div>
+    <div class="circle-line">
+      <echarts-ng2 [option]="option3" [style]="echartsStyle"></echarts-ng2>
+    </div>
+    <div class="circle-line">
+      <echarts-ng2 [option]="option4" [style]="echartsStyle"></echarts-ng2>
+    </div>
+    <div class="circle-line">
+      <echarts-ng2 [option]="option5" [style]="echartsStyle"></echarts-ng2>
+
+    </div>
+    <div class="circle-line">
+      <echarts-ng2 [option]="option6" [style]="echartsStyle"></echarts-ng2>
+
+    </div>
+  </div>
+  <nothing [isHidden]="nothingFlag"></nothing>
+</div>
