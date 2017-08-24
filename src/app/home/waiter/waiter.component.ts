@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChange, ComponentFactoryResolver, ViewContainerRef, ViewChild } from '@angular/core';
 import { WaiterService } from './waiter.service'
 import tools from '../../shared/tools'
+import { AccountDialogsComponent } from '../account-dialogs'
+
 @Component({
   selector: 'app-waiter',
   templateUrl: './waiter.component.html',
@@ -18,12 +20,22 @@ export class WaiterComponent implements OnInit {
   private userId: any
   private waiterBtn: any
 
-  constructor(private waiterService: WaiterService) { }
+  constructor(private waiterService: WaiterService, private componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) { }
 
   ngOnInit() {
     this.waiterList()
     this.geDefaultPerson()
     this.initBtnShow()
+  }
+
+  openModal(userId) {
+    let componentFatory = this.componentFactoryResolver.resolveComponentFactory(AccountDialogsComponent)
+    let containerRef = this.viewContainerRef;
+    containerRef.clear()
+    let dd = <AccountDialogsComponent>containerRef.createComponent(componentFatory).instance
+    dd.userId = userId
+    dd.freezeRole = true
+    dd.showList = this.waiterList.bind(this)
   }
 
   initBtnShow() {

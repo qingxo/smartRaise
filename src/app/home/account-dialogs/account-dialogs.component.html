@@ -1,0 +1,109 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h3 class="modal-title">{{!isEdit?'新增':'编辑'}}账号</h3>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="msg-info">
+      <div class="lf dis-bl">
+        <label for=""><em>*</em>账户角色</label>
+        <div class="inline roles-info" style="width:300px;vertical-align:top">
+          <span [ngClass]="{true:'choosed',false:'unchoosed'}[chooseRole == '0']" (click)="chooseRoled('0')">系统管理员</span>
+          <span [ngClass]="{true:'choosed',false:'unchoosed'}[chooseRole == '1']" (click)="chooseRoled('1')">平台管理员</span>
+          <span [ngClass]="{true:'choosed',false:'unchoosed'}[chooseRole == '2']" (click)="chooseRoled('2')">健康管理专员</span>
+        </div>
+      </div>
+      <div class="lf dis-in">
+        <label for=""><em>*</em>姓名</label>
+        <div class="inline">
+          <input type="text" name="" value="" [(ngModel)]="name" [ngClass]="{true:'redBorder',false:''}[errorRealname.length>1]">
+        </div>
+      </div>
+      <div class="lf dis-in">
+        <label for=""><em>*</em>用户名</label>
+        <div class="inline">
+          <input type="text" name="" value="" [(ngModel)]="userName" [ngClass]="{true:'redBorder',false:''}[errorUserName.length>1]">
+        </div>
+      </div>
+      <div class="error" [ngClass]="{true:'error-true',false:''}[bothNames.length>1]">
+        <span>{{errorRealname}}</span>
+        <span class="sec">{{errorUserName}}</span>
+
+      </div>
+
+      <div class="lf dis-in">
+        <label for=""><em>*</em>手机号</label>
+        <div class="inline">
+          <input type="number" name="" value="" [(ngModel)]="mobile" [ngClass]="{true:'redBorder',false:''}[errorMobile.length>1]">
+        </div>
+      </div>
+      <div class="lf dis-in" [ngClass]="{true:'notShow',false:''}[isEdit]">
+        <label for=""><em>*</em>密码</label>
+        <div class="inline">
+          <input type="text" name="" value="" [(ngModel)]="pwd" [ngClass]="{true:'redBorder',false:''}[errorPwd.length>1]">
+        </div>
+      </div>
+      <div class="error" [ngClass]="{true:'error-true',false:''}[bothTwop.length>1]">
+        <span>{{errorMobile}}</span>
+        <span class="sec">{{errorPwd}}</span>
+      </div>
+      <div class="lf dis-in">
+        <label for="">性别</label>
+        <div class="inline sex-opt">
+          <span (click)="sexChoosed('M')" [ngClass]="{true:'choosed',false:''}[sex == 'M']">男</span><span [ngClass]="{true:'choosed',false:''}[sex == 'F']" (click)="sexChoosed('F')">女</span>
+        </div>
+      </div>
+      <div class="lf dis-in">
+        <label for="">生日</label>
+        <div class="inline" style="position:relative">
+          <ng2-flatpickr [config]="exampleOptions" [setDate]="birdthday"></ng2-flatpickr>
+        </div>
+      </div>
+      <div class="lf dis-in">
+        <label for="">身高</label>
+        <div class="inline pos-rev">
+          <input [ngClass]="{true:'redBorder',false:''}[errorHeight.length>1]" type="text" name="" ng-change="specH()" value="" [(ngModel)]="height"><span class="pos-ab tail-pos">cm</span>
+        </div>
+      </div>
+
+      <div class="lf dis-in">
+        <label for="">体重</label>
+        <div class="inline pos-rev">
+          <input [ngClass]="{true:'redBorder',false:''}[errorWeight.length>1]" type="text" name="" value="" ng-change="specW()" [(ngModel)]="weight"><span class="pos-ab tail-pos">kg</span>
+        </div>
+      </div>
+      <div class="error" [ngClass]="{true:'error-true',false:''}[bothhw.length>1]">
+        <span>{{errorHeight}}</span>
+        <span class="sel">{{errorWeight}}</span>
+      </div>
+
+      <div class="lf dis-bl">
+        <label for="">邮箱</label>
+        <div class="inline">
+          <input type="text" name="" value="" [(ngModel)]="email" [ngClass]="{true:'redBorder',false:''}[errorEmail.length>1]">
+        </div>
+      </div>
+      <div class="error" [ngClass]="{true:'error-true',false:''}[errorEmail.length>1]">
+        <span>{{errorEmail}}</span>
+      </div>
+
+      <div class="lf dis-bl">
+        <label for="">住址</label>
+        <div class="inline more-w">
+          <input type="text" name="" value="" [(ngModel)]="address">
+        </div>
+      </div>
+      <div class="lf dis-bl">
+        <label for="">备注</label>
+        <div class="inline more-w">
+          <textarea type="text" rows="10" name="" value="" [(ngModel)]="remark"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary spec-btn" (click)="save()">确定</button>
+  </div>
+</ng-template>

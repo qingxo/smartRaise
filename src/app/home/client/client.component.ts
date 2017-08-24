@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChange, ComponentFactoryResolver, ViewContainerRef, ViewChild } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations'
 import { Router } from '@angular/router';
 import { ClientService } from './client.service';
@@ -12,6 +12,7 @@ import * as zh_lang from 'flatpickr/dist/l10n/zh.js'
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap'
 import * as moment from 'moment'
 import baseAnimation from '../../shared/myAnimation'
+import { AccountDialogsComponent } from '../account-dialogs'
 @Component({
   selector: 'app-client',
   templateUrl: './client.component.html',
@@ -84,7 +85,22 @@ export class ClientComponent implements OnInit {
   }
   private birthTime: any
   private chameleon: string = 'inactive'
-  constructor(private clientService: ClientService, private modalService: NgbModal) { }
+  private fly: number = 0
+  // @ViewChild(HostDirective) hostD: HostDirective
+  constructor(private clientService: ClientService, private modalService: NgbModal, private componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) { }
+
+
+  test() {
+    this.fly = 1
+    let componentFatory = this.componentFactoryResolver.resolveComponentFactory(AccountDialogsComponent)
+    let containerRef = this.viewContainerRef;
+    containerRef.clear()
+    // containerRef.createComponent(componentFatory)
+    let dd = <AccountDialogsComponent>containerRef.createComponent(componentFatory).instance
+    // dd.fly = 1000
+    dd.userId = '1708091452232329104'
+  }
+
 
 
   changeMe() {
@@ -436,7 +452,6 @@ export class ClientComponent implements OnInit {
       tmpIds += (this.checkList[i].id + ',')
     }
     tmpIds = tmpIds.substr(0, tmpIds.length - 1)
-    console.log(this.birdthday)
 
     var data = {
       'commissionerUserId': storage.get('state')['userId'],

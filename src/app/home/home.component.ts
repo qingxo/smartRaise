@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChange, ComponentFactoryResolver, ViewContainerRef, ViewChild } from '@angular/core';
 import storage from '../shared/storage';
 import tools from '../shared/tools'
 import { Router } from '@angular/router';
@@ -6,6 +6,7 @@ import * as $ from 'jquery'
 import { HomeService } from './home.service'
 import * as md5 from 'md5'
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap'
+import { AccountDialogsComponent } from './account-dialogs'
 
 @Component({
   selector: 'app-home',
@@ -26,11 +27,22 @@ export class HomeComponent implements OnInit {
   private confirmNewPwd: string = ''
   private closeResult: string
   private modalRef: any
-  constructor(private router: Router, private homeService: HomeService, private modalService: NgbModal) { }
+  constructor(private router: Router, private homeService: HomeService, private modalService: NgbModal, private componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) { }
 
   ngOnInit() {
     this.initUserInfo()
     this.initMenu()
+  }
+
+  openModal() {
+    let ownRole = storage.get('state')['role']
+    let userId = storage.get('state')['userId']
+    let componentFatory = this.componentFactoryResolver.resolveComponentFactory(AccountDialogsComponent)
+    let containerRef = this.viewContainerRef;
+    containerRef.clear()
+    let dd = <AccountDialogsComponent>containerRef.createComponent(componentFatory).instance
+    dd.userId = userId
+    dd.freezeRole = true
   }
 
   open(content) {

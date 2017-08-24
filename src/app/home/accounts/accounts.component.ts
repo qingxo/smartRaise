@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChange, ComponentFactoryResolver, ViewContainerRef, ViewChild } from '@angular/core';
 import { AccountsService } from './accounts.service'
 import tools from '../../shared/tools'
+import storage from '../../shared/storage'
+import { AccountDialogsComponent } from '../account-dialogs'
 
 @Component({
   selector: 'app-accounts',
@@ -18,7 +20,7 @@ export class AccountsComponent implements OnInit {
   private list: Array<any> = []
   private userId: any = -1
   private accountsBtn: any
-  constructor(private accountsService: AccountsService) { }
+  constructor(private accountsService: AccountsService, private componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) { }
 
   ngOnInit() {
     this.accountsList()
@@ -26,6 +28,19 @@ export class AccountsComponent implements OnInit {
   }
   initBtnShow() {
     this.accountsBtn = tools.initBtnShow(2, 0, 'accountsBtn')
+  }
+
+  openModal(userId) {
+    let componentFatory = this.componentFactoryResolver.resolveComponentFactory(AccountDialogsComponent)
+    let containerRef = this.viewContainerRef;
+    containerRef.clear()
+    let dd = <AccountDialogsComponent>containerRef.createComponent(componentFatory).instance
+    dd.userId = userId
+    let ownRole = storage.get('state')['role']
+    if (ownRole != 0) {
+      dd.freezeRole = true
+    }
+    dd.showList = this.accountsList.bind(this)
   }
 
 

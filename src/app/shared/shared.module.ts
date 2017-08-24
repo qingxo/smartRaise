@@ -9,6 +9,7 @@ import { UploadImageComponent } from './upload-image/upload-image.component';
 import { CardCheckDirective } from './moreDirective/card-check.directive';
 import { NothingComponent } from './nothing';
 import { LineBtnComponent } from './line-btn/line-btn.component';
+import { HostDirective } from './host.directive';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { LineBtnComponent } from './line-btn/line-btn.component';
     UploadImageComponent,
     CardCheckDirective,
     NothingComponent,
-    LineBtnComponent
+    LineBtnComponent,
+    HostDirective
   ],
   exports: [
     LineInfoComponent,

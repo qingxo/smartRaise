@@ -10,6 +10,9 @@
         新增客户
 
       </div>
+      <div class="" (click)="test()">
+        ceshi
+      </div>
 
     </div>
 
@@ -78,6 +81,8 @@
       <app-pages [pages]=pages (pageInfo)="pageTurning($event)" [currentPage]=pageNumber [sum]=totalPage></app-pages>
 
     </div>
+    <!-- <app-account-dialogs [fly]="fly"></app-account-dialogs> -->
+    <ng-template ad-host></ng-template>
   </div>
 
   <ng-template #healthPerson let-c="close" let-d="dismiss">

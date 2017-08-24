@@ -4,7 +4,7 @@
       <div class="lf">
         <app-search-line placeHolderValue="请输入姓名、手机号" (search)="searchTable($event)"></app-search-line>
       </div>
-      <div class=" rf create-btn" ui-sref="home.create({'isHealth':true})" [hidden]="waiterBtn['新增']">
+      <div class=" rf create-btn" (click)="openModal('')" [hidden]="waiterBtn['新增']">
         新增健康服务专员
       </div>
     </div>
@@ -31,7 +31,7 @@
             <td><span>{{item.mail}}</span></td>
             <!-- <td><span>{{item.num?item.num:'0'}}</span></td> -->
             <td><span class="opt">
-               <em ui-sref="home.create({'userId':item.userId,'isHealth':true})" [hidden]="waiterBtn['编辑']">编辑</em>
+               <em (click)="openModal(item.userId)" [hidden]="waiterBtn['编辑']">编辑</em>
                <em (click)="delConfirm(item.userId)" class="del" [hidden]="waiterBtn['删除']">删除</em>
                <em   [hidden] = 'item.isDefaultCommissioner==1'   (click)="defaultTips(item.userId)" [hidden]="waiterBtn['设为默认专员']">设置为默认专员</em>
             </span></td>
