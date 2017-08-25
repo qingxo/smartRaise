@@ -7,12 +7,12 @@ const proxy = require('express-http-proxy');
 const helmet = require('helmet');
 const compression = require('compression')
 const config = require('./config');
-// const qiniu = require('qiniu')
-// const bucket = config.bucket
+const qiniu = require('qiniu')
+const bucket = config.bucket
 
 //需要填写你的 Access Key 和 Secret Key
-// qiniu.conf.ACCESS_KEY = config.ACCESS_KEY;
-// qiniu.conf.SECRET_KEY = config.SECRET_KEY;
+qiniu.conf.ACCESS_KEY = config.ACCESS_KEY;
+qiniu.conf.SECRET_KEY = config.SECRET_KEY;
 
 // express 实例
 const app = express();
@@ -29,10 +29,10 @@ app.use(compression());
 app.use(express.static(path.join(__dirname, 'dist')));
 
 //构建上传策略函数
-// app.get('/uploadToken', function(req, res) {
-//   var putPolicy = new qiniu.rs.PutPolicy(bucket);
-//   res.send({"uptoken": putPolicy.token()})
-// })
+app.get('/uploadToken', function(req, res) {
+  var putPolicy = new qiniu.rs.PutPolicy(bucket);
+  res.send({"uptoken": putPolicy.token()})
+})
 
 // api proxy
 app.use('/api', proxy(config.api, {
