@@ -7,6 +7,9 @@
       <div class="rf  create-btn" (click)="clientActive(-1,clientDetail)" [@newState]="chameleon" (mouseover)="changeMe()" (mouseout)="changeMe()" [hidden]="clientBtn['新增客户']">
         新增客户
       </div>
+      <div class="create-btn rf" (click)="clientGroupActive(groupPlan)">
+        按机构分配专员
+      </div>
     </div>
 
     <div class="table-info">
@@ -107,7 +110,41 @@
   </ng-template>
 
 
+  <ng-template #groupPlan let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h3 class="modal-title">批量分配健康专员</h3>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+    </div>
+    <div class="modal-body">
+      <div class="msg-info">
 
+        <div class="line">
+          <label for="inline">机构名称</label>
+          <div class="inline beaty-sel ">
+            <select class="" name="" style="min-width:200px" [(ngModel)]="groupPlanName">
+                <option *ngFor="let item of groupPlanList" value="{{item.socialWelfareId}}">{{item.socialWelfareName}}</option>
+      </select>
+          </div>
+        </div>
+        <div class="line">
+          <label for="">健康专员</label>
+          <div class="inline beaty-sel ">
+            <select class="" name="" style="min-width:200px" [(ngModel)]="healthCarePerson">
+              <option *ngFor="let item of healthpersonlist" value="{{item.userId}}">{{item.name}}</option>
+        </select>
+          </div>
+        </div>
+        <div class="red-warning">
+          <span>提醒：该操作将机构下的所有客户分配同一健康专员。</span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary spec-btn" (click)="saveGroupPlan()" [@newState]="chameleon" (mouseover)="changeMe()" (mouseout)="changeMe()">确定</button>
+    </div>
+  </ng-template>
 
 
   <ng-template #clientDetail let-c="close" let-d="dismiss">

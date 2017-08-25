@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {Http} from '@angular/http';
+import { Http } from '@angular/http';
 import storage from '../../shared/storage';
-import {BaseService} from '../../shared/base.service';
-import {Observable} from 'rxjs/Rx';
+import { BaseService } from '../../shared/base.service';
+import { Observable } from 'rxjs/Rx';
 import { fromPromise } from 'rxjs/observable/fromPromise';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -71,6 +71,12 @@ export class ClientService extends BaseService {
 
   groupList(data) {
     return this.postInfo('api/socialWelfare/listByPage', storage.serialize(data))
+  }
+
+  //批量分配健康专员的接口
+  groupPlanFor(socialWelfareId, commissionerUserId) {
+    return this.postInfo(`api/customer/fixSpecialists/${socialWelfareId}/${commissionerUserId}`, '')
+
   }
 
 

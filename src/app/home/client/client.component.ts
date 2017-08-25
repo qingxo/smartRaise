@@ -86,6 +86,8 @@ export class ClientComponent implements OnInit {
   private birthTime: any
   private chameleon: string = 'inactive'
   private fly: number = 0
+  private groupPlanList: Array<any> = []
+  private groupPlanName: string
   // @ViewChild(HostDirective) hostD: HostDirective
   constructor(private clientService: ClientService, private modalService: NgbModal, private componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) { }
 
@@ -95,6 +97,8 @@ export class ClientComponent implements OnInit {
   changeMe() {
     this.chameleon == 'inactive' ? this.chameleon = 'active' : this.chameleon = 'inactive'
   }
+
+
   ngOnInit() {
     this.role = storage.get('state')['role']
     Flatpickr.localize(zh_lang.zh)
@@ -102,6 +106,27 @@ export class ClientComponent implements OnInit {
 
     this.initBtnShow()
     this.initAsyc()
+  }
+
+
+  clientGroupActive(content) {
+    this.initHealthCarePerson()
+    this.initGroupPlanList()
+    this.open(content)
+  }
+
+  //获取机构列表
+  initGroupPlanList() {
+    let data = {
+      'pageSize': 100,
+      'pageNum': 1
+    }
+    this.clientService.groupList(data).subscribe((res) => {
+      if (res.success) {
+        this.groupPlanList = res.data.list
+      }
+      this.groupPlanName = this.groupPlanList[0].socialWelfareId
+    })
   }
 
 
@@ -137,6 +162,20 @@ export class ClientComponent implements OnInit {
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
+  }
+
+  saveGroupPlan() {
+    tools.loading(true)
+    this.clientService.groupPlanFor(this.groupPlanName, this.healthCarePerson).subscribe((res) => {
+      tools.loading(false)
+      if (res.success) {
+        tools.tips('绑定成功')
+        this.modalRef.close()
+        this.initAsyc()
+      } else {
+        tools.tips(res.errMsg, '', 'error')
+      }
+    })
   }
 
   sexChoosed(val) {

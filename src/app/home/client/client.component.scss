@@ -2,6 +2,26 @@
   min-width: 1400px;
 }
 
+.red-warning {
+  color: #F4333C;
+  font-size: 14px;
+  width: 340px;
+}
+
+.beaty-sel select {
+  border: solid 1px #d2d2d2;
+  appearance: none;
+  -moz-appearance: none;
+  height: 30px;
+  outline: none;
+  padding: 0 5px;
+  width: 200px;
+  -webkit-appearance: none;
+  display: inline-block;
+  background: url("/assets/images/down-arrow.png") no-repeat scroll right center transparent;
+  background-size: 16px 16px;
+}
+
 .table-info table tr span {
   em.client-name {
     background: url('/assets/images/svg/i-editor.svg') right 0 no-repeat;
