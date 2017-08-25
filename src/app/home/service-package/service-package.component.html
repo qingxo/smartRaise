@@ -1,10 +1,10 @@
-<div class="right-content-info">
+<div class="right-content-info service-package-info">
   <div class="detail-content">
     <div class="highline">
       <div class="lf">
         <app-search-line placeHolderValue="请输入服务包名" (search)="searchTable($event)"></app-search-line>
       </div>
-      <div class=" rf create-btn" ui-sref="home.newpackages" [hidden]="servicePackageBtn['新增服务包']">
+      <div class=" rf create-btn" (click)="openModal('')" [hidden]="servicePackageBtn['新增服务包']">
         新增服务包
       </div>
     </div>
@@ -29,7 +29,7 @@
 
             <td><span>{{item.statue == '1'?'已上架':'已下架'}}</span></td>
             <td><span class="opt">
-                 <em  ui-sref="home.newpackages({'isEdit':true,'packageId':item.servicePackId})" [hidden]="servicePackageBtn['编辑服务包']">编辑</em>
+                 <em  (click)="openModal(item.servicePackId)" [hidden]="servicePackageBtn['编辑服务包']">编辑</em>
                  <em  (click)="handlePackageConfirm({'item':item})" class="color-{{item.statue}} del" [hidden]="servicePackageBtn['上/下架']">{{item.statue =='0'?'上架':'下架'}}</em>
               </span></td>
           </tr>

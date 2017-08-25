@@ -90,17 +90,6 @@ export class ClientComponent implements OnInit {
   constructor(private clientService: ClientService, private modalService: NgbModal, private componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) { }
 
 
-  test() {
-    this.fly = 1
-    let componentFatory = this.componentFactoryResolver.resolveComponentFactory(AccountDialogsComponent)
-    let containerRef = this.viewContainerRef;
-    containerRef.clear()
-    // containerRef.createComponent(componentFatory)
-    let dd = <AccountDialogsComponent>containerRef.createComponent(componentFatory).instance
-    // dd.fly = 1000
-    dd.userId = '1708091452232329104'
-  }
-
 
 
   changeMe() {

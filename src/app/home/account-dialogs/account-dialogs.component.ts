@@ -65,10 +65,10 @@ export class AccountDialogsComponent implements OnInit, AfterViewInit, OnChanges
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log("thechanges,", changes)
-    if (this.userId != '') {
-      this.initUserInfo()
-    }
+    // console.log("thechanges,", changes)
+    // if (this.userId != '') {
+    //   this.initUserInfo()
+    // }
   }
 
   initUserInfo() {

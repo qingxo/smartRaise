@@ -1,0 +1,117 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h3 class="modal-title">{{!isEdit?'新增':'编辑'}}服务包</h3>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="msg-info">
+      <div class="lf dis-bl">
+        <label for="" class="min">名称</label>
+        <div class="inline">
+          <input *ngIf="isEdit==false" style="width:483px;" type="text" name="" value="" [(ngModel)]="servicePackName" [ngClass]="{true:'redBorder',false:''}[errorServicePackName.length>1]">
+          <input *ngIf="isEdit==true" readonly style="width:483px;" type="text" name="" value="" [(ngModel)]="servicePackName" [ngClass]="{true:'redBorder',false:''}[errorServicePackName.length>1]">
+        </div>
+      </div>
+      <div class="error" [ngClass]="{true:'error-true',false:''}[errorServicePackName.length>1]">
+        <span>{{errorServicePackName}}</span>
+      </div>
+      <div class="lf dis-bl">
+        <label for="" class="min">图片</label>
+        <div class="inline" style="width:483px;">
+          <img class="uploadPic" src="{{imageSrc}}" alt="" id="headImg">
+          <div style="z-index:0;position:relative;
+    display: inline-block;
+    width: 62px;
+    vertical-align: top;
+    background-color: #FECA00;
+    border-radius: 4px;
+    text-align: center;">
+            <a style="line-height:26px;padding:0 2px;">选择图片</a>
+            <app-upload-image (uploadDone)="imageUploadDone($event)"></app-upload-image>
+
+          </div>
+          <div class="default-info">
+            建议尺寸 378 X 116
+          </div>
+        </div>
+      </div>
+      <div class="error" [ngClass]="{true:'error-true',false:''}[errorImg.length>1]">
+        <span>{{errorImg}}</span>
+        <span class="sec">{{errorUserName}}</span>
+      </div>
+
+      <div class="lf dis-bl">
+        <label for="" class="min">描述</label>
+        <div class="inline more-w">
+          <textarea type="text" rows="5" name="" value="" [(ngModel)]="remark" [ngClass]="{true:'redBorder',false:''}[errorRemark.length>1]"></textarea>
+        </div>
+      </div>
+      <div class="error" [ngClass]="{true:'error-true',false:''}[errorRemark.length>1]">
+        <span>{{errorRemark}}</span>
+      </div>
+
+
+      <div class="lf dis-in price-part">
+        <label for="" class="min">现价</label>
+        <div class="inline">
+          <span class="price-desc" (click)="priceDesc(currentPrice,'1')"></span>
+          <input class="price-min" [ngClass]="{true:'redBorder',false:''}[errorCurrentPrice.length>1]" type="number" name="" value="" [(ngModel)]="currentPrice">
+          <span class="price-rmb">RMB</span>
+          <span class="price-plus" (click)="pricePlus(currentPrice,'1')"></span>
+        </div>
+      </div>
+      <div class="lf dis-in price-part" style="margin-left:36px;">
+        <label for="" class="min">原价</label>
+        <div class="inline">
+          <span class="price-desc" (click)="priceDesc(oldPrice,'0')"></span>
+          <input class="price-min" [ngClass]="{true:'redBorder',false:''}[errorOldPrice.length>1]" type="number" name="" value="" [(ngModel)]="oldPrice">
+          <span class="price-rmb">RMB</span>
+          <span class="price-plus" (click)="pricePlus(currentPrice,'0')"></span>
+        </div>
+      </div>
+      <div class="error" [ngClass]="{true:'error-true',false:''}[bothprice.length>1]">
+        <span>{{errorCurrentPrice}}</span>
+        <span class="sec">{{errorOldPrice}}</span>
+      </div>
+      <div class="lf dis-bl">
+        <label for="" class="min" style="line-height:15px;width:55px;">慢病专属服务包</label>
+        <div class="inline">
+          <input type="checkbox" name="" value="" [(ngModel)]="sources">
+        </div>
+      </div>
+      <div class="lf dis-bl tasks">
+        <label for="" class="min">服务内容</label>
+        <div class="inline more-w service-info" *ngFor="let item of tasks;let index=index ">
+
+          <select class="sel-one" name="" [(ngModel)]='item.missionName'>
+              <option *ngFor="let opt of taskName" value="{{opt.missionName}}">{{opt.missionName}}</option>
+            </select>
+          <div class="sex-opt service-opt">
+            <span (click)="timeChoosed(0,index)" [ngClass]="{true:'choosed',false:''}[item.times == '0']">单次任务</span><span [ngClass]="{true:'choosed',false:''}[item.times == '1']" (click)="timeChoosed(1,index)">周期任务</span>
+          </div>
+
+          <select class="sel-two" name="" [(ngModel)]='item.count'>
+              <option *ngFor="let opt of taskCount" value="{{opt.name}}">{{opt.name}}</option>
+            </select>
+          <span class="del-info" (click)="removeTask(index)"></span>
+        </div>
+      </div>
+
+      <div class="error" [ngClass]="{true:'error-true',false:''}[errorTasks.length>1]">
+        <span>{{errorTasks}}</span>
+      </div>
+
+      <div class="lf dis-bl">
+        <label for="" class="min"></label>
+        <div class="inline more-w">
+          <span class="tt" (click)="addTasks()">添加任务</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary spec-btn" (click)="save()">确定</button>
+  </div>
+</ng-template>

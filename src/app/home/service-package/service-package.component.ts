@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChange, ComponentFactoryResolver, ViewContainerRef, ViewChild } from '@angular/core';
 import { ServicePackageService } from './service-package.service'
 import tools from '../../shared/tools'
+import { PackageDialogComponent } from '../package-dialog'
 @Component({
   selector: 'app-service-package',
   templateUrl: './service-package.component.html',
@@ -16,7 +17,7 @@ export class ServicePackageComponent implements OnInit {
   private totalPage: string
   private clickItem: any
   private servicePackageBtn: any
-  constructor(private servicePackageService: ServicePackageService) { }
+  constructor(private servicePackageService: ServicePackageService, private componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) { }
 
   ngOnInit() {
     this.packageList()
@@ -26,6 +27,17 @@ export class ServicePackageComponent implements OnInit {
   initBtnShow() {
     this.servicePackageBtn = tools.initBtnShow(0, 1, 'servicePackageBtn')
     console.log(this.servicePackageBtn)
+  }
+
+  openModal(packageId) {
+    let componentFatory = this.componentFactoryResolver.resolveComponentFactory(PackageDialogComponent)
+    let containerRef = this.viewContainerRef;
+    containerRef.clear()
+    let dd = <PackageDialogComponent>containerRef.createComponent(componentFatory).instance
+    dd.packageId = packageId
+    if (packageId == '') {
+      dd.showList = this.packageList.bind(this)
+    }
   }
 
   handlePackageConfirm(data) {
