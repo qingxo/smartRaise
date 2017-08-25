@@ -51,7 +51,6 @@ export class LoginComponent implements OnInit {
   }
 
   loginHandler() {
-    console.log('click');
     if (!this.passWord && !this.loginName) {
       this.loginErr = true;
       this.errorMsg = '请输入用户名和密码';

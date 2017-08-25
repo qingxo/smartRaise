@@ -1,5 +1,5 @@
 class Storage {
-  constructor() {}
+  constructor() { }
   get(name) {
     let value = localStorage.getItem(name);
     if (!value) {
@@ -23,15 +23,15 @@ class Storage {
 
   serialize(obj) {
     let query = '',
-      name,
+      // name,
       value,
       fullSubName,
-      subName,
+      // subName,
       subValue,
       innerObj,
       i;
 
-    for (name in obj) {
+    for (let name in obj) {
       value = obj[name];
 
       if (value instanceof Array) {
@@ -43,15 +43,16 @@ class Storage {
           query += this.serialize(innerObj) + '&';
         }
       } else if (value instanceof Object) {
-        for (subName in value) {
+        for (let subName in value) {
           subValue = value[subName];
           fullSubName = name + '[' + subName + ']';
           innerObj = {};
           innerObj[fullSubName] = subValue;
           query += this.serialize(innerObj) + '&';
         }
-      } else if (value !== undefined && value !== null)
-        {query += encodeURIComponent(name) + '=' + encodeURIComponent(value) + '&'; }
+      } else if (value !== undefined && value !== null) {
+        query += encodeURIComponent(name) + '=' + encodeURIComponent(value) + '&';
+      }
     }
 
     return query.length ? query.substr(0, query.length - 1) : query;

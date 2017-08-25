@@ -23,9 +23,9 @@ class Tools {
     } else {
       const newYear = new Date().getFullYear();
       if (spec === 0) {
-        const num = Number(newYear) - parseInt(ageNum.split('-')[0]);
+        const num = Number(newYear) - Number(ageNum.split('-')[0]);
         return num;
-      } else if (spec == 4) {
+      } else if (spec === 4) {
 
       }
 
@@ -33,13 +33,13 @@ class Tools {
   }
 
   initBtnShow(topLevel, secondLevel, btnKey) {
-    let menu = eval(storage.get('menu')),
-      jurisdiction = [], myBtn: any;
+    const menu = eval(storage.get('menu'))
+    let jurisdiction = [], myBtn: any;
     for (let i = 0; i < menu.length; i++) {
-      if (menu[i].text == SysData['level_top_array'][topLevel]) {
+      if (menu[i].text === SysData['level_top_array'][topLevel]) {
         const child = menu[i].children;
         for (let j = 0; j < child.length; j++) {
-          if (child[j].text == SysData['level_sec_array'][topLevel][secondLevel]) {
+          if (child[j].text === SysData['level_sec_array'][topLevel][secondLevel]) {
             jurisdiction = child[j].children;
           }
         }
@@ -53,7 +53,7 @@ class Tools {
     }
 
     for (const key of myBtn) {
-      if (backTarget[key['key']] == undefined) {
+      if (backTarget[key['key']] === undefined) {
         backTarget[key['key']] = false;
       }
     }
@@ -74,9 +74,9 @@ class Tools {
     if (this.aCity[parseInt(sId.substr(0, 2))] == null) return '你的身份证地区非法';
     const sBirthday = sId.substr(6, 4) + '-' + Number(sId.substr(10, 2)) + '-' + Number(sId.substr(12, 2));
     const d = new Date(sBirthday.replace(/-/g, '/'));
-    if (sBirthday != (d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate())) return '身份证上的出生日期非法';
+    if (sBirthday !== (d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate())) return '身份证上的出生日期非法';
     for (let i = 17; i >= 0; i--) iSum += (Math.pow(2, i) % 11) * parseInt(sId.charAt(17 - i), 11);
-    if (iSum % 11 != 1) return '你输入的身份证号非法';
+    if (iSum % 11 !== 1) return '你输入的身份证号非法';
     return true;
   }
 
@@ -92,7 +92,6 @@ class Tools {
   }
 
   tips(msgTitle: string, msgDetail: string = '', msgType: any = 'success', timer: number = this.TIMER) {
-    console.log('from the tips~', msgTitle, msgType);
     new swal({
       title: msgTitle,
       text: msgDetail,
@@ -125,10 +124,6 @@ class Tools {
     });
   }
 
-  callback() {
-    console.log('test callback');
-  }
-
   // 手机号码的正确检查
   checkMobile(phoneNum) {
     const reg = /^1[3|4|5|7|8][0-9]{9}$/; // 验证规则
@@ -143,7 +138,7 @@ class Tools {
     if (String(newH).split('.').length > 2) {
       target = target.substr(0, target.length - 1);
     }
-    if (String(newH).substr(-1, 1) != '.') {
+    if (String(newH).substr(-1, 1) !== '.') {
       const tmp = String(parseFloat(newH).toFixed(1));
       const p = parseFloat(tmp);
       target = p;
