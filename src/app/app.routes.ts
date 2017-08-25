@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import {LoginGuard} from './guard/LoginGuard';
 import {LoginComponent} from './login/login.component';
-import {DialogsComponent} from './dialogs'
+import {DialogsComponent} from './dialogs';
 
 export const ROUTER_CONFIG: Routes = [
   { path: 'login', component: LoginComponent },

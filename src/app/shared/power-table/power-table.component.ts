@@ -1,4 +1,4 @@
-import { Component, OnInit ,Input,Output} from '@angular/core';
+import { Component, OnInit , Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-power-table',
@@ -7,15 +7,15 @@ import { Component, OnInit ,Input,Output} from '@angular/core';
 })
 export class PowerTableComponent implements OnInit {
 
-  @Input() dataSource:Object
-  @Input() headList:Array<any> = []
-  @Input() bodyList:Array<any>
-  @Input() operate:string = ''
-  @Input() listName:Array<any> = []
+  @Input() dataSource: Object;
+  @Input() headList: Array<any> = [];
+  @Input() bodyList: Array<any>;
+  @Input() operate = '';
+  @Input() listName: Array<any> = [];
   constructor() { }
 
   ngOnInit() {
-    console.log(this.bodyList)
+    console.log(this.bodyList);
   }
   ngOnChanges() {
   }

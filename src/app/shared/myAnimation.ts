@@ -1,5 +1,5 @@
-import {trigger, state, style, animate, transition} from '@angular/animations'
-let baseAnimation = []
+import {trigger, state, style, animate, transition} from '@angular/animations';
+let baseAnimation = [];
 export default baseAnimation = [trigger('newState', [
   state('inactive', style({
     backgroundColor: '#6A4307',
@@ -11,4 +11,4 @@ export default baseAnimation = [trigger('newState', [
   })),
   transition('inactive=>active', animate('100ms ease-in')),
   transition('active=>inactive', animate('100ms ease-out'))
-])]
+])];

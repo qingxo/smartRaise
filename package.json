@@ -7,7 +7,7 @@
     "start": "ng serve --proxy-config proxy.conf.json --port 4201",
     "build": "ng build",
     "test": "ng test",
-    "lint": "ng lint",
+    "lint": "ng lint --fix",
     "e2e": "ng e2e"
   },
   "private": true,
@@ -51,7 +51,7 @@
     "@angular/compiler-cli": "^4.3.1",
     "@types/jasmine": "2.5.38",
     "@types/node": "^6.0.85",
-    "codelyzer": "~2.0.0",
+    "codelyzer": "^2.0.1",
     "jasmine-core": "~2.5.2",
     "jasmine-spec-reporter": "~3.2.0",
     "karma": "~1.4.1",

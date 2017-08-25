@@ -6,8 +6,8 @@ import { Http } from '@angular/http';
 @Injectable()
 export class HeatLineService extends BaseService {
 
-  constructor(http: Http) { super(http) }
+  constructor(http: Http) { super(http); }
   heatList(data) {
-    return this.postInfo('api/webHealthExamData/list', storage.serialize(data))
+    return this.postInfo('api/webHealthExamData/list', storage.serialize(data));
   }
 }

@@ -1,30 +1,30 @@
-import * as $ from 'jquery'
-import storage from './storage'
-import SysData from './sysData'
-import * as swal from 'sweetalert'
+import * as $ from 'jquery';
+import storage from './storage';
+import SysData from './sysData';
+import * as swal from 'sweetalert';
 class Tools {
   private aCity: object = {
-    11: "北京", 12: "天津", 13: "河北", 14: "山西",
-    15: "内蒙古", 21: "辽宁", 22: "吉林",
-    23: "黑龙江", 31: "上海", 32: "江苏",
-    33: "浙江", 34: "安徽", 35: "福建",
-    36: "江西", 37: "山东", 41: "河南", 42: "湖北", 43: "湖南",
-    44: "广东", 45: "广西", 46: "海南", 50: "重庆", 51: "四川",
-    52: "贵州", 53: "云南", 54: "西藏", 61: "陕西", 62: "甘肃",
-    63: "青海", 64: "宁夏", 65: "新疆", 71: "台湾", 81: "香港",
-    82: "澳门", 91: "国外"
-  }
+    11: '北京', 12: '天津', 13: '河北', 14: '山西',
+    15: '内蒙古', 21: '辽宁', 22: '吉林',
+    23: '黑龙江', 31: '上海', 32: '江苏',
+    33: '浙江', 34: '安徽', 35: '福建',
+    36: '江西', 37: '山东', 41: '河南', 42: '湖北', 43: '湖南',
+    44: '广东', 45: '广西', 46: '海南', 50: '重庆', 51: '四川',
+    52: '贵州', 53: '云南', 54: '西藏', 61: '陕西', 62: '甘肃',
+    63: '青海', 64: '宁夏', 65: '新疆', 71: '台湾', 81: '香港',
+    82: '澳门', 91: '国外'
+  };
 
-  private TIMER = 2000
+  private TIMER = 2000;
 
   getAge(ageNum: string, spec: number = 0) {
     if (typeof ageNum === 'undefined' || ageNum === '' || ageNum === null) {
-      return '未知'
+      return '未知';
     } else {
-      let newYear = new Date().getFullYear()
+      const newYear = new Date().getFullYear();
       if (spec === 0) {
-        let num = Number(newYear) - parseInt(ageNum.split('-')[0])
-        return num
+        const num = Number(newYear) - parseInt(ageNum.split('-')[0]);
+        return num;
       } else if (spec == 4) {
 
       }
@@ -34,65 +34,65 @@ class Tools {
 
   initBtnShow(topLevel, secondLevel, btnKey) {
     let menu = eval(storage.get('menu')),
-      jurisdiction = [], myBtn: any
-    for (var i = 0; i < menu.length; i++) {
+      jurisdiction = [], myBtn: any;
+    for (let i = 0; i < menu.length; i++) {
       if (menu[i].text == SysData['level_top_array'][topLevel]) {
-        let child = menu[i].children
-        for (var j = 0; j < child.length; j++) {
+        const child = menu[i].children;
+        for (let j = 0; j < child.length; j++) {
           if (child[j].text == SysData['level_sec_array'][topLevel][secondLevel]) {
-            jurisdiction = child[j].children
+            jurisdiction = child[j].children;
           }
         }
       }
     }
 
-    let backTarget = {}
-    myBtn = SysData[btnKey]
+    const backTarget = {};
+    myBtn = SysData[btnKey];
     for (let i = 0; i < jurisdiction.length; i++) {
       backTarget[jurisdiction[i].text] = jurisdiction[i].checked;
     }
 
-    for (let key of myBtn) {
+    for (const key of myBtn) {
       if (backTarget[key['key']] == undefined) {
-        backTarget[key['key']] = false
+        backTarget[key['key']] = false;
       }
     }
 
-    for (let key in backTarget) {
-      backTarget[key] = !backTarget[key]
+    for (const key in backTarget) {
+      backTarget[key] = !backTarget[key];
     }
 
-    return backTarget
+    return backTarget;
   }
 
   //身份证校验
   isCardID(sId) {
-    var iSum = 0;
-    var info = "";
-    if (!/^\d{17}(\d|x)$/i.test(sId)) return "你输入的身份证长度或格式错误";
-    sId = sId.replace(/x$/i, "a");
-    if (this.aCity[parseInt(sId.substr(0, 2))] == null) return "你的身份证地区非法";
-    var sBirthday = sId.substr(6, 4) + "-" + Number(sId.substr(10, 2)) + "-" + Number(sId.substr(12, 2));
-    var d = new Date(sBirthday.replace(/-/g, "/"));
-    if (sBirthday != (d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate())) return "身份证上的出生日期非法";
-    for (var i = 17; i >= 0; i--) iSum += (Math.pow(2, i) % 11) * parseInt(sId.charAt(17 - i), 11);
-    if (iSum % 11 != 1) return "你输入的身份证号非法";
+    let iSum = 0;
+    const info = '';
+    if (!/^\d{17}(\d|x)$/i.test(sId)) return '你输入的身份证长度或格式错误';
+    sId = sId.replace(/x$/i, 'a');
+    if (this.aCity[parseInt(sId.substr(0, 2))] == null) return '你的身份证地区非法';
+    const sBirthday = sId.substr(6, 4) + '-' + Number(sId.substr(10, 2)) + '-' + Number(sId.substr(12, 2));
+    const d = new Date(sBirthday.replace(/-/g, '/'));
+    if (sBirthday != (d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate())) return '身份证上的出生日期非法';
+    for (let i = 17; i >= 0; i--) iSum += (Math.pow(2, i) % 11) * parseInt(sId.charAt(17 - i), 11);
+    if (iSum % 11 != 1) return '你输入的身份证号非法';
     return true;
   }
 
   loading(flag) {
-    var html = `<div class="loading">
+    const html = `<div class="loading">
      <img src="/assets/images/loading.jpg">
-   </div>`
+   </div>`;
     if (flag) {
-      $('.smart-container').append(html)
+      $('.smart-container').append(html);
     } else {
-      $('.loading').remove()
+      $('.loading').remove();
     }
   }
 
-  tips(msgTitle: string, msgDetail: string = "", msgType: any = 'success', timer: number = this.TIMER) {
-    console.log("from the tips~", msgTitle, msgType)
+  tips(msgTitle: string, msgDetail: string = '', msgType: any = 'success', timer: number = this.TIMER) {
+    console.log('from the tips~', msgTitle, msgType);
     new swal({
       title: msgTitle,
       text: msgDetail,
@@ -101,7 +101,7 @@ class Tools {
       showConfirmButton: false,
       showCancelButton: true,
       cancelButtonText: '确定'
-    })
+    });
 
   }
 
@@ -120,39 +120,39 @@ class Tools {
       // buttonsStyling: false
     }, (isConfirm) => {
       if (isConfirm) {
-        callback()
+        callback();
       }
-    })
+    });
   }
 
   callback() {
-    console.log("test callback")
+    console.log('test callback');
   }
 
   // 手机号码的正确检查
   checkMobile(phoneNum) {
-    let reg = /^1[3|4|5|7|8][0-9]{9}$/ // 验证规则
-    let flag = reg.test(phoneNum) // true
-    return flag
+    const reg = /^1[3|4|5|7|8][0-9]{9}$/; // 验证规则
+    const flag = reg.test(phoneNum); // true
+    return flag;
   }
 
 
   //能输入数字和小数点的判断
   numberFixed(target: any) {
-    let newH = target.replace(/[^\d\.]*/g, '')
+    const newH = target.replace(/[^\d\.]*/g, '');
     if (String(newH).split('.').length > 2) {
-      target = target.substr(0, target.length - 1)
+      target = target.substr(0, target.length - 1);
     }
     if (String(newH).substr(-1, 1) != '.') {
-      let tmp = String(parseFloat(newH).toFixed(1))
-      let p = parseFloat(tmp)
-      target = p
+      const tmp = String(parseFloat(newH).toFixed(1));
+      const p = parseFloat(tmp);
+      target = p;
     }
-    return target
+    return target;
 
   }
 
 
 }
 
-export default new Tools()
+export default new Tools();

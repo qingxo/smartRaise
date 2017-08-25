@@ -1,6 +1,6 @@
-import {Injectable} from "@angular/core";
-import {XHRBackend, ConnectionBackend, RequestOptions, Request, RequestOptionsArgs, Response, Http, Headers} from "@angular/http";
-import {Observable} from "rxjs/Rx";
+import {Injectable} from '@angular/core';
+import {XHRBackend, ConnectionBackend, RequestOptions, Request, RequestOptionsArgs, Response, Http, Headers} from '@angular/http';
+import {Observable} from 'rxjs/Rx';
 // import {environment} from "../environments/environment";
 @Injectable()
 export class InterceptedHttp extends Http {

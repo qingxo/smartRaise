@@ -13,10 +13,10 @@ import { InterceptedHttp, httpFactory}   from './shared/base.http.interceptor';
 // import { requestOptionsProvider} from './shared/default.request.option';
 import { HomeModule } from './home';
 import {SharedModule} from './shared';
-import { DialogsComponent } from './dialogs/dialogs.component'
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap'
+import { DialogsComponent } from './dialogs/dialogs.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { EchartsNg2Module } from 'echarts-ng2';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 

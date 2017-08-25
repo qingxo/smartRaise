@@ -1,8 +1,8 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router'
-import tools from '../../shared/tools'
-import * as $ from 'jquery'
-import { ClientDetailService } from '../client-detail/client-detail.service'
+import { Router, ActivatedRoute } from '@angular/router';
+import tools from '../../shared/tools';
+import * as $ from 'jquery';
+import { ClientDetailService } from '../client-detail/client-detail.service';
 @Component({
   selector: 'app-sleep-monitor',
   templateUrl: './sleep-monitor.component.html',
@@ -11,56 +11,56 @@ import { ClientDetailService } from '../client-detail/client-detail.service'
 })
 export class SleepMonitorComponent implements OnInit {
 
-  private pageSize: number = 10
-  private pageNumber: number = 1
-  private heartBeating: string = '-'
-  private breathLevel: string = '-'
-  private bedStatus: string = '-'
-  private moveInfo: string = '-'
-  private realTime: string = ''
-  private missionList: Array<string> = ['实时曲线', '历史曲线', '在离床分析', '睡眠质量分析']
-  private missionListB: Array<string> = ['实时曲线', '历史曲线']
-  private showTable: number = 0
-  private customerId: string = ''
-  private equipNo: string = ''
-  private item: any = {}
-  private sources: string = ''
+  private pageSize = 10;
+  private pageNumber = 1;
+  private heartBeating = '-';
+  private breathLevel = '-';
+  private bedStatus = '-';
+  private moveInfo = '-';
+  private realTime = '';
+  private missionList: Array<string> = ['实时曲线', '历史曲线', '在离床分析', '睡眠质量分析'];
+  private missionListB: Array<string> = ['实时曲线', '历史曲线'];
+  private showTable = 0;
+  private customerId = '';
+  private equipNo = '';
+  private item: any = {};
+  private sources = '';
 
-  @ViewChild('tt') el: ElementRef
+  @ViewChild('tt') el: ElementRef;
   constructor(private route: ActivatedRoute, private clientDetailService: ClientDetailService) { }
 
   ngOnInit() {
-    this.customerId = this.route.snapshot.params['customerId']
-    this.equipNo = this.route.snapshot.params['equipNo']
-    this.getUserInfo()
+    this.customerId = this.route.snapshot.params['customerId'];
+    this.equipNo = this.route.snapshot.params['equipNo'];
+    this.getUserInfo();
   }
 
   getUserInfo() {
     this.clientDetailService.getUserInfo(this.customerId).subscribe((res) => {
       if (res.success) {
-        this.item = res.data
+        this.item = res.data;
         if (this.item.sources) {
-          this.sources = this.item.sources
-          this.getRealTimeData()
+          this.sources = this.item.sources;
+          this.getRealTimeData();
         }
 
       }
-    })
+    });
   }
 
   showChoosed(e, index) {
-    this.showTable = index
+    this.showTable = index;
     for (let i = 0; i < this.el.nativeElement.children.length; i++) {
-      this.el.nativeElement.children[i].className = 'mission-table'
+      this.el.nativeElement.children[i].className = 'mission-table';
     }
-    e.toElement.className = 'mission-table show-table'
+    e.toElement.className = 'mission-table show-table';
   }
 
   // 获取实时数据
   getRealTimeData() {
-    var self = this
-    let option = {}
-    let count = 0
+    const self = this;
+    let option = {};
+    let count = 0;
     if (this.sources == 'A') {
       option = {
         topics: [
@@ -68,68 +68,68 @@ export class SleepMonitorComponent implements OnInit {
           window['mqttHelper']['subscribeTopic'].getSingleLeaveBedData('' + this.equipNo) // 主题-设备状态（设备状态：0，离床；1，在床；2，异常）
         ],
         dealData: (topic, data) => {
-          this.livingData(data, count)
-          count++
+          this.livingData(data, count);
+          count++;
         }
-      }
-      window['mqttHelper'].connect(option)
+      };
+      window['mqttHelper'].connect(option);
 
     } else {
 
       window['sleepcareAPI'].beginReceiveData(this.equipNo, (res) => {
-        this.livingData(res, count)
-        count++
-      })
+        this.livingData(res, count);
+        count++;
+      });
     }
 
   }
   livingData(data, count) {
     if (this.sources == 'B') {
-      $("#ht" + this.equipNo).text(data.hr)
-      $("#bl" + this.equipNo).text(data.rr)
-      let status = ''
+      $('#ht' + this.equipNo).text(data.hr);
+      $('#bl' + this.equipNo).text(data.rr);
+      let status = '';
       switch (data.status) {
         case 1:
-          status = "在床"
+          status = '在床';
           break;
         case 2:
-          status = '离床'
+          status = '离床';
           break;
         case 3:
-          status = '异常'
+          status = '异常';
           break;
         default:
 
       }
-      $("#sta" + this.equipNo).text(status)
+      $('#sta' + this.equipNo).text(status);
     } else {
       // console.log(data)
-      this.breathLevel = data.Data.RR
-      this.heartBeating = data.Data.HR
-      this.moveInfo = data.Data.MV
-      this.realTime = data.Data.Time
-      let status: string = ''
+      this.breathLevel = data.Data.RR;
+      this.heartBeating = data.Data.HR;
+      this.moveInfo = data.Data.MV;
+      this.realTime = data.Data.Time;
+      let status = '';
 
       switch (data.Data.BedStatus) {
         case '1':
-          status = "在床"
+          status = '在床';
           break;
         case '2':
-          status = '离床'
+          status = '离床';
           break;
         case '3':
-          status = '异常'
+          status = '异常';
           break;
-        default: status = '未知'
+        default: status = '未知';
       }
-      this.bedStatus = status
+      this.bedStatus = status;
       // $("#ht" + this.equipNo).text(data.Data.HR)
       // $("#bl" + this.equipNo).text(data.Data.RR)
     }
   }
 
   getAge(num) {
-    return tools.getAge(num)
+    return tools.getAge(num);
   }
 
 }

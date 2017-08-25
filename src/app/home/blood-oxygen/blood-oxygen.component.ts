@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, OnChanges, SimpleChanges, Renderer, ElementRef, ViewChild } from '@angular/core';
 import { EChartOption } from 'echarts-ng2';
-import { BloodOxygenService } from './blood-oxygen.service'
-import * as moment from 'moment'
+import { BloodOxygenService } from './blood-oxygen.service';
+import * as moment from 'moment';
 @Component({
   selector: 'app-blood-oxygen',
   templateUrl: './blood-oxygen.component.html',
@@ -10,50 +10,50 @@ import * as moment from 'moment'
 })
 export class BloodOxygenComponent implements OnInit {
 
-  private option: EChartOption
-  private oxygenList: Array<any> = []
-  private xOxygenData: Array<any> = []
-  private nothingFlag: boolean = false
-  @Input() periodDay: number = 1
-  @Input() userId: string = ''
-  @Input() echartsStyle: any = { 'height': '350px' }
+  private option: EChartOption;
+  private oxygenList: Array<any> = [];
+  private xOxygenData: Array<any> = [];
+  private nothingFlag = false;
+  @Input() periodDay = 1;
+  @Input() userId = '';
+  @Input() echartsStyle: any = { 'height': '350px' };
 
-  @ViewChild('tt') el: ElementRef
+  @ViewChild('tt') el: ElementRef;
   constructor(private bloodOxygenService: BloodOxygenService) { }
 
   ngOnInit() {
-    this.oxygenDataInit()
+    this.oxygenDataInit();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.oxygenDataInit()
+    this.oxygenDataInit();
   }
 
   oxygenDataInit() {
     this.bloodOxygenService.oxygenList({ 'customerId': this.userId, 'day': this.periodDay, 'signType': 'spo2' }).subscribe((res) => {
       if (res.success) {
-        this.oxygenList = []
-        this.xOxygenData = []
-        let arr = eval(res.data)
-        for (var i = 0; i < arr.length; i++) {
-          this.oxygenList[i] = Number(arr[i].spo2)
+        this.oxygenList = [];
+        this.xOxygenData = [];
+        const arr = eval(res.data);
+        for (let i = 0; i < arr.length; i++) {
+          this.oxygenList[i] = Number(arr[i].spo2);
           if (this.periodDay == 1) {
-            this.xOxygenData[i] = moment(arr[i].createDt).format('HH:mm')
+            this.xOxygenData[i] = moment(arr[i].createDt).format('HH:mm');
           } else {
-            this.xOxygenData[i] = moment(arr[i].createDt).format('YYYY-MM-DD')
+            this.xOxygenData[i] = moment(arr[i].createDt).format('YYYY-MM-DD');
           }
         }
         if (this.oxygenList.length > 0) {
-          this.nothingFlag = true
-          this.el.nativeElement.className = ''
+          this.nothingFlag = true;
+          this.el.nativeElement.className = '';
         } else {
-          this.nothingFlag = false
-          this.el.nativeElement.className = 'black-hole'
+          this.nothingFlag = false;
+          this.el.nativeElement.className = 'black-hole';
 
         }
-        this.refreshOxygenEchart()
+        this.refreshOxygenEchart();
       }
-    })
+    });
   }
 
   refreshOxygenEchart() {
@@ -95,7 +95,7 @@ export class BloodOxygenComponent implements OnInit {
           }
         }
       ]
-    }
+    };
   }
 
 }

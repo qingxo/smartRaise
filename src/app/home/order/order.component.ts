@@ -1,9 +1,9 @@
 import { Component, OnInit, OnChanges, SimpleChange, ComponentFactoryResolver, ViewContainerRef, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { OrderService } from './order.service'
-import storage from '../../shared/storage'
-import tools from '../../shared/tools'
-import { PkginfoDialogComponent } from '../pkginfo-dialog'
+import { OrderService } from './order.service';
+import storage from '../../shared/storage';
+import tools from '../../shared/tools';
+import { PkginfoDialogComponent } from '../pkginfo-dialog';
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
@@ -11,134 +11,134 @@ import { PkginfoDialogComponent } from '../pkginfo-dialog'
   providers: [OrderService]
 })
 export class OrderComponent implements OnInit {
-  private pageSize: number = 10
-  private pageNumber: number = 1
-  private pages: Array<any> = []
-  private totalPage: number
-  private queryInfo: string = ''
-  private list: Array<any> = []
-  private orderBtn: any
-  private orderId: string = ''
-  private pkgId: string = ''
-  private customerId: string = ''
+  private pageSize = 10;
+  private pageNumber = 1;
+  private pages: Array<any> = [];
+  private totalPage: number;
+  private queryInfo = '';
+  private list: Array<any> = [];
+  private orderBtn: any;
+  private orderId = '';
+  private pkgId = '';
+  private customerId = '';
   constructor(private orderService: OrderService, private activedRoute: ActivatedRoute, private viewContainerRef: ViewContainerRef, private componentFactoryResolver: ComponentFactoryResolver) { }
 
   ngOnInit() {
     if (this.activedRoute.queryParams['value']) {
-      this.queryInfo = this.activedRoute.queryParams['value']['query']
+      this.queryInfo = this.activedRoute.queryParams['value']['query'];
     }
-    this.orderList()
-    this.initBtnShow()
+    this.orderList();
+    this.initBtnShow();
   }
 
   initBtnShow() {
-    this.orderBtn = tools.initBtnShow(0, 2, 'orderBtn')
+    this.orderBtn = tools.initBtnShow(0, 2, 'orderBtn');
   }
 
   openModal(packageId) {
-    let componentFatory = this.componentFactoryResolver.resolveComponentFactory(PkginfoDialogComponent)
-    let containerRef = this.viewContainerRef;
-    containerRef.clear()
-    let dd = <PkginfoDialogComponent>containerRef.createComponent(componentFatory).instance
-    dd.pkgId = packageId
+    const componentFatory = this.componentFactoryResolver.resolveComponentFactory(PkginfoDialogComponent);
+    const containerRef = this.viewContainerRef;
+    containerRef.clear();
+    const dd = <PkginfoDialogComponent>containerRef.createComponent(componentFatory).instance;
+    dd.pkgId = packageId;
   }
 
   searchTable(queryInfo: string) {
-    this.queryInfo = queryInfo
-    this.orderList()
+    this.queryInfo = queryInfo;
+    this.orderList();
   }
 
   pageTurning(number) {
-    this.pageNumber = number
-    this.orderList()
+    this.pageNumber = number;
+    this.orderList();
   }
 
 
   orderList() {
-    let data = {
+    const data = {
       'pageSize': this.pageSize,
       'pageNum': this.pageNumber,
       'userId': storage.get('state')['userId'],
       'query': this.queryInfo
-    }
+    };
     this.orderService.orderList(data).subscribe((res) => {
       if (res.success) {
-        this.list = res.data.list
-        this.pages = res.data.navigatepageNums
-        this.pageNumber = res.data.pageNum
-        this.totalPage = res.data.total
+        this.list = res.data.list;
+        this.pages = res.data.navigatepageNums;
+        this.pageNumber = res.data.pageNum;
+        this.totalPage = res.data.total;
       } else {
-        tools.tips(res.errMsg, '', 'error')
+        tools.tips(res.errMsg, '', 'error');
       }
 
-    })
+    });
   }
 
   unPkg(pkgId, customerId) {
-    this.pkgId = pkgId
-    this.customerId = customerId
+    this.pkgId = pkgId;
+    this.customerId = customerId;
 
-    tools.tipsConfirm('确认退订该服务？', '', 'warning', this.unSubscriptionPkg.bind(this))
+    tools.tipsConfirm('确认退订该服务？', '', 'warning', this.unSubscriptionPkg.bind(this));
   }
 
   unSubscriptionPkg() {
-    let data = {
+    const data = {
       'servicePackId': this.pkgId,
       'customerId': this.customerId
-    }
-    tools.loading(true)
+    };
+    tools.loading(true);
     this.orderService.unSubscriptionPkg(data).subscribe((res) => {
-      tools.loading(false)
+      tools.loading(false);
       if (res.success) {
-        tools.tips("退订成功")
-        this.orderList()
+        tools.tips('退订成功');
+        this.orderList();
       } else {
-        tools.tips(res.errMsg, '', 'error')
+        tools.tips(res.errMsg, '', 'error');
       }
-    })
+    });
   }
 
   handleStop(orderId) {
-    this.orderId = orderId
-    tools.tipsConfirm('确认退订该服务？', '', 'warning', this.pkgEnd.bind(this))
+    this.orderId = orderId;
+    tools.tipsConfirm('确认退订该服务？', '', 'warning', this.pkgEnd.bind(this));
   }
 
   pkgEnd() {
-    let data = {
+    const data = {
       'serviceOrderId': this.orderId
-    }
-    tools.loading(true)
+    };
+    tools.loading(true);
 
     this.orderService.pkgEnd(data).subscribe((res) => {
-      tools.loading(false)
+      tools.loading(false);
       if (res.success) {
-        tools.tips("停止成功")
-        this.orderList()
+        tools.tips('停止成功');
+        this.orderList();
       } else {
-        tools.tips(res.errMsg, '', 'error')
+        tools.tips(res.errMsg, '', 'error');
       }
-    })
+    });
   }
 
   handleStart(orderId) {
-    this.orderId = orderId
-    tools.tipsConfirm('确认启动该服务？', '', 'warning', this.pkgStart.bind(this))
+    this.orderId = orderId;
+    tools.tipsConfirm('确认启动该服务？', '', 'warning', this.pkgStart.bind(this));
   }
 
   pkgStart() {
-    let data = {
+    const data = {
       'serviceOrderId': this.orderId
-    }
-    tools.loading(true)
+    };
+    tools.loading(true);
     this.orderService.pkgStart(data).subscribe((res) => {
-      tools.loading(false)
+      tools.loading(false);
       if (res.success) {
-        tools.tips("启动成功")
-        this.orderList()
+        tools.tips('启动成功');
+        this.orderList();
       } else {
-        tools.tips(res.errMsg, '', 'error')
+        tools.tips(res.errMsg, '', 'error');
       }
-    })
+    });
   }
 
 }

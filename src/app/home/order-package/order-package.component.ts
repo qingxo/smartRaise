@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {OrderPackageService} from './order-package.service'
-import {ActivatedRoute} from '@angular/router'
-import * as swal from 'sweetalert'
-import tools from '../../shared/tools'
+import {OrderPackageService} from './order-package.service';
+import {ActivatedRoute} from '@angular/router';
+import * as swal from 'sweetalert';
+import tools from '../../shared/tools';
 @Component({
   selector: 'app-order-package',
   templateUrl: './order-package.component.html',
@@ -11,127 +11,127 @@ import tools from '../../shared/tools'
 })
 export class OrderPackageComponent implements OnInit {
 
-  private userId: string = ''
-  private pageSize: number = 100
-  private pageNumber: number = 1
-  private personBuyPkg: Array<any> = []
-  private personInfo: any = {}
-  private pages: Array<any> = []
-  private targetItem: object = {}
-  private targetIndex: number = -1
+  private userId = '';
+  private pageSize = 100;
+  private pageNumber = 1;
+  private personBuyPkg: Array<any> = [];
+  private personInfo: any = {};
+  private pages: Array<any> = [];
+  private targetItem: object = {};
+  private targetIndex: number = -1;
 
   constructor(private orderPackageService: OrderPackageService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.userId = this.route.snapshot.params['userId']
-    let data = {
+    this.userId = this.route.snapshot.params['userId'];
+    const data = {
       'pageSize': this.pageSize,
       'pageNum': this.pageNumber,
       'customerId': this.userId
-    }
+    };
 
-    this.personDetail(this.userId)
-    this.personBuyPkgInfo(data)
+    this.personDetail(this.userId);
+    this.personBuyPkgInfo(data);
   }
 
   pageTurning(evn) {
-    this.pageNumber = evn
-    let data = {
+    this.pageNumber = evn;
+    const data = {
       'pageSize': this.pageSize,
       'pageNum': this.pageNumber,
       'customerId': this.userId
-    }
-    this.personBuyPkgInfo(data)
+    };
+    this.personBuyPkgInfo(data);
   }
 
   personDetail(userId) {
     this.orderPackageService.personInfo(userId).subscribe((res) => {
       if (res.success) {
-        this.personInfo = res.data
-        console.log(this.personInfo)
+        this.personInfo = res.data;
+        console.log(this.personInfo);
       }
-    })
+    });
   }
 
   unSubscriptionPkgConfirm(item, index) {
-    this.targetItem = item
-    this.targetIndex = index
-    tools.tipsConfirm('确认退订服务?', '', 'warning', this.unSubscriptionPkg.bind(this))
+    this.targetItem = item;
+    this.targetIndex = index;
+    tools.tipsConfirm('确认退订服务?', '', 'warning', this.unSubscriptionPkg.bind(this));
 
   }
 
   unSubscriptionPkg() {
-    let data = {
+    const data = {
       'customerId': this.personInfo.customerId,
       'servicePackId': this.targetItem['servicePackId']
-    }
+    };
     this.orderPackageService.unSubscriptionPkg(data).subscribe((res) => {
       if (res.success) {
-        tools.tips("退订成功", '', 'success')
-        this.personBuyPkg[this.targetIndex].myBuyCounts = 0
+        tools.tips('退订成功', '', 'success');
+        this.personBuyPkg[this.targetIndex].myBuyCounts = 0;
       } else {
-        tools.tips(res.errMsg, '', 'error')
+        tools.tips(res.errMsg, '', 'error');
       }
-    })
+    });
   }
 
   endOrderConfirm(item, index) {
-    this.targetItem = item
-    this.targetIndex = index
+    this.targetItem = item;
+    this.targetIndex = index;
 
-    tools.tipsConfirm('确认停止服务?', '', 'warning', this.endOrder.bind(this))
+    tools.tipsConfirm('确认停止服务?', '', 'warning', this.endOrder.bind(this));
   }
 
   endOrder() {
-    let data = {
+    const data = {
       'serviceOrderId': this.targetItem['serviceOrderId'],
-    }
-    tools.loading(true)
+    };
+    tools.loading(true);
     this.orderPackageService.pkgEnd(data).subscribe((res) => {
-      tools.loading(false)
+      tools.loading(false);
       if (res.success) {
-        tools.tips("结束订单成功", '', 'success')
-        this.personBuyPkg[this.targetIndex].orderStatus = 2
+        tools.tips('结束订单成功', '', 'success');
+        this.personBuyPkg[this.targetIndex].orderStatus = 2;
       } else {
-        tools.tips(res.errMsg, '', 'error')
+        tools.tips(res.errMsg, '', 'error');
       }
-    })
+    });
   }
 
   startOrderConfirm(item, index) {
-    this.targetItem = item
-    this.targetIndex = index
-    tools.tipsConfirm('确认启动服务?', '', 'warning', this.startOrder.bind(this))
+    this.targetItem = item;
+    this.targetIndex = index;
+    tools.tipsConfirm('确认启动服务?', '', 'warning', this.startOrder.bind(this));
   }
 
   startOrder() {
-    let data = {
+    const data = {
       'serviceOrderId': this.targetItem['serviceOrderId'],
-    }
-    tools.loading(true)
+    };
+    tools.loading(true);
     this.orderPackageService.pkgStart(data).subscribe((res) => {
-      tools.loading(false)
+      tools.loading(false);
       if (res.success) {
-        tools.tips("启动成功", '', 'success')
-        this.personBuyPkg[this.targetIndex].orderStatus = '1'
+        tools.tips('启动成功', '', 'success');
+        this.personBuyPkg[this.targetIndex].orderStatus = '1';
       } else {
-        tools.tips(res.errMsg)
+        tools.tips(res.errMsg);
       }
 
     }, (res) => {
-      tools.loading(false)
-      tools.tips("网络错误", '', 'error')
-    })
+      tools.loading(false);
+      tools.tips('网络错误', '', 'error');
+    });
   }
 
   sellPackageConfirm(pkgId, item) {
-    this.targetItem = item
+    this.targetItem = item;
     if (item.sources != 'hele') {
-      tools.tipsConfirm('确定订购服务包?', '', 'warning', this.sellPackage.bind(this))
+      tools.tipsConfirm('确定订购服务包?', '', 'warning', this.sellPackage.bind(this));
     } else {
 
       if (typeof this.personInfo.cardId != 'undefined' && this.personInfo.cardId != null && this.personInfo.cardId != 'null') { //用户有身份证时
-        tools.tipsConfirm('确定订购服务包?', '', 'warning', this.sellPackage.bind(this))
+        tools.tipsConfirm('确定订购服务包?', '', 'warning', this.sellPackage.bind(this));
       } else { //用户身份证不存在时，需要输入身份证
         swal({
           title: '需要填写身份证号才能购买',
@@ -144,71 +144,71 @@ export class OrderPackageComponent implements OnInit {
         },
           (inputValue) => {
             if (inputValue) {
-              let flag = tools.isCardID(inputValue)
+              const flag = tools.isCardID(inputValue);
               if (typeof flag !== 'boolean') {
-                swal.showInputError(flag)
-                return false
+                swal.showInputError(flag);
+                return false;
               } else {
-                this.sellPackage(inputValue)
-                swal.close()
-                return true
+                this.sellPackage(inputValue);
+                swal.close();
+                return true;
               }
             }
-            if (inputValue === "") {
-              swal.showInputError('请输入身份证号')
-              return false
+            if (inputValue === '') {
+              swal.showInputError('请输入身份证号');
+              return false;
             }
-          })
+          });
       }
     }
   }
 
   sellPackage(val?: any) {
-    let card = ''
+    let card = '';
     if (val) {
-      card = val
+      card = val;
     }
-    let data = {
+    const data = {
       'servicePackId': this.targetItem['servicePackId'],
       'customerId': this.personInfo.customerId,
       'cardId': card
-    }
+    };
     this.orderPackageService.pkgBuy(data).subscribe((res) => {
       if (res.success) {
-        tools.tips("订购成功", '', 'success')
-        this.refreshPersonBuyPkg()
+        tools.tips('订购成功', '', 'success');
+        this.refreshPersonBuyPkg();
       } else {
-        tools.tips(res.errMsg, '', 'error')
+        tools.tips(res.errMsg, '', 'error');
       }
-    })
+    });
   }
 
   refreshPersonBuyPkg() {
-    var data = {
+    const data = {
       'pageSize': this.pageSize,
       'pageNum': 1,
       'customerId': this.userId
-    }
-    this.personBuyPkgInfo(data)
+    };
+    this.personBuyPkgInfo(data);
   }
 
 
   personBuyPkgInfo(data) {
     this.orderPackageService.personBuyPkg(data).subscribe((res) => {
       if (res.success) {
-        this.personBuyPkg = []
-        this.pages = res.data.navigatepageNums
+        this.personBuyPkg = [];
+        this.pages = res.data.navigatepageNums;
         for (let i = 0; i < res.data.list.length; i++) {
           if (res.data.list[i].statue == 1) { //根据statue标志，剔除掉没有上架的服务包
-            this.personBuyPkg.push(res.data.list[i])
+            this.personBuyPkg.push(res.data.list[i]);
           }
         }
       }
-    })
+    });
   }
 
   getAge(num) {
-    return tools.getAge(num)
+    return tools.getAge(num);
   }
 
 }

@@ -5,17 +5,17 @@ import { Http } from '@angular/http';
 @Injectable()
 export class AccountDialogsService extends BaseService {
 
-  constructor(http: Http) { super(http) }
+  constructor(http: Http) { super(http); }
 
   getUserDetail(userId) {
-    return this.postInfo('api/account/detail/' + userId, '')
+    return this.postInfo('api/account/detail/' + userId, '');
   }
 
   saveHealth(data) {
-    return this.postInfo('api/account/add', storage.serialize(data))
+    return this.postInfo('api/account/add', storage.serialize(data));
   }
 
   editHealth(data) {
-    return this.postInfo('api/account/modify', storage.serialize(data))
+    return this.postInfo('api/account/modify', storage.serialize(data));
   }
 }

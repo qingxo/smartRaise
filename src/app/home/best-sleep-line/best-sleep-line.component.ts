@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, OnChanges, SimpleChanges, Renderer, ElementRef, ViewChild } from '@angular/core';
 import { EChartOption } from 'echarts-ng2';
-import { BestSleepLineService } from './best-sleep-line.service'
-import * as moment from 'moment'
+import { BestSleepLineService } from './best-sleep-line.service';
+import * as moment from 'moment';
 @Component({
   selector: 'app-best-sleep-line',
   templateUrl: './best-sleep-line.component.html',
@@ -10,28 +10,28 @@ import * as moment from 'moment'
 })
 export class BestSleepLineComponent implements OnInit, OnChanges {
 
-  private option: EChartOption
-  @Input() subText: string
-  @Input() optTitle: string
-  @Input() lineData: Array<any> = []
-  @Input() timeData: Array<any> = []
-  @Input() echartsStyle: any = { 'height': '350px' }
-  @ViewChild('tt') el: ElementRef
-  private nothingFlag: boolean = false
+  private option: EChartOption;
+  @Input() subText: string;
+  @Input() optTitle: string;
+  @Input() lineData: Array<any> = [];
+  @Input() timeData: Array<any> = [];
+  @Input() echartsStyle: any = { 'height': '350px' };
+  @ViewChild('tt') el: ElementRef;
+  private nothingFlag = false;
   constructor() { }
 
   ngOnInit() {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes)
+    console.log(changes);
     if (this.lineData.length > 0) {
-      this.initLine()
-      this.el.nativeElement.className = ""
-      this.nothingFlag = true
+      this.initLine();
+      this.el.nativeElement.className = '';
+      this.nothingFlag = true;
     } else {
-      this.el.nativeElement.className = "black-hole"
-      this.nothingFlag = false
+      this.el.nativeElement.className = 'black-hole';
+      this.nothingFlag = false;
 
     }
   }
@@ -122,7 +122,7 @@ export class BestSleepLineComponent implements OnInit, OnChanges {
           }
         }
       ]
-    }
+    };
   }
 
 

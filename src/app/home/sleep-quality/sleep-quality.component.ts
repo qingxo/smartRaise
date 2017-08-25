@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
 import { EChartOption } from 'echarts-ng2';
-import * as moment from 'moment'
-import * as $ from 'jquery'
-import { SleepQualityService } from './sleep-quality.service'
+import * as moment from 'moment';
+import * as $ from 'jquery';
+import { SleepQualityService } from './sleep-quality.service';
 import { FlatpickrOptions } from 'ng2-flatpickr/ng2-flatpickr';
-import * as Flatpickr from 'flatpickr'
-import * as zh_lang from 'flatpickr/dist/l10n/zh.js'
+import * as Flatpickr from 'flatpickr';
+import * as zh_lang from 'flatpickr/dist/l10n/zh.js';
 @Component({
   selector: 'app-sleep-quality',
   templateUrl: './sleep-quality.component.html',
@@ -15,25 +15,25 @@ import * as zh_lang from 'flatpickr/dist/l10n/zh.js'
 })
 export class SleepQualityComponent implements OnInit, OnChanges {
 
-  private option: EChartOption
-  private option2: EChartOption
-  private option3: EChartOption
-  private option4: EChartOption
-  private option5: EChartOption
-  private option6: EChartOption
+  private option: EChartOption;
+  private option2: EChartOption;
+  private option3: EChartOption;
+  private option4: EChartOption;
+  private option5: EChartOption;
+  private option6: EChartOption;
 
-  private recovery: any
-  private relaxation: any
+  private recovery: any;
+  private relaxation: any;
 
-  private deepRate: any
-  private lightRate: any
-  private remRate: any
+  private deepRate: any;
+  private lightRate: any;
+  private remRate: any;
 
-  private sleepQuality: any
-  private averageHeartRate: any
-  private averageRespiration: any
-  private focusData: Array<any> = []
-  private focusDay: any = moment(new Date()).format('YYYY-MM-DD')
+  private sleepQuality: any;
+  private averageHeartRate: any;
+  private averageRespiration: any;
+  private focusData: Array<any> = [];
+  private focusDay: any = moment(new Date()).format('YYYY-MM-DD');
 
   private exampleOptions: FlatpickrOptions = {
     enableTime: false,
@@ -43,55 +43,55 @@ export class SleepQualityComponent implements OnInit, OnChanges {
     defaultDate: this.focusDay,
     maxDate: moment(new Date()).format('YYYY-MM-DD'),
     onChange: this.chooseDay.bind(this)
-  }
-  private nothingFlag: boolean = false
+  };
+  private nothingFlag = false;
 
   private backgroundColor: string;
   private color: any;
   private fontSize: string;
   private name: string;
-  private value: any
-  private styleFormat: any
-  private title: string
-  @Input() echartsStyle: any = { 'height': '350px' }
-  @Input() equipNo: string = ''
-  @ViewChild('tt') el: ElementRef
-  @ViewChild('bb') bb: ElementRef
+  private value: any;
+  private styleFormat: any;
+  private title: string;
+  @Input() echartsStyle: any = { 'height': '350px' };
+  @Input() equipNo = '';
+  @ViewChild('tt') el: ElementRef;
+  @ViewChild('bb') bb: ElementRef;
   constructor(private sleepQualityService: SleepQualityService) { }
 
   ngOnInit() {
-    Flatpickr.localize(zh_lang.zh)
-    moment.locale('zh-cn')
+    Flatpickr.localize(zh_lang.zh);
+    moment.locale('zh-cn');
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (this.equipNo != "") {
-      this.sleepAnalysis()
+    if (this.equipNo != '') {
+      this.sleepAnalysis();
     }
   }
 
   showSomething(flag) {
     if (flag) {
-      this.bb.nativeElement.className = "block-table "
+      this.bb.nativeElement.className = 'block-table ';
     } else {
-      this.bb.nativeElement.className = "block-table black-hole"
+      this.bb.nativeElement.className = 'block-table black-hole';
     }
   }
 
 
   chooseDay(val) {
-    this.focusDay = moment(new Date(val)).format('YYYY-MM-DD')
-    this.sleepAnalysis()
+    this.focusDay = moment(new Date(val)).format('YYYY-MM-DD');
+    this.sleepAnalysis();
   }
 
   showCircleZoom(flag) {
     if (flag) {
-      this.el.nativeElement.className = "circle-zoom"
-      $(".circle-zoom").removeClass('black-hole')
-      this.nothingFlag = true
+      this.el.nativeElement.className = 'circle-zoom';
+      $('.circle-zoom').removeClass('black-hole');
+      this.nothingFlag = true;
     } else {
-      this.el.nativeElement.className = "circle-zoom black-hole"
-      this.nothingFlag = false
+      this.el.nativeElement.className = 'circle-zoom black-hole';
+      this.nothingFlag = false;
     }
   }
 
@@ -99,34 +99,34 @@ export class SleepQualityComponent implements OnInit, OnChanges {
     this.sleepQualityService.sleepQuality(this.equipNo, this.focusDay).subscribe((res) => {
       console.log(res);
       if (res.success && res.data) {
-        this.showCircleZoom(true)
-        this.recovery = res.data.recovery
-        this.relaxation = res.data.relaxation
+        this.showCircleZoom(true);
+        this.recovery = res.data.recovery;
+        this.relaxation = res.data.relaxation;
 
-        this.deepRate = res.data.deepRate
-        this.lightRate = res.data.lightRate
-        this.remRate = res.data.remRate
+        this.deepRate = res.data.deepRate;
+        this.lightRate = res.data.lightRate;
+        this.remRate = res.data.remRate;
 
-        this.sleepQuality = res.data.sleepQuality
-        this.averageHeartRate = res.data.averageHeartRate
-        this.averageRespiration = res.data.averageRespiration
-        this.averagePic()
+        this.sleepQuality = res.data.sleepQuality;
+        this.averageHeartRate = res.data.averageHeartRate;
+        this.averageRespiration = res.data.averageRespiration;
+        this.averagePic();
         this.option = this.percentPic({
           value: parseFloat(this.recovery),
           name: '恢复程度'
-        })
+        });
 
         this.option2 = this.percentPic({
           value: parseFloat(this.relaxation),
           name: '放松程度',
           color: ['#cd38ea', '#d2d9e9']
-        })
+        });
 
         this.option4 = this.percentPic({
           value: parseFloat(this.sleepQuality),
           name: '睡眠质量',
           color: ['#512cb8', '#d2d9e9']
-        })
+        });
 
         this.option5 = this.percentPic({
           value: parseFloat(this.averageRespiration),
@@ -136,7 +136,7 @@ export class SleepQualityComponent implements OnInit, OnChanges {
           ],
           styleFormat: '{b}\n{c}'
 
-        })
+        });
 
         this.option6 = this.percentPic({
           value: parseFloat(this.averageHeartRate),
@@ -145,33 +145,33 @@ export class SleepQualityComponent implements OnInit, OnChanges {
             '#f98316', '#d2d9e9'
           ],
           styleFormat: '{b}\n{c}'
-        })
+        });
       } else {
-        this.showCircleZoom(false)
+        this.showCircleZoom(false);
       }
-    })
+    });
   }
 
 
   averagePic() {
-    this.focusData = []
+    this.focusData = [];
     this.focusData.push({
       value: parseInt(this.remRate),
       name: '快速眼动占比'
-    })
+    });
     this.focusData.push({
       value: parseInt(this.lightRate),
       name: '浅睡占比'
-    })
+    });
     this.focusData.push({
       value: parseInt(this.deepRate),
       name: '深睡占比'
-    })
+    });
 
     this.option3 = {
       tooltip: {
         trigger: 'none',
-        formatter: "{a} <br/>{b} : {c} ({d}%)"
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
       },
       color: [
         '#79b4ee', '#444349', '#8fee78'
@@ -216,20 +216,20 @@ export class SleepQualityComponent implements OnInit, OnChanges {
           data: this.focusData
         }
       ]
-    }
+    };
   }
 
 
   percentPic(option) {
-    var _that = this;
+    const _that = this;
 
     this.backgroundColor = '#fff';
     this.color = option.color || ['#fdc903', '#d2d9e9'];
     this.fontSize = option.fontSize || '22';
     this.name = option.name;
-    this.value = option.value
-    this.styleFormat = option.styleFormat || '{b}\n{c}%'
-    let tmpOption: any = {
+    this.value = option.value;
+    this.styleFormat = option.styleFormat || '{b}\n{c}%';
+    const tmpOption: any = {
       backgroundColor: _that.backgroundColor,
       color: _that.color,
       title: {
@@ -279,7 +279,7 @@ export class SleepQualityComponent implements OnInit, OnChanges {
           ]
         }
       ]
-    }
-    return tmpOption
+    };
+    return tmpOption;
   }
 }

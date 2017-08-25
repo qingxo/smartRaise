@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, ViewChild, ElementRef } from '@angular/core';
 import { EChartOption } from 'echarts-ng2';
-import * as moment from 'moment'
-import * as $ from 'jquery'
+import * as moment from 'moment';
+import * as $ from 'jquery';
 @Component({
   selector: 'app-real-line',
   templateUrl: './real-line.component.html',
@@ -9,20 +9,20 @@ import * as $ from 'jquery'
 })
 export class RealLineComponent implements OnInit, OnChanges {
 
-  private optionBreath: EChartOption
-  private option2: EChartOption
-  private option3: EChartOption
-  private breathInfo: Array<any> = []
-  private moveInfo: Array<any> = []
-  private heartInfo: Array<any> = []
-  private realTime: Array<any> = []
-  private nothingFlag: boolean = false
-  @Input('breath') breathDot: number = 0
-  @Input('move') moveDot: number = 0
-  @Input('heart') heartDot: number = 0
-  @Input('time') timeDot: string = undefined
-  @Input() echartsStyle: any = { 'height': '350px' }
-  @ViewChild('tt') el: ElementRef
+  private optionBreath: EChartOption;
+  private option2: EChartOption;
+  private option3: EChartOption;
+  private breathInfo: Array<any> = [];
+  private moveInfo: Array<any> = [];
+  private heartInfo: Array<any> = [];
+  private realTime: Array<any> = [];
+  private nothingFlag = false;
+  @Input('breath') breathDot = 0;
+  @Input('move') moveDot = 0;
+  @Input('heart') heartDot = 0;
+  @Input('time') timeDot: string = undefined;
+  @Input() echartsStyle: any = { 'height': '350px' };
+  @ViewChild('tt') el: ElementRef;
 
   constructor() { }
 
@@ -34,27 +34,27 @@ export class RealLineComponent implements OnInit, OnChanges {
     if (changes['timeDot']) {
       if (changes['timeDot']['currentValue'] != undefined) {
         if (!isNaN(this.breathDot) && !isNaN(this.moveDot) && !isNaN(this.heartDot)) {
-          changes['breathDot'] ? this.breathInfo.push([changes['timeDot']['currentValue'], changes['breathDot']['currentValue']]) : this.breathInfo.push([changes['timeDot']['currentValue'], this.breathDot])
-          changes['moveDot'] ? this.moveInfo.push([changes['timeDot']['currentValue'], changes['moveDot']['currentValue']]) : this.moveInfo.push([changes['timeDot']['currentValue'], this.moveDot])
-          changes['heartDot'] ? this.heartInfo.push([changes['timeDot']['currentValue'], changes['heartDot']['currentValue']]) : this.heartInfo.push([changes['timeDot']['currentValue'], this.heartDot])
-          changes['timeDot'] ? this.realTime.push(changes['timeDot']['currentValue']) : this.realTime.push(this.timeDot)
-          this.el.nativeElement.className = "realTimeLine"
+          changes['breathDot'] ? this.breathInfo.push([changes['timeDot']['currentValue'], changes['breathDot']['currentValue']]) : this.breathInfo.push([changes['timeDot']['currentValue'], this.breathDot]);
+          changes['moveDot'] ? this.moveInfo.push([changes['timeDot']['currentValue'], changes['moveDot']['currentValue']]) : this.moveInfo.push([changes['timeDot']['currentValue'], this.moveDot]);
+          changes['heartDot'] ? this.heartInfo.push([changes['timeDot']['currentValue'], changes['heartDot']['currentValue']]) : this.heartInfo.push([changes['timeDot']['currentValue'], this.heartDot]);
+          changes['timeDot'] ? this.realTime.push(changes['timeDot']['currentValue']) : this.realTime.push(this.timeDot);
+          this.el.nativeElement.className = 'realTimeLine';
           this.nothingFlag = true;
           if (this.breathInfo.length > 30) {
-            this.breathInfo.shift()
-            this.heartInfo.shift()
-            this.moveInfo.shift()
-            this.realTime.shift()
+            this.breathInfo.shift();
+            this.heartInfo.shift();
+            this.moveInfo.shift();
+            this.realTime.shift();
           }
 
-          this.initBreathEcharts()
-          this.initMoveEcharts()
-          this.initHeartEcharts()
+          this.initBreathEcharts();
+          this.initMoveEcharts();
+          this.initHeartEcharts();
         }
 
       } else {
-        this.el.nativeElement.className = "realTimeLine black-hole"
-        this.nothingFlag = false
+        this.el.nativeElement.className = 'realTimeLine black-hole';
+        this.nothingFlag = false;
 
       }
 
@@ -105,7 +105,7 @@ export class RealLineComponent implements OnInit, OnChanges {
           data: this.breathInfo
         }
       ]
-    }
+    };
   }
 
   initMoveEcharts() {
@@ -149,7 +149,7 @@ export class RealLineComponent implements OnInit, OnChanges {
           data: this.moveInfo
         }
       ]
-    }
+    };
   }
 
   initHeartEcharts() {
@@ -193,20 +193,20 @@ export class RealLineComponent implements OnInit, OnChanges {
           data: this.heartInfo
         }
       ]
-    }
+    };
   }
 
   livingData(data) {
     if ($('.realTimeLine').hasClass('black-hole')) {
-      $('.realTimeLine').removeClass('black-hole')
-      $('.nothing').addClass('black-hole')
+      $('.realTimeLine').removeClass('black-hole');
+      $('.nothing').addClass('black-hole');
     }
     if (data.Data) {
       // this.realTimeHeartLine(data.Data.HR, data.Data.Time)
       // this.realTimeBreathLine(data.Data.RR, data.Data.Time)
       // this.realTimeMoveLine(data.Data.MV, data.Data.Time)
     } else {
-      let time = moment(data.lastMsgTime).format('YYYY-MM-DD HH:mm:ss')
+      const time = moment(data.lastMsgTime).format('YYYY-MM-DD HH:mm:ss');
       // this.realTimeHeartLine(data.hr, time)
       // this.realTimeBreathLine(data.rr, time)
       // this.realTimeMoveLine(data.mv, time)

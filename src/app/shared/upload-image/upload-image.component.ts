@@ -1,4 +1,4 @@
-import { Component, OnInit ,Input, Output,EventEmitter} from '@angular/core';
+import { Component, OnInit , Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-upload-image',
@@ -7,20 +7,20 @@ import { Component, OnInit ,Input, Output,EventEmitter} from '@angular/core';
 })
 export class UploadImageComponent implements OnInit {
 
-  @Input() imgUrl:string = ''
-  @Input() customerStyle:string = ''
-  @Output() uploadDone = new EventEmitter<string>()
-  private  imageDomain:string ='http://oivkcwaj2.bkt.clouddn.com/'
+  @Input() imgUrl = '';
+  @Input() customerStyle = '';
+  @Output() uploadDone = new EventEmitter<string>();
+  private  imageDomain = 'http://oivkcwaj2.bkt.clouddn.com/';
 
   constructor() { }
 
   ngOnInit() {
-    this.uploadImage()
+    this.uploadImage();
   }
 
   uploadImage() {
-      let self = this
-      let uploader = window['Qiniu'].uploader({
+      const self = this;
+      const uploader = window['Qiniu'].uploader({
          runtimes: 'html5,flash,html4',      // 上传模式，依次退化
          browse_button: 'pickfiles',         // 上传选择的点选按钮，必需
          uptoken_url: '/uploadToken',         // Ajax请求uptoken的Url，强烈建议设置（服务端提供）
@@ -59,18 +59,18 @@ export class UploadImageComponent implements OnInit {
                     //    "key": "gogopher.jpg"
                     //  }
                     // 查看简单反馈
-                    var domain = up.getOption('domain');
+                    const domain = up.getOption('domain');
                    //  var res = JSON.parse(info);
                    //  var sourceLink = domain +"/"+ res.key; 获取上传成功后的文件的Url
                    //  console.log("the sourceLink:"+sourceLink);
                   //  self.imageUrl = constants.getQiniuDomain()+'/'+file.name
                   //  $('#headImg').attr('src','http://oivkcwaj2.bkt.clouddn.com'+'/'+file.name)
-                  self.imgUrl = self.imageDomain+file.name
-                  self.uploadDone.emit(self.imgUrl)
+                  self.imgUrl = self.imageDomain + file.name;
+                  self.uploadDone.emit(self.imgUrl);
              },
              'Error': function(up, err, errTip) {
                     //上传出错时，处理相关的事情
-                  this.uploadDone.emit(self.imgUrl)
+                  this.uploadDone.emit(self.imgUrl);
 
              },
              'UploadComplete': function() {
@@ -80,8 +80,8 @@ export class UploadImageComponent implements OnInit {
              'Key': function(up, file) {
                  // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
                  // 该配置必须要在unique_names: false，save_key: false时才生效
-                 var key = file.name;
-                 return key
+                 const key = file.name;
+                 return key;
              }
          }
      });

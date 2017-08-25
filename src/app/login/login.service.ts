@@ -10,11 +10,11 @@ import storage from '../shared/storage';
 export class LoginService {
   constructor(private http: Http) { }
   login(data: any): Observable<any> {
-    return this.http.post('api/web/login?' + data, '').map((res) => { return res.json() })
+    return this.http.post('api/web/login?' + data, '').map((res) => { return res.json(); });
   }
 
   getMenuList(roleId: any): Observable<any> {
-    return this.http.post(`api/com/yykj/sysMenu/getPageMenuByRoleId.json?id=${roleId}`, '').map((res) => { return res.json() })
+    return this.http.post(`api/com/yykj/sysMenu/getPageMenuByRoleId.json?id=${roleId}`, '').map((res) => { return res.json(); });
   }
 
 }

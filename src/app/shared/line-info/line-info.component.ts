@@ -1,4 +1,4 @@
-import { Component, OnInit ,Input} from '@angular/core';
+import { Component, OnInit , Input} from '@angular/core';
 
 @Component({
   selector: 'app-line-info',
@@ -6,7 +6,7 @@ import { Component, OnInit ,Input} from '@angular/core';
   styleUrls: ['./line-info.component.scss']
 })
 export class LineInfoComponent implements OnInit {
-  @Input() lineInfo:string = '';
+  @Input() lineInfo = '';
   constructor() { }
 
   ngOnInit() {

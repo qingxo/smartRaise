@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, OnChanges, SimpleChanges, Renderer, ElementRef, ViewChild } from '@angular/core';
 import { EChartOption } from 'echarts-ng2';
-import { BloodPressureService } from './blood-pressure.service'
-import storage from '../../shared/storage'
+import { BloodPressureService } from './blood-pressure.service';
+import storage from '../../shared/storage';
 @Component({
   selector: 'app-blood-pressure',
   templateUrl: './blood-pressure.component.html',
@@ -9,68 +9,68 @@ import storage from '../../shared/storage'
   providers: [BloodPressureService]
 })
 export class BloodPressureComponent implements OnInit, OnChanges {
-  private sources: string = ''
-  private option: EChartOption
-  private bloodPressureList: Array<any> = []
-  private bloodPressureDate: Array<any> = []
-  private heartRateValue: Array<any> = []
-  private bloodPressureHigh: Array<any> = []
-  private bloodPressureLower: Array<any> = []
-  private nothingFlag: boolean = false
-  @Input() userId: string = ''
-  @Input() periodDay: number = 1
-  @Input() echartsStyle: any = { 'height': '350px' }
+  private sources = '';
+  private option: EChartOption;
+  private bloodPressureList: Array<any> = [];
+  private bloodPressureDate: Array<any> = [];
+  private heartRateValue: Array<any> = [];
+  private bloodPressureHigh: Array<any> = [];
+  private bloodPressureLower: Array<any> = [];
+  private nothingFlag = false;
+  @Input() userId = '';
+  @Input() periodDay = 1;
+  @Input() echartsStyle: any = { 'height': '350px' };
 
-  @ViewChild('tt') el: ElementRef
+  @ViewChild('tt') el: ElementRef;
   constructor(private bloodPressureService: BloodPressureService, private render: Renderer) { }
 
   ngOnInit() {
 
 
-    this.bloodDataInit()
+    this.bloodDataInit();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.bloodDataInit()
+    this.bloodDataInit();
   }
 
 
 
   bloodDataInit() {
-    this.bloodPressureList = []
-    this.bloodPressureDate = []
-    this.heartRateValue = []
-    this.bloodPressureHigh = []
-    this.bloodPressureLower = []
-    this.bloodPressureList = []
-    this.nothingFlag = false
+    this.bloodPressureList = [];
+    this.bloodPressureDate = [];
+    this.heartRateValue = [];
+    this.bloodPressureHigh = [];
+    this.bloodPressureLower = [];
+    this.bloodPressureList = [];
+    this.nothingFlag = false;
     this.bloodPressureService.getBloodPressList({ 'customerId': this.userId, 'day': this.periodDay }).subscribe((res) => {
       if (res.success) {
-        this.bloodPressureList = eval(res.data)
+        this.bloodPressureList = eval(res.data);
         if (this.bloodPressureList instanceof Array) {
-          for (var i = 0; i < this.bloodPressureList.length; i++) {
-            this.bloodPressureHigh[i] = this.bloodPressureList[i].systolicPressure
-            this.bloodPressureLower[i] = this.bloodPressureList[i].stretchPressure
-            this.heartRateValue[i] = this.bloodPressureList[i].heartRateValue
+          for (let i = 0; i < this.bloodPressureList.length; i++) {
+            this.bloodPressureHigh[i] = this.bloodPressureList[i].systolicPressure;
+            this.bloodPressureLower[i] = this.bloodPressureList[i].stretchPressure;
+            this.heartRateValue[i] = this.bloodPressureList[i].heartRateValue;
             if (this.periodDay === 1) {
-              this.bloodPressureDate[i] = this.bloodPressureList[i].measurementTime.split(' ')[1]
+              this.bloodPressureDate[i] = this.bloodPressureList[i].measurementTime.split(' ')[1];
             } else {
-              this.bloodPressureDate[i] = this.bloodPressureList[i].measurementTime.split(' ')[0]
+              this.bloodPressureDate[i] = this.bloodPressureList[i].measurementTime.split(' ')[0];
             }
           }
         }
 
         if (this.bloodPressureList.length > 0) {
-          this.nothingFlag = true
-          this.el.nativeElement.className = ""
+          this.nothingFlag = true;
+          this.el.nativeElement.className = '';
         } else {
-          this.nothingFlag = false
-          this.el.nativeElement.className = "black-hole"
+          this.nothingFlag = false;
+          this.el.nativeElement.className = 'black-hole';
 
         }
-        this.startEchartPress()
+        this.startEchartPress();
       }
-    })
+    });
   }
 
   startEchartPress() {
@@ -129,7 +129,7 @@ export class BloodPressureComponent implements OnInit, OnChanges {
           data: this.heartRateValue
         }
       ]
-    }
+    };
   }
 
 }

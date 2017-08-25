@@ -5,11 +5,11 @@ import { ClientComponent } from './client/client.component';
 import { ROUTER_CONFIG } from './home.routes';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared';
-import { PopoverModule } from 'ngx-popover'
-import { PlanmanComponent } from './planman/planman.component'
+import { PopoverModule } from 'ngx-popover';
+import { PlanmanComponent } from './planman/planman.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateAccountComponent } from './create-account/create-account.component';
-import { ClientDetailComponent } from './client-detail/client-detail.component'
+import { ClientDetailComponent } from './client-detail/client-detail.component';
 import { Ng2FlatpickrComponent } from 'ng2-flatpickr/ng2-flatpickr';
 import { SmartBedComponent } from './smart-bed';
 import { OrderPackageComponent } from './order-package';

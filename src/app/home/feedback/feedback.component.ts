@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FeedbackService } from './feedback.service'
-import tools from '../../shared/tools'
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap'
+import { FeedbackService } from './feedback.service';
+import tools from '../../shared/tools';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-feedback',
@@ -10,59 +10,59 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap'
   providers: [FeedbackService]
 })
 export class FeedbackComponent implements OnInit {
-  private list: Array<any> = []
-  private pages: Array<any> = []
-  private pageSize: number = 10
-  private pageNumber: number = 1
-  private feedback: number = 0
-  private dealInfo: string = ''
-  private clickItemId: string = ''
-  private item: any
-  private modalRef: any
-  private closeResult: string
+  private list: Array<any> = [];
+  private pages: Array<any> = [];
+  private pageSize = 10;
+  private pageNumber = 1;
+  private feedback = 0;
+  private dealInfo = '';
+  private clickItemId = '';
+  private item: any;
+  private modalRef: any;
+  private closeResult: string;
 
 
   constructor(private feedbackService: FeedbackService, private modalService: NgbModal) { }
   ngOnInit() {
-    this.feedbackList()
+    this.feedbackList();
   }
 
   feedbackList() {
-    var data = {
+    const data = {
       'pageSize': this.pageSize,
       'pageNum': this.pageNumber
-    }
+    };
     if (this.feedback == 0) {
       this.feedbackService.customerFeedBackList(data).subscribe((res) => {
         if (res.success) {
-          this.list = []
-          this.list = res.data.list
-          this.pages = res.data.navigatepageNums
-          this.pageNumber = res.data.pageNum
+          this.list = [];
+          this.list = res.data.list;
+          this.pages = res.data.navigatepageNums;
+          this.pageNumber = res.data.pageNum;
         }
 
-      })
+      });
     } else {
       this.feedbackService.userFeedBackList(data).subscribe((res) => {
         if (res.success) {
-          this.list = []
-          this.list = res.data.list
-          this.pages = res.data.navigatepageNums
-          this.pageNumber = res.data.pageNum
+          this.list = [];
+          this.list = res.data.list;
+          this.pages = res.data.navigatepageNums;
+          this.pageNumber = res.data.pageNum;
         }
 
-      })
+      });
     }
 
   }
   handleFeedBack(id, item, content) {
-    this.clickItemId = id
-    this.item = item
-    this.open(content)
+    this.clickItemId = id;
+    this.item = item;
+    this.open(content);
   }
 
   open(content) {
-    this.modalRef = this.modalService.open(content, { windowClass: 't-sm-modal' })
+    this.modalRef = this.modalService.open(content, { windowClass: 't-sm-modal' });
 
     this.modalRef.result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -72,39 +72,39 @@ export class FeedbackComponent implements OnInit {
   }
 
   doneFeedBack() {
-    var data = {
+    const data = {
       'dealRemark': this.dealInfo,
-    }
+    };
     if (this.feedback == 0) {
-      data['opinionId'] = this.clickItemId
+      data['opinionId'] = this.clickItemId;
       this.feedbackService.customerHandler(data).subscribe((res) => {
         if (res.success) {
-          tools.tips("处理成功", '', 'success')
-          this.item.dealRemark = data.dealRemark
-          this.modalRef.close()
+          tools.tips('处理成功', '', 'success');
+          this.item.dealRemark = data.dealRemark;
+          this.modalRef.close();
         } else {
-          tools.tips(res.errMsg, '', 'error')
+          tools.tips(res.errMsg, '', 'error');
         }
-      })
+      });
     } else {
-      data['opinionUserId'] = this.clickItemId
+      data['opinionUserId'] = this.clickItemId;
       this.feedbackService.userHandler(data).subscribe((res) => {
         if (res.success) {
-          tools.tips("处理成功", '', 'success')
-          this.modalRef.close()
+          tools.tips('处理成功', '', 'success');
+          this.modalRef.close();
 
-          this.item.dealRemark = data.dealRemark
+          this.item.dealRemark = data.dealRemark;
         } else {
-          tools.tips(res.errMsg, '', 'error')
+          tools.tips(res.errMsg, '', 'error');
         }
-      })
+      });
     }
   }
 
   toogleChoosed(e) {
-    this.feedback = e
-    this.pageNumber = 1
-    this.feedbackList()
+    this.feedback = e;
+    this.pageNumber = 1;
+    this.feedbackList();
   }
 
   private getDismissReason(reason: any): string {
@@ -118,8 +118,8 @@ export class FeedbackComponent implements OnInit {
   }
 
   pageTurning(number) {
-    this.pageNumber = number
-    this.feedbackList()
+    this.pageNumber = number;
+    this.feedbackList();
   }
 
 }

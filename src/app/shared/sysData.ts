@@ -1,10 +1,10 @@
-var SysData = {
-  qiniuDomain: "http://oivkcwaj2.bkt.clouddn.com",
+const SysData = {
+  qiniuDomain: 'http://oivkcwaj2.bkt.clouddn.com',
   missionType: [
     '一次性任务', '周期性任务'
   ],
-  reportDomain: "http://116.62.29.103",
-  healthReportDomain: "http://mhc.smartcare.org.cn",
+  reportDomain: 'http://116.62.29.103',
+  healthReportDomain: 'http://mhc.smartcare.org.cn',
   // healthReportDomain: "http://xukq1.dev.317hu.com",
   level_top_array: [
     '平台管理', '健康管理', '设置'
@@ -116,6 +116,6 @@ var SysData = {
     { 'key': '睡眠监测', 'value': false },
     { 'key': '365睡眠评估', 'value': false }
   ]
-}
+};
 
-export default SysData
+export default SysData;

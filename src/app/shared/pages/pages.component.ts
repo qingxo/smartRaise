@@ -7,13 +7,13 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange
 })
 export class PagesComponent implements OnInit {
 
-  @Input() pages: Array<any> = []
-  @Input() currentPage: number = 1
-  @Input() sum: number = 0
-  @Input() pageSize: number = 10
-  @Output() pageInfo = new EventEmitter<any>()
-  @ViewChild('hh') hh: ElementRef
-  @ViewChild('tt') tt: ElementRef
+  @Input() pages: Array<any> = [];
+  @Input() currentPage = 1;
+  @Input() sum = 0;
+  @Input() pageSize = 10;
+  @Output() pageInfo = new EventEmitter<any>();
+  @ViewChild('hh') hh: ElementRef;
+  @ViewChild('tt') tt: ElementRef;
 
   constructor() { }
 
@@ -22,36 +22,36 @@ export class PagesComponent implements OnInit {
 
   ngAfterViewChecked() {
     if (this.hh && this.tt) {
-      let t = this.getLastPage()
+      const t = this.getLastPage();
       if (t > 12) {
         if (this.tt && this.hh) {
-          this.hh.nativeElement.className = 'p-head'
-          this.tt.nativeElement.className = 'p-tail'
+          this.hh.nativeElement.className = 'p-head';
+          this.tt.nativeElement.className = 'p-tail';
         }
       }
     }
   }
 
   getLastPage() {
-    return Math.ceil(this.sum / this.pageSize)
+    return Math.ceil(this.sum / this.pageSize);
   }
 
   changePage(num) {
-    let pageNum = num
+    let pageNum = num;
     if (pageNum < 1) {
-      pageNum = 1
+      pageNum = 1;
     }
     if (pageNum > this.pages[this.pages.length - 1]) {
-      pageNum = this.pages[this.pages.length - 1]
+      pageNum = this.pages[this.pages.length - 1];
     }
 
     if (pageNum != this.currentPage) {
-      this.pageInfo.emit(pageNum)
+      this.pageInfo.emit(pageNum);
     }
   }
 
   goLastPage() {
-    this.pageInfo.emit(this.getLastPage())
+    this.pageInfo.emit(this.getLastPage());
   }
 
 }
