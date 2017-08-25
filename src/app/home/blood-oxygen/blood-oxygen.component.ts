@@ -37,7 +37,7 @@ export class BloodOxygenComponent implements OnInit {
         const arr = eval(res.data);
         for (let i = 0; i < arr.length; i++) {
           this.oxygenList[i] = Number(arr[i].spo2);
-          if (this.periodDay == 1) {
+          if (this.periodDay === 1) {
             this.xOxygenData[i] = moment(arr[i].createDt).format('HH:mm');
           } else {
             this.xOxygenData[i] = moment(arr[i].createDt).format('YYYY-MM-DD');

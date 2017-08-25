@@ -106,13 +106,9 @@ export class HomeComponent implements OnInit {
 
 
   changePwd() {
-    // if (this.oldPwd.trim().length < 6 || this.newPwd.trim().length < 6 ) {
-    //   this.tips('密码最少要6位')
-    //   return
-    // }
     this.errorOldPwd = '';
     this.errorNewPwd = '';
-    if (typeof this.oldPwd == 'undefined') {
+    if (typeof this.oldPwd === 'undefined') {
       this.errorOldPwd = '请输入原密码';
     } else {
       if (this.oldPwd.length < 2) {
@@ -120,17 +116,17 @@ export class HomeComponent implements OnInit {
       }
     }
 
-    if (typeof this.newPwd == 'undefined' || typeof this.confirmNewPwd == 'undefined') {
+    if (typeof this.newPwd === 'undefined' || typeof this.confirmNewPwd === 'undefined') {
       this.errorNewPwd = '请输入新密码和确认密码';
     } else {
-      if (this.newPwd.trim() != this.confirmNewPwd.trim()) {
+      if (this.newPwd.trim() !== this.confirmNewPwd.trim()) {
         this.errorNewPwd = '新密码输入不一致';
       }
     }
 
 
 
-    if (this.errorNewPwd != '' || this.errorOldPwd != '') {
+    if (this.errorNewPwd !== '' || this.errorOldPwd !== '') {
       return;
     }
 

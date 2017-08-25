@@ -33,7 +33,7 @@ class Tools {
   }
 
   initBtnShow(topLevel, secondLevel, btnKey) {
-    const menu = eval(storage.get('menu'))
+    const menu = eval(storage.get('menu'));
     let jurisdiction = [], myBtn: any;
     for (let i = 0; i < menu.length; i++) {
       if (menu[i].text === SysData['level_top_array'][topLevel]) {
@@ -65,18 +65,26 @@ class Tools {
     return backTarget;
   }
 
-  //身份证校验
+  // 身份证校验
   isCardID(sId) {
     let iSum = 0;
     const info = '';
     if (!/^\d{17}(\d|x)$/i.test(sId)) return '你输入的身份证长度或格式错误';
     sId = sId.replace(/x$/i, 'a');
-    if (this.aCity[parseInt(sId.substr(0, 2))] == null) return '你的身份证地区非法';
+    if (this.aCity[parseInt(sId.substr(0, 2))] == null) {
+      return '你的身份证地区非法';
+    }
     const sBirthday = sId.substr(6, 4) + '-' + Number(sId.substr(10, 2)) + '-' + Number(sId.substr(12, 2));
     const d = new Date(sBirthday.replace(/-/g, '/'));
-    if (sBirthday !== (d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate())) return '身份证上的出生日期非法';
-    for (let i = 17; i >= 0; i--) iSum += (Math.pow(2, i) % 11) * parseInt(sId.charAt(17 - i), 11);
-    if (iSum % 11 !== 1) return '你输入的身份证号非法';
+    if (sBirthday !== (d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate())) {
+      return '身份证上的出生日期非法';
+    }
+    for (let i = 17; i >= 0; i--) {
+      iSum += (Math.pow(2, i) % 11) * parseInt(sId.charAt(17 - i), 11);
+    }
+    if (iSum % 11 !== 1) {
+      return '你输入的身份证号非法';
+    }
     return true;
   }
 
@@ -132,7 +140,7 @@ class Tools {
   }
 
 
-  //能输入数字和小数点的判断
+  // 能输入数字和小数点的判断
   numberFixed(target: any) {
     const newH = target.replace(/[^\d\.]*/g, '');
     if (String(newH).split('.').length > 2) {

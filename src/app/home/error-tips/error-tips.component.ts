@@ -16,7 +16,7 @@ export class ErrorTipsComponent implements OnInit {
   private pageSize = 10;
   private pageNumber = 1;
   private queryInfo = '';
-  private taskProgress = 0; //0 客户数据，1 健康专员数据
+  private taskProgress = 0; // 0 客户数据，1 健康专员数据
   private totalPage: number;
   private modalRef: any;
   private closeResult: string;
@@ -51,7 +51,7 @@ export class ErrorTipsComponent implements OnInit {
       'userId': storage.get('state')['userId'],
       'query': this.queryInfo
     };
-    if (this.taskProgress == 0) {
+    if (this.taskProgress === 0) {
       this.errorTipsService.errorList(data).subscribe((res) => {
         if (res.success) {
           this.list = res.data.list;
@@ -91,7 +91,7 @@ export class ErrorTipsComponent implements OnInit {
   }
 
   cultOpinion(msg) {
-    if (typeof msg == 'undefined' || msg == null || msg == 'null') {
+    if (typeof msg === 'undefined' || msg === null || msg === 'null') {
       return '';
     }
     if (msg.length > 22) {

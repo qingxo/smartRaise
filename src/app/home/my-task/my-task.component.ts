@@ -19,7 +19,7 @@ export class MyTaskComponent implements OnInit {
   private totalPage: number;
   private missionList: Array<any> = [];
   private taskId: any = -1;
-  private taskProgress = 0; //0 未完成任务，1 已完成任务
+  private taskProgress = 0; // 0 未完成任务，1 已完成任务
   private tableProgress = 0; // 0 健康监测，1 健康报表 ， 2 建档任务
   private missionName = 'missionName';
   private myTaskBtn: any;
@@ -54,7 +54,7 @@ export class MyTaskComponent implements OnInit {
     this.pageNumber = 1;
     const array = this.el.nativeElement.children;
     for (let i = 0; i < array.length; i++) {
-      if (index == i) {
+      if (index === i) {
         array[i].className = 'choosed';
       } else {
         array[i].className = '';
@@ -74,7 +74,7 @@ export class MyTaskComponent implements OnInit {
       if (res.success) {
         tools.tips('处理成功', '', 'success');
         for (let i = 0; i < this.list.length; i++) {
-          if (this.list[i].commissionerTaskId == this.taskId) {
+          if (this.list[i].commissionerTaskId === this.taskId) {
             this.list.splice(i, 1);
           }
         }
@@ -93,7 +93,7 @@ export class MyTaskComponent implements OnInit {
       if (res.success) {
         window.open(res.data.accessUrl, '_blank');
       } else {
-        if (res.errCode == '10000201') { //自己生成的报告指令
+        if (res.errCode === '10000201') { // 自己生成的报告指令
           if (item.missionName === '月度报告') {
             this.router.navigate(['/healthreport', item.customerId, item.commissionerTaskId]);
           } else {
@@ -136,7 +136,7 @@ export class MyTaskComponent implements OnInit {
         this.list = res.data.list;
         for (let i = 0; i < this.list.length; i++) {
           this.list[i].rateCn = 'test';
-          if (typeof this.list[i].rate != 'undefined') {
+          if (typeof this.list[i].rate !== 'undefined') {
             this.initRateCn(i);
           }
         }

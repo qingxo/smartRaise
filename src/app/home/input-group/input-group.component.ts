@@ -49,7 +49,7 @@ export class InputGroupComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (typeof changes['weight']['currentValue'] != 'undefined' && typeof changes['height']['currentValue'] != 'undefined') {
+    if (typeof changes['weight']['currentValue'] !== 'undefined' && typeof changes['height']['currentValue'] !== 'undefined') {
       this.bmi = Number((this.weight * 10000 / Math.pow(this.height, 2)).toFixed(2));
     }
   }
@@ -71,19 +71,19 @@ export class InputGroupComponent implements OnInit, OnChanges {
     }
 
 
-    if (this.inputType == 2) {
+    if (this.inputType === 2) {
 
-      if (typeof this.heartBeat == 'undefined' || this.heartBeat < 30 || this.heartBeat > 220) {
+      if (typeof this.heartBeat === 'undefined' || this.heartBeat < 30 || this.heartBeat > 220) {
         tools.tips('心率值在30~220之间', '', 'warning');
         return;
       }
 
-      if (typeof this.highPressure == 'undefined' || this.highPressure < 30 || this.highPressure > 240) {
+      if (typeof this.highPressure === 'undefined' || this.highPressure < 30 || this.highPressure > 240) {
         tools.tips('收缩压的值在30~240之间', '', 'warning');
         return;
       }
 
-      if (typeof this.lowerPressure == 'undefined' || this.lowerPressure < 30 || this.lowerPressure > 240) {
+      if (typeof this.lowerPressure === 'undefined' || this.lowerPressure < 30 || this.lowerPressure > 240) {
         tools.tips('舒张压的值在30~240之间', '', 'warning');
         return;
       }
@@ -109,7 +109,7 @@ export class InputGroupComponent implements OnInit, OnChanges {
           tools.tips(res.errMsg, '', 'error');
         }
       });
-    } else if (this.inputType == 1) {
+    } else if (this.inputType === 1) {
       const data = {
         'timeSlot': this.lunchTime,
         'sugarValue': this.sugarLevel,
@@ -119,7 +119,7 @@ export class InputGroupComponent implements OnInit, OnChanges {
         'commissionerTaskId': this.taskId
       };
 
-      if (typeof this.sugarLevel == 'undefined' || this.sugarLevel < 0 || this.sugarLevel > 30) {
+      if (typeof this.sugarLevel === 'undefined' || this.sugarLevel < 0 || this.sugarLevel > 30) {
         tools.tips('血糖值应该在0~30之间', '', 'warning');
         return;
       }
@@ -132,13 +132,13 @@ export class InputGroupComponent implements OnInit, OnChanges {
           tools.tips(res.errMsg, '', 'error');
         }
       });
-    } else if (this.inputType == 3) {
-      if (typeof this.weight == 'undefined' || this.weight < 0 || this.weight > 1000) {
+    } else if (this.inputType === 3) {
+      if (typeof this.weight === 'undefined' || this.weight < 0 || this.weight > 1000) {
         tools.tips('体重值在0~1000之间', '', 'warning');
         return;
       }
 
-      if (typeof this.height == 'undefined' || this.height < 0 || this.height > 300) {
+      if (typeof this.height === 'undefined' || this.height < 0 || this.height > 300) {
         tools.tips('身高的值在0~300之间', '', 'warning');
         return;
       }
@@ -163,7 +163,7 @@ export class InputGroupComponent implements OnInit, OnChanges {
         }
       });
     } else if (this.inputType == 4) {
-      if (typeof this.bloodOxygen == 'undefined' || this.bloodOxygen > 100 || this.bloodOxygen < 50) {
+      if (typeof this.bloodOxygen === 'undefined' || this.bloodOxygen > 100 || this.bloodOxygen < 50) {
         tools.tips('血氧范围在50~100', '', 'warning');
         return;
       }
@@ -185,8 +185,8 @@ export class InputGroupComponent implements OnInit, OnChanges {
           tools.tips(res.errMsg, '', 'error');
         }
       });
-    } else if (this.inputType == 5) {
-      if (typeof this.heat == 'undefined' || this.heat > 45 || this.heat < 35) {
+    } else if (this.inputType === 5) {
+      if (typeof this.heat === 'undefined' || this.heat > 45 || this.heat < 35) {
         tools.tips('体温值范围在35~45');
         return;
       }

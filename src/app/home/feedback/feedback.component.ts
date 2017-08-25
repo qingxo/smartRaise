@@ -32,7 +32,7 @@ export class FeedbackComponent implements OnInit {
       'pageSize': this.pageSize,
       'pageNum': this.pageNumber
     };
-    if (this.feedback == 0) {
+    if (this.feedback === 0) {
       this.feedbackService.customerFeedBackList(data).subscribe((res) => {
         if (res.success) {
           this.list = [];
@@ -75,7 +75,7 @@ export class FeedbackComponent implements OnInit {
     const data = {
       'dealRemark': this.dealInfo,
     };
-    if (this.feedback == 0) {
+    if (this.feedback === 0) {
       data['opinionId'] = this.clickItemId;
       this.feedbackService.customerHandler(data).subscribe((res) => {
         if (res.success) {

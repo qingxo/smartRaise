@@ -37,7 +37,7 @@ export class BmiLineComponent implements OnInit, OnChanges {
 
         for (let i = 0; i < res.data.length; i++) {
           this.bmiList.push(Number(res.data[i].bmi));
-          if (this.periodDay == 1) {
+          if (this.periodDay === 1) {
             this.xBMIData[i] = moment(res.data[i].createDt).format('HH:mm');
           } else {
             this.xBMIData[i] = moment(res.data[i].createDt).format('YYYY-MM-DD');

@@ -43,7 +43,7 @@ export class SleepTestComponent implements OnInit {
     this.sleepTestService.getEchartsInfo(this.customerId).subscribe((res) => {
       if (res.success) {
         const echartsData = eval(res.data), sq = [], sf = [], sb = [], xd = [];
-        if (echartsData.length == 0) {
+        if (echartsData.length === 0) {
           return;
         }
         console.log(res);

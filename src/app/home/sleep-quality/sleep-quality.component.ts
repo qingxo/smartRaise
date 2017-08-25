@@ -65,7 +65,7 @@ export class SleepQualityComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (this.equipNo != '') {
+    if (this.equipNo !== '') {
       this.sleepAnalysis();
     }
   }

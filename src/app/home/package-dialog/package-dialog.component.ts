@@ -94,7 +94,7 @@ export class PackageDialogComponent implements OnInit, AfterViewInit {
 
 
   priceDesc(price, num) {
-    if (num == 1) {
+    if (num === 1) {
       if (this.currentPrice > 0) {
         this.currentPrice = this.currentPrice - 1;
       } else {
@@ -110,7 +110,7 @@ export class PackageDialogComponent implements OnInit, AfterViewInit {
   }
 
   pricePlus(price, num) {
-    if (num == 1) {
+    if (num === 1) {
       if (this.currentPrice >= 0) {
         this.currentPrice = this.currentPrice + 1;
       } else {
@@ -128,7 +128,7 @@ export class PackageDialogComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     setTimeout(() => {
       this.open(this.el);
-      if (this.packageId != '') {
+      if (this.packageId !== '') {
         this.isEdit = true;
         this.initItemData();
       }
@@ -153,19 +153,19 @@ export class PackageDialogComponent implements OnInit, AfterViewInit {
 
         for (let i = 0; i < this.tasks.length; i++) {
           for (let j = 0; j < this.taskName.length; j++) {
-            if (this.tasks[i]['missionId'] == this.taskName[j].missionId) {
+            if (this.tasks[i]['missionId'] === this.taskName[j].missionId) {
               this.tasks[i]['missionName'] = this.taskName[j].missionName;
             }
           }
 
           for (let k = 0; k < this.taskTimes.length; k++) {
-            if (this.tasks[i]['missionType'] == this.taskTimes[k].value) {
+            if (this.tasks[i]['missionType'] === this.taskTimes[k].value) {
               this.tasks[i]['times'] = this.taskTimes[k].value;
             }
           }
 
           for (let k = 0; k < this.taskCount.length; k++) {
-            if (this.tasks[i]['rate'] == this.taskCount[k].value) {
+            if (this.tasks[i]['rate'] === this.taskCount[k].value) {
               this.tasks[i]['count'] = this.taskCount[k].name;
             }
           }
@@ -250,7 +250,7 @@ export class PackageDialogComponent implements OnInit, AfterViewInit {
       this.errorRemark = '描述信息不能大于1024个字符';
     }
 
-    if (typeof this.oldPrice != 'undefined') {
+    if (typeof this.oldPrice !== 'undefined') {
       if (this.oldPrice.toString().trim().length < 1) {
         this.errorOldPrice = '请填写原价';
         this.bothprice = 'xx';
@@ -263,7 +263,7 @@ export class PackageDialogComponent implements OnInit, AfterViewInit {
       this.bothprice = 'xx';
     }
 
-    if (typeof this.currentPrice != 'undefined') {
+    if (typeof this.currentPrice !== 'undefined') {
       if (this.currentPrice.toString().trim().length < 1) {
         this.errorCurrentPrice = '请填写现价';
         this.bothprice = 'xx';
@@ -290,7 +290,7 @@ export class PackageDialogComponent implements OnInit, AfterViewInit {
     }
 
 
-    if (this.errorServicePackName != '' || this.errorImg != '' || this.errorTasks != '' || this.errorRemark != '' || this.errorOldPrice != '' || this.errorCurrentPrice != '') {
+    if (this.errorServicePackName !== '' || this.errorImg !== '' || this.errorTasks !== '' || this.errorRemark !== '' || this.errorOldPrice !== '' || this.errorCurrentPrice !== '') {
       return;
     }
 

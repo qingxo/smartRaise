@@ -31,7 +31,7 @@ class Storage {
       innerObj,
       i;
 
-    for (let name in obj) {
+    for (const name in obj) {
       value = obj[name];
 
       if (value instanceof Array) {
@@ -43,7 +43,7 @@ class Storage {
           query += this.serialize(innerObj) + '&';
         }
       } else if (value instanceof Object) {
-        for (let subName in value) {
+        for (const subName in value) {
           subValue = value[subName];
           fullSubName = name + '[' + subName + ']';
           innerObj = {};

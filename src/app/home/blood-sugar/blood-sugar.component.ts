@@ -68,7 +68,7 @@ export class BloodSugarComponent implements OnInit, OnChanges {
           }
         }
 
-        if (this.bloodSugarListBefore.length == 0 && this.bloodSugarListAfter.length == 0) {
+        if (this.bloodSugarListBefore.length === 0 && this.bloodSugarListAfter.length === 0) {
           this.nothingFlag = false;
           this.el.nativeElement.className = 'black-hole';
 

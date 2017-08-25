@@ -34,11 +34,11 @@ export class ClientComponent implements OnInit {
   private clientBtn: any;
   private closeResult: string;
   private modalRef: any;
-  private itemTarget = 0; //用户点击的列的值
+  private itemTarget = 0; // 用户点击的列的值
   private smartBed: string;
-  private sources = 'A'; //智能床默认值
-  private healthpersonlist: Array<any> = []; //健康专员列表
-  private healthCarePerson: string; //用户默认的健康专员
+  private sources = 'A'; // 智能床默认值
+  private healthpersonlist: Array<any> = []; // 健康专员列表
+  private healthCarePerson: string; // 用户默认的健康专员
   private role: number;
   private bedType: Array<any> = [
     {
@@ -65,7 +65,7 @@ export class ClientComponent implements OnInit {
   private myGroup = '';
   private isEdit = false;
   private commissionerUserId: string;
-  private group: Array<any>; //监护人列表
+  private group: Array<any>; // 监护人列表
   private helpList: Array<any>;
   private queryHelpInfo: string;
 
@@ -95,7 +95,7 @@ export class ClientComponent implements OnInit {
 
 
   changeMe() {
-    this.chameleon == 'inactive' ? this.chameleon = 'active' : this.chameleon = 'inactive';
+    this.chameleon === 'inactive' ? this.chameleon = 'active' : this.chameleon = 'inactive';
   }
 
 
@@ -115,7 +115,7 @@ export class ClientComponent implements OnInit {
     this.open(content);
   }
 
-  //获取机构列表
+  // 获取机构列表
   initGroupPlanList() {
     const data = {
       'pageSize': 100,
@@ -185,7 +185,7 @@ export class ClientComponent implements OnInit {
   clientActive(index, clientDetail) {
     this.itemTarget = index;
     this.clearInfo();
-    if (index == -1) {
+    if (index === -1) {
       this.isEdit = false;
     } else {
       this.isEdit = true;
@@ -269,8 +269,8 @@ export class ClientComponent implements OnInit {
 
   expceptSelf() {
     for (let i = 0; i < this.helpList.length; i++) {
-      if (this.itemTarget != -1) {
-        if (this.helpList[i].customerId == this.listData[this.itemTarget].customerId) {
+      if (this.itemTarget !== -1) {
+        if (this.helpList[i].customerId === this.listData[this.itemTarget].customerId) {
           this.helpList.splice(i, 1);
         }
       }
@@ -286,7 +286,7 @@ export class ClientComponent implements OnInit {
     for (let i = 0; i < this.checkList.length; i++) {
       const tmp = this.checkList[i].id;
       for (let j = 0; j < this.helpList.length; j++) {
-        if (tmp == this.helpList[j].customerId) {
+        if (tmp === this.helpList[j].customerId) {
           this.helpList[j].isChecked = true;
         }
       }
@@ -298,7 +298,7 @@ export class ClientComponent implements OnInit {
       this.checkList.push({ 'name': this.helpList[num].name, 'mobile': this.helpList[num].mobile, 'id': this.helpList[num].customerId });
     } else {
       for (let i = 0; i < this.checkList.length; i++) {
-        if (this.checkList[i].id == this.helpList[num].customerId) {
+        if (this.checkList[i].id === this.helpList[num].customerId) {
           this.checkList.splice(i, 1);
         }
       }
@@ -307,10 +307,10 @@ export class ClientComponent implements OnInit {
 
   killCheckListNum(id) {
     for (let i = 0; i < this.checkList.length; i++) {
-      if (this.checkList[i].id == id) {
+      if (this.checkList[i].id === id) {
         this.checkList.splice(i, 1);
         for (let i = 0; i < this.helpList.length; i++) {
-          if (this.helpList[i].customerId == id) {
+          if (this.helpList[i].customerId === id) {
             this.helpList[i].isChecked = false;
             return;
           }
@@ -370,7 +370,7 @@ export class ClientComponent implements OnInit {
         this.modalRef.close();
         this.listData[this.itemTarget].commissionerUserId = this.healthCarePerson;
         for (let i = 0; i < this.healthpersonlist.length; i++) {
-          if (this.healthpersonlist[i].userId == this.healthCarePerson) {
+          if (this.healthpersonlist[i].userId === this.healthCarePerson) {
             this.listData[this.itemTarget].commissionerUserName = this.healthpersonlist[i].name;
           }
         }
@@ -502,7 +502,7 @@ export class ClientComponent implements OnInit {
       this.errorRealname = '名字的长度不能超过30个字符';
     }
 
-    if (this.mobile != null) {
+    if (this.mobile !== null) {
       if (isNaN(this.mobile)) {
         this.errorMobile = '';
         this.bothNumber = '';
@@ -516,7 +516,7 @@ export class ClientComponent implements OnInit {
 
     }
 
-    if (this.cardId.length != 0) {
+    if (this.cardId.length !== 0) {
       const flag = tools.isCardID(this.cardId);
       if (typeof flag !== 'boolean') {
         this.errorCardId = flag;
@@ -524,21 +524,21 @@ export class ClientComponent implements OnInit {
       }
     }
 
-    if (typeof this.height != 'undefined') {
+    if (typeof this.height !== 'undefined') {
       if (parseInt(this.height) < 50 || parseInt(this.height) > 250) {
         this.errorHeight = '身高的取值范围在50~250之间';
         this.bothhw = 'xxx';
       }
     }
 
-    if (typeof this.weight != 'undefined') {
+    if (typeof this.weight !== 'undefined') {
       if (parseInt(this.weight) < 1 || parseInt(this.weight) > 300) {
         this.errorWeight = '体重的取值范围在1~300之间';
         this.bothhw = 'xxx';
       }
     }
 
-    if (this.bothhw != '' || this.errorCardId != '' || this.errorRealname != '' || this.errorMobile != '') {
+    if (this.bothhw !== '' || this.errorCardId !== '' || this.errorRealname !== '' || this.errorMobile !== '') {
       return;
     }
 

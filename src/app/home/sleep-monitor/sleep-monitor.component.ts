@@ -61,7 +61,7 @@ export class SleepMonitorComponent implements OnInit {
     const self = this;
     let option = {};
     let count = 0;
-    if (this.sources == 'A') {
+    if (this.sources === 'A') {
       option = {
         topics: [
           window['mqttHelper']['subscribeTopic'].getSingleBcgData('' + this.equipNo), // 主题-体征数据（呼吸、心率）
@@ -84,7 +84,7 @@ export class SleepMonitorComponent implements OnInit {
 
   }
   livingData(data, count) {
-    if (this.sources == 'B') {
+    if (this.sources === 'B') {
       $('#ht' + this.equipNo).text(data.hr);
       $('#bl' + this.equipNo).text(data.rr);
       let status = '';

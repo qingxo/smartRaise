@@ -45,7 +45,7 @@ export class PagesComponent implements OnInit {
       pageNum = this.pages[this.pages.length - 1];
     }
 
-    if (pageNum != this.currentPage) {
+    if (pageNum !== this.currentPage) {
       this.pageInfo.emit(pageNum);
     }
   }

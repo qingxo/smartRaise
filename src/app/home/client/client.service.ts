@@ -29,7 +29,7 @@ export class ClientService extends BaseService {
     return this.postInfo('api/customer/modify', storage.serialize(data));
   }
 
-  //smartbed api start
+  // smartbed api start
   save(data: any) {
     return this.postInfo('api/customer/bunding', storage.serialize(data));
   }
@@ -42,9 +42,9 @@ export class ClientService extends BaseService {
     return this.postInfo('api/customer/rebunding', storage.serialize(data));
   }
 
-  //smartbed api endd
+  // smartbed api endd
 
-  //----------health person api start-------------
+  // ----------health person api start-------------
   healthList(data) {
     return this.postInfo('api/account/listByPage' + data, '');
   }
@@ -61,10 +61,10 @@ export class ClientService extends BaseService {
     return this.postInfo('api/account/setDefaultCommissioner/' + id, '');
   }
 
-  //--------------health person api end -------------------
+  // --------------health person api end -------------------
 
 
-  //编辑和新增客户的 api start------------------
+  // 编辑和新增客户的 api start------------------
   personInfo(userId) {
     return this.postInfo('api/customer/detail/' + userId, '');
   }
@@ -73,7 +73,7 @@ export class ClientService extends BaseService {
     return this.postInfo('api/socialWelfare/listByPage', storage.serialize(data));
   }
 
-  //批量分配健康专员的接口
+  // 批量分配健康专员的接口
   groupPlanFor(socialWelfareId, commissionerUserId) {
     return this.postInfo(`api/customer/fixSpecialists/${socialWelfareId}/${commissionerUserId}`, '');
 
@@ -81,6 +81,6 @@ export class ClientService extends BaseService {
 
 
 
-  //编辑和新增客户api end -------------------
+  // 编辑和新增客户api end -------------------
 
 }

@@ -112,12 +112,12 @@ export class HealthReportComponent implements OnInit {
     this.bothTime = '';
     this.errorStartTime = '';
     this.errorEndTime = '';
-    if (this.startTime.length == 0) {
+    if (this.startTime.length === 0) {
       this.bothTime = 'xxx';
       this.errorStartTime = '请填写起始时间';
     }
 
-    if (this.endTime.length == 0) {
+    if (this.endTime.length === 0) {
       this.bothTime = 'xxx';
       this.errorEndTime = '请填写结束时间';
     }

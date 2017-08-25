@@ -26,7 +26,6 @@ export class ServicePackageComponent implements OnInit {
 
   initBtnShow() {
     this.servicePackageBtn = tools.initBtnShow(0, 1, 'servicePackageBtn');
-    console.log(this.servicePackageBtn);
   }
 
   openModal(packageId) {
@@ -35,15 +34,14 @@ export class ServicePackageComponent implements OnInit {
     containerRef.clear();
     const dd = <PackageDialogComponent>containerRef.createComponent(componentFatory).instance;
     dd.packageId = packageId;
-    if (packageId == '') {
+    if (packageId === '') {
       dd.showList = this.packageList.bind(this);
     }
   }
 
   handlePackageConfirm(data) {
     this.clickItem = data;
-    console.log(data.item.statue, data);
-    const msg = data.item.statue == '0' ? '上架' : '下架';
+    const msg = data.item.statue === '0' ? '上架' : '下架';
     tools.tipsConfirm(`确认需要${msg}?`, '', 'warning', this.handlePackageStatus.bind(this));
   }
 
@@ -55,9 +53,8 @@ export class ServicePackageComponent implements OnInit {
 
     this.servicePackageService.changeStatus(param).subscribe((res) => {
       if (res.success) {
-        console.log('sussces:' + status);
         tools.tips(status === 0 ? '下架成功' : '上架成功', '', 'success');
-        status == 1 ? data.item.statue = 1 : data.item.statue = 0;
+        status === 1 ? data.item.statue = 1 : data.item.statue = 0;
       } else {
         tools.tips(res.errMsg, '', 'error');
       }

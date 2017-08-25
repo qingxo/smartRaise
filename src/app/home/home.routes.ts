@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './home.component';
 import { ClientComponent } from './client';
 import { ClientDetailComponent } from './client-detail';
-import { PlanmanComponent } from './planman';
 import { CreateAccountComponent } from './create-account';
 import { SmartBedComponent } from './smart-bed';
 import { OrderPackageComponent } from './order-package';
@@ -33,7 +32,6 @@ export const ROUTER_CONFIG: Routes = [
       { path: 'create', component: CreateAccountComponent },
 
       { path: 'clientDetail/:userId', component: ClientDetailComponent },
-      { path: 'client/planman', component: PlanmanComponent },
       { path: 'newaccount', component: CreateAccountComponent },
       { path: 'smartbed', component: SmartBedComponent },
       { path: 'orderpackage/:userId', component: OrderPackageComponent },

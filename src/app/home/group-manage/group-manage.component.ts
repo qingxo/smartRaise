@@ -44,7 +44,7 @@ export class GroupManageComponent implements OnInit {
 
   showTpl(index, groupDetail) {
     this.itemTarget = index;
-    index == -1 ? this.isEdit = true : this.isEdit = false;
+    index === -1 ? this.isEdit = true : this.isEdit = false;
     this.initEditInfo(index);
     this.openGroup(groupDetail);
 
@@ -52,7 +52,7 @@ export class GroupManageComponent implements OnInit {
 
   initEditInfo(index) {
 
-    if (index == -1) {
+    if (index === -1) {
       this.groupCode = '';
       this.groupName = '';
       this.connectPeople = '';
@@ -154,7 +154,7 @@ export class GroupManageComponent implements OnInit {
       this.bothGroup = 'xxx';
     }
 
-    if (this.bothGroup != '' || this.bothInfo != '') {
+    if (this.bothGroup !== '' || this.bothInfo !== '') {
       return;
     }
     const data = {

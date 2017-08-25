@@ -82,8 +82,8 @@ export class ClientDetailComponent implements OnInit {
   }
 
   smartBedData() {
-    if (this.sources != -1) {
-      if (this.equipNo == null || this.equipNo == 'null' || this.equipNo == '' || typeof this.equipNo == 'undefined') {
+    if (this.sources !== -1) {
+      if (this.equipNo === null || this.equipNo === 'null' || this.equipNo === '' || typeof this.equipNo === 'undefined') {
         return;
       }
       this.clientDetailService.smartBedLivingData(this.sources, this.equipNo, this.periodDay).subscribe((res) => {
@@ -229,7 +229,7 @@ export class ClientDetailComponent implements OnInit {
       ],
       yAxis: [
         {
-          //name : '心率/HR：(次/分)',
+          // name : '心率/HR：(次/分)',
           type: 'value',
           max: 150,
           axisLabel: {
@@ -239,7 +239,7 @@ export class ClientDetailComponent implements OnInit {
           }
         }, {
           gridIndex: 1,
-          //name : '呼吸率/RR：(次/分)',
+          // name : '呼吸率/RR：(次/分)',
           type: 'value',
           axisLabel: {
             textStyle: {

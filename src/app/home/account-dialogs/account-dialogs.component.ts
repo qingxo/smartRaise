@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit, SimpleChanges } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AccountDialogs } from './account-dialogs.model';
 import * as moment from 'moment';
@@ -14,7 +14,7 @@ import tools from '../../shared/tools';
   styleUrls: ['./account-dialogs.component.scss'],
   providers: [AccountDialogsService]
 })
-export class AccountDialogsComponent implements OnInit, AfterViewInit, OnChanges {
+export class AccountDialogsComponent implements OnInit, AfterViewInit {
   private closeResult: string;
   private modalRef: any;
   private count = 0;
@@ -26,7 +26,7 @@ export class AccountDialogsComponent implements OnInit, AfterViewInit, OnChanges
     dateFormat: 'Y-m-d',
     onChange: this.changeBirthday.bind(this)
   };
-  private chooseRole = '2'; //0：表示系统管理员，1:表示平台管理员，2：表示健康专员
+  private chooseRole = '2'; // 0：表示系统管理员，1:表示平台管理员，2：表示健康专员
   private name: string;
   private userName: string;
   private mobile: number;
@@ -64,13 +64,6 @@ export class AccountDialogsComponent implements OnInit, AfterViewInit, OnChanges
     moment.locale('zh-cn');
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    // console.log("thechanges,", changes)
-    // if (this.userId != '') {
-    //   this.initUserInfo()
-    // }
-  }
-
   initUserInfo() {
     this.accountDialogsService.getUserDetail(this.userId).subscribe((res) => {
       if (res.success && res.data) {
@@ -93,7 +86,9 @@ export class AccountDialogsComponent implements OnInit, AfterViewInit, OnChanges
   }
 
   chooseRoled(val) {
-    if (this.freezeRole) return;
+    if (this.freezeRole) {
+      return;
+    }
     this.chooseRole = val;
   }
 
@@ -104,7 +99,7 @@ export class AccountDialogsComponent implements OnInit, AfterViewInit, OnChanges
   ngAfterViewInit() {
     setTimeout(() => {
       this.open(this.el);
-      if (this.userId != '') {
+      if (this.userId !== '') {
         this.isEdit = true;
         this.initUserInfo();
       }
@@ -160,7 +155,7 @@ export class AccountDialogsComponent implements OnInit, AfterViewInit, OnChanges
       }
     }
 
-    if (this.errorEmail != '' || this.bothTwop != '' || this.bothNames != '' || this.errorMobile != '') {
+    if (this.errorEmail !== '' || this.bothTwop !== '' || this.bothNames !== '' || this.errorMobile !== '') {
       return;
     }
     const data = {

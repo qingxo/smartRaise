@@ -6,7 +6,6 @@ import { ROUTER_CONFIG } from './home.routes';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared';
 import { PopoverModule } from 'ngx-popover';
-import { PlanmanComponent } from './planman/planman.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { ClientDetailComponent } from './client-detail/client-detail.component';
@@ -63,7 +62,6 @@ import { PkginfoDialogComponent } from './pkginfo-dialog/pkginfo-dialog.componen
   declarations: [
     HomeComponent,
     ClientComponent,
-    PlanmanComponent,
     CreateAccountComponent,
     Ng2FlatpickrComponent,
     ClientDetailComponent,

@@ -61,7 +61,7 @@ export class PkginfoDialogComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     setTimeout(() => {
-      if (this.pkgId != '') {
+      if (this.pkgId !== '') {
         this.open(this.el);
         this.initPkgInfo();
       }
@@ -88,19 +88,19 @@ export class PkginfoDialogComponent implements OnInit, AfterViewInit {
 
         for (let i = 0; i < this.tasks.length; i++) {
           for (let j = 0; j < this.taskName.length; j++) {
-            if (this.tasks[i]['missionId'] == this.taskName[j].missionId) {
+            if (this.tasks[i]['missionId'] === this.taskName[j].missionId) {
               this.tasks[i]['missionName'] = this.taskName[j].missionName;
             }
           }
 
           for (let k = 0; k < this.taskTimes.length; k++) {
-            if (this.tasks[i]['missionType'] == this.taskTimes[k].value) {
+            if (this.tasks[i]['missionType'] === this.taskTimes[k].value) {
               this.tasks[i]['times'] = this.taskTimes[k].name;
             }
           }
 
           for (let k = 0; k < this.taskCount.length; k++) {
-            if (this.tasks[i]['rate'] == this.taskCount[k].value) {
+            if (this.tasks[i]['rate'] === this.taskCount[k].value) {
               this.tasks[i]['count'] = this.taskCount[k].name;
             }
           }

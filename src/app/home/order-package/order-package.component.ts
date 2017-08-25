@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {OrderPackageService} from './order-package.service';
-import {ActivatedRoute} from '@angular/router';
+import { OrderPackageService } from './order-package.service';
+import { ActivatedRoute } from '@angular/router';
 import * as swal from 'sweetalert';
 import tools from '../../shared/tools';
 @Component({
@@ -126,13 +126,13 @@ export class OrderPackageComponent implements OnInit {
 
   sellPackageConfirm(pkgId, item) {
     this.targetItem = item;
-    if (item.sources != 'hele') {
+    if (item.sources !== 'hele') {
       tools.tipsConfirm('确定订购服务包?', '', 'warning', this.sellPackage.bind(this));
     } else {
 
-      if (typeof this.personInfo.cardId != 'undefined' && this.personInfo.cardId != null && this.personInfo.cardId != 'null') { //用户有身份证时
+      if (typeof this.personInfo.cardId !== 'undefined' && this.personInfo.cardId !== null && this.personInfo.cardId !== 'null') { // 用户有身份证时
         tools.tipsConfirm('确定订购服务包?', '', 'warning', this.sellPackage.bind(this));
-      } else { //用户身份证不存在时，需要输入身份证
+      } else { // 用户身份证不存在时，需要输入身份证
         swal({
           title: '需要填写身份证号才能购买',
           type: 'input',
@@ -199,7 +199,7 @@ export class OrderPackageComponent implements OnInit {
         this.personBuyPkg = [];
         this.pages = res.data.navigatepageNums;
         for (let i = 0; i < res.data.list.length; i++) {
-          if (res.data.list[i].statue == 1) { //根据statue标志，剔除掉没有上架的服务包
+          if (res.data.list[i].statue === 1) { // 根据statue标志，剔除掉没有上架的服务包
             this.personBuyPkg.push(res.data.list[i]);
           }
         }

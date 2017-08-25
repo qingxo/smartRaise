@@ -4,19 +4,19 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ROUTER_CONFIG } from './app.routes';
 
-import { Http, HttpModule, XHRBackend, RequestOptions }    from '@angular/http';
+import { Http, HttpModule, XHRBackend, RequestOptions } from '@angular/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { CoreComponent } from './core/core.component';
-import {LoginGuard} from './guard/LoginGuard';
-import { InterceptedHttp, httpFactory}   from './shared/base.http.interceptor';
+import { LoginGuard } from './guard/LoginGuard';
+import { InterceptedHttp, httpFactory } from './shared/base.http.interceptor';
 // import { requestOptionsProvider} from './shared/default.request.option';
 import { HomeModule } from './home';
-import {SharedModule} from './shared';
+import { SharedModule } from './shared';
 import { DialogsComponent } from './dialogs/dialogs.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EchartsNg2Module } from 'echarts-ng2';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 

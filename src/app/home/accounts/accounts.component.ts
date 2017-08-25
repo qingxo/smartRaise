@@ -37,7 +37,7 @@ export class AccountsComponent implements OnInit {
     const dd = <AccountDialogsComponent>containerRef.createComponent(componentFatory).instance;
     dd.userId = userId;
     const ownRole = storage.get('state')['role'];
-    if (ownRole != 0) {
+    if (ownRole !== 0) {
       dd.freezeRole = true;
     }
     dd.showList = this.accountsList.bind(this);
@@ -73,7 +73,7 @@ export class AccountsComponent implements OnInit {
 
   delList(userId) {
     for (let i = 0; i < this.list.length; i++) {
-      if (this.list[i].userId == userId) {
+      if (this.list[i].userId === userId) {
         this.list.splice(i, 1);
       }
     }

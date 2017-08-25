@@ -36,7 +36,7 @@ export class HeatLineComponent implements OnInit, OnChanges {
         const arr = eval(res.data);
         for (let i = 0; i < res.data.length; i++) {
           this.heatList[i] = Number(res.data[i].temp);
-          if (this.periodDay == 1) {
+          if (this.periodDay === 1) {
             this.xHeatData[i] = res.data[i].occurDtStr.split(' ')[1];
           } else {
             this.xHeatData[i] = res.data[i].occurDtStr.split(' ')[0];

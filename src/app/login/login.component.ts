@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginConfirm(e) {
-    if (e.keyCode == 13) {
+    if (e.keyCode === 13) {
       this.loginHandler();
     }
   }

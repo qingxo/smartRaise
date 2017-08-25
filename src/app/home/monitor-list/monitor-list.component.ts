@@ -54,7 +54,7 @@ export class MonitorListComponent implements OnInit {
       'pageNum': this.pageNumber,
       'query': this.userId
     };
-    if (this.taskProgress == 0) {
+    if (this.taskProgress === 0) {
       this.monitorListService.getBloodPressList(data).subscribe((res) => {
         if (res.success) {
           this.list = res.data.list;
@@ -63,7 +63,7 @@ export class MonitorListComponent implements OnInit {
           this.totalCount = res.data.total;
         }
       });
-    } else if (this.taskProgress == 1) {
+    } else if (this.taskProgress === 1) {
       this.monitorListService.getBloodSugarList(data).subscribe((res) => {
         if (res.success) {
           this.list = res.data.list;
@@ -73,7 +73,7 @@ export class MonitorListComponent implements OnInit {
 
         }
       });
-    } else if (this.taskProgress == 2) {
+    } else if (this.taskProgress === 2) {
       data['signType'] = 'bf';
       data['customerId'] = this.userId;
       this.monitorListService.bmiListByPage(data).subscribe((res) => {
@@ -85,7 +85,7 @@ export class MonitorListComponent implements OnInit {
 
         }
       });
-    } else if (this.taskProgress == 3) {
+    } else if (this.taskProgress === 3) {
       data['signType'] = 'spo2';
       data['customerId'] = this.userId;
       this.monitorListService.oxygenListByPage(data).subscribe((res) => {
@@ -96,7 +96,7 @@ export class MonitorListComponent implements OnInit {
           this.totalCount = res.data.total;
         }
       });
-    } else if (this.taskProgress == 4) {
+    } else if (this.taskProgress === 4) {
       data['signType'] = 'temp';
       data['customerId'] = this.userId;
       this.monitorListService.heatListByPage(data).subscribe((res) => {

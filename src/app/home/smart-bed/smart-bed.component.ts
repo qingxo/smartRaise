@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {SmartBedService} from './smart-bed.service';
-import {ActivatedRoute} from '@angular/router';
+import { SmartBedService } from './smart-bed.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-smart-bed',
   templateUrl: './smart-bed.component.html',
@@ -18,7 +18,7 @@ export class SmartBedComponent implements OnInit {
   ngOnInit() {
     this.name = this.activedRoute.snapshot.queryParams['name'];
     this.mobile = this.activedRoute.snapshot.queryParams['mobile'];
-    if (isNaN(this.mobile)){
+    if (isNaN(this.mobile)) {
       this.mobile = null;
     }
     this.customerId = this.activedRoute.snapshot.queryParams['customerId'];
@@ -33,9 +33,9 @@ export class SmartBedComponent implements OnInit {
     };
     this.smartBedService.save(data).subscribe((res) => {
       if (!res.data) return;
-      if (res.data.success){
+      if (res.data.success) {
         console.log(res);
-      }else{
+      } else {
         console.log(res.data.errormsg);
       }
     });
