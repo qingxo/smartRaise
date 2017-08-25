@@ -1,0 +1,61 @@
+.pkgInfo {
+  .t-slow {
+    display: inline-block;
+    background-color: #fff9e1;
+    margin-left: 15px;
+    border: 1px solid #feca00;
+    border-radius: 62px;
+    padding: 0 15px 0 25px;
+    background-image: url("/assets/images/pkg-x.png");
+    background-repeat: no-repeat;
+    background-size: 12px 9px;
+    background-position: 6px;
+    color: #F6A623;
+    font-size: 12px;
+  }
+
+  .dis-bl {
+    line-height: 30px;
+  }
+
+  .price-part {
+    line-height: 30px;
+
+    .old-price {
+      text-decoration: line-through;
+      color: #A5A5A5;
+      font-size: 12px;
+      padding-left: 8px;
+    }
+  }
+
+  .table-pkg {
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 0 4px 0 #D2D2D2;
+    background: #fff;
+
+    span {
+      padding: 5px;
+      display: inline-block;
+    }
+
+    thead td {
+      background-color: #FAFAFB;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    tbody tr td {
+      border-bottom: 1px solid #E5E5E5;
+
+      span {
+        color: #666666;
+        font-size: 14px;
+      }
+    }
+  }
+
+  .service-info {
+    margin: 6px 0 10px;
+  }
+}

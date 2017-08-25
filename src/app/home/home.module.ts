@@ -46,6 +46,7 @@ import { SleepQualityComponent } from './sleep-quality/sleep-quality.component';
 import { MonitorListComponent } from './monitor-list/monitor-list.component';
 import { AccountDialogsComponent } from './account-dialogs/account-dialogs.component';
 import { PackageDialogComponent } from './package-dialog/package-dialog.component';
+import { PkginfoDialogComponent } from './pkginfo-dialog/pkginfo-dialog.component';
 
 @NgModule({
   imports: [
@@ -58,7 +59,7 @@ import { PackageDialogComponent } from './package-dialog/package-dialog.componen
     RouterModule.forChild(ROUTER_CONFIG)
 
   ],
-  entryComponents: [AccountDialogsComponent, PackageDialogComponent],
+  entryComponents: [AccountDialogsComponent, PackageDialogComponent, PkginfoDialogComponent],
   declarations: [
     HomeComponent,
     ClientComponent,
@@ -99,7 +100,8 @@ import { PackageDialogComponent } from './package-dialog/package-dialog.componen
     SleepQualityComponent,
     MonitorListComponent,
     AccountDialogsComponent,
-    PackageDialogComponent
+    PackageDialogComponent,
+    PkginfoDialogComponent
   ],
   providers: []
 })

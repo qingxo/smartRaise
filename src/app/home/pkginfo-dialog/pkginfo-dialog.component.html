@@ -1,0 +1,64 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h3 class="modal-title">服务包详情</h3>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="msg-info pkgInfo">
+      <div class="lf dis-bl">
+        <label for="" class="min">名称:</label>
+        <div class="inline" style="min-width:510px">
+          {{servicePackName}}<em class="t-slow" [hidden]="sources==false">慢病专属服务包</em>
+        </div>
+      </div>
+      <div class="lf dis-bl">
+        <label for="" class="min">图片:</label>
+        <div class="inline" style="width:483px;">
+          <img class="uploadPic" src="{{imageSrc}}" alt="" id="headImg">
+        </div>
+      </div>
+
+      <div class="lf dis-bl">
+        <label for="" class="min">描述:</label>
+        <div class="inline more-w">
+          <textarea style="border:0px;outline:none;resize:none" readonly type="text" rows="5" name="" value="" [ngModel]="remark"></textarea>
+        </div>
+      </div>
+
+
+      <div class="lf dis-in price-part">
+        <label for="" class="min">现价:</label>
+        <div class="inline">
+          {{currentPrice}} RMB
+          <em class="old-price">{{oldPrice}} RMB</em>
+        </div>
+      </div>
+      <div class="lf dis-bl tasks">
+        <label for="" class="min">服务内容:</label>
+
+        <div class="inline more-w service-info">
+
+          <table class="table-pkg" cellpadding="0" cellspacing="0" border="0">
+            <thead>
+              <tr>
+                <td><span>任务名称</span></td>
+                <td><span>任务类型</span></td>
+                <td><span>任务周期</span></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of tasks">
+                <td><span>{{item.missionName}}</span></td>
+                <td><span>{{item.times}}</span></td>
+                <td><span>{{item.count}}</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-template>

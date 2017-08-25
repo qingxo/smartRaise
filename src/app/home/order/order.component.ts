@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChange, ComponentFactoryResolver, ViewContainerRef, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { OrderService } from './order.service'
 import storage from '../../shared/storage'
 import tools from '../../shared/tools'
+import { PkginfoDialogComponent } from '../pkginfo-dialog'
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
@@ -20,7 +21,7 @@ export class OrderComponent implements OnInit {
   private orderId: string = ''
   private pkgId: string = ''
   private customerId: string = ''
-  constructor(private orderService: OrderService, private activedRoute: ActivatedRoute) { }
+  constructor(private orderService: OrderService, private activedRoute: ActivatedRoute, private viewContainerRef: ViewContainerRef, private componentFactoryResolver: ComponentFactoryResolver) { }
 
   ngOnInit() {
     if (this.activedRoute.queryParams['value']) {
@@ -32,6 +33,14 @@ export class OrderComponent implements OnInit {
 
   initBtnShow() {
     this.orderBtn = tools.initBtnShow(0, 2, 'orderBtn')
+  }
+
+  openModal(packageId) {
+    let componentFatory = this.componentFactoryResolver.resolveComponentFactory(PkginfoDialogComponent)
+    let containerRef = this.viewContainerRef;
+    containerRef.clear()
+    let dd = <PkginfoDialogComponent>containerRef.createComponent(componentFatory).instance
+    dd.pkgId = packageId
   }
 
   searchTable(queryInfo: string) {
