@@ -9,8 +9,8 @@ import * as swal from 'sweetalert';
 
 @Injectable()
 export class BaseService {
-  public LOG_OUT = '10000000'; //登录错误
-  public SYS_ERROR = '10000001'; //系统操作错误
+  public LOG_OUT = '10000000'; // 登录错误
+  public SYS_ERROR = '10000001'; // 系统操作错误
   constructor(public http: Http) { }
 
   getInfo(url: any): Observable<any> {
@@ -28,12 +28,12 @@ export class BaseService {
   private extractData(res: any) {
     const body = res.json();
     if (!body.success) {
-      if (body.errCode == '10000000') {
+      if (body.errCode === '10000000') {
         setTimeout(() => {
           storage.remove('state');
           window.location.href = '/login';
         }, 2000);
-      } else if (body.errCode == '10000001') {
+      } else if (body.errCode === '10000001') {
         swal('错误', body.errMsg);
       }
 
