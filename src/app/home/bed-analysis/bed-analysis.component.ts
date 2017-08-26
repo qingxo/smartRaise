@@ -45,7 +45,7 @@ export class BedAnalysisComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (this.equipNo != '') {
+    if (this.equipNo !== '') {
       this.bedAnalysis();
     }
   }

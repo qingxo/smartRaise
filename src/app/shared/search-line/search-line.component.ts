@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, Input, EventEmitter} from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-search-line',
   templateUrl: './search-line.component.html',
@@ -20,7 +20,7 @@ export class SearchLineComponent implements OnInit {
   }
 
   searchStart(event) {
-    if (event.keyCode == 13) {
+    if (event.keyCode === 13) {
       this.searchFind();
     }
   }

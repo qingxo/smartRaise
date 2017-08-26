@@ -69,9 +69,11 @@ class Tools {
   isCardID(sId) {
     let iSum = 0;
     const info = '';
-    if (!/^\d{17}(\d|x)$/i.test(sId)) return '你输入的身份证长度或格式错误';
+    if (!/^\d{17}(\d|x)$/i.test(sId)) {
+      return '你输入的身份证长度或格式错误';
+    }
     sId = sId.replace(/x$/i, 'a');
-    if (this.aCity[parseInt(sId.substr(0, 2))] == null) {
+    if (this.aCity[parseInt(sId.substr(0, 2), 10)] == null) {
       return '你的身份证地区非法';
     }
     const sBirthday = sId.substr(6, 4) + '-' + Number(sId.substr(10, 2)) + '-' + Number(sId.substr(12, 2));

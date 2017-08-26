@@ -150,7 +150,7 @@ export class MyTaskComponent implements OnInit {
   }
 
   initRateCn(num) {
-    switch (parseInt(this.list[num].rate)) {
+    switch (parseInt(this.list[num].rate, 10)) {
       case 0:
         this.list[num].rateCn = '天';
         break;

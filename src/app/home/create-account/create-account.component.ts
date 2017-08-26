@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as $ from 'jquery';
 import { FlatpickrOptions } from 'ng2-flatpickr/ng2-flatpickr';
-import  * as Flatpickr from 'flatpickr';
+import * as Flatpickr from 'flatpickr';
 import * as moment from 'moment';
 import * as flatpickr_local from 'flatpickr/dist/l10n/zh';
-import {NormalAccount} from '../accounts-model';
+import { NormalAccount } from '../accounts-model';
 import 'rxjs/Observable';
-import {forbiddenNameValidator} from '../../shared/moreDirective/forbidden-name.directive';
-import {CardCheckDirective} from '../../shared/moreDirective/card-check.directive';
+import { forbiddenNameValidator } from '../../shared/moreDirective/forbidden-name.directive';
+import { CardCheckDirective } from '../../shared/moreDirective/card-check.directive';
 @Component({
   selector: 'app-create-account',
   templateUrl: './create-account.component.html',
@@ -33,16 +33,16 @@ export class CreateAccountComponent implements OnInit {
 
   private accountForm: FormGroup;
   private formErrors = {
-  'name': '',
-  'power': ''
+    'name': '',
+    'power': ''
   };
 
   private validationMessages = {
     'name': {
-      'required':      'Name is required.',
-      'minlength':     'Name must be at least 4 characters long.',
-      'maxlength':     'Name cannot be more than 24 characters long.'
-        },
+      'required': 'Name is required.',
+      'minlength': 'Name must be at least 4 characters long.',
+      'maxlength': 'Name cannot be more than 24 characters long.'
+    },
     'power': {
       'required': 'Power is required.'
     }
@@ -53,7 +53,7 @@ export class CreateAccountComponent implements OnInit {
   ngOnInit() {
     this.initData();
     this.accountForm = this.fb.group({
-      role: ['客户', [Validators.required]], //0 系统账号，1 平台账号，2 健康专员账号， 3 客户账号
+      role: ['客户', [Validators.required]], // 0 系统账号，1 平台账号，2 健康专员账号， 3 客户账号
       name: ['', [Validators.required, forbiddenNameValidator(/kaka/i)]],
       cardId: ['', []],
       mobile: null,
@@ -68,7 +68,7 @@ export class CreateAccountComponent implements OnInit {
       guardianDetail: null
     });
     this.accountForm.valueChanges
-         .subscribe(data => this.onValueChanged(data));
+      .subscribe(data => this.onValueChanged(data));
 
     this.onValueChanged();
   }
@@ -78,7 +78,9 @@ export class CreateAccountComponent implements OnInit {
   }
 
   onValueChanged(data?: any) {
-    if (!this.accountForm) return;
+    if (!this.accountForm) {
+      return;
+    }
     const form = this.accountForm;
     for (const field in this.formErrors) {
       this.formErrors[field] = '';
@@ -93,14 +95,14 @@ export class CreateAccountComponent implements OnInit {
     }
   }
 
-  initData(){
+  initData() {
     this.flatpickrOption = {
       // enableTime: true
     };
     Flatpickr.localize(flatpickr_local.zh);
   }
 
-  revert() {}
+  revert() { }
 
   save() {
     // this.birdthday = moment(this.birdthday[0]).format('YYYY-MM-DD')

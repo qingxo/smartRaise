@@ -111,7 +111,7 @@ export class BestSleepLineComponent implements OnInit, OnChanges {
           itemStyle: {
             normal: {
               label: {
-                show: true, //是否展示
+                show: true, // 是否展示
                 textStyle: {
                   fontWeight: 'bolder',
                   fontSize: '12',

@@ -47,7 +47,7 @@ export class ServicePackageComponent implements OnInit {
 
   handlePackageStatus() {
     const data = this.clickItem;
-    let status = typeof data.item.statue === 'undefined' ? 0 : parseInt(data.item.statue);
+    let status = typeof data.item.statue === 'undefined' ? 0 : parseInt(data.item.statue, 10);
     status === 1 ? status = 0 : status = 1;
     const param = { 'servicePackId': data.item.servicePackId, 'statue': status };
 

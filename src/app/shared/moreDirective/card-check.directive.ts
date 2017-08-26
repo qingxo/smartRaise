@@ -1,7 +1,7 @@
-import { Directive , OnChanges, SimpleChanges, Input} from '@angular/core';
-import {Validator, Validators, ValidatorFn, NG_VALIDATORS, AbstractControl} from '@angular/forms';
+import { Directive, OnChanges, SimpleChanges, Input } from '@angular/core';
+import { Validator, Validators, ValidatorFn, NG_VALIDATORS, AbstractControl } from '@angular/forms';
 @Directive({
-  selector: '[appCardCheck]'
+  selector: '[app-cardCheck]'
 })
 export class CardCheckDirective implements Validator, OnChanges {
   @Input() appCardCheck: string;
@@ -11,7 +11,7 @@ export class CardCheckDirective implements Validator, OnChanges {
 
   }
 
-  validate(control: AbstractControl): {[key: string]: any}{
+  validate(control: AbstractControl): { [key: string]: any } {
     return this.valFn(control);
   }
 

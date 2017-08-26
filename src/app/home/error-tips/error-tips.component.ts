@@ -84,7 +84,7 @@ export class ErrorTipsComponent implements OnInit {
       return '未知';
     } else {
       const newYear = Number(new Date().getFullYear());
-      const num = newYear - parseInt(ageNum.split('-')[0]);
+      const num = newYear - parseInt(ageNum.split('-')[0], 10);
       return num;
     }
 

@@ -48,9 +48,9 @@ export class SleepTestComponent implements OnInit {
         }
         console.log(res);
         for (let i = 0; i < echartsData.length; i++) {
-          sq.push(parseInt(echartsData[i].psqiScore));
-          sf.push(parseInt(echartsData[i].gad7score));
-          sb.push(parseInt(echartsData[i].phq9score));
+          sq.push(parseInt(echartsData[i].psqiScore, 10));
+          sf.push(parseInt(echartsData[i].gad7score, 10));
+          sb.push(parseInt(echartsData[i].phq9score, 10));
           xd.push(echartsData[i].evaluationTime);
         }
 

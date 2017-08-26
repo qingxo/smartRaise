@@ -40,14 +40,14 @@ export class HistoryLineComponent implements OnInit, OnChanges {
       case 2: status = 30;
         break;
     }
-    if (status != this.periodDay) {
+    if (status !== this.periodDay) {
       this.periodDay = status;
       this.smartBedData();
     }
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (this.sources != '-1' && this.equipNo != '') {
+    if (this.sources !== '-1' && this.equipNo !== '') {
       this.smartBedData();
     }
   }

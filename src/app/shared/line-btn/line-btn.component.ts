@@ -20,7 +20,7 @@ export class LineBtnComponent implements OnInit {
     this.btnInfo.emit(index);
     const array = this.el.nativeElement.children;
     for (let i = 0; i < array.length; i++) {
-      if (i == index) {
+      if (i === index) {
         array[i].className = 'choosed';
       } else {
         array[i].className = 'tips';

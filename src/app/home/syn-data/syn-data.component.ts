@@ -45,7 +45,7 @@ export class SynDataComponent implements OnInit {
       'userId': storage.get('state')['userId'],
       'sendheleFlag': 0  // 0表示客户查询
     };
-    if (this.taskProgress == 0) {
+    if (this.taskProgress === 0) {
       this.synDataService.clientProblemList(data).subscribe((res) => {
         if (res.success) {
           this.list = res.data.list;
@@ -72,7 +72,7 @@ export class SynDataComponent implements OnInit {
 
   pageTurning(number) {
     this.pageNumber = 1;
-    this.taskProgress = parseInt(number);
+    this.taskProgress = parseInt(number, 10);
     this.showList();
   }
 

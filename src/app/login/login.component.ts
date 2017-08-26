@@ -82,7 +82,7 @@ export class LoginComponent implements OnInit {
       (data) => {
         if (data.success) {
           storage.set('state', data.data);
-          this.role = parseInt(storage.get('state')['role']);
+          this.role = parseInt(storage.get('state')['role'], 10);
           this.initMenu();
         } else {
           this.errorMsg = data.errMsg;

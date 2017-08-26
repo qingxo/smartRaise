@@ -82,7 +82,7 @@ export class HomeComponent implements OnInit {
       console.log(this.menu);
       return;
     }
-    const role = parseInt(storage.get('state')['role']) + 1;
+    const role = parseInt(storage.get('state')['role'], 10) + 1;
     this.homeService.getMenuList(role).subscribe((res) => {
       if (res.success) {
         this.menu = res.data;

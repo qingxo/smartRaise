@@ -216,7 +216,7 @@ export class ClientComponent implements OnInit {
       if (res.success) {
         const info = res.data;
         this.realname = info.name;
-        this.mobile = parseInt(info.mobile);
+        this.mobile = parseInt(info.mobile, 10);
         this.sex = info.sex;
         this.userName = info.userName;
         this.weight = info.weight;
@@ -309,9 +309,9 @@ export class ClientComponent implements OnInit {
     for (let i = 0; i < this.checkList.length; i++) {
       if (this.checkList[i].id === id) {
         this.checkList.splice(i, 1);
-        for (let i = 0; i < this.helpList.length; i++) {
-          if (this.helpList[i].customerId === id) {
-            this.helpList[i].isChecked = false;
+        for (let j = 0; j < this.helpList.length; j++) {
+          if (this.helpList[j].customerId === id) {
+            this.helpList[j].isChecked = false;
             return;
           }
         }
@@ -525,14 +525,14 @@ export class ClientComponent implements OnInit {
     }
 
     if (typeof this.height !== 'undefined') {
-      if (parseInt(this.height) < 50 || parseInt(this.height) > 250) {
+      if (parseInt(this.height, 10) < 50 || parseInt(this.height, 10) > 250) {
         this.errorHeight = '身高的取值范围在50~250之间';
         this.bothhw = 'xxx';
       }
     }
 
     if (typeof this.weight !== 'undefined') {
-      if (parseInt(this.weight) < 1 || parseInt(this.weight) > 300) {
+      if (parseInt(this.weight, 10) < 1 || parseInt(this.weight, 10) > 300) {
         this.errorWeight = '体重的取值范围在1~300之间';
         this.bothhw = 'xxx';
       }

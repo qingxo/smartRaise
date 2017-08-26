@@ -156,15 +156,15 @@ export class SleepQualityComponent implements OnInit, OnChanges {
   averagePic() {
     this.focusData = [];
     this.focusData.push({
-      value: parseInt(this.remRate),
+      value: parseInt(this.remRate, 10),
       name: '快速眼动占比'
     });
     this.focusData.push({
-      value: parseInt(this.lightRate),
+      value: parseInt(this.lightRate, 10),
       name: '浅睡占比'
     });
     this.focusData.push({
-      value: parseInt(this.deepRate),
+      value: parseInt(this.deepRate, 10),
       name: '深睡占比'
     });
 

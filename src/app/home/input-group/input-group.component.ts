@@ -162,7 +162,7 @@ export class InputGroupComponent implements OnInit, OnChanges {
           tools.tips(res.errMsg, '', 'error');
         }
       });
-    } else if (this.inputType == 4) {
+    } else if (this.inputType === 4) {
       if (typeof this.bloodOxygen === 'undefined' || this.bloodOxygen > 100 || this.bloodOxygen < 50) {
         tools.tips('血氧范围在50~100', '', 'warning');
         return;
