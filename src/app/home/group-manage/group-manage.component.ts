@@ -42,6 +42,11 @@ export class GroupManageComponent implements OnInit {
     this.groupManageList();
   }
 
+  pageTurning(val) {
+    this.pageNumber = val
+    this.groupManageList()
+  }
+
   showTpl(index, groupDetail) {
     this.itemTarget = index;
     index === -1 ? this.isEdit = true : this.isEdit = false;
