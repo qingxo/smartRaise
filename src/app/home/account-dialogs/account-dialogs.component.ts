@@ -26,7 +26,7 @@ export class AccountDialogsComponent implements OnInit, AfterViewInit {
     dateFormat: 'Y-m-d',
     onChange: this.changeBirthday.bind(this)
   };
-  private chooseRole = '2'; // 0：表示系统管理员，1:表示平台管理员，2：表示健康专员
+  private chooseRole: string = '2'; // 0：表示系统管理员，1:表示平台管理员，2：表示健康专员
   private name: string;
   private userName: string;
   private mobile: number;
