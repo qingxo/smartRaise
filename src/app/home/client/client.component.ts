@@ -456,12 +456,10 @@ export class ClientComponent implements OnInit {
   delClient() {
     const customerId = this.listData[this.itemTarget].customerId;
     this.clientService.del(customerId).subscribe((res) => {
-      console.log(res);
       if (res.success) {
         tools.tips('删除成功');
         this.initAsyc();
       } else {
-        console.log('here?');
         tools.tips(res.errMsg, '', 'error');
       }
     });

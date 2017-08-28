@@ -102,15 +102,18 @@ class Tools {
   }
 
   tips(msgTitle: string, msgDetail: string = '', msgType: any = 'success', timer: number = this.TIMER) {
-    new swal({
-      title: msgTitle,
-      text: msgDetail,
-      type: msgType,
-      timer: timer,
-      showConfirmButton: false,
-      showCancelButton: true,
-      cancelButtonText: '确定'
-    });
+    setTimeout(() => {
+      new swal({
+        title: msgTitle,
+        text: msgDetail,
+        type: msgType,
+        timer: timer,
+        showConfirmButton: false,
+        showCancelButton: true,
+        cancelButtonText: '确定'
+      });
+    }, 50)
+
 
   }
 
