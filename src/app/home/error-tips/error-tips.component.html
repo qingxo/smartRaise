@@ -29,9 +29,9 @@
             <td><span>{{item.missionName}}</span></td>
             <td><span>{{item.missionValue}}</span></td>
             <td><span>{{item.ocurrDate | date:'yyyy-MM-dd'}}</span></td>
-            <td><span>{{item.errContent}}</span></td>
+            <td><span ngbPopover="{{item.errContent}}" triggers="mouseenter:mouseleave" container="body">{{cultOpinion(item.errContent)}}</span></td>
             <td>
-              <span>{{cultOpinion(item.opinion)}}</span>
+              <span ngbPopover="{{item.opinion}}" triggers="mouseenter:mouseleave" container="body">{{cultOpinion(item.opinion)}}</span>
             </td>
             <td><span>{{item.commissionerName}}</span></td>
             <td [hidden]="errorBtn['处理']"><span class="opt">
