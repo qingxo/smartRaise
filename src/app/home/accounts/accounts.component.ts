@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, SimpleChange, ComponentFactoryResolver, ViewContainerRef, ViewChild } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChange, ComponentFactoryResolver, AfterViewInit, ViewContainerRef, ViewChild, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { AccountsService } from './accounts.service';
 import tools from '../../shared/tools';
 import storage from '../../shared/storage';
@@ -20,7 +20,7 @@ export class AccountsComponent implements OnInit {
   private list: Array<any> = [];
   private userId: any = -1;
   private accountsBtn: any;
-  constructor(private accountsService: AccountsService, private componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) { }
+  constructor(private changeDetectorRef: ChangeDetectorRef, private accountsService: AccountsService, private componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) { }
 
   ngOnInit() {
     this.accountsList();
@@ -30,6 +30,11 @@ export class AccountsComponent implements OnInit {
     this.accountsBtn = tools.initBtnShow(2, 0, 'accountsBtn');
   }
 
+
+  ngAfterViewInit() {
+  }
+
+
   openModal(userId) {
     const componentFatory = this.componentFactoryResolver.resolveComponentFactory(AccountDialogsComponent);
     const containerRef = this.viewContainerRef;
@@ -37,7 +42,7 @@ export class AccountsComponent implements OnInit {
     const dd = <AccountDialogsComponent>containerRef.createComponent(componentFatory).instance;
     dd.userId = userId;
     const ownRole = storage.get('state')['role'];
-    if (ownRole !== 0) {
+    if (ownRole !== '0') {
       dd.freezeRole = true;
     }
     dd.showList = this.accountsList.bind(this);
