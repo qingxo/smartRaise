@@ -19,7 +19,7 @@
           <tr *ngFor="let item of list">
             <td><span>{{item.name}}</span></td>
             <td><span>{{item.mobile}}</span></td>
-            <td><span>{{item.remark}}</span></td>
+            <td><span ngbPopover="You see, I show up on hover!" popoverTitle="Pop title" container="body">{{item.remark}}</span></td>
             <td><span>{{item.dealRemark?item.dealRemark:''}}</span></td>
             <td><span class="opt">
                  <em [hidden]="!item.dealRemark" class="hasremark">已处理</em>

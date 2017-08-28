@@ -28,6 +28,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DialogsComponent
   ],
   imports: [
+    NgbModule.forRoot(),
     BrowserModule,
     FormsModule,
     HttpModule,
@@ -35,8 +36,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomeModule,
     EchartsNg2Module,
     BrowserAnimationsModule,
-    RouterModule.forRoot(ROUTER_CONFIG),
-    NgbModule.forRoot()
+    RouterModule.forRoot(ROUTER_CONFIG)
+
   ],
   // providers: [requestOptionsProvider,LoginGuard],
   providers: [

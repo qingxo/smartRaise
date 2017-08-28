@@ -5,7 +5,6 @@ import { ClientComponent } from './client/client.component';
 import { ROUTER_CONFIG } from './home.routes';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared';
-import { PopoverModule } from 'ngx-popover';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { ClientDetailComponent } from './client-detail/client-detail.component';
@@ -53,7 +52,6 @@ import { PkginfoDialogComponent } from './pkginfo-dialog/pkginfo-dialog.componen
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    PopoverModule,
     EchartsNg2Module,
     RouterModule.forChild(ROUTER_CONFIG)
 

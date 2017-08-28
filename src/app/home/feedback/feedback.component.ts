@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FeedbackService } from './feedback.service';
 import tools from '../../shared/tools';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons, NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-feedback',
   templateUrl: './feedback.component.html',
   styleUrls: ['./feedback.component.scss'],
-  providers: [FeedbackService]
+  providers: [FeedbackService, NgbPopoverConfig]
 })
 export class FeedbackComponent implements OnInit {
   private list: Array<any> = [];
@@ -22,8 +22,10 @@ export class FeedbackComponent implements OnInit {
   private closeResult: string;
 
 
-  constructor(private feedbackService: FeedbackService, private modalService: NgbModal) { }
+  constructor(private feedbackService: FeedbackService, private modalService: NgbModal, private config: NgbPopoverConfig) { }
   ngOnInit() {
+    this.config.placement = 'top';
+    this.config.triggers = 'hover';
     this.feedbackList();
   }
 
