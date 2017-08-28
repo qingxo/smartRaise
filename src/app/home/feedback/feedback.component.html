@@ -1,4 +1,5 @@
 <div class="right-content-info feed-back">
+  <!-- <ngb-pagination [collectionSize]="70" [(page)]="[1,2,3]" aria-label="Default pagination"></ngb-pagination> -->
 
   <div class="fbchoose">
     <app-line-btn [totalBtn]="[ '客户意见', '健康专员意见']" (btnInfo)="toogleChoosed($event)"></app-line-btn>
@@ -19,8 +20,9 @@
           <tr *ngFor="let item of list">
             <td><span>{{item.name}}</span></td>
             <td><span>{{item.mobile}}</span></td>
-            <td><span ngbPopover="You see, I show up on hover!" popoverTitle="Pop title" container="body">{{item.remark}}</span></td>
-            <td><span>{{item.dealRemark?item.dealRemark:''}}</span></td>
+            <td><span ngbPopover="{{item.remark}}" triggers="mouseenter:mouseleave" container="body">{{cultLen(item.remark)}}</span></td>
+            <td *ngIf="!!item.dealRemark"><span ngbPopover="{{item.dealRemark}}" triggers="mouseenter:mouseleave" container="body">{{cultLen(item.dealRemark)}}</span></td>
+            <td *ngIf="!item.dealRemark"></td>
             <td><span class="opt">
                  <em [hidden]="!item.dealRemark" class="hasremark">已处理</em>
                  <em [hidden]="!!item.dealRemark" (click)="handleFeedBack(feedback == 0? item.opinionId: item.opinionUserId,item,ideas)">处理</em>

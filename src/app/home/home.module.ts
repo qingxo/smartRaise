@@ -45,6 +45,7 @@ import { MonitorListComponent } from './monitor-list/monitor-list.component';
 import { AccountDialogsComponent } from './account-dialogs/account-dialogs.component';
 import { PackageDialogComponent } from './package-dialog/package-dialog.component';
 import { PkginfoDialogComponent } from './pkginfo-dialog/pkginfo-dialog.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -53,6 +54,7 @@ import { PkginfoDialogComponent } from './pkginfo-dialog/pkginfo-dialog.componen
     FormsModule,
     ReactiveFormsModule,
     EchartsNg2Module,
+    NgbModule,
     RouterModule.forChild(ROUTER_CONFIG)
 
   ],

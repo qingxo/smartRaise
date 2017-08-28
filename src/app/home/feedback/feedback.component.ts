@@ -29,6 +29,10 @@ export class FeedbackComponent implements OnInit {
     this.feedbackList();
   }
 
+  cultLen(val) {
+    return val.length > 23 ? val.substr(0, 20) + '...' : val
+  }
+
   feedbackList() {
     const data = {
       'pageSize': this.pageSize,
