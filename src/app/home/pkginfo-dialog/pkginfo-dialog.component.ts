@@ -25,31 +25,31 @@ export class PkginfoDialogComponent implements OnInit, AfterViewInit {
   private taskTimes: Array<any> = [
     {
       'name': '一次性任务',
-      'value': 0
+      'value': '0'
     }, {
       'name': '周期性任务',
-      'value': 1
+      'value': '1'
     }
   ];
   private taskCount: Array<any> = [
     {
       'name': '天',
-      'value': 0
+      'value': '0'
     }, {
       'name': '周',
-      'value': 1
+      'value': '1'
     }, {
       'name': '月',
-      'value': 2
+      'value': '2'
     }, {
       'name': '季',
-      'value': 3
+      'value': '3'
     }, {
       'name': '半年',
-      'value': 4
+      'value': '4'
     }, {
       'name': '年',
-      'value': 5
+      'value': '5'
     }
   ];
   @Input() pkgId = '';
