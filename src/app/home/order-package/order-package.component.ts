@@ -48,7 +48,6 @@ export class OrderPackageComponent implements OnInit {
     this.orderPackageService.personInfo(userId).subscribe((res) => {
       if (res.success) {
         this.personInfo = res.data;
-        console.log(this.personInfo);
       }
     });
   }
@@ -199,7 +198,7 @@ export class OrderPackageComponent implements OnInit {
         this.personBuyPkg = [];
         this.pages = res.data.navigatepageNums;
         for (let i = 0; i < res.data.list.length; i++) {
-          if (res.data.list[i].statue === 1) { // 根据statue标志，剔除掉没有上架的服务包
+          if (res.data.list[i].statue === '1') { // 根据statue标志，剔除掉没有上架的服务包
             this.personBuyPkg.push(res.data.list[i]);
           }
         }
