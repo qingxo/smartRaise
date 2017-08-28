@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChange, ComponentFactoryResolver, ViewContainerRef, ViewChild } from '@angular/core';
 import { OrderPackageService } from './order-package.service';
 import { ActivatedRoute } from '@angular/router';
 import * as swal from 'sweetalert';
 import tools from '../../shared/tools';
+import { PkginfoDialogComponent } from '../pkginfo-dialog';
+
 @Component({
   selector: 'app-order-package',
   templateUrl: './order-package.component.html',
@@ -20,7 +22,7 @@ export class OrderPackageComponent implements OnInit {
   private targetItem: object = {};
   private targetIndex: number = -1;
 
-  constructor(private orderPackageService: OrderPackageService, private route: ActivatedRoute) { }
+  constructor(private orderPackageService: OrderPackageService, private route: ActivatedRoute, private viewContainerRef: ViewContainerRef, private componentFactoryResolver: ComponentFactoryResolver) { }
 
   ngOnInit() {
     this.userId = this.route.snapshot.params['userId'];
@@ -42,6 +44,14 @@ export class OrderPackageComponent implements OnInit {
       'customerId': this.userId
     };
     this.personBuyPkgInfo(data);
+  }
+
+  handlePackageInfo(packageId) {
+    const componentFatory = this.componentFactoryResolver.resolveComponentFactory(PkginfoDialogComponent);
+    const containerRef = this.viewContainerRef;
+    containerRef.clear();
+    const dd = <PkginfoDialogComponent>containerRef.createComponent(componentFatory).instance;
+    dd.pkgId = packageId;
   }
 
   personDetail(userId) {

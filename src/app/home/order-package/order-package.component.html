@@ -51,7 +51,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let item of personBuyPkg;let index =index" [hidden]="item.myBuyCounts>0?false:true">
-              <td><span class="opt"><em ui-sref="home.orderdetail({'pkgId':item.serviceOrderId})">{{item.serviceOrderId}}</em></span></td>
+              <td><span class="opt"><em   [routerLink]="['/home/orderdetail',item.serviceOrderId]" >{{item.serviceOrderId}}</em></span></td>
               <td><span class="opt"> <em (click)="handlePackageInfo(item.servicePackId)">{{item.servicePackName}}</em></span></td>
               <td><span>{{item.buyDt | date:'yyyy-MM-dd'}}</span></td>
               <td><span>{{item.orderStatus == '1'?'已启动':item.orderStatus=='0'?'未启动':'已停止'}}</span></td>
