@@ -87,8 +87,9 @@ export class ClientComponent implements OnInit {
   private chameleon = 'inactive';
   private fly = 0;
   private groupPlanList: Array<any> = [];
+  private chooseGroupList: Array<any> = [];
   private groupPlanName: string;
-  // @ViewChild(HostDirective) hostD: HostDirective
+  private chooseGroupId: string = '-1';
   constructor(private clientService: ClientService, private modalService: NgbModal, private componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) { }
 
 
@@ -96,6 +97,10 @@ export class ClientComponent implements OnInit {
 
   changeMe() {
     this.chameleon === 'inactive' ? this.chameleon = 'active' : this.chameleon = 'inactive';
+  }
+
+  onChange(val) {
+
   }
 
 
@@ -106,6 +111,7 @@ export class ClientComponent implements OnInit {
 
     this.initBtnShow();
     this.initAsyc();
+    this.initGroupPlanList()
   }
 
 
@@ -124,7 +130,9 @@ export class ClientComponent implements OnInit {
     this.clientService.groupList(data).subscribe((res) => {
       if (res.success) {
         this.groupPlanList = res.data.list;
+        this.chooseGroupList = res.data.list;
       }
+      this.chooseGroupList.unshift({ 'socialWelfareId': '-1', 'socialWelfareName': '请选择' })
       this.groupPlanName = this.groupPlanList[0].socialWelfareId;
     });
   }

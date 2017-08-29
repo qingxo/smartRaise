@@ -108,6 +108,43 @@ input:focus {
     min-height: 900px;
     border-radius: 5px;
 
+    .equip,
+    .org {
+      display: inline-block;
+      vertical-align: bottom;
+      color: #333333;
+
+      select {
+        option {
+          color: #333333;
+        }
+      }
+    }
+
+    .org {
+      select {
+        width: 150px;
+        height: 30px;
+        border: 1px solid #d2d2d2;
+        background-color: white;
+        padding: 0 10px 0 0;
+        color: #333333;
+      }
+    }
+
+    .equip {
+      margin: 0 20px;
+
+      select {
+        width: 90px;
+        height: 30px;
+        border: 1px solid #d2d2d2;
+        background-color: white;
+        padding: 0 10px;
+        color: #333333;
+      }
+    }
+
     .mybox-lit {
       height: 150px !important;
     }

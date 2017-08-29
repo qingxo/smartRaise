@@ -2,6 +2,20 @@
   <div class="detail-content">
     <div class="highline">
       <div class="lf">
+        <div class="org">
+          <span>机构</span>
+          <select class="" name="" (change)="onChange($event.target.value)" [(ngModel)]="chooseGroupId">
+            <option  *ngFor="let item of chooseGroupList" value="{{item.socialWelfareId}}">{{item.socialWelfareName}}</option>
+          </select>
+        </div>
+        <div class="equip">
+          <span>服务包</span>
+          <select class="" (change)="onChange($event.target.value)" style="width:150px">
+            <option value="0">请选择</option>
+            <option value="1">已绑定</option>
+            <option value="2">未绑定</option>
+          </select>
+        </div>
         <app-search-line placeHolderValue="客户请输入" (search)="searchTable($event)"></app-search-line>
       </div>
       <div class="rf  create-btn" (click)="clientActive(-1,clientDetail)" [@newState]="chameleon" (mouseover)="changeMe()" (mouseout)="changeMe()" [hidden]="clientBtn['新增客户']">
