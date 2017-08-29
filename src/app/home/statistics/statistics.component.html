@@ -1,0 +1,13 @@
+<div class="right-content-info statistics-info">
+  <div class="fbchoose">
+    <app-line-btn [totalBtn]="[ '客户分类统计', '设备使用统计','订单数统计']" (btnInfo)="toogleChoosed($event)"></app-line-btn>
+  </div>
+  <div class="detail-content">
+    <div class="org">
+      <span>机构</span>
+      <select class="" name="" [(ngModel)]="groupName" (change)="onChange($event.target.value)">
+        <option  *ngFor="let item of groupList" value="{{item.socialWelfareId}}">{{item.socialWelfareName}}</option>
+      </select>
+    </div>
+  </div>
+</div>

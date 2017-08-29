@@ -26,6 +26,7 @@ import { MonitorListComponent } from './monitor-list';
 import { SignManageComponent } from './sign-manage'
 import { SignDataComponent } from './sign-data'
 import { CriticalValueComponent } from './critical-value'
+import { StatisticsComponent } from './statistics'
 export const ROUTER_CONFIG: Routes = [
   {
     path: '', component: HomeComponent,
@@ -58,7 +59,8 @@ export const ROUTER_CONFIG: Routes = [
       { path: 'monitorlist/:userId', component: MonitorListComponent },
       { path: 'body', component: SignManageComponent },
       { path: 'signdata/:userId', component: SignDataComponent },
-      { path: 'crisis', component: CriticalValueComponent }
+      { path: 'crisis', component: CriticalValueComponent },
+      { path: 'statistics', component: StatisticsComponent }
     ]
   }
 ];
