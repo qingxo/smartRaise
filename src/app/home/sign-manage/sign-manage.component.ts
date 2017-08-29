@@ -27,10 +27,32 @@ export class SignManageComponent implements OnInit {
   private pageNumber = 1;
   private queryInfo = '';
   private totalPage: number;
+  private groupPlanList: Array<any> = []
+  private groupPlanName: string
   constructor(private signManageService: SignManageService) { }
 
   ngOnInit() {
     this.initAsyc()
+    this.initGroupPlanList()
+  }
+
+  onChange(val) {
+    console.log(val)
+  }
+
+  // 获取机构列表
+  initGroupPlanList() {
+    const data = {
+      'pageSize': 100,
+      'pageNum': 1
+    };
+    this.signManageService.groupList(data).subscribe((res) => {
+      if (res.success) {
+        this.groupPlanList = res.data.list;
+      }
+      this.groupPlanList.unshift({ 'socialWelfareId': '-1', 'socialWelfareName': '请选择' })
+      this.groupPlanName = this.groupPlanList[0].socialWelfareId;
+    });
   }
 
   initAsyc() {

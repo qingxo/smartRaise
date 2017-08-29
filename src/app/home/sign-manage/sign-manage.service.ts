@@ -9,4 +9,8 @@ export class SignManageService extends BaseService {
   clientList(data: any) {
     return this.postInfo('api/customer/listByPage', storage.serialize(data));
   }
+
+  groupList(data) {
+    return this.postInfo('api/socialWelfare/listByPage', storage.serialize(data));
+  }
 }

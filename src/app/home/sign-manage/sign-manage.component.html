@@ -1,8 +1,22 @@
-<div class="right-content-info client-content">
+<div class="right-content-info sign-manage-info">
   <div class="detail-content">
     <div class="highline">
       <div class="lf">
         <app-search-line placeHolderValue="姓名/手机号" (search)="searchTable($event)"></app-search-line>
+        <div class="org">
+          <span>机构</span>
+          <select class="" name="" (change)="onChange($event.target.value)">
+            <option  *ngFor="let item of groupPlanList" value="{{item.socialWelfareId}}">{{item.socialWelfareName}}</option>
+          </select>
+        </div>
+        <div class="equip">
+          <span>体征卡</span>
+          <select class="" (change)="onChange($event.target.value)">
+            <option value="0">请选择</option>
+            <option value="1">已绑定</option>
+            <option value="2">未绑定</option>
+          </select>
+        </div>
       </div>
       <div class="rf  create-btn" (click)="clientActive(-1,clientDetail)">
         体征异常临界值
