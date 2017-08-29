@@ -64,67 +64,6 @@
 
       </div>
 
-      <div class=" order-info health-report">
-        <div class="info-head-inline">
-          <span>健康报告</span>
-        </div>
-        <div class="table-info overflow-table" [hidden]="reportList.length==0?'true':false">
-          <table cellpadding="0" cellspacing="0" border="0">
-            <thead>
-              <tr>
-                <td><span>报告名称</span></td>
-                <td><span>创建时间</span></td>
-                <td><span>操作</span></td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let item of reportList">
-                <td><span>{{item.reportTitle}}</span></td>
-                <td [hidden]="!!item.customerId"><span>{{item.createdAt | slice:0:19}}</span></td>
-                <td [hidden]="!item.customerId"><span>{{item.createDt | date:'yyyy-MM-dd HH:mm:ss'}}</span></td>
-                <td [hidden]="item.customerId"><a target="_blank" style="text-decoration: none;color: #03a9f4;" href="{{reportDomain}}{{item.reportUrl}}">详情</a></td>
-                <td [hidden]="!item.customerId"><a target="_blank" style="text-decoration: none;color: #03a9f4;" href="{{healthReportDomain}}{{item.reportUrl}}">详情</a></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <nothing [isHidden]="reportList.length==0?false:true"></nothing>
-      </div>
-
-    </div>
-
-    <div class="mybox" style="height:1100px">
-      <div class="box-head">
-        <div class="box-head-line">健康监测数据</div>
-        <div class="box-tools">
-          <div class="tools-other">
-            <app-line-btn [totalBtn]="['最近一天','最近七天','最近一月']" (btnInfo)="changePeriodDay($event)"></app-line-btn>
-
-          </div>
-          <div class="tools-all">
-            <i [routerLink]="['/home/monitorlist',userId]">全部</i>
-          </div>
-
-        </div>
-      </div>
-      <div class="mybox-half bor">
-        <app-blood-pressure [userId]="userId" [periodDay]="periodDay"></app-blood-pressure>
-      </div>
-
-
-      <div class="mybox-half" style="border-bottom: 1px solid #e5e5e5;">
-        <app-blood-sugar [userId]="userId" [periodDay]="periodDay"></app-blood-sugar>
-      </div>
-
-      <div class="mybox-half" style="border-top: 1px solid #e5e5e5;border-right: 1px solid #e5e5e5;">
-        <app-bmi-line [userId]="userId" [periodDay]="periodDay"></app-bmi-line>
-      </div>
-      <div class="mybox-half" style="border-bottom: 1px solid #e5e5e5;">
-        <app-blood-oxygen [userId]="userId" [periodDay]="periodDay"></app-blood-oxygen>
-      </div>
-      <div class="mybox-half" style="border-top: 1px solid #e5e5e5;border-right: 1px solid #e5e5e5;">
-        <app-heat-line [userId]="userId" [periodDay]="periodDay"></app-heat-line>
-      </div>
     </div>
 
 
