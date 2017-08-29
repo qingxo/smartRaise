@@ -48,6 +48,7 @@ import { PkginfoDialogComponent } from './pkginfo-dialog/pkginfo-dialog.componen
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SignManageComponent } from './sign-manage/sign-manage.component';
 import { SignDataComponent } from './sign-data/sign-data.component';
+import { CriticalValueComponent } from './critical-value/critical-value.component';
 
 @NgModule({
   imports: [
@@ -103,7 +104,8 @@ import { SignDataComponent } from './sign-data/sign-data.component';
     PackageDialogComponent,
     PkginfoDialogComponent,
     SignManageComponent,
-    SignDataComponent
+    SignDataComponent,
+    CriticalValueComponent
   ],
   providers: []
 })
