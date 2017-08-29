@@ -78,7 +78,7 @@ export class ClientDetailComponent implements OnInit {
     this.yHeartData = [];
     this.ySignData = [];
     this.xData = [];
-    this.smartBedData();
+    // this.smartBedData();
   }
 
   smartBedData() {
@@ -282,15 +282,11 @@ export class ClientDetailComponent implements OnInit {
 
   getUserInfo() {
     this.clientDetailService.getUserInfo(this.userId).subscribe((res) => {
-
       if (res.success) {
         this.userInfo = res.data;
         if (this.userInfo['sources']) {
           this.sources = this.userInfo['sources'];
-          // this.smartBedData()
-          // this.getRealTimeData()
         }
-
         if (this.userInfo['cardId']) {
           if (this.userInfo['cardId'].length > 1) {
             this.reportListCallHeLe();

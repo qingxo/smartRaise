@@ -46,6 +46,8 @@ import { AccountDialogsComponent } from './account-dialogs/account-dialogs.compo
 import { PackageDialogComponent } from './package-dialog/package-dialog.component';
 import { PkginfoDialogComponent } from './pkginfo-dialog/pkginfo-dialog.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SignManageComponent } from './sign-manage/sign-manage.component';
+import { SignDataComponent } from './sign-data/sign-data.component';
 
 @NgModule({
   imports: [
@@ -99,7 +101,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MonitorListComponent,
     AccountDialogsComponent,
     PackageDialogComponent,
-    PkginfoDialogComponent
+    PkginfoDialogComponent,
+    SignManageComponent,
+    SignDataComponent
   ],
   providers: []
 })

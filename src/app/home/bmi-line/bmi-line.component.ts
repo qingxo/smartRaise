@@ -21,7 +21,7 @@ export class BmiLineComponent implements OnInit, OnChanges {
   constructor(private bmiLineService: BmiLineService) { }
 
   ngOnInit() {
-    this.initBMILine();
+    // this.initBMILine();
   }
 
   ngOnChanges(changes: SimpleChanges): void {

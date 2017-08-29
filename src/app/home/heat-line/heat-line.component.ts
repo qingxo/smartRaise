@@ -22,7 +22,7 @@ export class HeatLineComponent implements OnInit, OnChanges {
 
 
   ngOnInit() {
-    this.initHeatEcharts();
+    // this.initHeatEcharts();
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.initHeatEcharts();

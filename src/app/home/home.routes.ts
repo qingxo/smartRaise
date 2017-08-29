@@ -23,6 +23,8 @@ import { TaskInfoComponent } from './task-info';
 import { SleepTestComponent } from './sleep-test';
 import { SleepMonitorComponent } from './sleep-monitor';
 import { MonitorListComponent } from './monitor-list';
+import { SignManageComponent } from './sign-manage'
+import { SignDataComponent } from './sign-data'
 export const ROUTER_CONFIG: Routes = [
   {
     path: '', component: HomeComponent,
@@ -52,7 +54,9 @@ export const ROUTER_CONFIG: Routes = [
       { path: 'taskinfo/:userId/:customerId/:taskId/:type', component: TaskInfoComponent },
       { path: 'sleeptest/:userId', component: SleepTestComponent },
       { path: 'sleepmonitor/:customerId/:equipNo', component: SleepMonitorComponent },
-      { path: 'monitorlist/:userId', component: MonitorListComponent }
+      { path: 'monitorlist/:userId', component: MonitorListComponent },
+      { path: 'body', component: SignManageComponent },
+      { path: 'signdata/:userId', component: SignDataComponent }
     ]
   }
 ];

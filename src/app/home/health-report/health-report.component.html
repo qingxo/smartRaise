@@ -1,6 +1,6 @@
 <div class="right-content-info">
   <div class="head-tips">
-    <span class=tips-info>平台管理 / 客户监测 / <em>健康报告</em></span>
+    <span class=tips-info>健康管理 / 体征管理 / <em>健康报告</em></span>
   </div>
   <div class="detail-content detail-content-pad txt-pos">
     <div class="person-info-block">
@@ -35,7 +35,7 @@
       <div class="box-head">
         <div class="box-head-line">健康报告</div>
         <div class="box-tools">
-          <span class="day-1-1" style="width:120px;border-radius:4px" (click)="chooseTimeLine(timeContent)">新增健康报告</span>
+          <span *ngIf="taskId!='noTask'" class="day-1-1" style="width:120px;border-radius:4px" (click)="chooseTimeLine(timeContent)">新增健康报告</span>
         </div>
       </div>
 

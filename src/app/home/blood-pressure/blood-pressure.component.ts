@@ -27,7 +27,7 @@ export class BloodPressureComponent implements OnInit, OnChanges {
   ngOnInit() {
 
 
-    this.bloodDataInit();
+    // this.bloodDataInit();
   }
 
   ngOnChanges(changes: SimpleChanges): void {

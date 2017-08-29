@@ -22,7 +22,7 @@ export class BloodOxygenComponent implements OnInit {
   constructor(private bloodOxygenService: BloodOxygenService) { }
 
   ngOnInit() {
-    this.oxygenDataInit();
+    // this.oxygenDataInit();
   }
 
   ngOnChanges(changes: SimpleChanges): void {

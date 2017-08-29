@@ -24,7 +24,7 @@ export class BloodSugarComponent implements OnInit, OnChanges {
   constructor(private bloodSugarService: BloodSugarService) { }
 
   ngOnInit() {
-    this.bloodDataInit();
+    // this.bloodDataInit();
   }
 
 

@@ -1,0 +1,112 @@
+<div class="right-content-info sign-data-info">
+  <div class="head-tips">
+    <span class=tips-info>平台管理 / 客户管理 / <em>客户详情</em></span>
+  </div>
+  <div class="detail-content detail-content-pad txt-pos">
+    <div class="person-info-block">
+      <div class="info-head">
+        <span>客户信息</span>
+      </div>
+      <div class="table-info-person">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <thead>
+            <tr>
+              <td><span>姓名</span></td>
+              <td><span>手机号</span></td>
+              <td><span>性别</span></td>
+              <td><span>年龄</span></td>
+              <td><span>注册时间</span></td>
+              <td><span>健康服务专员</span></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span>{{!!userInfo.name?userInfo.name:'未知'}}</span></td>
+              <td><span>{{userInfo.mobile}}</span></td>
+              <td><span>{{userInfo.sex === 'M' ? '男' : '女'}}</span></td>
+              <td><span>{{getAge(userInfo.birdthday | date:'yyyy-MM-dd')}}</span></td>
+              <td><span>{{userInfo.createDt | date:'yyyy-MM-dd'}}</span></td>
+              <td><span>{{userInfo.commissionerUserName?userInfo.commissionerUserName:'无'}}</span></td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="mybox" style="height:1100px;text-align:left;">
+      <div class="box-head">
+        <div class="box-head-line">监测数据</div>
+        <div class="box-tools">
+          <div class="tools-other" style="display:inline-block">
+            <app-line-btn [totalBtn]="['最近一天','最近七天','最近一月']" (btnInfo)="changePeriodDay($event)"></app-line-btn>
+          </div>
+          <div class="tools-all" style="display:inline-block">
+            <i [routerLink]="['/home/monitorlist',userId]" style="display:inline-block;text-align:center">全部</i>
+          </div>
+
+        </div>
+      </div>
+      <div class="mybox-half " style="border-right: 1px solid #e5e5e5;">
+        <app-blood-pressure [userId]="userId" [periodDay]="periodDay"></app-blood-pressure>
+      </div>
+
+      <div class="mybox-half" style="border-bottom: 1px solid #e5e5e5;">
+        <app-blood-sugar [userId]="userId" [periodDay]="periodDay"></app-blood-sugar>
+      </div>
+
+      <div class="mybox-half" style="border-top: 1px solid #e5e5e5;border-right: 1px solid #e5e5e5;">
+        <app-bmi-line [userId]="userId" [periodDay]="periodDay"></app-bmi-line>
+      </div>
+      <div class="mybox-half" style="border-bottom: 1px solid #e5e5e5;">
+        <app-blood-oxygen [userId]="userId" [periodDay]="periodDay"></app-blood-oxygen>
+      </div>
+      <div class="mybox-half" style="border-top: 1px solid #e5e5e5;border-right: 1px solid #e5e5e5;border-bottom:1px solid #e5e5e5">
+        <app-heat-line [userId]="userId" [periodDay]="periodDay"></app-heat-line>
+      </div>
+    </div>
+
+    <div class="mybox" style="">
+      <div class="box-head">
+        <div class="box-head-line">
+          异常记录
+        </div>
+      </div>
+      <div class="table-info" style="background-color:white">
+        <table cellpadding="0" cellspacing="0" border="0" [hidden]="list.length==0">
+          <thead>
+            <tr>
+              <td><span>客户姓名</span></td>
+              <td><span>性别</span></td>
+              <td><span>年龄</span></td>
+              <td><span>监测项目</span></td>
+              <td><span>监测值</span></td>
+              <td><span>异常发生时间</span></td>
+              <td><span>异常情况</span></td>
+              <td><span>处理意见</span></td>
+              <td><span>健康服务专员</span></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of list;let index = index">
+              <td><span>{{item.custName}}</span></td>
+              <td><span>{{item.sex=='M'?'男':'女'}}</span></td>
+              <td><span>{{getAge(item.birdthday)}}</span></td>
+              <td><span>{{item.missionName}}</span></td>
+              <td><span>{{item.missionValue}}</span></td>
+              <td><span>{{item.ocurrDate | date:'yyyy-MM-dd'}}</span></td>
+              <td><span ngbPopover="{{item.errContent}}" triggers="mouseenter:mouseleave" container="body">{{cultOpinion(item.errContent)}}</span></td>
+              <td>
+                <span ngbPopover="{{item.opinion}}" triggers="mouseenter:mouseleave" container="body">{{cultOpinion(item.opinion)}}</span>
+              </td>
+              <td><span>{{item.commissionerName}}</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <nothing [isHidden]="list.length!=0"></nothing>
+        <app-pages [pages]=pages (pageInfo)="pageTurning($event)" [currentPage]=pageNumber [sum]=totalPage [pageSize]="pageSize"></app-pages>
+      </div>
+    </div>
+
+  </div>
+</div>
