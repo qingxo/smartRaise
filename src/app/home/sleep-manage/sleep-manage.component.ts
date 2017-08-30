@@ -36,6 +36,7 @@ export class SleepManageComponent implements OnInit {
   private sources = 'A';
   private groupPlanList: Array<any> = [];
   private groupPlanName: string = "-1";
+  private choosedBed: string = "-1";
   constructor(private sleepManageService: SleepManageService, private clientService: ClientService, private modalService: NgbModal) { }
 
   ngOnInit() {
@@ -44,6 +45,13 @@ export class SleepManageComponent implements OnInit {
     this.initGroupPlanList()
   }
 
+  onChange(val) {
+    this.clientList()
+  }
+
+  getAge(num) {
+    return tools.getAge(num)
+  }
 
   // 获取机构列表
   initGroupPlanList() {
@@ -62,7 +70,8 @@ export class SleepManageComponent implements OnInit {
 
 
   initBtnShow() {
-    this.sleepBtn = tools.initBtnShow(1, 2, 'sleepBtn');
+    this.sleepBtn = tools.initBtnShow(1, 3, 'sleepBtn');
+    // console.log(this.sleepBtn)
   }
 
   searchTable(str) {
@@ -184,7 +193,14 @@ export class SleepManageComponent implements OnInit {
       'pageNum': this.pageNumber,
       'query': this.queryInfo,
       'userId': storage.get('state')['userId']
+      // 'socialWelfareId': this.groupPlanName
     };
+
+    switch (this.choosedBed) {
+      case '1': data['equipmentBinding'] = 1; break;
+      case '2': data['equipmentUnBinding'] = 1; break;
+    }
+
     this.clientService.clientList(data).subscribe((res) => {
       if (res.success) {
         this.list = res.data.list;

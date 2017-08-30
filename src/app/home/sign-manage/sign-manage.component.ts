@@ -39,7 +39,6 @@ export class SignManageComponent implements OnInit {
   }
 
   onChange(val) {
-    console.log(val, this.choosedCard, this.choosedSocialWelfare)
     this.initAsyc()
   }
 
@@ -64,9 +63,13 @@ export class SignManageComponent implements OnInit {
       'pageNum': this.pageNumber,
       'query': this.queryInfo,
       'userId': storage.get('state')['userId'],
-      'socialWelfareId': this.choosedSocialWelfare,
-      'cardBinding': this.choosedCard
+      'socialWelfareId': this.choosedSocialWelfare
     };
+    switch (this.choosedCard) {
+      case '0': data['cardUnBinding'] = 1; break;
+      case '1': data['cardBinding'] = 1; break;
+    }
+
     this.signManageService.clientList(data).subscribe(
       (res) => {
         this.listData = res.data.list;

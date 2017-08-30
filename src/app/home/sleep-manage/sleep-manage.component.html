@@ -10,8 +10,8 @@
         </div>
         <div class="equip">
           <span>智能床</span>
-          <select class="" (change)="onChange($event.target.value)">
-            <option value="0">请选择</option>
+          <select class="" (change)="onChange($event.target.value)" [(ngModel)]="choosedBed">
+            <option value="-1">请选择</option>
             <option value="1">已绑定</option>
             <option value="2">未绑定</option>
           </select>
@@ -40,7 +40,7 @@
             <td><span>{{item.name}}</span></td>
             <td><span>{{item.mobile}}</span></td>
             <td><span>{{item.sex=='M'?'男':'女'}}</span></td>
-            <td><span>{{item.missionName}}</span></td>
+            <td><span>{{getAge(item.birthday)}}</span></td>
             <td><span>{{item.socialWelfareName}}</span></td>
             <td><span>{{item.createDt | date:'yyyy-MM-dd'}}</span></td>
             <td><span>{{item.cardId}}</span></td>
