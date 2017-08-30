@@ -29,6 +29,8 @@ export class SignManageComponent implements OnInit {
   private totalPage: number;
   private groupPlanList: Array<any> = []
   private groupPlanName: string
+  private choosedSocialWelfare: string = ''
+  private choosedCard: string = '-1'
   constructor(private signManageService: SignManageService) { }
 
   ngOnInit() {
@@ -37,7 +39,8 @@ export class SignManageComponent implements OnInit {
   }
 
   onChange(val) {
-    console.log(val)
+    console.log(val, this.choosedCard, this.choosedSocialWelfare)
+    this.initAsyc()
   }
 
   // 获取机构列表
@@ -50,7 +53,7 @@ export class SignManageComponent implements OnInit {
       if (res.success) {
         this.groupPlanList = res.data.list;
       }
-      this.groupPlanList.unshift({ 'socialWelfareId': '-1', 'socialWelfareName': '请选择' })
+      this.groupPlanList.unshift({ 'socialWelfareId': '', 'socialWelfareName': '请选择' })
       this.groupPlanName = this.groupPlanList[0].socialWelfareId;
     });
   }
@@ -60,7 +63,9 @@ export class SignManageComponent implements OnInit {
       'pageSize': this.pageSize,
       'pageNum': this.pageNumber,
       'query': this.queryInfo,
-      'userId': storage.get('state')['userId']
+      'userId': storage.get('state')['userId'],
+      'socialWelfareId': this.choosedSocialWelfare,
+      'cardBinding': this.choosedCard
     };
     this.signManageService.clientList(data).subscribe(
       (res) => {

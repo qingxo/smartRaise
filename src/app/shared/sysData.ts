@@ -7,7 +7,7 @@ const SysData = {
   healthReportDomain: 'http://mhc.smartcare.org.cn',
   // healthReportDomain: "http://xukq1.dev.317hu.com",
   level_top_array: [
-    '平台管理', '健康管理', '设置'
+    '平台管理', '健康管理', '统计报表', '设置'
   ],
   level_sec_array: [
     [
