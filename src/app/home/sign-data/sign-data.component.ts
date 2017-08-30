@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientDetailService } from '../client-detail/client-detail.service';
 import { SignDataService } from './sign-data.service';
-import { ErrorTipsService } from '../error-tips/error-tips.service'
+import { ErrorTipsService } from '../error-tips/error-tips.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import tools from '../../shared/tools';
 import storage from '../../shared/storage';
@@ -21,8 +21,8 @@ export class SignDataComponent implements OnInit {
   private pagination: any;
   private totalCount: any;
   private periodDay: any = 1;
-  private userInfo: any = {}
-  private totalPage: number
+  private userInfo: any = {};
+  private totalPage: number;
   private pages: Array<any> = [];
   private queryInfo = '';
 
@@ -59,10 +59,10 @@ export class SignDataComponent implements OnInit {
     this.clientDetailService.getUserInfo(this.userId).subscribe((res) => {
       if (res.success) {
         this.userInfo = res.data;
-        this.queryInfo = this.userInfo.name
-        this.showList()
+        this.queryInfo = this.userInfo.name;
+        this.showList();
       } else {
-        tools.tips(res.errMsg, '', 'error')
+        tools.tips(res.errMsg, '', 'error');
       }
     });
   }
@@ -91,12 +91,12 @@ export class SignDataComponent implements OnInit {
   }
 
   pageTurning(num) {
-    this.pageNumber = num
-    this.showList()
+    this.pageNumber = num;
+    this.showList();
   }
 
   getAge(num) {
-    return tools.getAge(num)
+    return tools.getAge(num);
   }
 
 }

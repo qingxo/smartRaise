@@ -30,7 +30,7 @@ export class FeedbackComponent implements OnInit {
   }
 
   cultLen(val) {
-    return val.length > 23 ? val.substr(0, 20) + '...' : val
+    return val.length > 23 ? val.substr(0, 20) + '...' : val;
   }
 
   feedbackList() {

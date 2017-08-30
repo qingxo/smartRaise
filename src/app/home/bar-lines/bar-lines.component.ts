@@ -7,14 +7,14 @@ import { EChartOption } from 'echarts-ng2';
 })
 export class BarLinesComponent implements OnInit, OnChanges {
 
-  private option: EChartOption
-  private nothingFlag: boolean = false
-  @Input() topTitle: string = ''
-  @Input() legendData: Array<string> = []
-  @Input() xData: Array<string> = []
-  @Input() serisesData: Array<Array<string>> = []
+  private option: EChartOption;
+  private nothingFlag = false;
+  @Input() topTitle = '';
+  @Input() legendData: Array<string> = [];
+  @Input() xData: Array<string> = [];
+  @Input() serisesData: Array<Array<string>> = [];
   @Input() echartsStyle: any = { 'height': '360px' };
-  @ViewChild('tt') el: ElementRef
+  @ViewChild('tt') el: ElementRef;
   constructor() { }
 
   ngOnInit() {
@@ -22,16 +22,16 @@ export class BarLinesComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.serisesData.length > 0 && this.legendData.length > 0) {
-      console.log("caeed")
-      this.option = this.getOption()
-      this.el.nativeElement.className = 'lines'
-      this.nothingFlag = true
+      console.log('caeed');
+      this.option = this.getOption();
+      this.el.nativeElement.className = 'lines';
+      this.nothingFlag = true;
     }
   }
 
   getOption() {
 
-    let opt: EChartOption = {
+    const opt: EChartOption = {
       title: {
         text: this.topTitle,
         left: 'center',
@@ -71,11 +71,11 @@ export class BarLinesComponent implements OnInit, OnChanges {
       ],
       series: [
       ]
-    }
+    };
     for (let i = 0; i < this.serisesData.length; i++) {
-      opt['series'].push({ 'name': this.legendData[i], 'type': 'bar', 'data': this.serisesData[i] })
+      opt['series'].push({ 'name': this.legendData[i], 'type': 'bar', 'data': this.serisesData[i] });
     }
-    return opt
+    return opt;
   }
 
 }

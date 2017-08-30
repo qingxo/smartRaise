@@ -112,7 +112,7 @@ class Tools {
         showCancelButton: true,
         cancelButtonText: '确定'
       });
-    }, 50)
+    }, 50);
 
 
   }

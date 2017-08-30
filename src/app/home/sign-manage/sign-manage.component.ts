@@ -12,7 +12,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'moment';
 import baseAnimation from '../../shared/myAnimation';
 import { AccountDialogsComponent } from '../account-dialogs';
-import { SignManageService } from './sign-manage.service'
+import { SignManageService } from './sign-manage.service';
 @Component({
   selector: 'app-sign-manage',
   templateUrl: './sign-manage.component.html',
@@ -27,19 +27,19 @@ export class SignManageComponent implements OnInit {
   private pageNumber = 1;
   private queryInfo = '';
   private totalPage: number;
-  private groupPlanList: Array<any> = []
-  private groupPlanName: string
-  private choosedSocialWelfare: string = ''
-  private choosedCard: string = '-1'
+  private groupPlanList: Array<any> = [];
+  private groupPlanName: string;
+  private choosedSocialWelfare = '';
+  private choosedCard = '-1';
   constructor(private signManageService: SignManageService) { }
 
   ngOnInit() {
-    this.initAsyc()
-    this.initGroupPlanList()
+    this.initAsyc();
+    this.initGroupPlanList();
   }
 
   onChange(val) {
-    this.initAsyc()
+    this.initAsyc();
   }
 
   // 获取机构列表
@@ -52,7 +52,7 @@ export class SignManageComponent implements OnInit {
       if (res.success) {
         this.groupPlanList = res.data.list;
       }
-      this.groupPlanList.unshift({ 'socialWelfareId': '', 'socialWelfareName': '请选择' })
+      this.groupPlanList.unshift({ 'socialWelfareId': '', 'socialWelfareName': '请选择' });
       this.groupPlanName = this.groupPlanList[0].socialWelfareId;
     });
   }
@@ -80,17 +80,17 @@ export class SignManageComponent implements OnInit {
   }
 
   pageTurning(num) {
-    this.pageNumber = num
-    this.initAsyc()
+    this.pageNumber = num;
+    this.initAsyc();
   }
 
   searchTable(val) {
-    this.queryInfo = val
-    this.initAsyc()
+    this.queryInfo = val;
+    this.initAsyc();
   }
 
   getAge(num) {
-    return tools.getAge(num)
+    return tools.getAge(num);
   }
 
 }

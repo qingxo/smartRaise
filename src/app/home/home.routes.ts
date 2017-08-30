@@ -23,10 +23,10 @@ import { TaskInfoComponent } from './task-info';
 import { SleepTestComponent } from './sleep-test';
 import { SleepMonitorComponent } from './sleep-monitor';
 import { MonitorListComponent } from './monitor-list';
-import { SignManageComponent } from './sign-manage'
-import { SignDataComponent } from './sign-data'
-import { CriticalValueComponent } from './critical-value'
-import { StatisticsComponent } from './statistics'
+import { SignManageComponent } from './sign-manage';
+import { SignDataComponent } from './sign-data';
+import { CriticalValueComponent } from './critical-value';
+import { StatisticsComponent } from './statistics';
 export const ROUTER_CONFIG: Routes = [
   {
     path: '', component: HomeComponent,

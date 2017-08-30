@@ -35,22 +35,22 @@ export class SleepManageComponent implements OnInit {
   private modalRef: any;
   private sources = 'A';
   private groupPlanList: Array<any> = [];
-  private groupPlanName: string = "-1";
-  private choosedBed: string = "-1";
+  private groupPlanName = '-1';
+  private choosedBed = '-1';
   constructor(private sleepManageService: SleepManageService, private clientService: ClientService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.clientList();
     this.initBtnShow();
-    this.initGroupPlanList()
+    this.initGroupPlanList();
   }
 
   onChange(val) {
-    this.clientList()
+    this.clientList();
   }
 
   getAge(num) {
-    return tools.getAge(num)
+    return tools.getAge(num);
   }
 
   // 获取机构列表
@@ -63,7 +63,7 @@ export class SleepManageComponent implements OnInit {
       if (res.success) {
         this.groupPlanList = res.data.list;
       }
-      this.groupPlanList.unshift({ 'socialWelfareId': '-1', 'socialWelfareName': '请选择' })
+      this.groupPlanList.unshift({ 'socialWelfareId': '-1', 'socialWelfareName': '请选择' });
       this.groupPlanName = this.groupPlanList[0].socialWelfareId;
     });
   }

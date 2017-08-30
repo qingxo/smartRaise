@@ -5,6 +5,13 @@ import { Http } from '@angular/http';
 @Injectable()
 export class CriticalValueService extends BaseService {
 
-  constructor(http: Http) { super(http) }
+  constructor(http: Http) { super(http); }
 
+  getCriticalList() {
+    return this.postInfo('api/webAbnormalBorder/list', '');
+  }
+
+  valueEdit(data) {
+    return this.postInfo('api/webAbnormalBorder/modify', storage.serialize(data));
+  }
 }

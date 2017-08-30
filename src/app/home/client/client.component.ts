@@ -89,7 +89,7 @@ export class ClientComponent implements OnInit {
   private groupPlanList: Array<any> = [];
   private chooseGroupList: Array<any> = [];
   private groupPlanName: string;
-  private chooseGroupId: string = '-1';
+  private chooseGroupId = '-1';
   constructor(private clientService: ClientService, private modalService: NgbModal, private componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) { }
 
 
@@ -111,7 +111,7 @@ export class ClientComponent implements OnInit {
 
     this.initBtnShow();
     this.initAsyc();
-    this.initGroupPlanList()
+    this.initGroupPlanList();
   }
 
 
@@ -132,7 +132,7 @@ export class ClientComponent implements OnInit {
         this.groupPlanList = res.data.list;
         this.chooseGroupList = res.data.list;
       }
-      this.chooseGroupList.unshift({ 'socialWelfareId': '-1', 'socialWelfareName': '请选择' })
+      this.chooseGroupList.unshift({ 'socialWelfareId': '-1', 'socialWelfareName': '请选择' });
       this.groupPlanName = this.groupPlanList[0].socialWelfareId;
     });
   }

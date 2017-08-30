@@ -43,8 +43,8 @@ export class GroupManageComponent implements OnInit {
   }
 
   pageTurning(val) {
-    this.pageNumber = val
-    this.groupManageList()
+    this.pageNumber = val;
+    this.groupManageList();
   }
 
   showTpl(index, groupDetail) {

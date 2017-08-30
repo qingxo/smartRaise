@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SignManageService } from '../sign-manage/sign-manage.service'
+import { SignManageService } from '../sign-manage/sign-manage.service';
 
 @Component({
   selector: 'app-statistics',
@@ -9,18 +9,18 @@ import { SignManageService } from '../sign-manage/sign-manage.service'
 })
 export class StatisticsComponent implements OnInit {
 
-  private groupList: Array<any> = []
-  private groupName: string = ''
-  private choosedBtn: string
+  private groupList: Array<any> = [];
+  private groupName = '';
+  private choosedBtn: string;
   constructor(private signManageService: SignManageService) { }
 
   ngOnInit() {
-    this.initGroupPlanList()
+    this.initGroupPlanList();
   }
 
   toogleChoosed(val) {
-    this.choosedBtn = val
-    console.log(this.choosedBtn)
+    this.choosedBtn = val;
+    console.log(this.choosedBtn);
   }
 
   // 获取机构列表
@@ -33,13 +33,13 @@ export class StatisticsComponent implements OnInit {
       if (res.success) {
         this.groupList = res.data.list;
       }
-      this.groupList.unshift({ 'socialWelfareId': '-1', 'socialWelfareName': '请选择' })
+      this.groupList.unshift({ 'socialWelfareId': '-1', 'socialWelfareName': '请选择' });
       this.groupName = this.groupList[0].socialWelfareId;
     });
   }
 
   onChange(val) {
-    console.log(val, this.groupName)
+    console.log(val, this.groupName);
   }
 
 }
