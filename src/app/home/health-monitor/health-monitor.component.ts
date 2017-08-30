@@ -13,7 +13,7 @@ export class HealthMonitorComponent implements OnInit {
   private userInfo: any = {};
   private userId: string;
   private customerId: string;
-  private type: number; //1表示血糖
+  private type: number; // 1表示血糖
   private taskId: string;
   private periodDay = 1;
   constructor(private healthMonitorService: HealthMonitorService, private route: ActivatedRoute) { }

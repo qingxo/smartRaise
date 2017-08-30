@@ -9,7 +9,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { ClientDetailComponent } from './client-detail/client-detail.component';
 import { Ng2FlatpickrComponent } from 'ng2-flatpickr/ng2-flatpickr';
-import { SmartBedComponent } from './smart-bed';
 import { OrderPackageComponent } from './order-package';
 import { OrderDetailComponent } from './order-detail';
 import { ServicePackageComponent } from './service-package/service-package.component';
@@ -70,7 +69,6 @@ import { BarLinesComponent } from './bar-lines/bar-lines.component';
     CreateAccountComponent,
     Ng2FlatpickrComponent,
     ClientDetailComponent,
-    SmartBedComponent,
     OrderPackageComponent,
     OrderDetailComponent,
     ServicePackageComponent,

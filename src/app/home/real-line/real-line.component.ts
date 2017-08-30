@@ -32,7 +32,7 @@ export class RealLineComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
 
     if (changes['timeDot']) {
-      if (changes['timeDot']['currentValue'] != undefined) {
+      if (changes['timeDot']['currentValue'] !== undefined) {
         if (!isNaN(this.breathDot) && !isNaN(this.moveDot) && !isNaN(this.heartDot)) {
           changes['breathDot'] ? this.breathInfo.push([changes['timeDot']['currentValue'], changes['breathDot']['currentValue']]) : this.breathInfo.push([changes['timeDot']['currentValue'], this.breathDot]);
           changes['moveDot'] ? this.moveInfo.push([changes['timeDot']['currentValue'], changes['moveDot']['currentValue']]) : this.moveInfo.push([changes['timeDot']['currentValue'], this.moveDot]);

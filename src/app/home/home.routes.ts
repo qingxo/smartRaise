@@ -3,7 +3,6 @@ import { HomeComponent } from './home.component';
 import { ClientComponent } from './client';
 import { ClientDetailComponent } from './client-detail';
 import { CreateAccountComponent } from './create-account';
-import { SmartBedComponent } from './smart-bed';
 import { OrderPackageComponent } from './order-package';
 import { OrderDetailComponent } from './order-detail';
 import { ServicePackageComponent } from './service-package';
@@ -37,7 +36,6 @@ export const ROUTER_CONFIG: Routes = [
 
       { path: 'clientDetail/:userId', component: ClientDetailComponent },
       { path: 'newaccount', component: CreateAccountComponent },
-      { path: 'smartbed', component: SmartBedComponent },
       { path: 'orderpackage/:userId', component: OrderPackageComponent },
       { path: 'orderdetail/:pkgId', component: OrderDetailComponent },
       { path: 'servicepackage', component: ServicePackageComponent },

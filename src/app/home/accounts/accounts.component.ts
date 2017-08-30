@@ -30,11 +30,6 @@ export class AccountsComponent implements OnInit {
     this.accountsBtn = tools.initBtnShow(2, 0, 'accountsBtn');
   }
 
-
-  ngAfterViewInit() {
-  }
-
-
   openModal(userId) {
     const componentFatory = this.componentFactoryResolver.resolveComponentFactory(AccountDialogsComponent);
     const containerRef = this.viewContainerRef;

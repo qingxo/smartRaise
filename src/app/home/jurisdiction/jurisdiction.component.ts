@@ -25,7 +25,7 @@ export class JurisdictionComponent implements OnInit {
   }
 
   changeRole(num) {
-    this.checkedRole = parseInt(num) + 1;
+    this.checkedRole = parseInt(num, 10) + 1;
     this.getRealTree();
   }
 

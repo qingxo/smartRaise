@@ -8,7 +8,7 @@ import * as moment from 'moment';
   styleUrls: ['./blood-oxygen.component.scss'],
   providers: [BloodOxygenService]
 })
-export class BloodOxygenComponent implements OnInit {
+export class BloodOxygenComponent implements OnInit, OnChanges {
 
   private option: EChartOption;
   private oxygenList: Array<any> = [];
