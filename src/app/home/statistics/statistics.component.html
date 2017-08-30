@@ -9,5 +9,46 @@
         <option  *ngFor="let item of groupList" value="{{item.socialWelfareId}}">{{item.socialWelfareName}}</option>
       </select>
     </div>
+    <div class="" *ngIf="choosedBtn ==0">
+
+    </div>
+
+    <div class="" *ngIf="choosedBtn == 1">
+      <div class="table-info">
+        <table cellpadding="0" cellspacing="0" border="0 ">
+          <thead>
+            <tr>
+              <td><span>机构</span></td>
+              <td><span>客户数</span></td>
+              <td><span>多体征卡</span></td>
+              <td><span>智能床</span></td>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+      <app-bar-lines topTitle="测试设备" [serisesData]="[[200,55,22,55,55],[155,22,55,76,2],[219,100,24,55,9]]" [legendData]="['客户数','多体征卡','智能床']" [xData]="['桐乡市社会福利中心','西湖社区福利中心','杭州市古荡街道','古荡老人公寓','杭州市社会福利中心']"></app-bar-lines>
+
+    </div>
+    <div class="" *ngIf="choosedBtn ==2">
+      <div class="table-info">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <thead>
+            <tr>
+              <td><span>机构</span></td>
+              <td><span>客户数</span></td>
+              <td><span>多体征监测服务包</span></td>
+              <td><span>睡眠监测服务包</span></td>
+              <td><span>慢病管理服务包</span></td>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+      <app-bar-lines topTitle="测试设备" [serisesData]="[[200,55,22,55,55],[155,22,55,76,2],[219,100,24,55,9]]" [legendData]="['客户数','多体征卡','智能床']" [xData]="['桐乡市社会福利中心','西湖社区福利中心','杭州市古荡街道','古荡老人公寓','杭州市社会福利中心']"></app-bar-lines>
+
+    </div>
   </div>
 </div>

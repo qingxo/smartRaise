@@ -50,6 +50,7 @@ import { SignManageComponent } from './sign-manage/sign-manage.component';
 import { SignDataComponent } from './sign-data/sign-data.component';
 import { CriticalValueComponent } from './critical-value/critical-value.component';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { BarLinesComponent } from './bar-lines/bar-lines.component';
 
 @NgModule({
   imports: [
@@ -107,7 +108,8 @@ import { StatisticsComponent } from './statistics/statistics.component';
     SignManageComponent,
     SignDataComponent,
     CriticalValueComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    BarLinesComponent
   ],
   providers: []
 })

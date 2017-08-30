@@ -11,10 +11,16 @@ export class StatisticsComponent implements OnInit {
 
   private groupList: Array<any> = []
   private groupName: string = ''
+  private choosedBtn: string
   constructor(private signManageService: SignManageService) { }
 
   ngOnInit() {
     this.initGroupPlanList()
+  }
+
+  toogleChoosed(val) {
+    this.choosedBtn = val
+    console.log(this.choosedBtn)
   }
 
   // 获取机构列表
