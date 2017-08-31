@@ -1,32 +1,48 @@
-import { Component, OnInit, Input, Output, OnChanges, SimpleChanges, Renderer, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Output, OnChanges, SimpleChanges, Renderer, ElementRef, ViewChild, AfterContentChecked, OnDestroy } from '@angular/core';
 import { EChartOption } from 'echarts-ng2';
 @Component({
   selector: 'app-bar-lines',
   templateUrl: './bar-lines.component.html',
   styleUrls: ['./bar-lines.component.scss']
 })
-export class BarLinesComponent implements OnInit, OnChanges {
+export class BarLinesComponent implements OnInit, AfterContentChecked {
 
   private option: EChartOption;
   private nothingFlag = false;
+  private count: number = 0
   @Input() topTitle = '';
   @Input() legendData: Array<string> = [];
   @Input() xData: Array<string> = [];
   @Input() serisesData: Array<Array<string>> = [];
   @Input() echartsStyle: any = { 'height': '360px' };
   @ViewChild('tt') el: ElementRef;
-  constructor() { }
-
-  ngOnInit() {
+  constructor() {
+    this.legendData = []
+    this.xData = []
+    this.serisesData = []
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (this.serisesData.length > 0 && this.legendData.length > 0) {
-      console.log('caeed');
+  ngOnInit() {
+
+  }
+
+  ngAfterContentChecked() {
+    if (this.serisesData.length > 0) {
       this.option = this.getOption();
       this.el.nativeElement.className = 'lines';
       this.nothingFlag = true;
+    } else {
+      this.el.nativeElement.className = 'lines black-hole';
+      this.nothingFlag = false;
     }
+
+  }
+
+  ngOnDestroy() {
+    this.topTitle = ''
+    this.legendData = []
+    this.xData = []
+    this.serisesData = []
   }
 
   getOption() {

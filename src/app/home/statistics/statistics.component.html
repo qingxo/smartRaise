@@ -3,19 +3,28 @@
     <app-line-btn [totalBtn]="[ '客户分类统计', '设备使用统计','订单数统计']" (btnInfo)="toogleChoosed($event)"></app-line-btn>
   </div>
   <div class="detail-content">
-    <div class="org">
-      <span>机构</span>
-      <select class="" name="" [(ngModel)]="groupName" (change)="onChange($event.target.value)">
-        <option  *ngFor="let item of groupList" value="{{item.socialWelfareId}}">{{item.socialWelfareName}}</option>
-      </select>
-    </div>
-    <div class="" *ngIf="choosedBtn ==0">
 
+    <div class="" *ngIf="choosedBtn ==0">
+      <div class="org">
+        <span>机构</span>
+        <select class="" name="" [(ngModel)]="groupName" (change)="onChange($event.target.value)">
+          <option  *ngFor="let item of groupList" value="{{item.socialWelfareId}}">{{item.socialWelfareName}}</option>
+        </select>
+      </div>
+      <div class="inline-part">
+        <app-circle-line topTitle="按机构统计" [serisesData]="orgArray"></app-circle-line>
+      </div>
+      <div class="inline-part">
+        <app-circle-line topTitle="按性别统计" [serisesData]="genderArray"></app-circle-line>
+      </div>
+      <div class="inline-part">
+        <app-circle-line topTitle="按年龄统计" [serisesData]="ageArray"></app-circle-line>
+      </div>
     </div>
 
     <div class="" *ngIf="choosedBtn == 1">
-      <div class="table-info">
-        <table cellpadding="0" cellspacing="0" border="0 ">
+      <div class="table-info bg">
+        <table cellpadding="0" cellspacing="0" border="0 " *ngIf="equipUseArray.length>0">
           <thead>
             <tr>
               <td><span>机构</span></td>
@@ -25,15 +34,21 @@
             </tr>
           </thead>
           <tbody>
+            <tr *ngFor="let item of equipUseArray">
+              <td><span>{{item.organizationName}}</span></td>
+              <td><span>{{item.customerCount}}</span></td>
+              <td><span>{{item.manySignsCardCount}}</span></td>
+              <td><span>{{item.smartBedCount}}</span></td>
+            </tr>
           </tbody>
         </table>
       </div>
-      <app-bar-lines topTitle="测试设备" [serisesData]="[[200,55,22,55,55],[155,22,55,76,2],[219,100,24,55,9]]" [legendData]="['客户数','多体征卡','智能床']" [xData]="['桐乡市社会福利中心','西湖社区福利中心','杭州市古荡街道','古荡老人公寓','杭州市社会福利中心']"></app-bar-lines>
+      <app-bar-lines topTitle="设备统计表" [serisesData]="equipArrays" [xData]="orgName" [legendData]="['客户数','多体征卡','智能床']"></app-bar-lines>
 
     </div>
     <div class="" *ngIf="choosedBtn ==2">
-      <div class="table-info">
-        <table cellpadding="0" cellspacing="0" border="0">
+      <div class="table-info bg">
+        <table cellpadding="0" cellspacing="0" border="0" *ngIf="orderList.length>0">
           <thead>
             <tr>
               <td><span>机构</span></td>
@@ -44,11 +59,17 @@
             </tr>
           </thead>
           <tbody>
+            <tr *ngFor="let item of orderList">
+              <td><span>{{item.organizationName}}</span></td>
+              <td><span>{{item.customerCount}}</span></td>
+              <td><span>{{item.manySignsServicePackCount}}</span></td>
+              <td><span>{{item.sleepServicePacksCount}}</span></td>
+              <td><span>{{item.slowDiseaseServicePacksCount}}</span></td>
+            </tr>
           </tbody>
         </table>
       </div>
-      <app-bar-lines topTitle="测试设备" [serisesData]="[[200,55,22,55,55],[155,22,55,76,2],[219,100,24,55,9]]" [legendData]="['客户数','多体征卡','智能床']" [xData]="['桐乡市社会福利中心','西湖社区福利中心','杭州市古荡街道','古荡老人公寓','杭州市社会福利中心']"></app-bar-lines>
-
+      <app-bar-lines topTitle="订单数统计" [serisesData]="equipArrays" [xData]="orgName" [legendData]="['客户数','多体征监测服务包','睡眠监测服务包','慢病管理服务包']"></app-bar-lines>
     </div>
   </div>
 </div>

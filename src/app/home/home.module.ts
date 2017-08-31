@@ -50,6 +50,7 @@ import { SignDataComponent } from './sign-data/sign-data.component';
 import { CriticalValueComponent } from './critical-value/critical-value.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { BarLinesComponent } from './bar-lines/bar-lines.component';
+import { CircleLineComponent } from './circle-line/circle-line.component';
 
 @NgModule({
   imports: [
@@ -107,7 +108,8 @@ import { BarLinesComponent } from './bar-lines/bar-lines.component';
     SignDataComponent,
     CriticalValueComponent,
     StatisticsComponent,
-    BarLinesComponent
+    BarLinesComponent,
+    CircleLineComponent
   ],
   providers: []
 })
