@@ -14,14 +14,37 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><span></span></td>
-            <td><span></span></td>
-            <td><span></span></td>
-            <td class="opt"><span><em>编辑</em></span></td>
+          <tr *ngFor="let item of list;let index = index">
+            <td><span>{{item.abnormalTypeName}}</span></td>
+            <td><span>{{item.highValue}}</span></td>
+            <td><span>{{item.lowValue}}</span></td>
+            <td><span class="opt"><em (click)="handleModal(index,content)">编辑</em></span></td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h3 class="modal-title">{{list[clickItem]['abnormalTypeName']}}</h3>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+      <div class="line">
+        <label for="inline">异常高值</label>
+        <input type="number" name="ss" [(ngModel)]="highValue">
+        <span>mmol/L</span>
+      </div>
+      <div class="line">
+        <label for="">异常低值</label>
+        <input type="number" name="ss" [(ngModel)]="lowValue">
+        <span>mmol/L</span>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary spec-btn" (click)="saveValue()">确定</button>
+    </div>
+  </ng-template>
 </div>
