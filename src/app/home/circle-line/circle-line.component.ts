@@ -24,13 +24,13 @@ export class CircleLineComponent implements OnInit, AfterContentChecked {
       this.el.nativeElement.className = 'lines';
       this.nothingFlag = true;
     } else {
-      this.el.nativeElement.className = 'lines black-hole'
-      this.nothingFlag = false
+      this.el.nativeElement.className = 'lines black-hole';
+      this.nothingFlag = false;
     }
   }
 
   getOption() {
-    let opt = {
+    const opt = {
       title: {
         text: this.topTitle,
         x: 'center',
@@ -40,7 +40,7 @@ export class CircleLineComponent implements OnInit, AfterContentChecked {
       },
       tooltip: {
         trigger: 'item',
-        formatter: "{a} <br/>{b} : {c} ({d}%)"
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
       },
 
       series: [
@@ -59,8 +59,8 @@ export class CircleLineComponent implements OnInit, AfterContentChecked {
           }
         }
       ]
-    }
-    return opt
+    };
+    return opt;
 
   }
 

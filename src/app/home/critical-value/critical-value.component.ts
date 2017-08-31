@@ -13,11 +13,11 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 export class CriticalValueComponent implements OnInit {
 
   private list: Array<any> = [];
-  private clickItem: number = 0
+  private clickItem = 0;
   private closeResult: string;
   private modalRef: any;
-  private highValue: string
-  private lowValue: string
+  private highValue: string;
+  private lowValue: string;
   constructor(private criticalValueService: CriticalValueService, private modalService: NgbModal) { }
 
   ngOnInit() {
@@ -25,9 +25,9 @@ export class CriticalValueComponent implements OnInit {
   }
 
   handleModal(index, content) {
-    this.clickItem = index
-    this.highValue = this.list[this.clickItem]['highValue']
-    this.lowValue = this.list[this.clickItem]['lowValue']
+    this.clickItem = index;
+    this.highValue = this.list[this.clickItem]['highValue'];
+    this.lowValue = this.list[this.clickItem]['lowValue'];
     this.modalRef = this.modalService.open(content, { windowClass: 't-sm-modal' });
 
     this.modalRef.result.then((result) => {
@@ -48,28 +48,28 @@ export class CriticalValueComponent implements OnInit {
   }
 
   saveValue() {
-    let data = {
+    const data = {
       'abnormalTypeNo': this.list[this.clickItem].abnormalTypeNo,
       'highValue': this.highValue,
       'lowValue': this.lowValue
-    }
+    };
     this.criticalValueService.valueEdit(data).subscribe((res) => {
       if (res.success) {
-        this.modalRef.close()
+        this.modalRef.close();
         // this.showList()
-        this.list[this.clickItem]['highValue'] = this.highValue
-        this.list[this.clickItem]['lowValue'] = this.lowValue
-        tools.tips('跟新成功')
+        this.list[this.clickItem]['highValue'] = this.highValue;
+        this.list[this.clickItem]['lowValue'] = this.lowValue;
+        tools.tips('跟新成功');
       } else {
-        tools.tips(res.errMsg, '', 'error')
+        tools.tips(res.errMsg, '', 'error');
       }
-    })
+    });
   }
 
   showList() {
     this.criticalValueService.getCriticalList().subscribe((res) => {
       if (res.success) {
-        this.list = res.data
+        this.list = res.data;
       }
     });
   }

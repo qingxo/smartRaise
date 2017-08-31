@@ -5,11 +5,11 @@ import { EChartOption } from 'echarts-ng2';
   templateUrl: './bar-lines.component.html',
   styleUrls: ['./bar-lines.component.scss']
 })
-export class BarLinesComponent implements OnInit, AfterContentChecked {
+export class BarLinesComponent implements OnInit, AfterContentChecked, OnDestroy {
 
   private option: EChartOption;
   private nothingFlag = false;
-  private count: number = 0
+  private count = 0;
   @Input() topTitle = '';
   @Input() legendData: Array<string> = [];
   @Input() xData: Array<string> = [];
@@ -17,9 +17,9 @@ export class BarLinesComponent implements OnInit, AfterContentChecked {
   @Input() echartsStyle: any = { 'height': '360px' };
   @ViewChild('tt') el: ElementRef;
   constructor() {
-    this.legendData = []
-    this.xData = []
-    this.serisesData = []
+    this.legendData = [];
+    this.xData = [];
+    this.serisesData = [];
   }
 
   ngOnInit() {
@@ -39,10 +39,10 @@ export class BarLinesComponent implements OnInit, AfterContentChecked {
   }
 
   ngOnDestroy() {
-    this.topTitle = ''
-    this.legendData = []
-    this.xData = []
-    this.serisesData = []
+    this.topTitle = '';
+    this.legendData = [];
+    this.xData = [];
+    this.serisesData = [];
   }
 
   getOption() {
