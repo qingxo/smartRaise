@@ -2,6 +2,8 @@ import { Component, OnInit, OnChanges, SimpleChange, ComponentFactoryResolver, V
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { Router } from '@angular/router';
 import { ClientService } from './client.service';
+import { ServicePackageService } from '../service-package/service-package.service';
+
 import storage from '../../shared/storage';
 import tools from '../../shared/tools';
 import SysData from '../../shared/sysData';
@@ -17,7 +19,7 @@ import { AccountDialogsComponent } from '../account-dialogs';
   selector: 'app-client',
   templateUrl: './client.component.html',
   styleUrls: ['./client.component.scss'],
-  providers: [ClientService],
+  providers: [ClientService, ServicePackageService],
   animations: baseAnimation
 })
 export class ClientComponent implements OnInit {
@@ -89,8 +91,10 @@ export class ClientComponent implements OnInit {
   private groupPlanList: Array<any> = [];
   private chooseGroupList: Array<any> = [];
   private groupPlanName: string;
-  private chooseGroupId = '-1';
-  constructor(private clientService: ClientService, private modalService: NgbModal, private componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) { }
+  private chooseGroupId: string = '';
+  private choosedPkg: string = ''
+  private pkgList: Array<any> = []
+  constructor(private clientService: ClientService, private servicePackageService: ServicePackageService, private modalService: NgbModal, private componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) { }
 
 
 
@@ -100,7 +104,7 @@ export class ClientComponent implements OnInit {
   }
 
   onChange(val) {
-
+    this.initAsyc()
   }
 
 
@@ -112,7 +116,22 @@ export class ClientComponent implements OnInit {
     this.initBtnShow();
     this.initAsyc();
     this.initGroupPlanList();
+    this.initPkgs()
   }
+  initPkgs() {
+    const data = {
+      'pageSize': 100,
+      'pageNum': 1,
+      'query': this.queryInfo
+    };
+    this.servicePackageService.packageList(data).subscribe((res) => {
+      if (res.success) {
+        this.pkgList = res.data.list;
+        this.pkgList.unshift({ 'servicePackId': '', 'servicePackName': '请选择' })
+      }
+    })
+  }
+
 
 
   clientGroupActive(content) {
@@ -132,7 +151,7 @@ export class ClientComponent implements OnInit {
         this.groupPlanList = res.data.list;
         this.chooseGroupList = res.data.list;
       }
-      this.chooseGroupList.unshift({ 'socialWelfareId': '-1', 'socialWelfareName': '请选择' });
+      this.chooseGroupList.unshift({ 'socialWelfareId': '', 'socialWelfareName': '请选择' });
       this.groupPlanName = this.groupPlanList[0].socialWelfareId;
     });
   }
@@ -420,7 +439,9 @@ export class ClientComponent implements OnInit {
       'pageSize': this.pageSize,
       'pageNum': this.pageNumber,
       'query': this.queryInfo,
-      'userId': storage.get('state')['userId']
+      'userId': storage.get('state')['userId'],
+      'servicePackName': this.choosedPkg,
+      'socialWelfareId': this.chooseGroupId
     };
     this.clientService.clientList(data).subscribe(
       (res) => {
