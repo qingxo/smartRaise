@@ -149,7 +149,7 @@ export class ClientComponent implements OnInit {
     this.clientService.groupList(data).subscribe((res) => {
       if (res.success) {
         this.groupPlanList = res.data.list;
-        this.chooseGroupList = res.data.list;
+        this.chooseGroupList = Array.from(res.data.list);
       }
       this.chooseGroupList.unshift({ 'socialWelfareId': '', 'socialWelfareName': '请选择' });
       this.groupPlanName = this.groupPlanList[0].socialWelfareId;
@@ -193,6 +193,8 @@ export class ClientComponent implements OnInit {
 
   saveGroupPlan() {
     tools.loading(true);
+
+
     this.clientService.groupPlanFor(this.groupPlanName, this.healthCarePerson).subscribe((res) => {
       tools.loading(false);
       if (res.success) {
