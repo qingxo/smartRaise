@@ -83,6 +83,7 @@ export class ClientComponent implements OnInit {
     static: true,
     time_24hr: true,
     dateFormat: 'Y-m-d',
+    locale: zh_lang['zh'],
     onChange: this.changeBirthday.bind(this)
   };
   private birthTime: any;
@@ -110,9 +111,6 @@ export class ClientComponent implements OnInit {
 
   ngOnInit() {
     this.role = storage.get('state')['role'];
-    Flatpickr.localize(zh_lang.zh);
-    moment.locale('zh-cn');
-
     this.initBtnShow();
     this.initAsyc();
     this.initGroupPlanList();

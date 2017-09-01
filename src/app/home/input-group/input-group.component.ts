@@ -34,6 +34,7 @@ export class InputGroupComponent implements OnInit, OnChanges {
     enableTime: true,
     static: true,
     time_24hr: true,
+    locale: zh_lang['zh'],
     onChange: this.changeDate.bind(this)
   };
   @Input() inputType: string;
@@ -44,8 +45,7 @@ export class InputGroupComponent implements OnInit, OnChanges {
   constructor(private inputGroupService: InputGroupService, private route: Router) { }
 
   ngOnInit() {
-    Flatpickr.localize(zh_lang.zh);
-    moment.locale('zh-cn');
+
   }
 
   ngOnChanges(changes: SimpleChanges) {

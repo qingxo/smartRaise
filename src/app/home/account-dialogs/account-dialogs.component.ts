@@ -24,6 +24,7 @@ export class AccountDialogsComponent implements OnInit, AfterViewInit {
     static: true,
     time_24hr: true,
     dateFormat: 'Y-m-d',
+    locale: zh_lang['zh'],
     onChange: this.changeBirthday.bind(this)
   };
   private chooseRole = '2'; // 0：表示系统管理员，1:表示平台管理员，2：表示健康专员
@@ -60,8 +61,7 @@ export class AccountDialogsComponent implements OnInit, AfterViewInit {
   constructor(private modalService: NgbModal, private accountDialogsService: AccountDialogsService) { }
 
   ngOnInit() {
-    Flatpickr.localize(zh_lang.zh);
-    moment.locale('zh-cn');
+
   }
 
   initUserInfo() {

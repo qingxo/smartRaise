@@ -28,6 +28,7 @@ export class HealthReportComponent implements OnInit {
     static: true,
     time_24hr: true,
     dateFormat: 'Y-m-d',
+    locale: zh_lang['zh'],
     onChange: this.changeStartDay.bind(this)
   };
   private exampleOptionsEnd: FlatpickrOptions = {
@@ -35,6 +36,7 @@ export class HealthReportComponent implements OnInit {
     static: true,
     time_24hr: true,
     dateFormat: 'Y-m-d',
+    locale: zh_lang['zh'],
     onChange: this.changeEndDay.bind(this)
   };
 
@@ -48,7 +50,6 @@ export class HealthReportComponent implements OnInit {
   constructor(private healthReportService: HealthReportService, private route: ActivatedRoute, private modalService: NgbModal) { }
 
   ngOnInit() {
-    Flatpickr.localize(zh_lang.zh);
     this.customerId = this.route.snapshot.params['customerId'];
     this.taskId = this.route.snapshot.params['taskId'];
 
