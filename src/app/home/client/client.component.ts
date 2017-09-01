@@ -92,7 +92,7 @@ export class ClientComponent implements OnInit {
   private chooseGroupList: Array<any> = [];
   private groupPlanName: string;
   private chooseGroupId: string = '';
-  private choosedPkg: string = ''
+  private choosedPkg: string = '请选择'
   private pkgList: Array<any> = []
   constructor(private clientService: ClientService, private servicePackageService: ServicePackageService, private modalService: NgbModal, private componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) { }
 
@@ -127,7 +127,7 @@ export class ClientComponent implements OnInit {
     this.servicePackageService.packageList(data).subscribe((res) => {
       if (res.success) {
         this.pkgList = res.data.list;
-        this.pkgList.unshift({ 'servicePackId': '', 'servicePackName': '请选择' })
+        this.pkgList.unshift({ 'servicePackId': '请选择', 'servicePackName': '请选择' })
       }
     })
   }
@@ -442,7 +442,7 @@ export class ClientComponent implements OnInit {
       'pageNum': this.pageNumber,
       'query': this.queryInfo,
       'userId': storage.get('state')['userId'],
-      'servicePackName': this.choosedPkg,
+      'servicePackName': this.choosedPkg === '请选择' ? '' : this.choosedPkg,
       'socialWelfareId': this.chooseGroupId
     };
     this.clientService.clientList(data).subscribe(

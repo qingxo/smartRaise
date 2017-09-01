@@ -11,7 +11,7 @@
         <div class="equip">
           <span>服务包</span>
           <select class="" (change)="onChange($event.target.value)" style="width:150px" [(ngModel)]="choosedPkg">
-            <option value="{{item.servicePackId}}" *ngFor="let item of pkgList" >{{item.servicePackName}}</option>
+            <option value="{{item.servicePackName}}" *ngFor="let item of pkgList" >{{item.servicePackName}}</option>
           </select>
         </div>
         <app-search-line placeHolderValue="客户请输入" (search)="searchTable($event)"></app-search-line>
