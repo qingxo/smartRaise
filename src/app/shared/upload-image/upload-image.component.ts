@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-
+import tools from '../tools'
 @Component({
   selector: 'app-upload-image',
   templateUrl: './upload-image.component.html',
@@ -49,6 +49,7 @@ export class UploadImageComponent implements OnInit {
         },
         'UploadProgress': function(up, file) {
           // 每个文件上传时，处理相关的事情
+          tools.loading(true)
         },
         'FileUploaded': function(up, file, info) {
           // self.tips("上传成功")
@@ -59,6 +60,8 @@ export class UploadImageComponent implements OnInit {
           //    "key": "gogopher.jpg"
           //  }
           // 查看简单反馈
+          tools.loading(false)
+          tools.tips('上传成功')
           const domain = up.getOption('domain');
           //  var res = JSON.parse(info);
           //  var sourceLink = domain +"/"+ res.key; 获取上传成功后的文件的Url
@@ -70,10 +73,15 @@ export class UploadImageComponent implements OnInit {
         },
         'Error': function(up, err, errTip) {
           // 上传出错时，处理相关的事情
+          tools.loading(false)
+          tools.tips('上传失败', errTip, 'error')
+
           this.uploadDone.emit(self.imgUrl);
 
         },
         'UploadComplete': function() {
+          tools.loading(false)
+
           // 队列文件处理完毕后，处理相关的事情
           //  self.tips("上传成功")
         },
