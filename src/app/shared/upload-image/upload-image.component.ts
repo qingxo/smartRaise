@@ -75,13 +75,9 @@ export class UploadImageComponent implements OnInit {
           // 上传出错时，处理相关的事情
           tools.loading(false)
           tools.tips('上传失败', errTip, 'error')
-
-          this.uploadDone.emit(self.imgUrl);
-
         },
         'UploadComplete': function() {
           tools.loading(false)
-
           // 队列文件处理完毕后，处理相关的事情
           //  self.tips("上传成功")
         },
