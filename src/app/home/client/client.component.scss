@@ -2,6 +2,26 @@
   min-width: 1400px;
 }
 
+.t-org {
+  .t-dot {
+    display: inline-block;
+    line-height: 30px;
+
+    span {
+      background-color: #dcd9d9;
+      border-radius: 4px;
+      padding: 4px 8px;
+      margin: 0 5px 0 0;
+
+      em {
+        cursor: pointer;
+        padding-left: 5px;
+        color: red;
+      }
+    }
+  }
+}
+
 .red-warning {
   color: #F4333C;
   font-size: 14px;

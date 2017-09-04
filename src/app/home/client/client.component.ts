@@ -64,7 +64,8 @@ export class ClientComponent implements OnInit {
   private relationShip = '';
   private cardId = '';
   private checkList = [];
-  private myGroup = '';
+  private myGroup = [];
+  private myGroupName = []
   private isEdit = false;
   private commissionerUserId: string;
   private group: Array<any>; // 监护人列表
@@ -96,16 +97,42 @@ export class ClientComponent implements OnInit {
   private choosedPkg: string = '请选择'
   private pkgList: Array<any> = []
   constructor(private clientService: ClientService, private servicePackageService: ServicePackageService, private modalService: NgbModal, private componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) { }
-
-
-
-
   changeMe() {
     this.chameleon === 'inactive' ? this.chameleon = 'active' : this.chameleon = 'inactive';
   }
 
   onChange(val) {
     this.initAsyc()
+  }
+
+  handleGroupName(event, num) {
+    $(event.target).parent().remove()
+    let name = this.myGroupName.splice(num, 1)
+    let id = this.myGroup.splice(num, 1)
+    this.refreshGroup(id[0], name[0], false)
+  }
+
+  chooseSocialWel(val) {
+    let tmp = val.split(',')
+    if (tmp[1] === '请选择') {
+      return
+    }
+    this.myGroup.push(tmp[0])
+    this.myGroupName.push(tmp[1])
+    this.refreshGroup(tmp[0])
+  }
+
+  refreshGroup(id, name = '', flag = true) {
+    if (flag) {
+      for (let i = 0; i < this.group.length; i++) {
+        if (this.group[i]['socialWelfareId'] === id) {
+          this.group.splice(i, 1)
+        }
+      }
+    } else {
+      this.group.push({ 'socialWelfareName': name, 'socialWelfareId': id })
+    }
+
   }
 
 
@@ -191,8 +218,6 @@ export class ClientComponent implements OnInit {
 
   saveGroupPlan() {
     tools.loading(true);
-
-
     this.clientService.groupPlanFor(this.groupPlanName, this.healthCarePerson).subscribe((res) => {
       tools.loading(false);
       if (res.success) {
@@ -216,7 +241,6 @@ export class ClientComponent implements OnInit {
       this.isEdit = false;
     } else {
       this.isEdit = true;
-      this.initEditData();
     }
     this.initHelpList();
     this.initGroupList();
@@ -233,8 +257,13 @@ export class ClientComponent implements OnInit {
         this.group = [];
         this.group = res.data.list;
         this.group.unshift({ 'socialWelfareId': '', 'socialWelfareName': '请选择' });
+        if (this.isEdit) {
+          this.initEditData();
+        }
       }
+
     });
+
   }
 
   initEditData() {
@@ -253,12 +282,28 @@ export class ClientComponent implements OnInit {
         this.remark = info.remark;
         this.birdthday = info.birdthday;
         this.relationShip = info.relationToCustomer;
-        // this.imageUrl = info.imgUrl
         if (info.socialWelfareId) {
-          this.myGroup = info.socialWelfareId;
+          const tt = info.socialWelfareId.split(',')
+          const tmp = info.socialWelfareName.split(',')
+          for (let i = 0; i < tmp.length; i++) {
+            this.myGroupName.push(tmp[i])
+            this.myGroup.push(tt[i])
+          }
         } else {
-          this.myGroup = '';
+          this.myGroup = [];
+          this.myGroupName = [];
         }
+
+        if (this.myGroup.length > 0) {
+          for (let i = 0; i < this.myGroup.length; i++) {
+            for (let j = 0; j < this.group.length; j++) {
+              if (this.group[j]['socialWelfareId'] === this.myGroup[i]) {
+                this.group.splice(j, 1)
+              }
+            }
+          }
+        }
+
         if (info.cardId) {
           this.cardId = info.cardId;
         }
@@ -363,7 +408,8 @@ export class ClientComponent implements OnInit {
     this.relationShip = '';
     this.cardId = '';
     this.checkList = [];
-    this.myGroup = '';
+    this.myGroup = [];
+    this.myGroupName = [];
   }
 
   healthCareOpen(index, content) {
@@ -508,6 +554,13 @@ export class ClientComponent implements OnInit {
     }
     tmpIds = tmpIds.substr(0, tmpIds.length - 1);
 
+    let tmp = this.myGroup;
+    let str = ''
+    for (let i = 0; i < tmp.length; i++) {
+      str += (tmp[i] + ',')
+    }
+
+
     const data = {
       'commissionerUserId': storage.get('state')['userId'],
       'name': this.realname,
@@ -519,7 +572,7 @@ export class ClientComponent implements OnInit {
       'address': this.address,
       'role': this.role,
       'cardId': this.cardId,
-      'socialWelfareId': this.myGroup,
+      'socialWelfareId': str.substr(0, str.length - 1),
       'guardianIds': tmpIds
     };
 

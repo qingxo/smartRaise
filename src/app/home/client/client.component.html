@@ -227,11 +227,17 @@
         </div>
         <div class="lf dis-bl">
           <label for="">机构</label>
-          <div class="inline more-w">
-            <select class="nice-sel" name="" style="min-width:154px" [(ngModel)]="myGroup">
-              <option value="{{item.socialWelfareId}}"  *ngFor=" let item  of group">{{item.socialWelfareName}}</option>
-            </select>
+          <div class="inline t-org" style="width:490px">
+            <div class="t-dot">
+              <span *ngFor="let item of myGroupName;let index = index">{{item}}<em (click)="handleGroupName($event,index)">x</em></span>
+            </div>
+            <div style="display:inline-block;width:200px;position:relative">
+              <select class="nice-sel" name="" style="min-width:154px" (change)="chooseSocialWel($event.target.value)">
+                <option value="{{item.socialWelfareId}},{{item.socialWelfareName}}"  *ngFor=" let item  of group">{{item.socialWelfareName}}</option>
+              </select>
+            </div>
           </div>
+
         </div>
         <div class="lf dis-bl">
           <label for="">住址</label>
