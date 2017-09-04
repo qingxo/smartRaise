@@ -65,7 +65,7 @@ export class ClientComponent implements OnInit {
   private cardId = '';
   private checkList = [];
   private myGroup = [];
-  private myGroupName = []
+  private myGroupName = [];
   private isEdit = false;
   private commissionerUserId: string;
   private group: Array<any>; // 监护人列表
@@ -93,44 +93,44 @@ export class ClientComponent implements OnInit {
   private groupPlanList: Array<any> = [];
   private chooseGroupList: Array<any> = [];
   private groupPlanName: string;
-  private chooseGroupId: string = '';
-  private choosedPkg: string = '请选择'
-  private pkgList: Array<any> = []
+  private chooseGroupId = '';
+  private choosedPkg = '请选择';
+  private pkgList: Array<any> = [];
   constructor(private clientService: ClientService, private servicePackageService: ServicePackageService, private modalService: NgbModal, private componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) { }
   changeMe() {
     this.chameleon === 'inactive' ? this.chameleon = 'active' : this.chameleon = 'inactive';
   }
 
   onChange(val) {
-    this.initAsyc()
+    this.initAsyc();
   }
 
   handleGroupName(event, num) {
-    $(event.target).parent().remove()
-    let name = this.myGroupName.splice(num, 1)
-    let id = this.myGroup.splice(num, 1)
-    this.refreshGroup(id[0], name[0], false)
+    $(event.target).parent().remove();
+    const name = this.myGroupName.splice(num, 1);
+    const id = this.myGroup.splice(num, 1);
+    this.refreshGroup(id[0], name[0], false);
   }
 
   chooseSocialWel(val) {
-    let tmp = val.split(',')
+    const tmp = val.split(',');
     if (tmp[1] === '请选择') {
-      return
+      return;
     }
-    this.myGroup.push(tmp[0])
-    this.myGroupName.push(tmp[1])
-    this.refreshGroup(tmp[0])
+    this.myGroup.push(tmp[0]);
+    this.myGroupName.push(tmp[1]);
+    this.refreshGroup(tmp[0]);
   }
 
   refreshGroup(id, name = '', flag = true) {
     if (flag) {
       for (let i = 0; i < this.group.length; i++) {
         if (this.group[i]['socialWelfareId'] === id) {
-          this.group.splice(i, 1)
+          this.group.splice(i, 1);
         }
       }
     } else {
-      this.group.push({ 'socialWelfareName': name, 'socialWelfareId': id })
+      this.group.push({ 'socialWelfareName': name, 'socialWelfareId': id });
     }
 
   }
@@ -141,7 +141,7 @@ export class ClientComponent implements OnInit {
     this.initBtnShow();
     this.initAsyc();
     this.initGroupPlanList();
-    this.initPkgs()
+    this.initPkgs();
   }
   initPkgs() {
     const data = {
@@ -152,9 +152,9 @@ export class ClientComponent implements OnInit {
     this.servicePackageService.packageList(data).subscribe((res) => {
       if (res.success) {
         this.pkgList = res.data.list;
-        this.pkgList.unshift({ 'servicePackId': '请选择', 'servicePackName': '请选择' })
+        this.pkgList.unshift({ 'servicePackId': '请选择', 'servicePackName': '请选择' });
       }
-    })
+    });
   }
 
 
@@ -283,11 +283,11 @@ export class ClientComponent implements OnInit {
         this.birdthday = info.birdthday;
         this.relationShip = info.relationToCustomer;
         if (info.socialWelfareId) {
-          const tt = info.socialWelfareId.split(',')
-          const tmp = info.socialWelfareName.split(',')
+          const tt = info.socialWelfareId.split(',');
+          const tmp = info.socialWelfareName.split(',');
           for (let i = 0; i < tmp.length; i++) {
-            this.myGroupName.push(tmp[i])
-            this.myGroup.push(tt[i])
+            this.myGroupName.push(tmp[i]);
+            this.myGroup.push(tt[i]);
           }
         } else {
           this.myGroup = [];
@@ -298,7 +298,7 @@ export class ClientComponent implements OnInit {
           for (let i = 0; i < this.myGroup.length; i++) {
             for (let j = 0; j < this.group.length; j++) {
               if (this.group[j]['socialWelfareId'] === this.myGroup[i]) {
-                this.group.splice(j, 1)
+                this.group.splice(j, 1);
               }
             }
           }
@@ -554,10 +554,10 @@ export class ClientComponent implements OnInit {
     }
     tmpIds = tmpIds.substr(0, tmpIds.length - 1);
 
-    let tmp = this.myGroup;
-    let str = ''
+    const tmp = this.myGroup;
+    let str = '';
     for (let i = 0; i < tmp.length; i++) {
-      str += (tmp[i] + ',')
+      str += (tmp[i] + ',');
     }
 
 
