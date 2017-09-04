@@ -102,6 +102,7 @@ export class ClientComponent implements OnInit {
   }
 
   onChange(val) {
+    this.pageNumber = 1;
     this.initAsyc();
   }
 
