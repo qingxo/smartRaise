@@ -59,7 +59,7 @@ export class CriticalValueComponent implements OnInit {
         // this.showList()
         this.list[this.clickItem]['highValue'] = this.highValue;
         this.list[this.clickItem]['lowValue'] = this.lowValue;
-        tools.tips('跟新成功');
+        tools.tips('保存成功');
       } else {
         tools.tips(res.errMsg, '', 'error');
       }
