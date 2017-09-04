@@ -114,7 +114,15 @@ input:focus {
       vertical-align: bottom;
       color: #333333;
 
+      span {
+        line-height: 30px;
+        vertical-align: bottom;
+        font-size: 14px;
+      }
+
       select {
+        font-size: 14px;
+
         option {
           color: #333333;
         }
