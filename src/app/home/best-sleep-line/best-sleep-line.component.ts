@@ -40,9 +40,9 @@ export class BestSleepLineComponent implements OnInit, OnChanges {
       title: {
         text: '',
         x: 'right',
-        top: '12px',
+        top: '28px',
         textStyle: {
-          fontSize: 20
+          fontSize: '16px'
         },
         subtext: this.subText,
         padding: [
@@ -59,9 +59,9 @@ export class BestSleepLineComponent implements OnInit, OnChanges {
           }
         ],
         x: 'center',
-        top: '20px',
+        top: '24px',
         textStyle: {
-          fontSize: 10,
+          fontSize: 15,
           right: 20
         }
       },
