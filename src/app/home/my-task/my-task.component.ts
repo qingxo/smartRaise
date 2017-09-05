@@ -23,6 +23,7 @@ export class MyTaskComponent implements OnInit {
   private tableProgress = 0; // 0 健康监测，1 健康报表 ， 2 建档任务
   private missionName = 'missionName';
   private myTaskBtn: any;
+  private queryInfo: string;
   @ViewChild('tables') el: ElementRef;
   constructor(private myTaskService: MyTaskService, private elRef: ElementRef, private router: Router) { }
 
@@ -34,6 +35,12 @@ export class MyTaskComponent implements OnInit {
 
   initBtnShow() {
     this.myTaskBtn = tools.initBtnShow(1, 0, 'myTaskBtn');
+  }
+
+  searchTable(val) {
+    this.queryInfo = val;
+    this.pageNumber = 1;
+    this.taskList()
   }
 
 
@@ -128,7 +135,8 @@ export class MyTaskComponent implements OnInit {
       'missionId': this.missionList[this.tableProgress].missionId,
       'pageSize': this.pageSize,
       'pageNum': this.pageNumber,
-      'userId': storage.get('state')['userId']
+      'userId': storage.get('state')['userId'],
+      'query': this.queryInfo
     };
     this.myTaskService.taskList(data).subscribe((res) => {
       if (res.success) {

@@ -2,12 +2,19 @@
   <div class="detail-content">
     <div class="lf choose">
       <app-line-btn [totalBtn]="['未完成任务','已完成任务']" (btnInfo)="toogleTaskProgress($event)"></app-line-btn>
+      <div class="t-search">
+        <app-search-line placeHolderValue="客户姓名/健康专员" (search)="searchTable($event)"></app-search-line>
+
+      </div>
       <ul class="taskChoose">
         <li #tables>
           <span [ngClass]="{true:'choosed',false:''}[index==0]" *ngFor="let item of missionList; let index = index" data-id="{{item.missionId}}" (click)="toogleTableProgress(index)">{{item.missionName}}</span>
         </li>
       </ul>
+
+
     </div>
+
     <div class="table-info">
       <table cellpadding="0" cellspacing="0" border="0" [hidden]="list.length==0">
         <thead>
