@@ -35,7 +35,7 @@ export class SleepManageComponent implements OnInit {
   private modalRef: any;
   private sources = 'A';
   private groupPlanList: Array<any> = [];
-  private groupPlanName = '-1';
+  private groupPlanName = '';
   private choosedBed = '-1';
   constructor(private sleepManageService: SleepManageService, private clientService: ClientService, private modalService: NgbModal) { }
 
@@ -46,6 +46,7 @@ export class SleepManageComponent implements OnInit {
   }
 
   onChange(val) {
+    this.pageNumber = 1
     this.clientList();
   }
 
@@ -63,7 +64,7 @@ export class SleepManageComponent implements OnInit {
       if (res.success) {
         this.groupPlanList = res.data.list;
       }
-      this.groupPlanList.unshift({ 'socialWelfareId': '-1', 'socialWelfareName': '请选择' });
+      this.groupPlanList.unshift({ 'socialWelfareId': '', 'socialWelfareName': '请选择' });
       this.groupPlanName = this.groupPlanList[0].socialWelfareId;
     });
   }
@@ -192,8 +193,8 @@ export class SleepManageComponent implements OnInit {
       'pageSize': this.pageSize,
       'pageNum': this.pageNumber,
       'query': this.queryInfo,
-      'userId': storage.get('state')['userId']
-      // 'socialWelfareId': this.groupPlanName
+      'userId': storage.get('state')['userId'],
+      'socialWelfareId': this.groupPlanName
     };
 
     switch (this.choosedBed) {

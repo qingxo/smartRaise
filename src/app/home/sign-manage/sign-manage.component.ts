@@ -39,6 +39,7 @@ export class SignManageComponent implements OnInit {
   }
 
   onChange(val) {
+    this.pageNumber = 1
     this.initAsyc();
   }
 
