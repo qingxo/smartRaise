@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import tools from '../../shared/tools';
 import SysData from '../../shared/sysData';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -13,7 +13,8 @@ import * as moment from 'moment';
   selector: 'app-health-report',
   templateUrl: './health-report.component.html',
   styleUrls: ['./health-report.component.scss'],
-  providers: [HealthReportService]
+  providers: [HealthReportService],
+  encapsulation: ViewEncapsulation.None
 })
 export class HealthReportComponent implements OnInit {
 
@@ -29,7 +30,8 @@ export class HealthReportComponent implements OnInit {
     time_24hr: true,
     dateFormat: 'Y-m-d',
     locale: zh_lang['zh'],
-    onChange: this.changeStartDay.bind(this)
+    onChange: this.changeStartDay.bind(this),
+    onClose: this.closeTime.bind(this)
   };
   private exampleOptionsEnd: FlatpickrOptions = {
     enableTime: false,
@@ -37,7 +39,8 @@ export class HealthReportComponent implements OnInit {
     time_24hr: true,
     dateFormat: 'Y-m-d',
     locale: zh_lang['zh'],
-    onChange: this.changeEndDay.bind(this)
+    onChange: this.changeEndDay.bind(this),
+    onClose: this.closeTime.bind(this)
   };
 
   private modalRef: any;
@@ -76,6 +79,10 @@ export class HealthReportComponent implements OnInit {
 
   changeStartDay(val) {
     this.startTime = moment(new Date(val)).format('YYYY-MM-DD');
+  }
+
+  closeTime(selectedDates, dateStr, instance) {
+    instance.input.blur();
   }
 
   changeEndDay(val) {

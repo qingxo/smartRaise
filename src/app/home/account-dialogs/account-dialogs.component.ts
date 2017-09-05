@@ -25,7 +25,8 @@ export class AccountDialogsComponent implements OnInit, AfterViewInit {
     time_24hr: true,
     dateFormat: 'Y-m-d',
     locale: zh_lang['zh'],
-    onChange: this.changeBirthday.bind(this)
+    onChange: this.changeBirthday.bind(this),
+    onClose: this.closeTime.bind(this)
   };
   private chooseRole = '2'; // 0：表示系统管理员，1:表示平台管理员，2：表示健康专员
   private name: string;
@@ -83,6 +84,9 @@ export class AccountDialogsComponent implements OnInit, AfterViewInit {
 
   changeBirthday(val) {
     this.birdthday = moment(new Date(val)).format('YYYY-MM-DD');
+  }
+  closeTime(selectedDates, dateStr, instance) {
+    instance.input.blur();
   }
 
   chooseRoled(val) {

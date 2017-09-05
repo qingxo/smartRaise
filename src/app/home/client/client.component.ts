@@ -85,7 +85,8 @@ export class ClientComponent implements OnInit {
     time_24hr: true,
     dateFormat: 'Y-m-d',
     locale: zh_lang['zh'],
-    onChange: this.changeBirthday.bind(this)
+    onChange: this.changeBirthday.bind(this),
+    onClose: this.closeTime.bind(this)
   };
   private birthTime: any;
   private chameleon = 'inactive';
@@ -185,6 +186,10 @@ export class ClientComponent implements OnInit {
 
   changeBirthday(val) {
     this.birdthday = moment(new Date(val)).format('YYYY-MM-DD');
+  }
+
+  closeTime(selectedDates, dateStr, instance) {
+    instance.input.blur();
   }
 
   open(content) {

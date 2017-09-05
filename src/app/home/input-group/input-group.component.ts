@@ -35,7 +35,8 @@ export class InputGroupComponent implements OnInit, OnChanges {
     static: true,
     time_24hr: true,
     locale: zh_lang['zh'],
-    onChange: this.changeDate.bind(this)
+    onChange: this.changeDate.bind(this),
+    onClose: this.closeTime.bind(this)
   };
   @Input() inputType: string;
   @Input() customerId: string;
@@ -220,5 +221,9 @@ export class InputGroupComponent implements OnInit, OnChanges {
   changeDate(val) {
     this.chooseDate = moment(new Date(val)).format('YYYY-MM-DD HH:mm:ss');
   }
+  closeTime(selectedDates, dateStr, instance) {
+    instance.input.blur();
+  }
+
 
 }
