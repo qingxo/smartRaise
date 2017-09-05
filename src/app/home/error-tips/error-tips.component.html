@@ -35,7 +35,7 @@
             </td>
             <td><span>{{item.commissionerName}}</span></td>
             <td [hidden]="errorBtn['处理']"><span class="opt">
-              <em class="" (click)="handleErrorDealing(item)" >处理</em>
+              <em class="" (click)="handleErrorDealing(item,ideas)" >处理</em>
             </span></td>
           </tr>
         </tbody>
@@ -45,4 +45,20 @@
       <app-pages [pages]=pages (pageInfo)="pageTurning($event)" [currentPage]=pageNumber [sum]=totalPage></app-pages>
     </div>
   </div>
+  <ng-template #ideas let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h3 class="modal-title">处理意见</h3>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+      <div class="line">
+        <textarea name="name" rows="8" cols="40" [(ngModel)]="dealInfo"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary spec-btn" (click)="doneFeedBack()">确定</button>
+    </div>
+  </ng-template>
 </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import storage from '../../shared/storage';
 import { ErrorTipsService } from './error-tips.service';
-
+import { NgbModal, ModalDismissReasons, NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
 import tools from '../../shared/tools';
 @Component({
   selector: 'app-error-tips',
@@ -18,10 +18,12 @@ export class ErrorTipsComponent implements OnInit {
   private queryInfo = '';
   private taskProgress = 0; // 0 客户数据，1 健康专员数据
   private totalPage: number;
+  private errorBtn: any;
   private modalRef: any;
   private closeResult: string;
-  private errorBtn: any;
-  constructor(private errorTipsService: ErrorTipsService) { }
+  private targetItem: any = {};
+  private dealInfo: string = '';
+  constructor(private errorTipsService: ErrorTipsService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.showList();
@@ -32,16 +34,46 @@ export class ErrorTipsComponent implements OnInit {
     this.errorBtn = tools.initBtnShow(1, 1, 'errorBtn');
   }
 
-  handleErrorDealing(item) {
-    this.errorTipsService.errorHandler(item.commissionerUserId, item.commissionerMobile, item.cardId).subscribe((res) => {
+  handleErrorDealing(item, content) {
+    this.targetItem = item;
+    this.open(content);
+  }
+
+  doneFeedBack() {
+    let data: any = {
+      'remindId': this.targetItem['abnormalHealthId'],
+      'remark': this.dealInfo
+    }
+    this.errorTipsService.errorDeal(data).subscribe((res) => {
       if (res.success) {
-        console.log(res);
-        window.open(res.data.accessUrl);
+        tools.tips("处理成功");
+        this.modalRef.close();
+        this.showList();
       } else {
         tools.tips(res.errMsg, '', 'error');
-
       }
+    })
+
+  }
+
+  open(content) {
+    this.modalRef = this.modalService.open(content, { windowClass: 't-sm-modal' });
+
+    this.modalRef.result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 
   showList() {

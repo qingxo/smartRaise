@@ -16,5 +16,9 @@ export class ErrorTipsService extends BaseService {
     return this.postInfo(`api/commissionerTask/dealHele/${commissionerUserId}/${commissionerMobile}/${cardId}`, '');
   }
 
+  errorDeal(data) {
+    return this.postInfo('api/webAbnormalHealth/updateRemind', storage.serialize(data))
+  }
+
 
 }
