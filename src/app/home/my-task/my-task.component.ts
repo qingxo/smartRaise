@@ -39,7 +39,7 @@ export class MyTaskComponent implements OnInit {
 
   pageTurning(number) {
     this.pageNumber = number;
-    this.missionListMethod();
+    this.taskList()
   }
 
 
