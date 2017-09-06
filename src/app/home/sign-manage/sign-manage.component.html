@@ -53,7 +53,7 @@
             <td><span>{{item.createDt | date:'yyyy-MM-dd'}}</span></td>
             <td><span>{{item.cardId}}</span></td>
             <td><span>{{item.commissionerUserName}}  </span></td>
-            <td><span>{{item.equipmentNo || '未绑定'}}</span></td>
+            <td><span>{{item.cardNo || '未绑定'}}</span></td>
             <td><span class="opt">
                             <a [routerLink]="['/home/signdata',item.customerId,{'equipNo':item.equipmentNo}]"  target="_blank">监测数据</a>
                            <a [routerLink]="['/home/healthreport',item.customerId,'noTask']" target="_blank">健康报告</a>
