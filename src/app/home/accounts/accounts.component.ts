@@ -27,7 +27,7 @@ export class AccountsComponent implements OnInit {
     this.initBtnShow();
   }
   initBtnShow() {
-    this.accountsBtn = tools.initBtnShow(2, 0, 'accountsBtn');
+    this.accountsBtn = tools.initBtnShow(3, 0, 'accountsBtn');
   }
 
   openModal(userId) {
