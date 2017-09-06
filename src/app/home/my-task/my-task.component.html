@@ -66,7 +66,7 @@
 
 
                  <em *ngIf="(item.missionName == '建档' || item.missionName=='月度报告')  && taskProgress == 0"  (click)="handlerPkgConfirm(item.commissionerTaskId)" [hidden]="myTaskBtn['完成']">完成</em>
-                 <a *ngIf="(item.missionName == '建档' || item.missionName=='月度报告' ) && taskProgress == 0"  (click)="handleDealTask(item,1)" [hidden]="myTaskBtn['处理']" target="_blank">处理</a>
+                 <a style="cursor:pointer" *ngIf="(item.missionName == '建档' || item.missionName=='月度报告' ) && taskProgress == 0"  (click)="handleDealTask(item,1)" [hidden]="myTaskBtn['处理']" target="_blank">处理</a>
 
                  <em  *ngIf="(item.missionName == '建档' || item.missionName=='月度报告')&&taskProgress == 1 "  (click)="handleDealTask(item,-1)" [hidden]="myTaskBtn['查看']">查看</em>
                  <em  *ngIf="item.missionName == '血糖监测' && taskProgress == 1" [routerLink]="['/home/taskinfo',item.userId,item.customerId,item.commissionerTaskId,1]" [hidden]="myTaskBtn['查看']">查看</em>
