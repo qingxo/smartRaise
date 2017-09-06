@@ -4,9 +4,9 @@
       <div class="lf">
         <app-search-line placeHolderValue="请输入服务包名" (search)="searchTable($event)"></app-search-line>
       </div>
-      <div class=" rf create-btn" (click)="openModal('')" [hidden]="servicePackageBtn['新增服务包']">
+      <!-- <div class=" rf create-btn" (click)="openModal('')" [hidden]="servicePackageBtn['新增服务包']">
         新增服务包
-      </div>
+      </div> -->
     </div>
     <div class="table-info">
       <table cellpadding="0" cellspacing="0" border="0" [hidden]="list.length==0">
@@ -26,10 +26,10 @@
             <td><span>{{item.createDt | date:'yyyy-MM-dd'}}</span></td>
             <td><span>{{item.priceNew}}</span></td>
             <td><span class="opt"><em [routerLink]="['/home/order']" [queryParams]="{'query':item.servicePackName}">{{item.serviceNum}}</em></span></td>
-
             <td><span>{{item.statue == '1'?'已上架':'已下架'}}</span></td>
             <td><span class="opt">
-                 <em  (click)="openModal(item.servicePackId)" [hidden]="servicePackageBtn['编辑服务包']">编辑</em>
+                 <!-- <em  (click)="openModal(item.servicePackId)" [hidden]="servicePackageBtn['编辑服务包']">编辑</em> -->
+                 <em (click)="handleShow(item.servicePackId)">查看</em>
                  <em  (click)="handlePackageConfirm({'item':item})" class="color-{{item.statue}} del" [hidden]="servicePackageBtn['上/下架']">{{item.statue =='0'?'上架':'下架'}}</em>
               </span></td>
           </tr>
@@ -39,6 +39,5 @@
 
       <app-pages [pages]=pages (pageInfo)="pageTurning($event)" [currentPage]=pageNumber [sum]=totalPage></app-pages>
     </div>
-    <!-- <app-nothing [isHidden]=false></app-nothing> -->
   </div>
 </div>

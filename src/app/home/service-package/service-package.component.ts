@@ -2,6 +2,7 @@ import { Component, OnInit, OnChanges, SimpleChange, ComponentFactoryResolver, V
 import { ServicePackageService } from './service-package.service';
 import tools from '../../shared/tools';
 import { PackageDialogComponent } from '../package-dialog';
+import { PkginfoDialogComponent } from '../pkginfo-dialog'
 @Component({
   selector: 'app-service-package',
   templateUrl: './service-package.component.html',
@@ -26,6 +27,15 @@ export class ServicePackageComponent implements OnInit {
 
   initBtnShow() {
     this.servicePackageBtn = tools.initBtnShow(0, 1, 'servicePackageBtn');
+  }
+
+  handleShow(packageId) {
+    const componentFatory = this.componentFactoryResolver.resolveComponentFactory(PkginfoDialogComponent);
+    const containerRef = this.viewContainerRef;
+    containerRef.clear();
+    const dd = <PkginfoDialogComponent>containerRef.createComponent(componentFatory).instance;
+    dd.pkgId = packageId;
+
   }
 
   openModal(packageId) {
