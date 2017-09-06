@@ -65,7 +65,7 @@ export class OrderPackageComponent implements OnInit {
   unSubscriptionPkgConfirm(item, index) {
     this.targetItem = item;
     this.targetIndex = index;
-    tools.tipsConfirm('确认退订服务?', '', 'warning', this.unSubscriptionPkg.bind(this));
+    tools.tipsConfirm('确认退订服务?', '', '', this.unSubscriptionPkg.bind(this));
 
   }
 
@@ -136,11 +136,11 @@ export class OrderPackageComponent implements OnInit {
   sellPackageConfirm(pkgId, item) {
     this.targetItem = item;
     if (item.sources !== 'hele') {
-      tools.tipsConfirm('确定订购服务包?', '', 'warning', this.sellPackage.bind(this));
+      tools.tipsConfirm('确定订购服务包?', '', '', this.sellPackage.bind(this));
     } else {
 
       if (typeof this.personInfo.cardId !== 'undefined' && this.personInfo.cardId !== null && this.personInfo.cardId !== 'null') { // 用户有身份证时
-        tools.tipsConfirm('确定订购服务包?', '', 'warning', this.sellPackage.bind(this));
+        tools.tipsConfirm('确定订购服务包?', '', '', this.sellPackage.bind(this));
       } else { // 用户身份证不存在时，需要输入身份证
         swal({
           title: '需要填写身份证号才能购买',
