@@ -70,7 +70,6 @@ export class HomeComponent implements OnInit {
   }
 
   initMenu() {
-    console.log(storage.get('menu'));
     if (storage.get('menu')) {
       this.menu = eval(storage.get('menu'));
       for (let i = 0; i < this.menu.length; i++) {
@@ -79,7 +78,6 @@ export class HomeComponent implements OnInit {
           this.menu[i].children[j].url = p;
         }
       }
-      console.log(this.menu);
       return;
     }
     const role = parseInt(storage.get('state')['role'], 10) + 1;

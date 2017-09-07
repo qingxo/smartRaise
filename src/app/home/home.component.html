@@ -23,7 +23,7 @@
         <ul class="first-level">
 
           <li *ngFor="let item of menu;let firstIndex = index">
-            <span (click)="toggleMenu($event)" class="menu-{{firstIndex}}">
+            <span (click)="toggleMenu($event)" class="menu-{{item.id}} ">
               {{item.text}}
             </span>
             <ul class="second-level">
