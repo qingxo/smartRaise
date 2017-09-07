@@ -61,7 +61,6 @@ export class HealthReportComponent implements OnInit {
   }
 
 
-
   chooseTimeLine(content) {
     this.startTime = '';
     this.endTime = '';
@@ -147,18 +146,36 @@ export class HealthReportComponent implements OnInit {
     }
 
     tools.loading(true);
-    this.healthReportService.createList(this.taskId, this.customerId, data).subscribe((res) => {
-      if (res.success) {
-        tools.tips('新增成功');
-        this.modalRef.close();
-        this.getList();
-        tools.loading(false);
-      } else {
-        tools.loading(false);
-        tools.tips(res.data.errMsg, '', 'error');
 
-      }
-    });
+    if (this.taskId !== 'noTask') {
+      this.healthReportService.createList(this.taskId, this.customerId, data).subscribe((res) => {
+        if (res.success) {
+          tools.tips('新增成功');
+          this.modalRef.close();
+          this.getList();
+          tools.loading(false);
+        } else {
+          tools.loading(false);
+          tools.tips(res.errMsg, '', 'error');
+
+        }
+      });
+    } else {
+      this.healthReportService.createListNoTask(this.customerId, data).subscribe((res) => {
+        if (res.success) {
+          tools.tips('新增成功');
+          this.modalRef.close();
+          this.getList();
+          tools.loading(false);
+        } else {
+          tools.loading(false);
+          tools.tips(res.errMsg, '', 'error');
+
+        }
+      });
+    }
+
+
   }
 
   listDetail(index) {
