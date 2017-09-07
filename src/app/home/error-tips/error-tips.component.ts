@@ -41,7 +41,7 @@ export class ErrorTipsComponent implements OnInit {
 
   doneFeedBack() {
     let data: any = {
-      'abnormalHealthId': this.targetItem['abnormalHealthId'],
+      'abnormalHealthNo': this.targetItem['abnormalHealthNo'],
       'remark': this.dealInfo
     }
     this.errorTipsService.errorDeal(data).subscribe((res) => {
