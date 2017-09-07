@@ -112,14 +112,7 @@ export class ErrorTipsComponent implements OnInit {
   }
 
   getAge(ageNum) {
-    if (typeof ageNum === 'undefined' || ageNum === '') {
-      return '未知';
-    } else {
-      const newYear = Number(new Date().getFullYear());
-      const num = newYear - parseInt(ageNum.split('-')[0], 10);
-      return num;
-    }
-
+    return tools.getAge(ageNum)
   }
 
   cultOpinion(msg) {
