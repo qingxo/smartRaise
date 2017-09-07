@@ -27,21 +27,27 @@ export class BedAnalysisComponent implements OnInit, OnChanges {
     static: true,
     time_24hr: true,
     dateFormat: 'Y-m-d',
+    locale: zh_lang['zh'],
     defaultDate: this.focusDay,
     maxDate: moment(new Date()).format('YYYY-MM-DD'),
-    onChange: this.chooseDay.bind(this)
+    onChange: this.chooseDay.bind(this),
+    onClose: this.closeTime.bind(this)
+
   };
 
   constructor(private bedAnalysisService: BedAnalysisService) { }
 
   ngOnInit() {
-    Flatpickr.localize(zh_lang.zh);
     moment.locale('zh-cn');
   }
 
   chooseDay(val) {
     this.focusDay = moment(new Date(val)).format('YYYY-MM-DD');
     this.bedAnalysis();
+  }
+
+  closeTime(selectedDates, dateStr, instance) {
+    instance.input.blur();
   }
 
   ngOnChanges(changes: SimpleChanges) {

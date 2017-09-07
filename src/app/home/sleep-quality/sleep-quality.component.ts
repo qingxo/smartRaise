@@ -40,9 +40,12 @@ export class SleepQualityComponent implements OnInit, OnChanges {
     static: true,
     time_24hr: true,
     dateFormat: 'Y-m-d',
+    locale: zh_lang['zh'],
     defaultDate: this.focusDay,
     maxDate: moment(new Date()).format('YYYY-MM-DD'),
-    onChange: this.chooseDay.bind(this)
+    onChange: this.chooseDay.bind(this),
+    onClose: this.closeTime.bind(this)
+
   };
   private nothingFlag = false;
 
@@ -60,9 +63,13 @@ export class SleepQualityComponent implements OnInit, OnChanges {
   constructor(private sleepQualityService: SleepQualityService) { }
 
   ngOnInit() {
-    Flatpickr.localize(zh_lang.zh);
     moment.locale('zh-cn');
   }
+
+  closeTime(selectedDates, dateStr, instance) {
+    instance.input.blur();
+  }
+
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.equipNo !== '') {
