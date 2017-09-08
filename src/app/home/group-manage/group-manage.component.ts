@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GroupManageService } from './group-manage.service';
 import tools from '../../shared/tools';
+import storage from '../../shared/storage';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -35,11 +36,20 @@ export class GroupManageComponent implements OnInit {
   private bothInfo = '';
   private errorMobile = '';
   private isEdit = false;
-
+  private contacts: Array<any> = []
+  private errorName: string = ''
   constructor(private groupManageService: GroupManageService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.groupManageList();
+  }
+
+  delContacts(val) {
+    this.contacts.splice(val, 1)
+  }
+
+  addContacts(event) {
+    this.contacts.push({ 'socialWelfareId': '', 'contact': '', 'tel': '', 'post': '', 'commissioner': false, 'error': 'e' })
   }
 
   pageTurning(val) {
@@ -69,13 +79,23 @@ export class GroupManageComponent implements OnInit {
       this.connectPeople = this.list[index]['contact'];
       this.address = this.list[index]['address'];
       this.mobile = this.list[index]['tel'];
+      if (this.list[index]['socialWelfareContact'] !== null) {
+        this.initContacts(this.list[index]['socialWelfareContact'])
+      }
     }
 
   }
 
+  initContacts(val) {
+    this.contacts = eval(val)
+    for (let i = 0; i < this.contacts.length; i++) {
+      this.contacts[i]['commissioner'] == 1 ? this.contacts[i]['commissioner'] = true : this.contacts[i]['commissioner'] = false
+    }
+  }
+
 
   openGroup(content) {
-    this.modalRef = this.modalService.open(content, { windowClass: 't-l-modal' });
+    this.modalRef = this.modalService.open(content, { windowClass: 't-l-modal group-info' });
 
     this.modalRef.result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -139,7 +159,7 @@ export class GroupManageComponent implements OnInit {
     this.errorAddress = '';
     this.bothGroup = '';
     this.bothInfo = '';
-
+    this.errorName = '';
     if (!this.groupName) {
       this.errorGroupName = '机构名必填';
       this.bothGroup = 'xxx';
@@ -162,12 +182,34 @@ export class GroupManageComponent implements OnInit {
     if (this.bothGroup !== '' || this.bothInfo !== '') {
       return;
     }
+
+    for (let i = 0; i < this.contacts.length; i++) {
+      if (this.contacts[i]['contact'] === undefined || this.contacts[i]['contact'] === '') {
+        this.errorName = "姓名不能为空"
+        this.contacts[i]['error'] = 'error'
+      } else {
+        this.contacts[i]['error'] = 'e'
+      }
+    }
+
+    if (this.errorName !== '') {
+      return;
+    }
+    for (let i = 0; i < this.contacts.length; i++) {
+      this.contacts[i]['commissioner'] ? this.contacts[i]['commissioner'] = '1' : this.contacts[i]['commissioner'] = '0'
+    }
+    let tmp = Array.from(this.contacts)
+    for (let i = 0; i < tmp.length; i++) {
+      delete tmp[i]['error'];
+    }
+
     const data = {
       'contact': this.connectPeople,
       'socialWelfareCode': this.groupCode,
       'socialWelfareName': this.groupName,
       'tel': this.mobile,
-      'address': this.address
+      'address': this.address,
+      'socialWelfareContact': JSON.stringify(tmp)
     };
 
     if (this.isEdit) {

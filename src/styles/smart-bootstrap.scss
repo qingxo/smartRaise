@@ -560,6 +560,68 @@ input:focus {
   }
 }
 
+.group-info {
+  .add-contact {
+    text-align: center;
+    border: 1px dotted #6a4406;
+    border-radius: 4px;
+    padding: 4px 0;
+    margin: 10px 35px;
+    color: #6a4406;
+    cursor: pointer;
+  }
+
+  .contacts {
+    text-align: center;
+    margin: 5px 0;
+
+    .inline {
+      display: inline-block;
+      vertical-align: top;
+      line-height: 30px;
+
+      input[type=number],
+      input[type=text] {
+        border-radius: 4px;
+        height: 30px;
+        line-height: 30px;
+        border: 1px solid #d2d2d2;
+        margin-right: 8px;
+      }
+
+      input[type=number] {
+        width: 125px;
+      }
+      display: inline-block;
+
+      input.t-name {
+        width: 100px;
+      }
+
+      input.t-duty {
+        width: 70px;
+      }
+
+      .redBorder {
+        outline: #F4333C;
+        border: 1px solid #f4333C!important;
+        box-shadow: 0 0 4px 0 #F4333C;
+        border-radius: 4px;
+      }
+    }
+
+    .del {
+      margin-left: 5px;
+      background: url("/assets/images/del.png") 0 6px no-repeat;
+      background-size: 16px auto;
+      width: 16px;
+      line-height: 30px;
+      height: 30px;
+      cursor: pointer;
+    }
+  }
+}
+
 .t-l-modal {
   padding: 0;
 
