@@ -63,7 +63,7 @@ export class BedAnalysisComponent implements OnInit, OnChanges {
       if (res.success) {
         this.bedAwayAnalysis = [];
         this.bedAwayTime = [];
-        if (res.data.data.indexOf('[') === -1) {
+        if (res.data.data.indexOf('设备') !== -1) {
           return;
         }
         const tmp = eval(res.data.data);
@@ -74,10 +74,9 @@ export class BedAnalysisComponent implements OnInit, OnChanges {
           }
           this.initBedAwayEcharts();
           this.nothingFlag = true;
-          this.el.nativeElement.className = 'lines black-hole';
-        } else {
           this.el.nativeElement.className = 'lines ';
-
+        } else {
+          this.el.nativeElement.className = 'lines black-hole';
           this.nothingFlag = false;
         }
       } else {
