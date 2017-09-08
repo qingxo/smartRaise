@@ -90,6 +90,7 @@ export class GroupManageComponent implements OnInit {
     this.contacts = eval(val)
     for (let i = 0; i < this.contacts.length; i++) {
       this.contacts[i]['commissioner'] == 1 ? this.contacts[i]['commissioner'] = true : this.contacts[i]['commissioner'] = false
+      this.contacts[i]['error'] = 'e'
     }
   }
 
@@ -199,9 +200,6 @@ export class GroupManageComponent implements OnInit {
       this.contacts[i]['commissioner'] ? this.contacts[i]['commissioner'] = '1' : this.contacts[i]['commissioner'] = '0'
     }
     let tmp = Array.from(this.contacts)
-    for (let i = 0; i < tmp.length; i++) {
-      delete tmp[i]['error'];
-    }
 
     const data = {
       'contact': this.connectPeople,
