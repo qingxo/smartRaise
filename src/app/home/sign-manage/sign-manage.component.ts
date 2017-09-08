@@ -31,7 +31,7 @@ export class SignManageComponent implements OnInit {
   private groupPlanName: string;
   private choosedSocialWelfare = '';
   private choosedCard = '-1';
-  private totalCount: any = { 'cardBindingCount': 0, 'cardUnBindingCount': 0, 'equipmentBindingCount': 0, 'equipmentUnBindingCount': 0 }
+  private totalCount: any = {}
   constructor(private signManageService: SignManageService) { }
 
   ngOnInit() {
