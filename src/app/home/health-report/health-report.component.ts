@@ -28,7 +28,7 @@ export class HealthReportComponent implements OnInit {
     enableTime: false,
     static: true,
     time_24hr: true,
-    dateFormat: 'Y-m-d',
+    dateFormat: 'Y-m',
     locale: zh_lang['zh'],
     onChange: this.changeStartDay.bind(this),
     onClose: this.closeTime.bind(this)
@@ -37,7 +37,7 @@ export class HealthReportComponent implements OnInit {
     enableTime: false,
     static: true,
     time_24hr: true,
-    dateFormat: 'Y-m-d',
+    dateFormat: 'Y-m',
     locale: zh_lang['zh'],
     onChange: this.changeEndDay.bind(this),
     onClose: this.closeTime.bind(this)
@@ -77,7 +77,7 @@ export class HealthReportComponent implements OnInit {
   }
 
   changeStartDay(val) {
-    this.startTime = moment(new Date(val)).format('YYYY-MM-DD');
+    this.startTime = moment(new Date(val)).format('YYYY-MM');
   }
 
   closeTime(selectedDates, dateStr, instance) {
@@ -85,7 +85,7 @@ export class HealthReportComponent implements OnInit {
   }
 
   changeEndDay(val) {
-    this.endTime = moment(new Date(val)).format('YYYY-MM-DD');
+    this.endTime = moment(new Date(val)).format('YYYY-MM');
   }
 
 
@@ -128,7 +128,7 @@ export class HealthReportComponent implements OnInit {
       this.bothTime = 'xxx';
       this.errorEndTime = '请填写结束时间';
     }
-    const testStart = this.startTime.substr(0, this.startTime.length - 3) + '-01' + ' 00:00:00';
+    const testStart = this.startTime + '-01' + ' 00:00:00';
     const testEnd = moment(moment(this.endTime, 'YYYY-MM').endOf('month')['_d']).format('YYYY-MM-DD') + ' 23:59:59';
     const t1 = new Date(testStart).getTime();
     const t2 = new Date(testEnd).getTime();
