@@ -36,7 +36,9 @@ export class SleepManageComponent implements OnInit {
   private sources = 'A';
   private groupPlanList: Array<any> = [];
   private groupPlanName = '';
+  private showGroupName = '';
   private choosedBed = '-1';
+  private totalSum: any = {}
   constructor(private sleepManageService: SleepManageService, private clientService: ClientService, private modalService: NgbModal) { }
 
   ngOnInit() {
@@ -46,8 +48,19 @@ export class SleepManageComponent implements OnInit {
   }
 
   onChange(val) {
+    if (val.indexOf(',') !== -1) {
+      this.groupPlanName = val.split(',')[0]
+      this.showGroupName = val.split(',')[1]
+    }
     this.pageNumber = 1
     this.clientList();
+  }
+
+  groupNameShow(val) {
+    if (val === '' || val === '请选择') {
+      return '全部机构'
+    }
+    return val
   }
 
   getAge(num) {
@@ -208,6 +221,7 @@ export class SleepManageComponent implements OnInit {
         this.pages = res.data.navigatepageNums;
         this.pageNumber = res.data.pageNum;
         this.totalCount = res.data.total;
+        this.totalSum = res.counts;
       }
 
     });

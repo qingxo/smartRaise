@@ -4,8 +4,8 @@
       <div class="lf">
         <div class="org">
           <span>机构</span>
-          <select class="" name="" (change)="onChange($event.target.value)" [(ngModel)]="groupPlanName">
-            <option  *ngFor="let item of groupPlanList" value="{{item.socialWelfareId}}">{{item.socialWelfareName}}</option>
+          <select class="" name="" (change)="onChange($event.target.value)">
+            <option  *ngFor="let item of groupPlanList" value="{{item.socialWelfareId}},{{item.socialWelfareName}}">{{item.socialWelfareName}}</option>
           </select>
         </div>
         <div class="equip">
@@ -20,6 +20,13 @@
       </div>
     </div>
     <div class="table-info errorInfo">
+      <div class="group-info" [hidden]="list.length==0">
+        <div>{{groupNameShow(showGroupName)}}:</div>
+        <div>
+          <span>已绑卡 {{totalSum['cardBindingCount']}}</span>
+          <span>未绑卡 {{totalSum['cardUnBindingCount']}}</span>
+        </div>
+      </div>
       <table cellpadding="0" cellspacing="0" border="0" ng-show="taskProgress == 0" [hidden]="list.length==0">
         <thead>
           <tr>
