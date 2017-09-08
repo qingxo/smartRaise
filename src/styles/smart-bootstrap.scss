@@ -330,6 +330,10 @@ input:focus {
       color: white;
     }
 
+    .create-btn:hover {
+      background-color: #472D05;
+    }
+
     .show-false {
       display: none!important;
     }
@@ -389,6 +393,24 @@ input:focus {
       .table-info {
         padding: 20px;
         background-color: #eff1f3;
+
+        .group-info {
+          text-align: left;
+
+          div {
+            display: inline-block;
+            color: #6A4307;
+            font-size: 14px;
+
+            span:nth-child(odd) {
+              padding: 0 15px;
+            }
+          }
+
+          div:first-child {
+            color: #666666;
+          }
+        }
 
         table {
           width: 100%;
