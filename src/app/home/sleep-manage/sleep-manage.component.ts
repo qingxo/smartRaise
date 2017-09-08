@@ -221,7 +221,7 @@ export class SleepManageComponent implements OnInit {
         this.pages = res.data.navigatepageNums;
         this.pageNumber = res.data.pageNum;
         this.totalCount = res.data.total;
-        this.totalSum = res.counts;
+        // this.totalSum = res.counts;
       }
 
     });
