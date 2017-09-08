@@ -48,6 +48,7 @@ export class ErrorTipsComponent implements OnInit {
       if (res.success) {
         tools.tips("处理成功");
         this.modalRef.close();
+        this.dealInfo = ''
         this.showList();
       } else {
         tools.tips(res.errMsg, '', 'error');
