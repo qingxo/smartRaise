@@ -20,7 +20,6 @@ export class BarLinesComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit() {
-    console.log('init')
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -39,7 +38,7 @@ export class BarLinesComponent implements OnInit, OnChanges, OnDestroy {
     this.legendData = [];
     this.xData = [];
     this.serisesData = [];
-    this.option = ''
+    this.option = '';
   }
 
   getOption() {

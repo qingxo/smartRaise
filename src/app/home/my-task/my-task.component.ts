@@ -40,13 +40,13 @@ export class MyTaskComponent implements OnInit {
   searchTable(val) {
     this.queryInfo = val;
     this.pageNumber = 1;
-    this.taskList()
+    this.taskList();
   }
 
 
   pageTurning(number) {
     this.pageNumber = number;
-    this.taskList()
+    this.taskList();
   }
 
 
@@ -140,7 +140,7 @@ export class MyTaskComponent implements OnInit {
     };
     this.myTaskService.taskList(data).subscribe((res) => {
       if (res.success) {
-        console.log("susscss", res.data.list)
+        console.log('susscss', res.data.list);
         this.list = [];
         this.list = res.data.list;
         for (let i = 0; i < this.list.length; i++) {

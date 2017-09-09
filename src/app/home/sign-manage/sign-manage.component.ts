@@ -31,7 +31,7 @@ export class SignManageComponent implements OnInit {
   private groupPlanName: string;
   private choosedSocialWelfare = '';
   private choosedCard = '-1';
-  private totalCount: any = {}
+  private totalCount: any = {};
   constructor(private signManageService: SignManageService) { }
 
   ngOnInit() {
@@ -41,18 +41,18 @@ export class SignManageComponent implements OnInit {
 
   onChange(val) {
     if (val.indexOf(',') !== -1) {
-      this.choosedSocialWelfare = val.split(',')[0]
-      this.groupPlanName = val.split(',')[1]
+      this.choosedSocialWelfare = val.split(',')[0];
+      this.groupPlanName = val.split(',')[1];
     }
-    this.pageNumber = 1
+    this.pageNumber = 1;
     this.initAsyc();
   }
 
   groupNameShow(val) {
     if (val === '' || val === '请选择') {
-      return '全部机构'
+      return '全部机构';
     }
-    return val
+    return val;
   }
 
   // 获取机构列表

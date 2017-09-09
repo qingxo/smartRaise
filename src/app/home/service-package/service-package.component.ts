@@ -2,7 +2,7 @@ import { Component, OnInit, OnChanges, SimpleChange, ComponentFactoryResolver, V
 import { ServicePackageService } from './service-package.service';
 import tools from '../../shared/tools';
 import { PackageDialogComponent } from '../package-dialog';
-import { PkginfoDialogComponent } from '../pkginfo-dialog'
+import { PkginfoDialogComponent } from '../pkginfo-dialog';
 @Component({
   selector: 'app-service-package',
   templateUrl: './service-package.component.html',

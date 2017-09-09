@@ -22,7 +22,7 @@ export class ErrorTipsComponent implements OnInit {
   private modalRef: any;
   private closeResult: string;
   private targetItem: any = {};
-  private dealInfo: string = '';
+  private dealInfo = '';
   constructor(private errorTipsService: ErrorTipsService, private modalService: NgbModal) { }
 
   ngOnInit() {
@@ -40,20 +40,20 @@ export class ErrorTipsComponent implements OnInit {
   }
 
   doneFeedBack() {
-    let data: any = {
+    const data: any = {
       'abnormalHealthNo': this.targetItem['abnormalHealthNo'],
       'remark': this.dealInfo
-    }
+    };
     this.errorTipsService.errorDeal(data).subscribe((res) => {
       if (res.success) {
-        tools.tips("处理成功");
+        tools.tips('处理成功');
         this.modalRef.close();
-        this.dealInfo = ''
+        this.dealInfo = '';
         this.showList();
       } else {
         tools.tips(res.errMsg, '', 'error');
       }
-    })
+    });
 
   }
 
@@ -113,7 +113,7 @@ export class ErrorTipsComponent implements OnInit {
   }
 
   getAge(ageNum) {
-    return tools.getAge(ageNum)
+    return tools.getAge(ageNum);
   }
 
   cultOpinion(msg) {

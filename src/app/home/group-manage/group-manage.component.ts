@@ -36,8 +36,8 @@ export class GroupManageComponent implements OnInit {
   private bothInfo = '';
   private errorMobile = '';
   private isEdit = false;
-  private contacts: Array<any> = []
-  private errorName: string = ''
+  private contacts: Array<any> = [];
+  private errorName = '';
   constructor(private groupManageService: GroupManageService, private modalService: NgbModal) { }
 
   ngOnInit() {
@@ -45,11 +45,11 @@ export class GroupManageComponent implements OnInit {
   }
 
   delContacts(val) {
-    this.contacts.splice(val, 1)
+    this.contacts.splice(val, 1);
   }
 
   addContacts(event) {
-    this.contacts.push({ 'socialWelfareId': '', 'contact': '', 'tel': '', 'post': '', 'commissioner': false, 'error': 'e' })
+    this.contacts.push({ 'socialWelfareId': '', 'contact': '', 'tel': '', 'post': '', 'commissioner': false, 'error': 'e' });
   }
 
   pageTurning(val) {
@@ -80,17 +80,17 @@ export class GroupManageComponent implements OnInit {
       this.address = this.list[index]['address'];
       this.mobile = this.list[index]['tel'];
       if (this.list[index]['socialWelfareContact'] !== null) {
-        this.initContacts(this.list[index]['socialWelfareContact'])
+        this.initContacts(this.list[index]['socialWelfareContact']);
       }
     }
 
   }
 
   initContacts(val) {
-    this.contacts = eval(val)
+    this.contacts = eval(val);
     for (let i = 0; i < this.contacts.length; i++) {
-      this.contacts[i]['commissioner'] == 1 ? this.contacts[i]['commissioner'] = true : this.contacts[i]['commissioner'] = false
-      this.contacts[i]['error'] = 'e'
+      this.contacts[i]['commissioner'] == 1 ? this.contacts[i]['commissioner'] = true : this.contacts[i]['commissioner'] = false;
+      this.contacts[i]['error'] = 'e';
     }
   }
 
@@ -186,10 +186,10 @@ export class GroupManageComponent implements OnInit {
 
     for (let i = 0; i < this.contacts.length; i++) {
       if (this.contacts[i]['contact'] === undefined || this.contacts[i]['contact'] === '') {
-        this.errorName = "姓名不能为空"
-        this.contacts[i]['error'] = 'error'
+        this.errorName = '姓名不能为空';
+        this.contacts[i]['error'] = 'error';
       } else {
-        this.contacts[i]['error'] = 'e'
+        this.contacts[i]['error'] = 'e';
       }
     }
 
@@ -197,9 +197,9 @@ export class GroupManageComponent implements OnInit {
       return;
     }
     for (let i = 0; i < this.contacts.length; i++) {
-      this.contacts[i]['commissioner'] ? this.contacts[i]['commissioner'] = '1' : this.contacts[i]['commissioner'] = '0'
+      this.contacts[i]['commissioner'] ? this.contacts[i]['commissioner'] = '1' : this.contacts[i]['commissioner'] = '0';
     }
-    let tmp = Array.from(this.contacts)
+    const tmp = Array.from(this.contacts);
 
     const data = {
       'contact': this.connectPeople,

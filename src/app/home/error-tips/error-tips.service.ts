@@ -17,7 +17,7 @@ export class ErrorTipsService extends BaseService {
   }
 
   errorDeal(data) {
-    return this.postInfo('api/webAbnormalHealth/updateRemind', storage.serialize(data))
+    return this.postInfo('api/webAbnormalHealth/updateRemind', storage.serialize(data));
   }
 
 

@@ -37,9 +37,9 @@ export class StatisticsComponent implements OnInit {
 
   toogleChoosed(val) {
     this.choosedBtn = '' + val;
-    this.equipArrays = []
-    this.orderList = []
-    this.orgName = []
+    this.equipArrays = [];
+    this.orderList = [];
+    this.orgName = [];
     this.showList();
   }
 
@@ -97,8 +97,8 @@ export class StatisticsComponent implements OnInit {
         this.equipArrays.push(this.customerArray, this.manySignArray, this.smartBedArray);
 
         this.equipUseArray.push({ 'organizationName': '合计', 'customerCount': customerN, 'manySignsCardCount': cardSign, 'smartBedCount': bedN });
-        this.equipArrays = Array.from(this.equipArrays)
-        this.orgName = Array.from(this.orgName)
+        this.equipArrays = Array.from(this.equipArrays);
+        this.orgName = Array.from(this.orgName);
       });
     } else if (this.choosedBtn === '2') {
       this.customerArray = [];
@@ -128,9 +128,9 @@ export class StatisticsComponent implements OnInit {
         }
         this.orderList.push({ 'organizationName': '合计', 'customerCount': customerN, 'manySignsServicePackCount': cardSign, 'sleepServicePacksCount': sleepN, 'slowDiseaseServicePacksCount': slowN });
         this.equipArrays.push(this.customerArray, this.manySignArray, this.sleepArray, this.slowArray);
-        this.orderList = Array.from(this.orderList)
-        this.equipArrays = Array.from(this.equipArrays)
-        this.orgName = Array.from(this.orgName)
+        this.orderList = Array.from(this.orderList);
+        this.equipArrays = Array.from(this.equipArrays);
+        this.orgName = Array.from(this.orgName);
       });
     }
 

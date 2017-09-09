@@ -20,7 +20,7 @@ export class HealthReportService extends BaseService {
   }
 
   createListNoTask(customerId, data) {
-    return this.postInfo(`api/customer/generateReprot/${customerId}`, storage.serialize(data))
+    return this.postInfo(`api/customer/generateReprot/${customerId}`, storage.serialize(data));
   }
 
   deleteReport(reportId) {

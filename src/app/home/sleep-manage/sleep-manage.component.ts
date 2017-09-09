@@ -38,7 +38,7 @@ export class SleepManageComponent implements OnInit {
   private groupPlanName = '';
   private showGroupName = '';
   private choosedBed = '-1';
-  private totalSum: any = {}
+  private totalSum: any = {};
   constructor(private sleepManageService: SleepManageService, private clientService: ClientService, private modalService: NgbModal) { }
 
   ngOnInit() {
@@ -49,18 +49,18 @@ export class SleepManageComponent implements OnInit {
 
   onChange(val) {
     if (val.indexOf(',') !== -1) {
-      this.groupPlanName = val.split(',')[0]
-      this.showGroupName = val.split(',')[1]
+      this.groupPlanName = val.split(',')[0];
+      this.showGroupName = val.split(',')[1];
     }
-    this.pageNumber = 1
+    this.pageNumber = 1;
     this.clientList();
   }
 
   groupNameShow(val) {
     if (val === '' || val === '请选择') {
-      return '全部机构'
+      return '全部机构';
     }
-    return val
+    return val;
   }
 
   getAge(num) {
