@@ -89,7 +89,7 @@ export class GroupManageComponent implements OnInit {
   initContacts(val) {
     this.contacts = eval(val);
     for (let i = 0; i < this.contacts.length; i++) {
-      this.contacts[i]['commissioner'] == 1 ? this.contacts[i]['commissioner'] = true : this.contacts[i]['commissioner'] = false;
+      this.contacts[i]['commissioner'] === '1' ? this.contacts[i]['commissioner'] = true : this.contacts[i]['commissioner'] = false;
       this.contacts[i]['error'] = 'e';
     }
   }
