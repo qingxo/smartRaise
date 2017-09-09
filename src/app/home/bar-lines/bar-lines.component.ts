@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, Output, OnChanges, SimpleChanges, Renderer, ElementRef, ViewChild, AfterContentChecked, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, Output, OnChanges, SimpleChanges, Renderer, ElementRef, ViewChild, OnDestroy } from '@angular/core';
 import { EChartOption } from 'echarts-ng2';
 @Component({
   selector: 'app-bar-lines',
   templateUrl: './bar-lines.component.html',
   styleUrls: ['./bar-lines.component.scss']
 })
-export class BarLinesComponent implements OnInit, AfterContentChecked, OnDestroy {
+export class BarLinesComponent implements OnInit, OnChanges, OnDestroy {
 
   private option: EChartOption;
   private nothingFlag = false;
@@ -17,16 +17,13 @@ export class BarLinesComponent implements OnInit, AfterContentChecked, OnDestroy
   @Input() echartsStyle: any = { 'height': '360px' };
   @ViewChild('tt') el: ElementRef;
   constructor() {
-    this.legendData = [];
-    this.xData = [];
-    this.serisesData = [];
   }
 
   ngOnInit() {
-
+    console.log('init')
   }
 
-  ngAfterContentChecked() {
+  ngOnChanges(changes: SimpleChanges) {
     if (this.serisesData.length > 0) {
       this.option = this.getOption();
       this.el.nativeElement.className = 'lines';
@@ -35,7 +32,6 @@ export class BarLinesComponent implements OnInit, AfterContentChecked, OnDestroy
       this.el.nativeElement.className = 'lines black-hole';
       this.nothingFlag = false;
     }
-
   }
 
   ngOnDestroy() {
@@ -43,6 +39,7 @@ export class BarLinesComponent implements OnInit, AfterContentChecked, OnDestroy
     this.legendData = [];
     this.xData = [];
     this.serisesData = [];
+    this.option = ''
   }
 
   getOption() {
