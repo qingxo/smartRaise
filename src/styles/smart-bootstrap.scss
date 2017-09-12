@@ -903,14 +903,15 @@ input:focus {
       }
 
       .moreSel {
-        width: 470px;
+        width: 480px;
 
         .sels {
           display: inline-block;
-          width: 250px;
+          width: 275px;
+          vertical-align: top;
 
           select {
-            width: 70px;
+            width: 86px;
             height: 30px;
             border: 1px solid #d2d2d2;
             background-color: white;
