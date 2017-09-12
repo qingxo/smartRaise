@@ -3,7 +3,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import { Router } from '@angular/router';
 import { ClientService } from './client.service';
 import { ServicePackageService } from '../service-package/service-package.service';
-
+import { GroupManageService } from '../group-manage';
 import storage from '../../shared/storage';
 import tools from '../../shared/tools';
 import SysData from '../../shared/sysData';
@@ -19,7 +19,7 @@ import { AccountDialogsComponent } from '../account-dialogs';
   selector: 'app-client',
   templateUrl: './client.component.html',
   styleUrls: ['./client.component.scss'],
-  providers: [ClientService, ServicePackageService],
+  providers: [ClientService, ServicePackageService, GroupManageService],
   animations: baseAnimation
 })
 export class ClientComponent implements OnInit {
@@ -79,6 +79,13 @@ export class ClientComponent implements OnInit {
   private errorWeight = '';
   private bothhw = '';
   private bothNumber = '';
+  private provinces: Array<any> = [];
+  private cities: Array<any> = [];
+  private streets: Array<any> = [];
+  private global_tips: string = "请选择=-1";
+  private choosedProvince: string = this.global_tips;
+  private choosedCities: string = this.global_tips;
+  private choosedStreets: string = this.global_tips;
   private exampleOptions: FlatpickrOptions = {
     enableTime: false,
     static: true,
@@ -97,7 +104,7 @@ export class ClientComponent implements OnInit {
   private chooseGroupId = '';
   private choosedPkg = '请选择';
   private pkgList: Array<any> = [];
-  constructor(private clientService: ClientService, private servicePackageService: ServicePackageService, private modalService: NgbModal, private componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) { }
+  constructor(private clientService: ClientService, private groupManageService: GroupManageService, private servicePackageService: ServicePackageService, private modalService: NgbModal, private componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) { }
   changeMe() {
     this.chameleon === 'inactive' ? this.chameleon = 'active' : this.chameleon = 'inactive';
   }
@@ -105,6 +112,28 @@ export class ClientComponent implements OnInit {
   onChange(val) {
     this.pageNumber = 1;
     this.initAsyc();
+  }
+
+  onChanges(str, index) {
+    let val = str.split('=')[1]
+    this.getAddressInfo(val, index)
+  }
+
+  getAddressInfo(id, index, street = this.global_tips, city = this.global_tips) {
+    this.groupManageService.getCities(id).subscribe((res) => {
+      if (index === 1) {
+        this.cities = []
+        this.streets = []
+        this.choosedCities = city
+        this.choosedStreets = street
+        this.cities = eval(res)
+
+      } else if (index === 2) {
+        this.streets = []
+        this.choosedStreets = street
+        this.streets = eval(res)
+      }
+    })
   }
 
   handleGroupName(event, num) {
@@ -144,6 +173,18 @@ export class ClientComponent implements OnInit {
     this.initAsyc();
     this.initGroupPlanList();
     this.initPkgs();
+    this.initProvinces();
+  }
+
+  initProvinces() {
+    this.groupManageService.getProvince().subscribe((res) => {
+      this.cities = [];
+      this.streets = [];
+      this.choosedCities = "请选择=-1";
+      this.choosedStreets = "请选择=-1";
+      this.provinces = eval(res);
+      this.provinces.unshift({ 'regionName': '请选择', 'regionId': '-1' });
+    })
   }
   initPkgs() {
     const data = {
@@ -243,6 +284,9 @@ export class ClientComponent implements OnInit {
   clientActive(index, clientDetail) {
     this.itemTarget = index;
     this.clearInfo();
+    this.choosedProvince = this.global_tips;
+    this.choosedCities = this.global_tips;
+    this.choosedStreets = this.global_tips;
     if (index === -1) {
       this.isEdit = false;
     } else {
@@ -288,6 +332,28 @@ export class ClientComponent implements OnInit {
         this.remark = info.remark;
         this.birdthday = info.birdthday;
         this.relationShip = info.relationToCustomer;
+
+
+        let code = info.addressCode
+        this.cities = []
+        this.streets = []
+        this.choosedCities = this.global_tips
+        this.choosedStreets = this.global_tips
+        if (code !== 'null' && code !== null) {
+          let tmp = code.split(',')
+          this.choosedProvince = info['province'] + "=" + tmp[0]
+
+          let street = info['district'] === "" ? this.global_tips : info['district'] + "=" + tmp[2]
+          let city = info['city'] === "" ? this.global_tips : info['city'] + "=" + tmp[1]
+          if (tmp[0] !== '-1') {
+            this.getAddressInfo(tmp[0], 1, street, city)
+          }
+          if (tmp[1] !== '-1') {
+            this.getAddressInfo(tmp[1], 2, street)
+          }
+        }
+
+
         if (info.socialWelfareId) {
           const tt = info.socialWelfareId.split(',');
           const tmp = info.socialWelfareName.split(',');
@@ -416,6 +482,13 @@ export class ClientComponent implements OnInit {
     this.checkList = [];
     this.myGroup = [];
     this.myGroupName = [];
+    this.errorRealname = '';
+    this.errorCardId = '';
+    this.errorMobile = '';
+    this.errorHeight = '';
+    this.errorWeight = '';
+    this.bothhw = '';
+    this.bothNumber = '';
   }
 
   healthCareOpen(index, content) {
@@ -579,7 +652,11 @@ export class ClientComponent implements OnInit {
       'role': this.role,
       'cardId': this.cardId,
       'socialWelfareId': str.substr(0, str.length - 1),
-      'guardianIds': tmpIds
+      'guardianIds': tmpIds,
+      'province': this.choosedProvince.split('=')[0],
+      'city': this.choosedCities.split('=')[0],
+      'district': this.choosedStreets.split('=')[0],
+      'addressCode': this.choosedProvince.split('=')[1] + ',' + this.choosedCities.split('=')[1] + ',' + this.choosedStreets.split('=')[1]
     };
 
     if (this.realname.trim().length < 1) {

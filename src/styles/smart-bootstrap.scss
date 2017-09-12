@@ -902,6 +902,28 @@ input:focus {
         }
       }
 
+      .moreSel {
+        width: 470px;
+
+        .sels {
+          display: inline-block;
+          width: 250px;
+
+          select {
+            width: 70px;
+            height: 30px;
+            border: 1px solid #d2d2d2;
+            background-color: white;
+            padding: 0 10px 0 0;
+            color: #333333;
+          }
+        }
+
+        input {
+          display: inline-block;
+        }
+      }
+
       .roles-info {
         position: relative;
         vertical-align: bottom;

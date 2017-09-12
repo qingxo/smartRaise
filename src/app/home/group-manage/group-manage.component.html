@@ -23,7 +23,7 @@
             <td><span>{{item.socialWelfareName}}</span></td>
             <td><span>{{item.contact}}</span></td>
             <td><span>{{item.tel}}</span></td>
-            <td><span>{{item.address}}</span></td>
+            <td><span>{{item.province}} {{item.city}} {{item.district}} {{item.address}}</span></td>
 
             <td><span class="opt">
                <em (click)="showTpl(i,groupUI)">编辑</em>
@@ -85,7 +85,21 @@
         </div>
         <div class="lf dis-bl">
           <label for="">住址</label>
-          <div class="inline more-w">
+          <div class="inline moreSel">
+            <div class="sels">
+              <select class="" name="" [(ngModel)]="choosedProvince" (change)="onChanges($event.target.value,1)">
+                <option  *ngFor="let item of provinces" value="{{item.regionName}}={{item.regionId}}">{{item.regionName}}</option>
+              </select>
+              <select class="" name="" [(ngModel)]='choosedCities' (change)="onChanges($event.target.value,2)">
+                <option value="请选择=-1">请选择</option>
+
+                <option  *ngFor="let item of cities" value="{{item.regionName}}={{item.regionId}}">{{item.regionName}}</option>
+              </select>
+              <select class="" name="" [(ngModel)]="choosedStreets">
+                <option value="请选择=-1">请选择</option>
+                <option  *ngFor="let item of streets" value="{{item.regionName}}={{item.regionId}}">{{item.regionName}}</option>
+              </select>
+            </div>
             <input type="text" name="" value="" [(ngModel)]="address">
           </div>
         </div>

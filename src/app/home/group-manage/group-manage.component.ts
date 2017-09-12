@@ -38,10 +38,49 @@ export class GroupManageComponent implements OnInit {
   private isEdit = false;
   private contacts: Array<any> = [];
   private errorName = '';
+  private provinces: Array<any> = [];
+  private cities: Array<any> = [];
+  private streets: Array<any> = [];
+  private global_tips: string = "请选择=-1";
+  private choosedProvince: string = this.global_tips;
+  private choosedCities: string = this.global_tips;
+  private choosedStreets: string = this.global_tips;
   constructor(private groupManageService: GroupManageService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.groupManageList();
+    this.initProvinces()
+  }
+
+  onChanges(str, index) {
+    let val = str.split('=')[1]
+    this.getAddressInfo(val, index)
+  }
+
+  getAddressInfo(id, index, street = this.global_tips, city = this.global_tips) {
+    this.groupManageService.getCities(id).subscribe((res) => {
+      if (index === 1) {
+        this.cities = []
+        this.streets = []
+        this.choosedCities = city
+        this.choosedStreets = street
+        this.cities = eval(res)
+
+      } else if (index === 2) {
+        this.streets = []
+        this.choosedStreets = street
+        this.streets = eval(res)
+      }
+    })
+  }
+
+  initProvinces() {
+    this.groupManageService.getProvince().subscribe((res) => {
+      this.cities = []
+      this.streets = []
+      this.provinces = eval(res)
+      this.provinces.unshift({ 'regionName': '请选择', 'regionId': '-1' })
+    })
   }
 
   delContacts(val) {
@@ -60,13 +99,15 @@ export class GroupManageComponent implements OnInit {
   showTpl(index, groupDetail) {
     this.itemTarget = index;
     index === -1 ? this.isEdit = true : this.isEdit = false;
+    this.choosedProvince = this.global_tips;
+    this.choosedCities = this.global_tips;
+    this.choosedStreets = this.global_tips;
     this.initEditInfo(index);
     this.openGroup(groupDetail);
 
   }
 
   initEditInfo(index) {
-
     if (index === -1) {
       this.groupCode = '';
       this.groupName = '';
@@ -79,6 +120,25 @@ export class GroupManageComponent implements OnInit {
       this.connectPeople = this.list[index]['contact'];
       this.address = this.list[index]['address'];
       this.mobile = this.list[index]['tel'];
+      let code = this.list[index].addressCode
+      this.cities = []
+      this.streets = []
+      this.choosedCities = this.global_tips
+      this.choosedStreets = this.global_tips
+      if (code !== 'null' && code !== null) {
+        let tmp = code.split(',')
+        this.choosedProvince = this.list[index]['province'] + "=" + tmp[0]
+
+        let street = this.list[index]['district'] === "" ? this.global_tips : this.list[index]['district'] + "=" + tmp[2]
+        let city = this.list[index]['city'] === "" ? this.global_tips : this.list[index]['city'] + "=" + tmp[1]
+        if (tmp[0] !== '-1') {
+          this.getAddressInfo(tmp[0], 1, street, city)
+        }
+        if (tmp[1] !== '-1') {
+          this.getAddressInfo(tmp[1], 2, street)
+        }
+      }
+
       if (this.list[index]['socialWelfareContact'] !== null) {
         this.initContacts(this.list[index]['socialWelfareContact']);
       }
@@ -200,19 +260,21 @@ export class GroupManageComponent implements OnInit {
       this.contacts[i]['commissioner'] ? this.contacts[i]['commissioner'] = '1' : this.contacts[i]['commissioner'] = '0';
     }
     const tmp = Array.from(this.contacts);
-
     const data = {
       'contact': this.connectPeople,
       'socialWelfareCode': this.groupCode,
       'socialWelfareName': this.groupName,
       'tel': this.mobile,
       'address': this.address,
+      'province': this.choosedProvince.split('=')[0] === '请选择' ? '' : this.choosedProvince.split('=')[0],
+      'city': this.choosedCities.split('=')[0] === '请选择' ? "" : this.choosedCities.split('=')[0],
+      'district': this.choosedStreets.split('=')[0] === "请选择" ? "" : this.choosedStreets.split('=')[0],
+      'addressCode': this.choosedProvince.split('=')[1] + ',' + this.choosedCities.split('=')[1] + ',' + this.choosedStreets.split('=')[1],
       'socialWelfareContact': JSON.stringify(tmp)
     };
 
     if (this.isEdit) {
       this.groupManageService.groupAdd(data).subscribe((res) => {
-        console.log('res:' + res);
         if (res.success) {
           tools.tips('新增成功');
           this.modalRef.close();
@@ -224,8 +286,6 @@ export class GroupManageComponent implements OnInit {
     } else {
       data['socialWelfareId'] = this.list[this.itemTarget]['socialWelfareId'];
       this.groupManageService.groupEdit(data).subscribe((res) => {
-        console.log('res:', res);
-
         if (res.success) {
           this.modalRef.close();
           tools.tips('编辑成功');

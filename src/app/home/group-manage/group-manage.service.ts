@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {BaseService} from '../../shared/base.service';
-import {Http} from '@angular/http';
+import { BaseService } from '../../shared/base.service';
+import { Http } from '@angular/http';
 import storage from '../../shared/storage';
 @Injectable()
 export class GroupManageService extends BaseService {
@@ -23,6 +23,14 @@ export class GroupManageService extends BaseService {
 
   groupDelete(id) {
     return this.postInfo(`api/socialWelfare/delete/${id}`, '');
+  }
+
+  getProvince() {
+    return this.postInfo('api/region/getAllProvince', '');
+  }
+
+  getCities(proviceId) {
+    return this.postInfo(`api/region/getAllCityByParentId/${proviceId}`, '')
   }
 
 

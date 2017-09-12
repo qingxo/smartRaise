@@ -88,7 +88,7 @@ export class SignManageComponent implements OnInit {
         this.listData = res.data.list;
         this.pages = res.data.navigatepageNums;
         this.totalPage = res.data.total;
-        // this.totalCount = res.counts;
+        this.totalCount = res.counts;
       }
     );
   }
