@@ -85,7 +85,20 @@ export class SignManageComponent implements OnInit {
 
     this.signManageService.clientList(data).subscribe(
       (res) => {
+        this.listData = Array.of([])
         this.listData = res.data.list;
+        for (let i = 0; i < this.listData.length; i++) {
+          if (this.listData[i]['cardNo'] !== null && this.listData[i]['cardNo'] !== 'null' && this.listData[i]['cardNo'] !== undefined) {
+            if (this.listData[i]['cardNo'].indexOf(',') !== -1) {
+              this.listData[i]['cardNo'] = this.listData[i]['cardNo'].split(',')
+            } else {
+              this.listData[i]['cardNo'] = Array.of(this.listData[i]['cardNo'])
+            }
+
+          }
+        }
+
+
         this.pages = res.data.navigatepageNums;
         this.totalPage = res.data.total;
         this.totalCount = res.counts;
