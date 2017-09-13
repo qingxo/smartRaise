@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import tools from '../../shared/tools';
 import * as $ from 'jquery';
+import * as moment from 'moment';
 import { ClientDetailService } from '../client-detail/client-detail.service';
 @Component({
   selector: 'app-sleep-monitor',
@@ -85,8 +86,10 @@ export class SleepMonitorComponent implements OnInit {
   }
   livingData(data, count) {
     if (this.sources === 'B') {
-      $('#ht' + this.equipNo).text(data.hr);
-      $('#bl' + this.equipNo).text(data.rr);
+      this.breathLevel = data.rr;
+      this.heartBeating = data.hr;
+      this.moveInfo = data.mv;
+      this.realTime = moment(data.lastMsgTime).format('YYYY-MM-DD HH:mm:ss');
       let status = '';
       switch (data.status) {
         case 1:
@@ -98,12 +101,11 @@ export class SleepMonitorComponent implements OnInit {
         case 3:
           status = '异常';
           break;
-        default:
+        default: status = '未知';
 
       }
-      $('#sta' + this.equipNo).text(status);
+      this.bedStatus = status;
     } else {
-      // console.log(data)
       this.breathLevel = data.Data.RR;
       this.heartBeating = data.Data.HR;
       this.moveInfo = data.Data.MV;
