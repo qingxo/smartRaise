@@ -82,7 +82,7 @@ export class ClientComponent implements OnInit {
   private provinces: Array<any> = [];
   private cities: Array<any> = [];
   private streets: Array<any> = [];
-  private global_tips: string = "请选择=-1";
+  private global_tips = '请选择=-1';
   private choosedProvince: string = this.global_tips;
   private choosedCities: string = this.global_tips;
   private choosedStreets: string = this.global_tips;
@@ -115,25 +115,25 @@ export class ClientComponent implements OnInit {
   }
 
   onChanges(str, index) {
-    let val = str.split('=')[1]
-    this.getAddressInfo(val, index)
+    const val = str.split('=')[1];
+    this.getAddressInfo(val, index);
   }
 
   getAddressInfo(id, index, street = this.global_tips, city = this.global_tips) {
     this.groupManageService.getCities(id).subscribe((res) => {
       if (index === 1) {
-        this.cities = []
-        this.streets = []
-        this.choosedCities = city
-        this.choosedStreets = street
-        this.cities = eval(res)
+        this.cities = [];
+        this.streets = [];
+        this.choosedCities = city;
+        this.choosedStreets = street;
+        this.cities = eval(res);
 
       } else if (index === 2) {
-        this.streets = []
-        this.choosedStreets = street
-        this.streets = eval(res)
+        this.streets = [];
+        this.choosedStreets = street;
+        this.streets = eval(res);
       }
-    })
+    });
   }
 
   handleGroupName(event, num) {
@@ -180,11 +180,11 @@ export class ClientComponent implements OnInit {
     this.groupManageService.getProvince().subscribe((res) => {
       this.cities = [];
       this.streets = [];
-      this.choosedCities = "请选择=-1";
-      this.choosedStreets = "请选择=-1";
+      this.choosedCities = '请选择=-1';
+      this.choosedStreets = '请选择=-1';
       this.provinces = eval(res);
       this.provinces.unshift({ 'regionName': '请选择', 'regionId': '-1' });
-    })
+    });
   }
   initPkgs() {
     const data = {
@@ -334,22 +334,22 @@ export class ClientComponent implements OnInit {
         this.relationShip = info.relationToCustomer;
 
 
-        let code = info.addressCode
-        this.cities = []
-        this.streets = []
-        this.choosedCities = this.global_tips
-        this.choosedStreets = this.global_tips
+        const code = info.addressCode;
+        this.cities = [];
+        this.streets = [];
+        this.choosedCities = this.global_tips;
+        this.choosedStreets = this.global_tips;
         if (code !== 'null' && code !== null) {
-          let tmp = code.split(',')
-          this.choosedProvince = info['province'] + "=" + tmp[0]
+          const tmp = code.split(',');
+          this.choosedProvince = info['province'] + '=' + tmp[0];
 
-          let street = info['district'] === "" ? this.global_tips : info['district'] + "=" + tmp[2]
-          let city = info['city'] === "" ? this.global_tips : info['city'] + "=" + tmp[1]
+          const street = info['district'] === '' ? this.global_tips : info['district'] + '=' + tmp[2];
+          const city = info['city'] === '' ? this.global_tips : info['city'] + '=' + tmp[1];
           if (tmp[0] !== '-1') {
-            this.getAddressInfo(tmp[0], 1, street, city)
+            this.getAddressInfo(tmp[0], 1, street, city);
           }
           if (tmp[1] !== '-1') {
-            this.getAddressInfo(tmp[1], 2, street)
+            this.getAddressInfo(tmp[1], 2, street);
           }
         }
 

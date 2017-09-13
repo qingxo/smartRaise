@@ -41,7 +41,7 @@ export class GroupManageComponent implements OnInit {
   private provinces: Array<any> = [];
   private cities: Array<any> = [];
   private streets: Array<any> = [];
-  private global_tips: string = "请选择=-1";
+  private global_tips = '请选择=-1';
   private choosedProvince: string = this.global_tips;
   private choosedCities: string = this.global_tips;
   private choosedStreets: string = this.global_tips;
@@ -49,38 +49,38 @@ export class GroupManageComponent implements OnInit {
 
   ngOnInit() {
     this.groupManageList();
-    this.initProvinces()
+    this.initProvinces();
   }
 
   onChanges(str, index) {
-    let val = str.split('=')[1]
-    this.getAddressInfo(val, index)
+    const val = str.split('=')[1];
+    this.getAddressInfo(val, index);
   }
 
   getAddressInfo(id, index, street = this.global_tips, city = this.global_tips) {
     this.groupManageService.getCities(id).subscribe((res) => {
       if (index === 1) {
-        this.cities = []
-        this.streets = []
-        this.choosedCities = city
-        this.choosedStreets = street
-        this.cities = eval(res)
+        this.cities = [];
+        this.streets = [];
+        this.choosedCities = city;
+        this.choosedStreets = street;
+        this.cities = eval(res);
 
       } else if (index === 2) {
-        this.streets = []
-        this.choosedStreets = street
-        this.streets = eval(res)
+        this.streets = [];
+        this.choosedStreets = street;
+        this.streets = eval(res);
       }
-    })
+    });
   }
 
   initProvinces() {
     this.groupManageService.getProvince().subscribe((res) => {
-      this.cities = []
-      this.streets = []
-      this.provinces = eval(res)
-      this.provinces.unshift({ 'regionName': '请选择', 'regionId': '-1' })
-    })
+      this.cities = [];
+      this.streets = [];
+      this.provinces = eval(res);
+      this.provinces.unshift({ 'regionName': '请选择', 'regionId': '-1' });
+    });
   }
 
   delContacts(val) {
@@ -120,22 +120,22 @@ export class GroupManageComponent implements OnInit {
       this.connectPeople = this.list[index]['contact'];
       this.address = this.list[index]['address'];
       this.mobile = this.list[index]['tel'];
-      let code = this.list[index].addressCode
-      this.cities = []
-      this.streets = []
-      this.choosedCities = this.global_tips
-      this.choosedStreets = this.global_tips
+      const code = this.list[index].addressCode;
+      this.cities = [];
+      this.streets = [];
+      this.choosedCities = this.global_tips;
+      this.choosedStreets = this.global_tips;
       if (code !== 'null' && code !== null) {
-        let tmp = code.split(',')
-        this.choosedProvince = this.list[index]['province'] + "=" + tmp[0]
+        const tmp = code.split(',');
+        this.choosedProvince = this.list[index]['province'] + '=' + tmp[0];
 
-        let street = this.list[index]['district'] === "" ? this.global_tips : this.list[index]['district'] + "=" + tmp[2]
-        let city = this.list[index]['city'] === "" ? this.global_tips : this.list[index]['city'] + "=" + tmp[1]
+        const street = this.list[index]['district'] === '' ? this.global_tips : this.list[index]['district'] + '=' + tmp[2];
+        const city = this.list[index]['city'] === '' ? this.global_tips : this.list[index]['city'] + '=' + tmp[1];
         if (tmp[0] !== '-1') {
-          this.getAddressInfo(tmp[0], 1, street, city)
+          this.getAddressInfo(tmp[0], 1, street, city);
         }
         if (tmp[1] !== '-1') {
-          this.getAddressInfo(tmp[1], 2, street)
+          this.getAddressInfo(tmp[1], 2, street);
         }
       }
 
@@ -267,8 +267,8 @@ export class GroupManageComponent implements OnInit {
       'tel': this.mobile,
       'address': this.address,
       'province': this.choosedProvince.split('=')[0] === '请选择' ? '' : this.choosedProvince.split('=')[0],
-      'city': this.choosedCities.split('=')[0] === '请选择' ? "" : this.choosedCities.split('=')[0],
-      'district': this.choosedStreets.split('=')[0] === "请选择" ? "" : this.choosedStreets.split('=')[0],
+      'city': this.choosedCities.split('=')[0] === '请选择' ? '' : this.choosedCities.split('=')[0],
+      'district': this.choosedStreets.split('=')[0] === '请选择' ? '' : this.choosedStreets.split('=')[0],
       'addressCode': this.choosedProvince.split('=')[1] + ',' + this.choosedCities.split('=')[1] + ',' + this.choosedStreets.split('=')[1],
       'socialWelfareContact': JSON.stringify(tmp)
     };

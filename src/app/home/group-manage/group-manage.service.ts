@@ -30,7 +30,7 @@ export class GroupManageService extends BaseService {
   }
 
   getCities(proviceId) {
-    return this.postInfo(`api/region/getAllCityByParentId/${proviceId}`, '')
+    return this.postInfo(`api/region/getAllCityByParentId/${proviceId}`, '');
   }
 
 
