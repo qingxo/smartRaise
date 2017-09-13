@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, SimpleChange, ComponentFactoryResolver, ViewContainerRef, ViewChild } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChange, ViewChild } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { Router } from '@angular/router';
 import { ClientService } from './client.service';
@@ -104,7 +104,7 @@ export class ClientComponent implements OnInit {
   private chooseGroupId = '';
   private choosedPkg = '请选择';
   private pkgList: Array<any> = [];
-  constructor(private clientService: ClientService, private groupManageService: GroupManageService, private servicePackageService: ServicePackageService, private modalService: NgbModal, private componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) { }
+  constructor(private clientService: ClientService, private groupManageService: GroupManageService, private servicePackageService: ServicePackageService, private modalService: NgbModal) { }
   changeMe() {
     this.chameleon === 'inactive' ? this.chameleon = 'active' : this.chameleon = 'inactive';
   }
