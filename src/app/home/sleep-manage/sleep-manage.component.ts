@@ -202,7 +202,8 @@ export class SleepManageComponent implements OnInit {
       'pageNum': this.pageNumber,
       'query': this.queryInfo,
       'userId': storage.get('state')['userId'],
-      'socialWelfareId': this.groupPlanName
+      'socialWelfareId': this.groupPlanName,
+      'type': '3'
     };
 
     switch (this.choosedBed) {

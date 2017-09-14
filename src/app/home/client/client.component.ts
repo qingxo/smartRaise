@@ -565,6 +565,7 @@ export class ClientComponent implements OnInit {
       'pageNum': this.pageNumber,
       'query': this.queryInfo,
       'userId': storage.get('state')['userId'],
+      'type': '1',
       'servicePackName': this.choosedPkg === '请选择' ? '' : this.choosedPkg,
       'socialWelfareId': this.chooseGroupId
     };

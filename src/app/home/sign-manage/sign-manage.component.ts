@@ -76,7 +76,8 @@ export class SignManageComponent implements OnInit {
       'pageNum': this.pageNumber,
       'query': this.queryInfo,
       'userId': storage.get('state')['userId'],
-      'socialWelfareId': this.choosedSocialWelfare
+      'socialWelfareId': this.choosedSocialWelfare,
+      'type': '2'
     };
     switch (this.choosedCard) {
       case '0': data['cardUnBinding'] = 1; break;
