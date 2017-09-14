@@ -24,7 +24,7 @@
               <td><span>{{personInfo.name}}</span></td>
               <td><span>{{personInfo.mobile}}</span></td>
               <td><span>{{personInfo.sex === 'M' ? '男' : '女'}}</span></td>
-              <td><span>{{getAge(personInfo.birdthday | date:'yyyy-MM-dd')}}</span></td>
+              <td><span>{{personInfo.birdthday | pipeBirth}}</span></td>
               <td><span>{{personInfo.createDt | date:'yyyy-MM-dd'}}</span></td>
               <td><span>{{personInfo.commissionerUserName || '无'}}</span></td>
             </tr>

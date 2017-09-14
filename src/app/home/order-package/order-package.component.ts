@@ -216,8 +216,4 @@ export class OrderPackageComponent implements OnInit {
     });
   }
 
-  getAge(num) {
-    return tools.getAge(num);
-  }
-
 }

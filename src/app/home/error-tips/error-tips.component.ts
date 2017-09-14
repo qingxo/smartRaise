@@ -112,11 +112,6 @@ export class ErrorTipsComponent implements OnInit {
   getContent(content) {
     return content;
   }
-
-  getAge(ageNum) {
-    return tools.getAge(ageNum);
-  }
-
   cultOpinion(msg) {
     if (typeof msg === 'undefined' || msg === null || msg === 'null') {
       return '';

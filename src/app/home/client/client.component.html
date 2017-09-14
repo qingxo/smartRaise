@@ -52,7 +52,7 @@
             </td>
             <td><span>{{item.mobile}}</span></td>
             <td><span>{{item.sex === 'M' ? '男' : '女'}}</span></td>
-            <td><span>{{getAge(item.birdthday | date:'yyyy-MM-dd')}}</span></td>
+            <td><span>{{item.birthday | pipeBirth}}</span></td>
             <td *ngIf="item.socialWelfareName==null"><span>{{item.socialWelfareName}}</span></td>
             <td *ngIf="item.socialWelfareName!=null"><span *ngFor="let clip of item.socialWelfareName.split(',')">{{clip}}</span></td>
             <td><span>{{item.createDt | date:'yyyy-MM-dd'}}</span></td>

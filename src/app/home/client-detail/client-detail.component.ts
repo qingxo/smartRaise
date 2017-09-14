@@ -66,10 +66,4 @@ export class ClientDetailComponent implements OnInit {
       }
     });
   }
-
-
-  getAge(age) {
-    return tools.getAge(age);
-  }
-
 }

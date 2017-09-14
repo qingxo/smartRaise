@@ -24,7 +24,7 @@
               <td><span>{{!!userInfo.name?userInfo.name:'未知'}}</span></td>
               <td><span>{{userInfo.mobile}}</span></td>
               <td><span>{{userInfo.sex === 'M' ? '男' : '女'}}</span></td>
-              <td><span>{{getAge(userInfo.birdthday | date:'yyyy-MM-dd')}}</span></td>
+              <td><span>{{userInfo.birdthday | pipeBirth}}</span></td>
               <td><span>{{userInfo.createDt | date:'yyyy-MM-dd'}}</span></td>
               <td><span>{{userInfo.commissionerUserName?userInfo.commissionerUserName:'无'}}</span></td>
 

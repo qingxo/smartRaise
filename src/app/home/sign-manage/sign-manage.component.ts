@@ -116,8 +116,4 @@ export class SignManageComponent implements OnInit {
     this.initAsyc();
   }
 
-  getAge(num) {
-    return tools.getAge(num);
-  }
-
 }

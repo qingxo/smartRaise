@@ -95,8 +95,4 @@ export class SignDataComponent implements OnInit {
     this.showList();
   }
 
-  getAge(num) {
-    return tools.getAge(num);
-  }
-
 }

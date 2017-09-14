@@ -46,7 +46,7 @@
           <tr *ngFor="let item of list">
             <td><span>{{item.customerName || '未知'}}</span></td>
             <td><span>{{item.customerSex === 'M' ? '男' : '女'}}</span></td>
-            <td><span>{{getAge(item.customerBirdthday)}}</span></td>
+            <td><span>{{item.customerBirdthday | pipeBirth}}</span></td>
             <td><span>{{(taskProgress == '0'?item.endDt:item.dealDt) | date:'yyyy-MM-dd'}}</span></td>
             <td [hidden]="taskProgress==0"><span>{{item.endDt | date:'yyyy-MM-dd'}}</span></td>
             <td>

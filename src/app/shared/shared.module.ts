@@ -8,6 +8,7 @@ import { UploadImageComponent } from './upload-image/upload-image.component';
 import { CardCheckDirective } from './moreDirective/card-check.directive';
 import { NothingComponent } from './nothing';
 import { LineBtnComponent } from './line-btn/line-btn.component';
+import { PipeBirthPipe } from './pipes/pipe-birth.pipe';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { LineBtnComponent } from './line-btn/line-btn.component';
     UploadImageComponent,
     CardCheckDirective,
     NothingComponent,
-    LineBtnComponent
+    LineBtnComponent,
+    PipeBirthPipe
   ],
   exports: [
     LineInfoComponent,
@@ -30,7 +32,8 @@ import { LineBtnComponent } from './line-btn/line-btn.component';
     PagesComponent,
     UploadImageComponent,
     NothingComponent,
-    LineBtnComponent
+    LineBtnComponent,
+    PipeBirthPipe
   ]
 })
 export class SharedModule { }

@@ -183,8 +183,4 @@ export class MyTaskComponent implements OnInit {
     }
   }
 
-  getAge(ageNum) {
-    return tools.getAge(ageNum);
-  }
-
 }

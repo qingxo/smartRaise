@@ -577,10 +577,6 @@ export class ClientComponent implements OnInit {
     );
   }
 
-  getAge(age) {
-    return tools.getAge(age);
-  }
-
   initData() {
     this.clientHead = ['编号', '客户姓名', '手机号码', '意见'];
     this.listName = ['mobile', 'commissionerUserName', 'name', 'openId'];

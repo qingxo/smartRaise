@@ -62,11 +62,6 @@ export class SleepManageComponent implements OnInit {
     }
     return val;
   }
-
-  getAge(num) {
-    return tools.getAge(num);
-  }
-
   // 获取机构列表
   initGroupPlanList() {
     const data = {

@@ -25,7 +25,7 @@
           <tr *ngFor="let item of list;let index = index">
             <td><span>{{item.custName}}</span></td>
             <td><span>{{item.sex=='M'?'男':'女'}}</span></td>
-            <td><span>{{getAge(item.birdthday)}}</span></td>
+            <td><span>{{item.birdthday | pipeBirth}}</span></td>
             <td><span>{{item.missionName}}</span></td>
             <td><span>{{item.missionValue}}</span></td>
             <td><span>{{item.ocurrDate | date:'yyyy-MM-dd'}}</span></td>

@@ -75,9 +75,4 @@ export class SynDataComponent implements OnInit {
     this.taskProgress = parseInt(number, 10);
     this.showList();
   }
-
-  getAge(ageNum) {
-    return tools.getAge(ageNum);
-  }
-
 }

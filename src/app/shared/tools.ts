@@ -17,21 +17,6 @@ class Tools {
 
   private TIMER = 2000;
 
-  getAge(ageNum: string, spec: number = 0) {
-    if (typeof ageNum === 'undefined' || ageNum === '' || ageNum === null) {
-      return '未知';
-    } else {
-      const newYear = new Date().getFullYear();
-      if (spec === 0) {
-        const num = Number(newYear) - Number(ageNum.split('-')[0]);
-        return num;
-      } else if (spec === 4) {
-
-      }
-
-    }
-  }
-
   initBtnShow(topLevel, secondLevel, btnKey) {
     const menu = eval(storage.get('menu'));
     let jurisdiction = [], myBtn: any;

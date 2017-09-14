@@ -29,7 +29,7 @@
             <td><span>{{item.name}}</span></td>
             <td><span>{{item.mobile}}</span></td>
             <td><span>{{item.sex=='M'?'男':'女'}}</span></td>
-            <td><span>{{getAge(item.birdthday)}}</span></td>
+            <td><span>{{item.birdthday | pipeBirth}}</span></td>
             <td><span>{{item.createDt | date:'yyyy-MM-dd'}}</span></td>
           </tr>
         </tbody>
