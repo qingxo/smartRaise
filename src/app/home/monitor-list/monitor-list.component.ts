@@ -110,8 +110,4 @@ export class MonitorListComponent implements OnInit {
       });
     }
   }
-
-  getAge(num) {
-    return tools.getAge(num);
-  }
 }

@@ -46,9 +46,4 @@ export class TaskInfoComponent implements OnInit {
     });
   }
 
-
-  getAge(num) {
-    return tools.getAge(num);
-  }
-
 }

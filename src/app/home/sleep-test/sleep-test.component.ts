@@ -63,8 +63,4 @@ export class SleepTestComponent implements OnInit {
     });
   }
 
-  getAge(num) {
-    return tools.getAge(num);
-  }
-
 }

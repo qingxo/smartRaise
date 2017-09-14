@@ -35,10 +35,6 @@ export class HealthMonitorComponent implements OnInit {
     });
   }
 
-  getAge(num) {
-    return tools.getAge(num);
-  }
-
   handlePeriod(num) {
     switch (num) {
       case 0: this.periodDay = 1; break;

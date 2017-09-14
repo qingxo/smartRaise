@@ -198,8 +198,4 @@ export class HealthReportComponent implements OnInit {
     });
   }
 
-  getAge(userAge) {
-    return tools.getAge(userAge);
-  }
-
 }

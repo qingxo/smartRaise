@@ -22,7 +22,7 @@
               <td><span>{{item.name}}</span></td>
               <td><span><em>{{item.mobile}}</em></span></td>
               <td><span>{{item.sex =='M'?'男':'女' }}</span></td>
-              <td><span>{{getAge(item.age)}}</span></td>
+              <td><span>{{item.birthday | pipeBirth}}</span></td>
               <td><span>{{item.createDt | date:'yyyy-MM-dd'}}</span></td>
               <td><span>{{item.commissionerUserName || '无'}}</span></td>
 
