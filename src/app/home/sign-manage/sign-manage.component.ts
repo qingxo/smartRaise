@@ -102,9 +102,19 @@ export class SignManageComponent implements OnInit {
 
         this.pages = res.data.navigatepageNums;
         this.totalPage = res.data.total;
-        this.totalCount = res.counts;
       }
     );
+
+    const tmpData = {
+      'socialWelfareId': this.choosedSocialWelfare,
+      'type': '2'
+    }
+
+    this.signManageService.countStatistics(tmpData).subscribe((res) => {
+      this.totalCount = res.counts
+    })
+
+
   }
 
   pageTurning(num) {

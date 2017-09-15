@@ -13,4 +13,8 @@ export class SignManageService extends BaseService {
   groupList(data) {
     return this.postInfo('api/socialWelfare/listByPage', storage.serialize(data));
   }
+
+  countStatistics(data) {
+    return this.postInfo('api/customer/countOfBinding', storage.serialize(data))
+  }
 }

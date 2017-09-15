@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SleepManageService } from './sleep-manage.service';
+import { SignManageService } from '../sign-manage';
 import { ClientService } from '../client/client.service';
 import storage from '../../shared/storage';
 import tools from '../../shared/tools';
@@ -9,7 +10,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   selector: 'app-sleep-manage',
   templateUrl: './sleep-manage.component.html',
   styleUrls: ['./sleep-manage.component.scss'],
-  providers: [SleepManageService, ClientService]
+  providers: [SleepManageService, ClientService, SignManageService]
 })
 export class SleepManageComponent implements OnInit {
 
@@ -39,7 +40,7 @@ export class SleepManageComponent implements OnInit {
   private showGroupName = '';
   private choosedBed = '-1';
   private totalSum: any = {};
-  constructor(private sleepManageService: SleepManageService, private clientService: ClientService, private modalService: NgbModal) { }
+  constructor(private sleepManageService: SleepManageService, private signManageService: SignManageService, private clientService: ClientService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.clientList();
@@ -217,10 +218,19 @@ export class SleepManageComponent implements OnInit {
         this.pages = res.data.navigatepageNums;
         this.pageNumber = res.data.pageNum;
         this.totalCount = res.data.total;
-        this.totalSum = res.counts;
       }
 
     });
+
+    const tmpData = {
+      'socialWelfareId': this.groupPlanName,
+      'type': '3'
+    }
+
+    this.signManageService.countStatistics(tmpData).subscribe((res) => {
+      this.totalSum = res.counts;
+    })
+
   }
 
 }
