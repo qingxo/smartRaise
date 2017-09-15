@@ -68,10 +68,16 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-input:focus {
+textarea {
+  resize: none;
+}
+
+input:focus,
+textarea:focus {
   outline-color: #FECA00;
   outline-style: auto;
   outline-width: 2px;
+  border: 1px solid #efca00;
 }
 
 .sidebar {
@@ -1012,6 +1018,7 @@ input:focus {
           border: 1px solid #d2d2d2;
           padding: 5px;
           vertical-align: top;
+          resize: none;
         }
       }
 
@@ -1166,17 +1173,31 @@ input:focus {
 .modal-footer {
   border-top: 0;
   padding: 0 0 15px;
-  margin: 0 auto;
+  justify-content: center;
 
   .spec-btn {
     margin-top: 15px;
     width: 140px;
-    display: inline-block;
+    display: inline-flex;
     border-radius: 4px;
     background-color: #6A4307;
     color: white;
     font-size: 14px;
     cursor: pointer;
+    justify-content: center;
+  }
+}
+
+form {
+  .ng-invalid.ng-touched {
+    border: 1px solid red;
+    border-radius: 4px;
+    outline-width: 2px;
+    outline-color: red;
+  }
+
+  .error-tips {
+    color: red!important;
   }
 }
 
