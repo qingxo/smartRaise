@@ -225,11 +225,11 @@ export class SleepManageComponent implements OnInit {
     const tmpData = {
       'socialWelfareId': this.groupPlanName,
       'type': '3'
-    }
+    };
 
     this.signManageService.countStatistics(tmpData).subscribe((res) => {
       this.totalSum = res.counts;
-    })
+    });
 
   }
 

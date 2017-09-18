@@ -86,14 +86,14 @@ export class SignManageComponent implements OnInit {
 
     this.signManageService.clientList(data).subscribe(
       (res) => {
-        this.listData = Array.of([])
+        this.listData = Array.of([]);
         this.listData = res.data.list;
         for (let i = 0; i < this.listData.length; i++) {
           if (this.listData[i]['cardNo'] !== null && this.listData[i]['cardNo'] !== 'null' && this.listData[i]['cardNo'] !== undefined) {
             if (this.listData[i]['cardNo'].indexOf(',') !== -1) {
-              this.listData[i]['cardNo'] = this.listData[i]['cardNo'].split(',')
+              this.listData[i]['cardNo'] = this.listData[i]['cardNo'].split(',');
             } else {
-              this.listData[i]['cardNo'] = Array.of(this.listData[i]['cardNo'])
+              this.listData[i]['cardNo'] = Array.of(this.listData[i]['cardNo']);
             }
 
           }
@@ -108,11 +108,11 @@ export class SignManageComponent implements OnInit {
     const tmpData = {
       'socialWelfareId': this.choosedSocialWelfare,
       'type': '2'
-    }
+    };
 
     this.signManageService.countStatistics(tmpData).subscribe((res) => {
-      this.totalCount = res.counts
-    })
+      this.totalCount = res.counts;
+    });
 
 
   }

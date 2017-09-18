@@ -15,6 +15,6 @@ export class SignManageService extends BaseService {
   }
 
   countStatistics(data) {
-    return this.postInfo('api/customer/countOfBinding', storage.serialize(data))
+    return this.postInfo('api/customer/countOfBinding', storage.serialize(data));
   }
 }
