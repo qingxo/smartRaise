@@ -1,21 +1,24 @@
 {
-  "compileOnSave": false,
   "compilerOptions": {
-    "outDir": "./dist/out-tsc",
-    "baseUrl": "src",
+    "target": "es5",
     "module": "es2015",
-    "sourceMap": true,
-    "declaration": false,
     "moduleResolution": "node",
+    "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es5",
-    "types": ["jquery", "jasmine", "md5"],
-    "lib": [
-      "es2016",
-      "dom"
+    "lib": ["es2015", "dom"],
+    "noImplicitAny": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "typeRoots": [
+      "./node_modules/@types/"
     ]
   },
+
+  "files": [
+    "src/app/app.module.ts",
+    "src/main.ts"
+  ],
+
   "angularCompilerOptions": {
     "genDir": "aot",
     "skipMetadataEmit": true
