@@ -51,6 +51,8 @@ import { CriticalValueComponent } from './critical-value/critical-value.componen
 import { StatisticsComponent } from './statistics/statistics.component';
 import { BarLinesComponent } from './bar-lines/bar-lines.component';
 import { CircleLineComponent } from './circle-line/circle-line.component';
+import { ShoesMapComponent } from './shoes-map';
+import { BaiduMapModule } from 'angular2-baidu-map'; // import BaiduMapModule
 
 @NgModule({
   imports: [
@@ -60,6 +62,7 @@ import { CircleLineComponent } from './circle-line/circle-line.component';
     ReactiveFormsModule,
     EchartsNg2Module,
     NgbModule,
+    BaiduMapModule,
     RouterModule.forChild(ROUTER_CONFIG)
 
   ],
@@ -109,7 +112,8 @@ import { CircleLineComponent } from './circle-line/circle-line.component';
     CriticalValueComponent,
     StatisticsComponent,
     BarLinesComponent,
-    CircleLineComponent
+    CircleLineComponent,
+    ShoesMapComponent
   ],
   providers: []
 })

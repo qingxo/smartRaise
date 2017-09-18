@@ -26,6 +26,7 @@ import { SignManageComponent } from './sign-manage';
 import { SignDataComponent } from './sign-data';
 import { CriticalValueComponent } from './critical-value';
 import { StatisticsComponent } from './statistics';
+import { ShoesMapComponent } from './shoes-map'
 export const ROUTER_CONFIG: Routes = [
   {
     path: '', component: HomeComponent,
@@ -58,7 +59,9 @@ export const ROUTER_CONFIG: Routes = [
       { path: 'body', component: SignManageComponent },
       { path: 'signdata/:userId', component: SignDataComponent },
       { path: 'crisis', component: CriticalValueComponent },
-      { path: 'statistics', component: StatisticsComponent }
+      { path: 'statistics', component: StatisticsComponent },
+      { path: 'shoesmap', component: ShoesMapComponent }
+
     ]
   }
 ];

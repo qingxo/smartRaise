@@ -1,0 +1,16 @@
+<div class="right-content-info service-package-info">
+  <!-- <script src="http://api.map.baidu.com/api?v=2.0&ak=fhchSIWoAsUs65ZMsrDqrtMGgPYoSubW"></script> -->
+
+  <div class="">
+    shoes map
+  </div>
+  <div class="detail-content">
+    <div class="highline">
+      <div class="lf">
+        <app-search-line placeHolderValue="" (search)="searchTable($event)"></app-search-line>
+      </div>
+    </div>
+    <baidu-map ak="myAk" [options]="opts" [offline]="offlineOpts" (onMapLoaded)="loadMap($event)" (onMarkerClicked)="clickMarker($event)" (onClicked)="clickmap($event)"></baidu-map>
+
+  </div>
+</div>
