@@ -26,7 +26,13 @@ export class ShoesMapComponent implements OnInit {
         latitude: 31.245554,
         title: 'Where',
         content: 'Put description here',
-        enableDragging: true
+        enableDragging: false
+      }, {
+        longitude: 121.506191,
+        latitude: 31.255555,
+        title: 'P2',
+        content: 'Put description here',
+        enableDragging: false
       }],
       geolocationCtrl: {
         anchor: ControlAnchor.BMAP_ANCHOR_BOTTOM_RIGHT
@@ -39,6 +45,12 @@ export class ShoesMapComponent implements OnInit {
       },
       navCtrl: {
         type: NavigationControlType.BMAP_NAVIGATION_CONTROL_LARGE
+      },
+      polyCtrl: {//设置折线的点数组
+        setStrokeWeight: 2,
+        setStrokeOpacity: 0.2,
+        setStrokeColor: 'red',
+        setPath: [[121.506191, 31.245554], [121.506191, 31.255555], [121.508191, 31.225555]]
       }
     };
 
