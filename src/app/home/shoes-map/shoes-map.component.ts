@@ -1,17 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { OfflineOptions, ControlAnchor, NavigationControlType } from 'angular2-baidu-map';
-
+import { ClientDetailService } from '../client-detail/client-detail.service';
+import { ActivatedRoute } from '@angular/router'
 @Component({
   selector: 'app-shoes-map',
   templateUrl: './shoes-map.component.html',
-  styleUrls: ['./shoes-map.component.scss']
+  styleUrls: ['./shoes-map.component.scss'],
+  providers: [ClientDetailService]
 })
 export class ShoesMapComponent implements OnInit {
 
   opts: any;
   offlineOpts: OfflineOptions;
+  userInfo: any;
   myAk: string = 'fhchSIWoAsUs65ZMsrDqrtMGgPYoSubW';
-  constructor() { }
+  userId: string = '';
+  list: Array<any> = []
+  constructor(private clientDetailService: ClientDetailService, private route: ActivatedRoute) { }
 
 
   ngOnInit() {
@@ -58,6 +63,17 @@ export class ShoesMapComponent implements OnInit {
       retryInterval: 5000,
       txt: 'NO-NETWORK'
     };
+    this.userId = this.route.snapshot.params['userId'];
+    this.getUserInfo();
+
+  }
+
+  getUserInfo() {
+    this.clientDetailService.getUserInfo(this.userId).subscribe((res) => {
+      if (res.success) {
+        this.userInfo = res.data;
+      }
+    });
   }
 
   loadMap(map: any) {
