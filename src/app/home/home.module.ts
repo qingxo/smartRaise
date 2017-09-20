@@ -52,7 +52,8 @@ import { StatisticsComponent } from './statistics/statistics.component';
 import { BarLinesComponent } from './bar-lines/bar-lines.component';
 import { CircleLineComponent } from './circle-line/circle-line.component';
 import { ShoesMapComponent } from './shoes-map';
-import { BaiduMapModule } from 'angular2-baidu-map'; // import BaiduMapModule
+import { BaiduMapModule } from 'angular2-baidu-map';
+import { TumbleManageComponent } from './tumble-manage/tumble-manage.component'; // import BaiduMapModule
 
 @NgModule({
   imports: [
@@ -113,7 +114,8 @@ import { BaiduMapModule } from 'angular2-baidu-map'; // import BaiduMapModule
     StatisticsComponent,
     BarLinesComponent,
     CircleLineComponent,
-    ShoesMapComponent
+    ShoesMapComponent,
+    TumbleManageComponent
   ],
   providers: []
 })

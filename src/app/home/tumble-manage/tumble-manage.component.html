@@ -1,0 +1,79 @@
+<div class="right-content-info sign-manage-info">
+  <div class="detail-content">
+    <div class="highline">
+      <div class="lf">
+        <div class="org">
+          <span>机构</span>
+          <select class="" name="" (change)="onChange($event.target.value)">
+            <option  *ngFor="let item of groupPlanList" value="{{item.socialWelfareId}},{{item.socialWelfareName}}">{{item.socialWelfareName}}</option>
+          </select>
+        </div>
+        <div class="equip">
+          <span>智能鞋</span>
+          <select class="" (change)="onChange($event.target.value)" [(ngModel)]="choosedCard">
+            <option value="-1">请选择</option>
+            <option value="1">已绑定</option>
+            <option value="0">未绑定</option>
+          </select>
+        </div>
+        <app-search-line placeHolderValue="姓名/手机号" (search)="searchTable($event)"></app-search-line>
+
+      </div>
+    </div>
+
+    <div class="table-info">
+      <div class="group-info" [hidden]="listData.length==0">
+        <div>{{groupNameShow(groupPlanName)}}:</div>
+        <div>
+
+          <span>已绑鞋 {{totalCount['cardBindingCount']}}</span>
+          <span>未绑鞋 {{totalCount['cardUnBindingCount']}}</span>
+
+        </div>
+      </div>
+      <table cellpadding="0" cellspacing="0" border="0" [hidden]="listData.length==0">
+        <thead>
+          <tr>
+            <td><span>姓名</span></td>
+            <td><span>手机号</span></td>
+            <td><span>性别</span></td>
+            <td><span>年龄</span></td>
+            <td><span>所属机构</span></td>
+            <td><span>注册时间</span></td>
+            <td><span>身份证号</span></td>
+            <td><span>健康服务专员</span></td>
+            <td><span>智能鞋</span></td>
+            <td><span>操作</span></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of listData;let index  =index">
+            <td><span>
+                <em class="client-name-no-edit">{{item.name}}</em>
+            </span>
+            </td>
+            <td><span>{{item.mobile}}</span></td>
+            <td><span>{{item.sex === 'M' ? '男' : '女'}}</span></td>
+            <td><span>{{item.birdthday | pipeBirth}}</span></td>
+            <td *ngIf="item.socialWelfareName==null"><span>{{item.socialWelfareName}}</span></td>
+            <td *ngIf="item.socialWelfareName!=null"><span *ngFor="let clip of item.socialWelfareName.split(',')">{{clip}}</span></td>
+            <td><span>{{item.createDt | date:'yyyy-MM-dd'}}</span></td>
+            <td><span>{{item.cardId}}</span></td>
+            <td><span>{{item.commissionerUserName}}  </span></td>
+            <td *ngIf="item.cardNo==null||item.cardNo==''"><span>未绑定</span></td>
+            <td *ngIf="item.cardNo!=null&&item.cardNo!=''">
+              <span *ngFor="let num of item.cardNo">{{num}}</span>
+            </td>
+            <td><span class="opt">
+                            <a [routerLink]="['/home/shoesmap']"  target="_blank">监测数据</a>
+            </span></td>
+          </tr>
+        </tbody>
+      </table>
+      <nothing [isHidden]="listData.length!=0"></nothing>
+      <app-pages [pages]=pages (pageInfo)="pageTurning($event)" [currentPage]=pageNumber [sum]=totalPage></app-pages>
+
+    </div>
+    <ng-template ad-host></ng-template>
+  </div>
+</div>

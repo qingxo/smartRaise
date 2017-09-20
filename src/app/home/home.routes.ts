@@ -26,7 +26,8 @@ import { SignManageComponent } from './sign-manage';
 import { SignDataComponent } from './sign-data';
 import { CriticalValueComponent } from './critical-value';
 import { StatisticsComponent } from './statistics';
-import { ShoesMapComponent } from './shoes-map'
+import { ShoesMapComponent } from './shoes-map';
+import { TumbleManageComponent } from './tumble-manage'
 export const ROUTER_CONFIG: Routes = [
   {
     path: '', component: HomeComponent,
@@ -60,7 +61,8 @@ export const ROUTER_CONFIG: Routes = [
       { path: 'signdata/:userId', component: SignDataComponent },
       { path: 'crisis', component: CriticalValueComponent },
       { path: 'statistics', component: StatisticsComponent },
-      { path: 'shoesmap', component: ShoesMapComponent }
+      { path: 'shoesmap', component: ShoesMapComponent },
+      { path: 'tumble', component: TumbleManageComponent }
 
     ]
   }
