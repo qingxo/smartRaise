@@ -18,6 +18,9 @@ class Tools {
   private TIMER = 2000;
 
   initBtnShow(topLevel, secondLevel, btnKey) {
+    if (!storage.get('menu')) {
+      return {}
+    }
     const menu = eval(storage.get('menu'));
     let jurisdiction = [], myBtn: any;
     for (let i = 0; i < menu.length; i++) {
