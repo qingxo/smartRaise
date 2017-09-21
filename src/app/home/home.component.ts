@@ -97,8 +97,10 @@ export class HomeComponent implements OnInit {
 
 
   logOut() {
+    storage.remove('state');
+    storage.remove('menu');
+    this.router.navigate(['/login']);
     this.homeService.logout().subscribe((res) => {
-      console.log(res);
       if (res.success) {
         storage.remove('state');
         storage.remove('menu');
