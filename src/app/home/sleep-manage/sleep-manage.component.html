@@ -62,7 +62,9 @@
               </span></td>
             <td><span class="opt">
               <em [hidden]="sleepBtn['睡眠监测']||!item.equipmentNo"   [routerLink]="['/home/sleepmonitor',item.customerId,item.equipmentNo]" >监测数据</em>
-              <em [hidden]="sleepBtn['365睡眠评估']"   [routerLink]="['/home/sleeptest',item.customerId]"  >365睡眠评估</em> </span>
+              <em [hidden]="sleepBtn['365睡眠评估']"   [routerLink]="['/home/sleeptest',item.customerId]"  >365睡眠评估</em>
+              <em [hidden]="!item.equipmentNo" [routerLink]="['/home/sleepreport',item.customerId,item.equipmentNo]">睡眠报告</em> </span>
+
             </td>
           </tr>
         </tbody>

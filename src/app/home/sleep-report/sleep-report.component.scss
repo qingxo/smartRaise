@@ -16,15 +16,20 @@
     background-color: white;
     width: 100%;
 
-    div {
-      display: block;
+    .more-info {
+      padding: 0;
+      margin: 5px;
 
-      span {
-        display: inline-block;
-      }
+      table tr td {
+        padding: 0;
 
-      span:nth-child(odd) {
-        background-color: grey;
+        span {
+          padding: 10px 0;
+        }
+
+        .g-info {
+          background-color: #d4d4d4;
+        }
       }
     }
   }
