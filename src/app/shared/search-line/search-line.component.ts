@@ -9,10 +9,15 @@ export class SearchLineComponent implements OnInit {
   @Input() searchInput = '';
   @Output() search = new EventEmitter<string>();
   @Input() placeHolderValue = '请输入';
+  @Output() rapidSearch = new EventEmitter<string>();
   constructor() { }
 
   ngOnInit() {
 
+  }
+
+  searchInputChange() {
+    this.rapidSearch.emit(this.searchInput);
   }
 
   searchFind() {

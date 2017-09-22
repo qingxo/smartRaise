@@ -589,6 +589,10 @@ export class ClientComponent implements OnInit {
     this.initAsyc();
   }
 
+  changeRapid(val: string) {
+    this.queryInfo = val
+  }
+
   pageTurning(number) {
     this.pageNumber = number;
     this.initAsyc();

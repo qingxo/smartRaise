@@ -48,6 +48,10 @@ export class SignManageComponent implements OnInit {
     this.initAsyc();
   }
 
+  changeRapid(val: string) {
+    this.queryInfo = val
+  }
+
   groupNameShow(val) {
     if (val === '' || val === '请选择') {
       return '全部机构';

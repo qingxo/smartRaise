@@ -1,4 +1,4 @@
 <div class="search-info">
-  <input type="text" (keydown)='searchStart($event)' placeholder="{{placeHolderValue}}" [(ngModel)]="searchInput">
+  <input type="text" (keydown)='searchStart($event)' placeholder="{{placeHolderValue}}" [(ngModel)]="searchInput" (ngModelChange)="searchInputChange()">
   <span (click)="searchFind()"></span>
 </div>

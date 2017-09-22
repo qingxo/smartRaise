@@ -57,6 +57,10 @@ export class SleepManageComponent implements OnInit {
     this.clientList();
   }
 
+  changeRapid(val: string) {
+    this.queryInfo = val
+  }
+
   groupNameShow(val) {
     if (val === '' || val === '请选择') {
       return '全部机构';

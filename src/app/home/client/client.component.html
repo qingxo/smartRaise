@@ -14,7 +14,7 @@
             <option value="{{item.servicePackName}}" *ngFor="let item of pkgList" >{{item.servicePackName}}</option>
           </select>
         </div>
-        <app-search-line placeHolderValue="姓名/手机号" (search)="searchTable($event)"></app-search-line>
+        <app-search-line placeHolderValue="姓名/手机号" (search)="searchTable($event)" (rapidSearch)="changeRapid($event)"></app-search-line>
       </div>
       <div class="rf  create-btn" (click)="clientActive(-1,clientDetail)" [hidden]="clientBtn['新增客户']">
         新增客户
