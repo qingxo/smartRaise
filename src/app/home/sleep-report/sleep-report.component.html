@@ -1,3 +1,33 @@
-<p>
-  sleep-report works!
-</p>
+<div class="right-content-info sleep-report-info">
+  <div class="detail-content detail-content-pad txt-pos">
+    <div class="person-info-block">
+      <div class="info-head">
+        <span>个人信息</span>
+      </div>
+      <div class="table-info-person">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <thead>
+            <tr>
+              <td><span>姓名</span></td>
+              <td><span>手机号</span></td>
+              <td><span>性别</span></td>
+              <td><span>年龄</span></td>
+              <td><span>注册时间</span></td>
+              <td><span>健康服务专员</span></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span>{{!!userInfo.name?userInfo.name:'未知'}}</span></td>
+              <td><span>{{userInfo.mobile}}</span></td>
+              <td><span>{{userInfo.sex === 'M' ? '男' : '女'}}</span></td>
+              <td><span>{{userInfo.birdthday | pipeBirth}}</span></td>
+              <td><span>{{userInfo.createDt | date:'yyyy-MM-dd'}}</span></td>
+              <td><span>{{userInfo.commissionerUserName?userInfo.commissionerUserName:'无'}}</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

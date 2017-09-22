@@ -64,7 +64,7 @@ export const ROUTER_CONFIG: Routes = [
       { path: 'statistics', component: StatisticsComponent },
       { path: 'shoesmap', component: ShoesMapComponent },
       { path: 'tumble', component: TumbleManageComponent },
-      { path: 'sleepreport', component: SleepReportComponent }
+      { path: 'sleepreport/:customerId', component: SleepReportComponent }
 
     ]
   }
