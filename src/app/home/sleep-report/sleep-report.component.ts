@@ -16,7 +16,10 @@ export class SleepReportComponent implements OnInit {
 
   ngOnInit() {
     this.customerId = this.route.snapshot.params['customerId'];
+  }
 
+  changeDays(val) {
+    console.log(val)
   }
 
   getUserInfo() {

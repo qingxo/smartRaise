@@ -8,7 +8,6 @@ import { SharedModule } from '../shared';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { ClientDetailComponent } from './client-detail/client-detail.component';
-import { Ng2FlatpickrComponent } from 'ng2-flatpickr/ng2-flatpickr';
 import { OrderPackageComponent } from './order-package';
 import { OrderDetailComponent } from './order-detail';
 import { ServicePackageComponent } from './service-package/service-package.component';
@@ -73,7 +72,6 @@ import { SleepReportComponent } from './sleep-report/sleep-report.component'; //
     HomeComponent,
     ClientComponent,
     CreateAccountComponent,
-    Ng2FlatpickrComponent,
     ClientDetailComponent,
     OrderPackageComponent,
     OrderDetailComponent,

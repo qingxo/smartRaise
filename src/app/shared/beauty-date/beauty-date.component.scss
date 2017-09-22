@@ -1,0 +1,21 @@
+.day-choose {
+  label {
+    display: inline-block;
+  }
+
+  .inline {
+    display: inline-block;
+
+    input.ng2-flatpickr-input {
+      width: 200px;
+      height: 30px;
+      border: 1px solid #d2d2d2;
+      border-radius: 4px;
+      color: #333333;
+      padding: 2px 4px;
+      background: url("/assets/images/calender-i.png") right 0 no-repeat;
+      background-size: 30px 30px;
+      background-color: white;
+    }
+  }
+}
