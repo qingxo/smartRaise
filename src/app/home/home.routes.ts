@@ -27,7 +27,8 @@ import { SignDataComponent } from './sign-data';
 import { CriticalValueComponent } from './critical-value';
 import { StatisticsComponent } from './statistics';
 import { ShoesMapComponent } from './shoes-map';
-import { TumbleManageComponent } from './tumble-manage'
+import { TumbleManageComponent } from './tumble-manage';
+import { SleepReportComponent } from './sleep-report';
 export const ROUTER_CONFIG: Routes = [
   {
     path: '', component: HomeComponent,
@@ -62,7 +63,8 @@ export const ROUTER_CONFIG: Routes = [
       { path: 'crisis', component: CriticalValueComponent },
       { path: 'statistics', component: StatisticsComponent },
       { path: 'shoesmap', component: ShoesMapComponent },
-      { path: 'tumble', component: TumbleManageComponent }
+      { path: 'tumble', component: TumbleManageComponent },
+      { path: 'sleepreport', component: SleepReportComponent }
 
     ]
   }
