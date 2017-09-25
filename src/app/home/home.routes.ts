@@ -63,7 +63,7 @@ export const ROUTER_CONFIG: Routes = [
       { path: 'signdata/:userId', component: SignDataComponent },
       { path: 'crisis', component: CriticalValueComponent },
       { path: 'statistics', component: StatisticsComponent },
-      { path: 'shoesmap', component: ShoesMapComponent },
+      { path: 'shoesmap/:userId', component: ShoesMapComponent },
       { path: 'tumble', component: TumbleManageComponent },
       { path: 'sleepreport/:customerId/:equipNo', component: SleepReportComponent },
       { path: 'recordDetail/:customerId', component: RecordDetailComponent }

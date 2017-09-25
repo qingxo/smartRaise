@@ -29,7 +29,10 @@ export class ShoesMapComponent implements OnInit {
       markers: [{
         longitude: 121.506191,
         latitude: 31.245554,
+        icon: '/assets/images/gg.png',
         title: 'Where',
+        width: '52',
+        height: '52',
         content: 'Put description here',
         enableDragging: false
       }, {
