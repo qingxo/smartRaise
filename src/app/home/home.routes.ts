@@ -29,6 +29,7 @@ import { StatisticsComponent } from './statistics';
 import { ShoesMapComponent } from './shoes-map';
 import { TumbleManageComponent } from './tumble-manage';
 import { SleepReportComponent } from './sleep-report';
+import { RecordDetailComponent } from './record-detail';
 export const ROUTER_CONFIG: Routes = [
   {
     path: '', component: HomeComponent,
@@ -64,7 +65,8 @@ export const ROUTER_CONFIG: Routes = [
       { path: 'statistics', component: StatisticsComponent },
       { path: 'shoesmap', component: ShoesMapComponent },
       { path: 'tumble', component: TumbleManageComponent },
-      { path: 'sleepreport/:customerId/:equipNo', component: SleepReportComponent }
+      { path: 'sleepreport/:customerId/:equipNo', component: SleepReportComponent },
+      { path: 'recordDetail/:customerId', component: RecordDetailComponent }
 
     ]
   }

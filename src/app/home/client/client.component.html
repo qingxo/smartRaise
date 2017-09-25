@@ -81,6 +81,7 @@
                             <a [routerLink]="['/home/clientDetail',item.customerId,{'equipNo':item.equipmentNo}]" [hidden]="clientBtn['客户详情']" target="_blank">详情</a>
                            <a [routerLink]="['/home/orderpackage',item.customerId]" [hidden]="clientBtn['订购服务包']"  target="_blank">订购服务包</a>
                            <em (click)="delconfirm(index)" class="del"  [hidden]="clientBtn['删除']" >删除</em>
+                           <a [routerLink]="['/home/recordDetail',item.customerId]">院内详情</a>
             </span></td>
           </tr>
         </tbody>

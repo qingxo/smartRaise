@@ -1,0 +1,44 @@
+.record-info {
+  .record-detail {
+    padding: 0 20px;
+
+    .table-def {
+      background-color: white;
+
+      table {
+        border: 0;
+
+        tr td {
+          border: 0;
+          text-align: left;
+          padding: 5px 0;
+
+          span {
+            display: inline-block;
+            text-align: left;
+            width: auto;
+            color: #666666;
+          }
+        }
+      }
+    }
+
+    .table-thin {
+      padding: 5px 20px;
+    }
+
+    .grey-line {
+      background-color: #d7d7d7;
+      padding: 10px 0;
+      font-size: 14px;
+      text-align: left;
+      color: #666666;
+      margin: 10px 20px 0;
+    }
+
+    .hr {
+      margin: 0 20px;
+      background-color: rgba(215, 215, 215, 1);
+    }
+  }
+}
