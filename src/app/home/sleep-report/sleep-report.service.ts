@@ -12,4 +12,11 @@ export class SleepReportService extends BaseService {
     return this.getInfo(`api/webHealthManage/getSleepReport/${equipmentNo}/${date}`);
   }
 
+  reportSleepHeart(equipmentNo, date) {
+    return this.getInfo(`/webHealthManage/getSleepHeart/${equipmentNo}/${date}`);
+  }
+
+  reportSleepOnBed(equipmentNo, date) {
+    return this.getInfo(`/webHealthManage/getSleepOnBed/${equipmentNo}/${date}`);
+  }
 }

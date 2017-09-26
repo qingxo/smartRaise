@@ -36,9 +36,9 @@ export class SleepReportComponent implements OnInit {
 
   callService() {
     this.sleepReportService.reportDetail(this.equipNo, this.reportDay).subscribe((res) => {
-      if (res.code === 200) {
-        this.list = res;
-      }
+      // if (res.code === 200) {
+      this.list = res;
+      // }
 
     })
   }
