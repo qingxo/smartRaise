@@ -54,7 +54,6 @@ import { ShoesMapComponent } from './shoes-map';
 import { BaiduMapModule } from 'angular2-baidu-map';
 import { TumbleManageComponent } from './tumble-manage/tumble-manage.component';
 import { SleepReportComponent } from './sleep-report/sleep-report.component';
-import { ReocrdDetailComponent } from './reocrd-detail/reocrd-detail.component';
 import { RecordDetailComponent } from './record-detail/record-detail.component'; // import BaiduMapModule
 
 @NgModule({
@@ -118,7 +117,6 @@ import { RecordDetailComponent } from './record-detail/record-detail.component';
     ShoesMapComponent,
     TumbleManageComponent,
     SleepReportComponent,
-    ReocrdDetailComponent,
     RecordDetailComponent
   ],
   providers: []
