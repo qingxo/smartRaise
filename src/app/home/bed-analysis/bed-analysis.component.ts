@@ -14,13 +14,14 @@ import * as zh_lang from 'flatpickr/dist/l10n/zh.js';
 })
 export class BedAnalysisComponent implements OnInit, OnChanges {
 
-  @Input() equipNo: string;
+  @Input() equipNo: string = '';
   @Input() echartsStyle: any = { 'height': '350px' };
   @Input() title: any = '睡眠分析';
   @Input() yAxisData: Array<string> = ['离床', '在床', '设备异常'];
   @ViewChild('tt') el: ElementRef;
-  private bedAwayAnalysis: Array<any> = [];
-  private bedAwayTime: Array<any> = [];
+  @Input() bedAwayAnalysis: Array<any> = [];
+  @Input() bedAwayTime: Array<any> = [];
+  @Input() isOpen: boolean = false;
   private nothingFlag = false;
   private option: EChartOption;
   private focusDay: any = moment(new Date()).format('YYYY-MM-DD');
@@ -56,6 +57,13 @@ export class BedAnalysisComponent implements OnInit, OnChanges {
     if (this.equipNo !== '') {
       this.bedAnalysis();
     }
+
+    if (this.equipNo === '' && this.bedAwayTime.length > 0 && this.bedAwayAnalysis.length > 0) {
+      this.initBedAwayEcharts();
+    } else if (this.equipNo === '' && this.bedAwayTime.length === 0 && this.bedAwayAnalysis.length === 0) {
+      this.el.nativeElement.className = 'lines black-hole';
+      this.nothingFlag = false;
+    }
   }
 
 
@@ -75,8 +83,7 @@ export class BedAnalysisComponent implements OnInit, OnChanges {
             this.bedAwayTime.push(tmp[i].startTime.split(' ')[1]);
           }
           this.initBedAwayEcharts();
-          this.nothingFlag = true;
-          this.el.nativeElement.className = 'lines ';
+
         } else {
           this.el.nativeElement.className = 'lines black-hole';
           this.nothingFlag = false;
@@ -88,7 +95,10 @@ export class BedAnalysisComponent implements OnInit, OnChanges {
     });
   }
 
+
   initBedAwayEcharts() {
+    this.nothingFlag = true;
+    this.el.nativeElement.className = 'lines ';
     this.option = {
       title: {
         text: this.title

@@ -17,6 +17,10 @@ export class SleepReportComponent implements OnInit {
   private maxDay: string = moment(new Date()).format('YYYY-MM-DD');
   private reportDay: string = moment(new Date()).format('YYYY-MM-DD');
   private list: any = {};
+  private heartList: any;
+  private bedList: any;
+  private sleepListTime: Array<any> = [];
+  private sleepListStatus: Array<any> = [];
   constructor(private healthMonitorService: HealthMonitorService, private sleepReportService: SleepReportService, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -34,13 +38,34 @@ export class SleepReportComponent implements OnInit {
 
   }
 
+  callReportSleepHeart() {
+    this.sleepReportService.reportSleepHeart(this.equipNo, this.reportDay).subscribe((res) => {
+      this.heartList = res;
+    })
+  }
+
+  callReportSleepOnBed() {
+    this.sleepReportService.reportSleepOnBed(this.equipNo, this.reportDay).subscribe((res) => {
+      this.bedList = res;
+    })
+  }
+
   callService() {
     this.sleepReportService.reportDetail(this.equipNo, this.reportDay).subscribe((res) => {
-      // if (res.code === 200) {
-      this.list = res;
-      // }
-
+      this.list = res.data;
+      this.bedAnalysisInit(res.sleep)
     })
+  }
+
+  bedAnalysisInit(obj) {
+    this.sleepListTime = []
+    this.sleepListStatus = []
+    for (let item in obj) {
+      this.sleepListTime.push(item)
+      this.sleepListStatus.push(parseInt(obj[item], 10))
+    }
+    this.sleepListTime = Array.from(this.sleepListTime)
+    this.sleepListStatus = Array.from(this.sleepListStatus)
   }
 
   getUserInfo() {
