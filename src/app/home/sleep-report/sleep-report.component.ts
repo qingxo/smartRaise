@@ -21,6 +21,10 @@ export class SleepReportComponent implements OnInit {
   private bedList: any;
   private sleepListTime: Array<any> = [];
   private sleepListStatus: Array<any> = [];
+  private sleepDeep: string = '0';
+  private sleepLower: string = '0';
+  private sleepNo: string = '0';
+  private circleRadios: Array<any> = []
   constructor(private healthMonitorService: HealthMonitorService, private sleepReportService: SleepReportService, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -53,18 +57,32 @@ export class SleepReportComponent implements OnInit {
   callService() {
     this.sleepReportService.reportDetail(this.equipNo, this.reportDay).subscribe((res) => {
       this.list = res.data;
+      this.initSleepRadio()
       this.bedAnalysisInit(res.sleep)
     })
+  }
+
+  initSleepRadio() {
+    let [deep, lower, nos] = [this.list.deepminutes, this.list.lightminutes, this.list.wakeminutes]
+    let sum = parseInt(deep, 10) + parseInt(lower, 10) + parseInt(nos, 10)
+    this.sleepDeep = "" + Math.round((deep / sum) * 100);
+    this.sleepLower = "" + Math.round((lower / sum) * 100);
+    this.sleepNo = "" + Math.round((nos / sum) * 100);
+    if (this.sleepDeep !== 'NaN' || this.sleepLower !== 'NaN' || this.sleepNo !== 'NaN') {
+      this.circleRadios = [this.sleepDeep, this.sleepLower, this.sleepNo]
+    } else {
+      this.circleRadios = []
+    }
   }
 
   bedAnalysisInit(obj) {
     this.sleepListTime = []
     this.sleepListStatus = []
-    for (let item in obj) {
-      this.sleepListTime.push(item)
-      this.sleepListStatus.push(parseInt(obj[item], 10))
+    let { status, time } = obj
+    for (let item of status) {
+      this.sleepListStatus.push(parseInt(item, 10))
     }
-    this.sleepListTime = Array.from(this.sleepListTime)
+    this.sleepListTime = Array.from(time)
     this.sleepListStatus = Array.from(this.sleepListStatus)
   }
 

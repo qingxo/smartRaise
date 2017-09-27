@@ -118,6 +118,9 @@
         <div class="">
           <app-bed-analysis title="睡眠状况" [yAxisData]="['深睡','浅睡','清醒']" isOpen="true" [bedAwayTime]="sleepListTime" [bedAwayAnalysis]="sleepListStatus"></app-bed-analysis>
         </div>
+        <div class="">
+          <app-circles [title]="['深睡占比','浅睡占比','清醒占比']" [radios]='circleRadios'></app-circles>
+        </div>
       </div>
     </div>
 
