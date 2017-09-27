@@ -16,6 +16,8 @@ export class BedAnalysisComponent implements OnInit, OnChanges {
 
   @Input() equipNo: string;
   @Input() echartsStyle: any = { 'height': '350px' };
+  @Input() title: any = '睡眠分析';
+  @Input() yAxisData: Array<string> = ['离床', '在床', '设备异常'];
   @ViewChild('tt') el: ElementRef;
   private bedAwayAnalysis: Array<any> = [];
   private bedAwayTime: Array<any> = [];
@@ -89,7 +91,7 @@ export class BedAnalysisComponent implements OnInit, OnChanges {
   initBedAwayEcharts() {
     this.option = {
       title: {
-        text: '睡眠分析'
+        text: this.title
       },
       tooltip: {
         trigger: 'axis'
@@ -111,7 +113,7 @@ export class BedAnalysisComponent implements OnInit, OnChanges {
       ],
       yAxis: {
         type: 'category',
-        data: ['离床', '在床', '设备异常']
+        data: this.yAxisData
       },
       series: [
         {
