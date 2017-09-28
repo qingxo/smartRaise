@@ -12,27 +12,30 @@
         <table cellpadding="0" cellspacing="0" border="0">
           <tr>
             <td><span>病历号</span>
-              <span>20000</span></td>
+              <span>{{customerBaseInfo.cardNo}}</span></td>
             <td><span>姓名</span>
-              <span>开心果</span></td>
+              <span>{{customerBaseInfo?.name}}</span></td>
             <td><span>性别</span>
-              <span>男</span></td>
+              <span>{{customerBaseInfo?.sex =='F'?'女':'男'}}</span></td>
             <td><span>年龄</span>
-              <span>22</span></td>
+              <span>{{customerBaseInfo?.birthday | pipeBirth}}</span></td>
           </tr>
           <tr>
             <td><span>升高</span>
-              <span>33</span></td>
+              <span *ngIf="!!customerBaseInfo.height">{{customerBaseInfo?.height}}cm</span></td>
             <td><span>体重</span>
-              <span>33kg</span></td>
+              <span *ngIf="!!customerBaseInfo.weight">{{customerBaseInfo?.weight}}kg</span></td>
             <td><span>婚姻</span>
-              <span>已婚</span></td>
+              <span>未知</span></td>
             <td><span>联系电话</span>
-              <span>15159999999</span></td>
+              <span>{{customerBaseInfo.mobile}}</span></td>
           </tr>
           <tr>
             <td><span>地址</span>
-              <span>xxxx xxx</span></td>
+              <span>{{customerBaseInfo?.province=='请选择'?'':customerBaseInfo.provoince}}
+                  {{customerBaseInfo?.city=='请选择'?'':customerBaseInfo.city}}
+                  {{customerBaseInfo?.district=='请选择'?'':customerBaseInfo.district}}
+              </span></td>
           </tr>
           <tr>
             <td><span>过敏史</span>
@@ -56,17 +59,17 @@
         <table cellpadding="0" cellspacing="0" border="0">
           <tr>
             <td><span>就诊日期</span>
-              <span>2014-1-1</span></td>
+              <span>{{seeDoctor?.visitDate}}</span></td>
             <td><span>就诊类型</span>
-              <span>医保</span></td>
+              <span>{{seeDoctor?.visitTypeName}}</span></td>
             <td><span>接诊医生</span>
-              <span>丁肇中</span></td>
+              <span>{{seeDoctor?.receptTreatDrName}}</span></td>
             <td><span>就诊科室</span>
-              <span>肛肠科</span></td>
+              <span>{{seeDoctor?.visitDeptName}}</span></td>
           </tr>
           <tr>
             <td><span>门诊诊断</span>
-              <span>阑尾炎</span></td>
+              <span>{{seeDoctor?.diagName}}</span></td>
           </tr>
         </table>
       </div>
@@ -78,75 +81,100 @@
       <div class="box-head " style="text-align:left">
         门诊处方
       </div>
-      <div class="grey-line">
-        <span>处方号</span><span>10434234x9</span>
-      </div>
-      <div class="table-info table-def table-thin">
-        <table>
-          <tr>
-            <td><span>处方类型</span><span>西药</span></td>
-            <td><span>开放仪式</span><span>小林优</span></td>
-            <td><span>开放日期</span><span>2014.-4.2</span></td>
-            <td><span>开方科室</span><span>外科</span></td>
-          </tr>
-
-        </table>
-
-      </div>
-      <hr/>
-      <div class="table-info table-def table-thin">
-        <table cellpadding="0" cellspacing="0" border="0">
-          <tr>
-            <td><span>药品名称</span></td>
-            <td><span>药品规格</span></td>
-            <td><span>一次计量</span></td>
-            <td><span>总数量</span></td>
-            <td><span>使用频次</span></td>
-            <td><span>用药途径</span></td>
-            <td><span>药品剂型</span></td>
-          </tr>
-          <tr>
-            <td><span>头孢</span></td>
-            <td><span>0.56</span></td>
-            <td><span>1.5000</span></td>
-            <td><span>1.00</span></td>
-            <td><span>每天3次</span></td>
-            <td><span>口服</span></td>
-            <td><span>药品</span></td>
-          </tr>
-
-        </table>
+      <div class="" *ngFor="let item of outpaInfo">
+        <div class="grey-line">
+          <span>处方号:</span><span>{{item.prescriptions.presNo}}</span>
+        </div>
+        <div class="table-info table-def table-thin">
+          <table>
+            <tr>
+              <td><span>处方类型</span><span>{{item.prescriptions?.presCategName}}</span></td>
+              <td><span>开方医生</span><span>{{item.prescriptions?.presOpenDrName}}</span></td>
+              <td><span>开方日期</span><span>{{item.prescriptions?.presOrderDate | date:'yyyy-MM-dd'}}</span></td>
+              <td><span>开方科室</span><span>{{item.prescriptions?.presOpenDeptName}}</span></td>
+            </tr>
+          </table>
+        </div>
+        <hr/>
+        <div class="table-info table-def table-thin">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td><span>药品名称</span></td>
+              <td><span>药品规格</span></td>
+              <td><span>一次计量</span></td>
+              <td><span>总数量</span></td>
+              <td><span>使用频次</span></td>
+              <td><span>用药途径</span></td>
+              <td><span>药品剂型</span></td>
+            </tr>
+            <tr *ngFor="let drag of item.prescriptionDetailsList">
+              <td><span>{{drag.drugName}}</span></td>
+              <td><span>{{drag.drugSpecifications}}</span></td>
+              <td><span>{{drag.drugUseOneDosage}}</span></td>
+              <td><span>{{drag.drugAmount}}</span></td>
+              <td><span>{{drag.drugUseFrequencyName}}</span></td>
+              <td><span>{{drag.doseWayName}}</span></td>
+              <td><span>{{drag.drugFormName}}</span></td>
+            </tr>
+          </table>
+        </div>
       </div>
     </div>
 
-
-
-    <div class="mybox" style="height:auto">
+    <div class="mybox" style="height:auto" [hidden]="hosInfo.length==0">
       <div class="box-head " style="text-align:left">
         住院信息
       </div>
       <div class="table-info table-def">
-        <table cellpadding="0" cellspacing="0" border="0">
+        <table cellpadding="0" cellspacing="0" border="0" *ngFor="let item of hosInfo">
           <tr>
             <td><span>住院号</span>
-              <span>142340234</span></td>
+              <span>{{item.mrn}}</span></td>
             <td><span>入院日期</span>
-              <span>2017-1-4</span></td>
+              <span>{{item.admissionTime | date:'yyyy-MM-dd'}}</span></td>
             <td><span>出院日期</span>
-              <span>2017-9-1</span></td>
+              <span>{{item.dischargeTime | date:'yyyy-MM-dd'}}</span></td>
             <td><span>住院天数</span>
-              <span>199</span></td>
+              <span>{{item.dayInHospital}}</span></td>
           </tr>
           <tr>
             <td><span>转归情况</span>
-              <span>x'x'x</span></td>
-            <td><span>主治医师</span><span>周周周</span></td>
-            <td><span>出院科室</span><span>肝胆胰科室</span></td>
-            <td><span>病床号</span><span>018</span></td>
+              <span></span></td>
+            <td><span>主治医师</span><span>{{item.attendDrName}}</span></td>
+            <td><span>出院科室</span><span>{{item.leaveHospitalDeptName}}</span></td>
+            <td><span>病床号</span><span>{{item.bedNo}}</span></td>
           </tr>
           <tr>
-            <td><span>入院诊断</span><span>骨折</span></td>
-            <td><span>出院小结</span><span>多休息</span></td>
+            <td><span>入院诊断</span><span>{{item.diagnosisName}}</span></td>
+            <td><span>出院小结</span><span></span></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="mybox" style="height:auto">
+      <div class="box-head" style="text-align:left">
+        住院手术
+      </div>
+      <div class="table-info table-def table-thin">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td><span>手术日期</span></td>
+            <td><span>手术名称</span></td>
+            <td><span>手术医生</span></td>
+            <td><span>麻醉方式</span></td>
+            <td><span>手术级别</span></td>
+            <td><span>切口愈合等级</span></td>
+            <td><span>麻醉医生</span></td>
+          </tr>
+          <tr *ngFor="let item of opInfo">
+            <td><span>{{item.surgeryBeginDate | date:'yyyy-MM-dd'}}</span></td>
+            <td><span>{{item.surgeryOperName}}</span></td>
+            <td><span>{{item.surgeryDrName}}</span></td>
+            <td><span>{{item.anesMethodName}}</span></td>
+            <td><span></span></td>
+            <td><span></span></td>
+            <td><span>{{item.surgeryDrName}}</span></td>
           </tr>
         </table>
       </div>
@@ -158,89 +186,107 @@
       <div class="box-head " style="text-align:left">
         检查报告
       </div>
-      <div class="grey-line">
-        <span>报告单编号</span><span>1932424xxx9</span>
+      <div class="" *ngFor="let item of inspectInfo">
+        <div class="grey-line">
+          <span>报告单编号:</span><span>{{item.reportNo}}</span>
+        </div>
+        <div class="table-info table-def table-def-min">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td><span>检查类别</span>
+                <span>{{item.examCategName}}</span></td>
+              <td><span>检查项目</span>
+                <span>{{item.examItemName}}</span></td>
+              <td><span>报告时间</span>
+                <span>{{item.reportDate}}</span></td>
+              <td><span>开单医生</span>
+                <span>{{item.reportDrName}}</span></td>
+            </tr>
+            <tr>
+              <td><span>开单科室</span>
+                <span>{{item.reportDeptName}}</span></td>
+            </tr>
+            <tr>
+              <td colspan="3"><span>检查结果</span><span>{{item.examResults}}</span></td>
+            </tr>
+            <tr>
+              <td colspan="3"><span>检查描述</span><span>{{item.examDoctorResults}}</span></td>
+            </tr>
+            <tr>
+              <td><span>图文报告</span><a href="{{item.picture}}" target="_blank">点击查看</a></td>
+            </tr>
+          </table>
+        </div>
       </div>
-      <div class="table-info table-def">
-        <table cellpadding="0" cellspacing="0" border="0">
-          <tr>
-            <td><span>检查类别</span>
-              <span>CT</span></td>
-            <td><span>检查项目</span>
-              <span>24</span></td>
-            <td><span>报告时间</span>
-              <span>2017-9-1</span></td>
-            <td><span>开单医生</span>
-              <span>广发</span></td>
-          </tr>
-          <tr>
-            <td><span>开单科室</span>
-              <span>x科室</span></td>
-          </tr>
-          <tr>
-            <td><span>检查结果</span><span>左碗骨折</span></td>
-          </tr>
-          <tr>
-            <td><span>检查描述</span><span>神经外科</span></td>
-          </tr>
-          <tr>
-            <td><span>图文报告</span><span>点击查看</span></td>
-          </tr>
-        </table>
-      </div>
+
     </div>
 
 
-    <div class="mybox" style="height:auto">
+    <div class="mybox" style="height:auto" [hidden]="surveyInfo.length==0">
       <div class="box-head " style="text-align:left">
         检验报告
       </div>
-      <div class="grey-line">
-        <span>报告单编号</span><span>20172244024</span>
+      <div class="" *ngFor="let item of surveyInfo">
+        <div class="grey-line">
+          <span>报告单编号:</span><span>{{item.lisReport.reportNo}}</span>
+        </div>
+        <div class="table-info table-def table-thin">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td><span>检验项目</span>
+                <span>{{item.lisReport.testItemName}}</span></td>
+              <td><span>样本类型</span>
+                <span>{{item.lisReport.sampleTypeName}}</span></td>
+              <td><span>报告时间</span>
+                <span>{{item.lisReport.reportDate | date:'yyyy-MM-dd'}}</span></td>
+              <td><span>开单医生</span>
+                <span>{{item.lisReport.reportDrName}}</span></td>
+            </tr>
+            <tr>
+              <td><span>开单科室</span>
+                <span>{{item.lisReport.reportDeptName}}</span></td>
+            </tr>
+          </table>
+        </div>
+        <hr>
+        <div class="table-info table-def table-thin">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td><span>项目</span></td>
+              <td><span>异常标志</span></td>
+              <td><span>检验结果值</span></td>
+              <td><span>检验结果值单位</span></td>
+              <td><span>参考范围</span></td>
+            </tr>
+            <tr *ngFor="let dot of item.lisReportDetailList">
+              <td><span>{{dot.itemName}}</span></td>
+              <td>
+                <ng-container [ngSwitch]="dot.reportAbnormalSign">
+                  <span *ngSwitchCase="0">-</span>
+                  <span *ngSwitchCase="1">上升</span>
+                  <span *ngSwitchCase="2">下降</span>
+                </ng-container>
+              </td>
+              <td><span>{{dot.testResultValue}}</span></td>
+              <td><span>{{dot.testResultValueUnit}}</span></td>
+              <td><span>{{dot?.lowMaxValue}}-{{dot?.highMaxValue}}</span></td>
+            </tr>
+          </table>
+        </div>
       </div>
-      <div class="table-info table-def table-thin">
-        <table cellpadding="0" cellspacing="0" border="0">
-          <tr>
-            <td><span>检验项目</span>
-              <span>电解质+xxx</span></td>
-            <td><span>样本类型</span>
-              <span>血液</span></td>
-            <td><span>报告时间</span>
-              <span>2017-9-1</span></td>
-            <td><span>开单医生</span>
-              <span>逛逛逛</span></td>
-          </tr>
-          <tr>
-            <td><span>开单科室</span>
-              <span>x'x'x</span></td>
-          </tr>
-        </table>
-      </div>
-      <hr>
-      <div class="table-info table-def table-thin">
-        <table cellpadding="0" cellspacing="0" border="0">
-          <tr>
-            <td><span>项目</span></td>
-            <td><span>异常标志</span></td>
-            <td><span>检验结果值</span></td>
-            <td><span>检验结果值单位</span></td>
-            <td><span>参考范围</span></td>
-          </tr>
-          <tr>
-            <td><span>尿酸</span></td>
-            <td><span>上升</span></td>
-            <td><span>255</span></td>
-            <td><span>umol/L</span></td>
-            <td><span>180-440</span></td>
-          </tr>
-        </table>
-      </div>
+
     </div>
 
 
     <div class="mybox" style="height:auto">
       <div class="box-head " style="text-align:left">
         医嘱信息
+      </div>
+      <div class="doc-date">
+        <span>筛选日期</span>
+        <select (change)="onChange($event.target.value)" [(ngModel)]="docDate">
+          <option  *ngFor="let item of dateChoose;let index = index" value="{{item}}">{{item}}</option>
+        </select>
       </div>
       <div class="table-info table-def table-thin">
         <table cellpadding="0" cellspacing="0" border="0">
@@ -254,15 +300,15 @@
             <td><span>结束日期</span></td>
             <td><span>开嘱医生</span></td>
           </tr>
-          <tr>
-            <td><span>尿酸</span></td>
-            <td><span>上升</span></td>
-            <td><span>255</span></td>
-            <td><span>umol/L</span></td>
-            <td><span>180-440</span></td>
-            <td><span>adf</span></td>
-            <td><span>xxxx</span></td>
-            <td><span>aldjl</span></td>
+          <tr *ngFor="let item of docOrderInfo">
+            <td><span>{{item.drugName}}</span></td>
+            <td><span>{{item.drugSpec}}</span></td>
+            <td><span>{{item.dosageUnit}}</span></td>
+            <td><span>{{item.frequencyName}}</span></td>
+            <td><span>{{item.supplyName}}</span></td>
+            <td><span>{{item.startTime | date:'yyyy-MM-dd'}}</span></td>
+            <td><span>{{item.stopTime | date:'yyyy-MM-dd'}}</span></td>
+            <td><span>{{item.doctorName}}</span></td>
           </tr>
         </table>
       </div>

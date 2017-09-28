@@ -23,6 +23,12 @@
       }
     }
 
+    .table-def-min {
+      table tr td span {
+        vertical-align: top;
+      }
+    }
+
     .table-thin {
       padding: 5px 20px;
     }
@@ -36,9 +42,15 @@
       margin: 10px 20px 0;
     }
 
-    .hr {
-      margin: 0 20px;
+    hr {
+      margin: 0 20px !important;
       background-color: rgba(215, 215, 215, 1);
+    }
+
+    .doc-date {
+      text-align: left;
+      margin: 10px 0;
+      padding-left: 20px;
     }
   }
 }
