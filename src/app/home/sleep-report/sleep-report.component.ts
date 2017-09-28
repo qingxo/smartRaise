@@ -31,7 +31,8 @@ export class SleepReportComponent implements OnInit {
     this.customerId = this.route.snapshot.params['customerId'];
     this.equipNo = this.route.snapshot.params['equipNo'];
     this.getUserInfo();
-    this.callService();
+    // this.callService();
+    this.callReportSleepHeart()
   }
 
   changeDays(val) {
@@ -60,6 +61,8 @@ export class SleepReportComponent implements OnInit {
       this.initSleepRadio()
       this.bedAnalysisInit(res.sleep)
     })
+    // this.callReportSleepHeart()
+    // this.callReportSleepOnBed()
   }
 
   initSleepRadio() {
