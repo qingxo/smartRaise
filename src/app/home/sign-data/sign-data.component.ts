@@ -39,7 +39,8 @@ export class SignDataComponent implements OnInit {
       'pageSize': this.pageSize,
       'pageNum': this.pageNumber,
       'userId': storage.get('state')['userId'],
-      'query': this.queryInfo
+      'query': this.queryInfo,
+      'customerId': this.userId
     };
     this.errorTipsService.errorList(data).subscribe((res) => {
       if (res.success) {
