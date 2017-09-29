@@ -26,23 +26,21 @@ export class SleepReportComponent implements OnInit {
   private sleepDeep: string = '0';
   private sleepLower: string = '0';
   private sleepNo: string = '0';
-  private circleRadios: Array<any> = []
+  private circleRadios: Array<any> = [];
+  private bedListTime: Array<any> = [];
   constructor(private healthMonitorService: HealthMonitorService, private sleepReportService: SleepReportService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.customerId = this.route.snapshot.params['customerId'];
     this.equipNo = this.route.snapshot.params['equipNo'];
     this.getUserInfo();
-    // this.callService();
-    this.callReportSleepHeart()
+    this.callService();
   }
 
   changeDays(val) {
     if (val !== this.reportDay) {
       this.reportDay = val;
       this.callService()
-      this.callReportSleepHeart()
-
     }
 
   }
@@ -62,7 +60,12 @@ export class SleepReportComponent implements OnInit {
 
   callReportSleepOnBed() {
     this.sleepReportService.reportSleepOnBed(this.equipNo, this.reportDay).subscribe((res) => {
-      this.bedList = res;
+      this.bedList = [];
+      this.bedListTime = [];
+      for (let i = 0; i < res.length; i++) {
+        this.bedList.push(parseInt(res[i]['status'], 10) - 1);
+        this.bedListTime.push(res[i]['timespan']);
+      }
     })
   }
 
@@ -72,8 +75,8 @@ export class SleepReportComponent implements OnInit {
       this.initSleepRadio()
       this.bedAnalysisInit(res.sleep)
     })
-    // this.callReportSleepHeart()
-    // this.callReportSleepOnBed()
+    this.callReportSleepHeart()
+    this.callReportSleepOnBed()
   }
 
   initSleepRadio() {
