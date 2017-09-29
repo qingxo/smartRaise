@@ -56,7 +56,8 @@ import { TumbleManageComponent } from './tumble-manage/tumble-manage.component';
 import { SleepReportComponent } from './sleep-report/sleep-report.component';
 import { RecordDetailComponent } from './record-detail/record-detail.component';
 import { CirclesComponent } from './circles/circles.component';
-import { HeartLineComponent } from './heart-line/heart-line.component'; // import BaiduMapModule
+import { HeartLineComponent } from './heart-line/heart-line.component';
+import { MoveActionComponent } from './move-action/move-action.component'; // import BaiduMapModule
 
 @NgModule({
   imports: [
@@ -121,7 +122,8 @@ import { HeartLineComponent } from './heart-line/heart-line.component'; // impor
     SleepReportComponent,
     RecordDetailComponent,
     CirclesComponent,
-    HeartLineComponent
+    HeartLineComponent,
+    MoveActionComponent
   ],
   providers: []
 })

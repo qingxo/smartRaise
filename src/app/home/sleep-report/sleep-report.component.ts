@@ -18,6 +18,7 @@ export class SleepReportComponent implements OnInit {
   private reportDay: string = moment(new Date()).format('YYYY-MM-DD');
   private list: any = {};
   private heartList: Array<any> = [];
+  private moveList: Array<any> = [];
   private bedList: Array<any> = [];
   private timeList: Array<any> = [];
   private sleepListTime: Array<any> = [];
@@ -49,11 +50,11 @@ export class SleepReportComponent implements OnInit {
   callReportSleepHeart() {
     this.sleepReportService.reportSleepHeart(this.equipNo, this.reportDay).subscribe((res) => {
       this.heartList = [];
-      this.bedList = [];
+      this.moveList = [];
       this.timeList = [];
       for (let i = 0; i < res.length; i++) {
         this.heartList.push(res[i]['avghr'])
-        this.bedList.push(res[i]['avgmv'])
+        this.moveList.push(res[i]['avgmv'])
         this.timeList.push(res[i]['hour'])
       }
     })
