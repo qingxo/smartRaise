@@ -7,7 +7,7 @@ export class TumbleManageService extends BaseService {
 
   constructor(http: Http) { super(http); }
   clientList(data: any) {
-    return this.postInfo('api/customer/listByPage', storage.serialize(data));
+    return this.postInfo('api/customer/listShoesByPage', storage.serialize(data));
   }
 
   groupList(data) {

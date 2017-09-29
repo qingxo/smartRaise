@@ -48,9 +48,8 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of listData;let index  =index">
-            <td><span>
-                <em class="client-name-no-edit">{{item.name}}</em>
-            </span>
+            <td>
+              <span>{{item.name}}</span>
             </td>
             <td><span>{{item.mobile}}</span></td>
             <td><span>{{item.sex === 'M' ? '男' : '女'}}</span></td>
@@ -60,12 +59,12 @@
             <td><span>{{item.createDt | date:'yyyy-MM-dd'}}</span></td>
             <td><span>{{item.cardId}}</span></td>
             <td><span>{{item.commissionerUserName}}  </span></td>
-            <td *ngIf="item.cardNo==null||item.cardNo==''"><span>未绑定</span></td>
-            <td *ngIf="item.cardNo!=null&&item.cardNo!=''">
-              <span *ngFor="let num of item.cardNo">{{num}}</span>
+            <td *ngIf="item.shoesNo==null||item.shoesNo==''"><span>未绑定</span></td>
+            <td *ngIf="item.shoesNo!=null&&item.shoesNo!=''">
+              <span>{{item.shoesNo}}</span>
             </td>
             <td><span class="opt">
-                            <a [routerLink]="['/home/shoesmap']"  target="_blank">监测数据</a>
+                            <a [hidden]="!item.shoesNo" [routerLink]="['/home/shoesmap',item.customerId]"  target="_blank">监测数据</a>
             </span></td>
           </tr>
         </tbody>
