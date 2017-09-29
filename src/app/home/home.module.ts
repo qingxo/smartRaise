@@ -55,7 +55,8 @@ import { BaiduMapModule } from 'angular2-baidu-map';
 import { TumbleManageComponent } from './tumble-manage/tumble-manage.component';
 import { SleepReportComponent } from './sleep-report/sleep-report.component';
 import { RecordDetailComponent } from './record-detail/record-detail.component';
-import { CirclesComponent } from './circles/circles.component'; // import BaiduMapModule
+import { CirclesComponent } from './circles/circles.component';
+import { HeartLineComponent } from './heart-line/heart-line.component'; // import BaiduMapModule
 
 @NgModule({
   imports: [
@@ -119,7 +120,8 @@ import { CirclesComponent } from './circles/circles.component'; // import BaiduM
     TumbleManageComponent,
     SleepReportComponent,
     RecordDetailComponent,
-    CirclesComponent
+    CirclesComponent,
+    HeartLineComponent
   ],
   providers: []
 })
