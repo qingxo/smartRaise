@@ -64,7 +64,7 @@
               <span>{{item.shoesNo}}</span>
             </td>
             <td><span class="opt">
-                            <a [hidden]="!item.shoesNo" [routerLink]="['/home/shoesmap',item.customerId]"  target="_blank">监测数据</a>
+                            <a [hidden]="!item.shoesNo" [routerLink]="['/home/shoesmap',item.customerId,{'mobile':item.mobile}]"  target="_blank">监测数据</a>
             </span></td>
           </tr>
         </tbody>

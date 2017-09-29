@@ -66,8 +66,7 @@ export class TumbleManageComponent implements OnInit {
       'pageNum': this.pageNumber,
       'query': this.queryInfo,
       'userId': storage.get('state')['userId'],
-      'socialWelfareId': this.choosedSocialWelfare,
-      'type': '2'
+      'socialWelfareId': this.choosedSocialWelfare
     };
     switch (this.choosedCard) {
       case '0': data['cardUnBinding'] = 1; break;
@@ -78,18 +77,6 @@ export class TumbleManageComponent implements OnInit {
       (res) => {
         this.listData = Array.of([]);
         this.listData = res.data.list;
-        for (let i = 0; i < this.listData.length; i++) {
-          if (this.listData[i]['cardNo'] !== null && this.listData[i]['cardNo'] !== 'null' && this.listData[i]['cardNo'] !== undefined) {
-            if (this.listData[i]['cardNo'].indexOf(',') !== -1) {
-              this.listData[i]['cardNo'] = this.listData[i]['cardNo'].split(',');
-            } else {
-              this.listData[i]['cardNo'] = Array.of(this.listData[i]['cardNo']);
-            }
-
-          }
-        }
-
-
         this.pages = res.data.navigatepageNums;
         this.totalPage = res.data.total;
       }
