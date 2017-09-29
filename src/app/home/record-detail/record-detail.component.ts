@@ -58,10 +58,11 @@ export class RecordDetailComponent implements OnInit {
     this.recordDetailService.doctorAdviceInfo(this.customerId, this.sendDate).subscribe((res) => {
       this.docOrderInfo = res.doctorOrdersList;
       if (this.dateChoose.length === 0) {
-        this.dateChoose = res.timeList;
-        this.dateChoose.unshift('全部');
+        if (res.timeList instanceof Array) {
+          this.dateChoose = res.timeList;
+          this.dateChoose.unshift('全部');
+        }
       }
-
     })
   }
 
