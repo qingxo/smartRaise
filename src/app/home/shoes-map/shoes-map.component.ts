@@ -1,22 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { OfflineOptions, ControlAnchor, NavigationControlType } from 'angular2-baidu-map';
 import { ClientDetailService } from '../client-detail/client-detail.service';
+import { ShoesMapService } from './shoes-map.service';
 import { ActivatedRoute } from '@angular/router'
 @Component({
   selector: 'app-shoes-map',
   templateUrl: './shoes-map.component.html',
   styleUrls: ['./shoes-map.component.scss'],
-  providers: [ClientDetailService]
+  providers: [ClientDetailService, ShoesMapService]
 })
 export class ShoesMapComponent implements OnInit {
 
   opts: any;
   offlineOpts: OfflineOptions;
-  userInfo: any;
+  userInfo: any = {};
   myAk: string = 'fhchSIWoAsUs65ZMsrDqrtMGgPYoSubW';
   userId: string = '';
-  list: Array<any> = []
-  constructor(private clientDetailService: ClientDetailService, private route: ActivatedRoute) { }
+  list: Array<any> = [];
+  pageSize: number = 10;
+  pageNumber: number = 1;
+  mobile: string = "";
+  shoesNo: string = '';
+  constructor(private clientDetailService: ClientDetailService, private shoesMapService: ShoesMapService, private route: ActivatedRoute) { }
 
 
   ngOnInit() {
@@ -67,8 +72,25 @@ export class ShoesMapComponent implements OnInit {
       txt: 'NO-NETWORK'
     };
     this.userId = this.route.snapshot.params['userId'];
+    this.mobile = this.route.snapshot.params['mobile'];
     this.getUserInfo();
+    this.getAccidentInfo();
+  }
 
+  getAccidentInfo() {
+    let data = {
+      "pageSize": this.pageSize,
+      "pageNumber": this.pageNumber
+    }
+    this.shoesMapService.getAccidentInfo(data).subscribe((res) => {
+      if (res.success) {
+        if (res.data !== null) {
+          this.list = res.data
+        } else {
+          this.list = []
+        }
+      }
+    })
   }
 
   getUserInfo() {

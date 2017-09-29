@@ -23,7 +23,7 @@
               <td><span>{{userInfo?.sex === 'M' ? '男' : '女'}}</span></td>
               <td><span>{{userInfo?.birdthday | pipeBirth}}</span></td>
               <td><span>{{userInfo?.createDt | date:'yyyy-MM-dd'}}</span></td>
-              <td><span>{{userInfo?.commissionerUserName?userInfo.commissionerUserName:'无'}}</span></td>
+              <td><span>{{userInfo.commissionerUserName?userInfo.commissionerUserName:'无'}}</span></td>
 
             </tr>
           </tbody>
@@ -55,7 +55,7 @@
               </thead>
               <tbody>
                 <tr *ngFor="let task of list">
-                  <td><span>{{task.missionName}}</span></td>
+                  <td><span>{{task.occurDt | date:'yyyy-MM-dd'}}</span></td>
                   <td><span>{{missionType[task.missionType]}}</span></td>
                 </tr>
               </tbody>
