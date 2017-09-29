@@ -18,14 +18,14 @@ export class RecordDetailComponent implements OnInit {
   public surveyInfo: any = [];
   public inspectInfo: any = [];
   public docOrderInfo: any = [];
-  public dateChoose: Array<string> = ['全部', '2014-9-1', '2015-9-1', '2017-09-9'];
+  public dateChoose: Array<string> = [];
   public docDate: any = '全部';
   public sendDate: string = '';
   constructor(public recordDetailService: RecordDetailService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    // this.customerId = this.route.snapshot.params['customerId'];
-    this.customerId = '1705101137488803263'
+    this.customerId = this.route.snapshot.params['customerId'];
+    // this.customerId = '1705101137488803263'
     this.initData();
   }
 
@@ -56,8 +56,12 @@ export class RecordDetailComponent implements OnInit {
   // 医嘱信息
   initDoctorOrderInfo() {
     this.recordDetailService.doctorAdviceInfo(this.customerId, this.sendDate).subscribe((res) => {
-      console.log(res)
-      this.docOrderInfo = res;
+      this.docOrderInfo = res.doctorOrdersList;
+      if (this.dateChoose.length === 0) {
+        this.dateChoose = res.timeList;
+        this.dateChoose.unshift('全部');
+      }
+
     })
   }
 
