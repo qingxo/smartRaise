@@ -30,7 +30,7 @@
         </table>
       </div>
     </div>
-
+    <app-beauty-date (fired)="shoeDate($event)"></app-beauty-date>
     <div class="maps-info">
       <div class="maps-head">
         定位轨迹
@@ -39,7 +39,7 @@
     </div>
 
 
-    <div [hidden]="list.length==0">
+    <div [hidden]="posList.length==0">
       <div class="normal-box">
         <div class="box-head">
           <span>跌倒记录</span>
@@ -54,9 +54,9 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let task of list">
-                  <td><span>{{task.occurDt | date:'yyyy-MM-dd'}}</span></td>
-                  <td><span>{{missionType[task.missionType]}}</span></td>
+                <tr *ngFor="let task of posList">
+                  <td><span>{{task.localDt}}</span></td>
+                  <td><span>{{task.longitude}},{{task.latitude}}</span></td>
                 </tr>
               </tbody>
             </table>
