@@ -59,7 +59,8 @@ export class ShoesMapComponent implements OnInit {
       'width': '52',
       'height': '52',
       'content': content,
-      'enableDragging': false
+      'enableDragging': false,
+      'icon': img === 'start' ? '/assets/images/icon-map-start.png' : '/assets/images/icon-map-normal.png'
     }
   }
 
@@ -103,7 +104,11 @@ export class ShoesMapComponent implements OnInit {
       return
     }
     for (let i = 0; i < this.list0.length; i++) {
-      this.markers.push(this.createMakders(this.list0[i]['longitude'], this.list0[i]['latitude'], this.list0[i]['localDt']));
+      if (i == 0) {
+        this.markers.push(this.createMakders(this.list0[i]['longitude'], this.list0[i]['latitude'], this.list0[i]['localDt'], 'start'));
+      } else {
+        this.markers.push(this.createMakders(this.list0[i]['longitude'], this.list0[i]['latitude'], this.list0[i]['localDt']));
+      }
       obj[this.list0[i]['longitude'] + ',' + this.list0[i]['latitude']] = 1
     }
     let keys = Object.keys(obj)
@@ -115,7 +120,11 @@ export class ShoesMapComponent implements OnInit {
     if (this.localPosLen > 1) {
       let obj2 = {};
       for (let i = 0; i < this.list1.length; i++) {
-        this.markers.push(this.createMakders(this.list1[i]['longitude'], this.list1[i]['latitude'], this.list1[i]['localDt']));
+        if (i === 0) {
+          this.markers.push(this.createMakders(this.list1[i]['longitude'], this.list1[i]['latitude'], this.list1[i]['localDt'], 'start'));
+        } else {
+          this.markers.push(this.createMakders(this.list1[i]['longitude'], this.list1[i]['latitude'], this.list1[i]['localDt']));
+        }
         obj2[this.list1[i]['longitude'] + ',' + this.list1[i]['latitude']] = 1
       }
       let keys = Object.keys(obj2)
