@@ -12,7 +12,7 @@ import * as moment from 'moment';
 })
 export class ShoesMapComponent implements OnInit {
 
-  opts: any = { center: {} };
+  opts: any = { center: { 'longitude': 121.506191, 'latitude': 31.245554 } };
   offlineOpts: OfflineOptions;
   userInfo: any = {};
   myAk: string = 'fhchSIWoAsUs65ZMsrDqrtMGgPYoSubW';
@@ -22,6 +22,7 @@ export class ShoesMapComponent implements OnInit {
   list1: Array<any> = [];
   list2: Array<any> = [];
   posList: Array<any> = [];
+  localPosLen: number = 0;  // 这是地图上鞋子的id的个数
   pageSize: number = 10;
   pageNumber: number = 1;
   mobile: string = "";
@@ -86,7 +87,7 @@ export class ShoesMapComponent implements OnInit {
         setStrokeWeight: 2,
         setStrokeOpacity: 0.4,
         setStrokeColor: 'blue',
-        setPath: [this.markersPos, this.mk2]
+        setPath: this.localPosLen > 1 ? [this.markersPos, this.mk2] : [this.markersPos]
       }
     };
 
@@ -98,6 +99,9 @@ export class ShoesMapComponent implements OnInit {
     this.markers = [];
     this.markersPos = [];
     let obj = {};
+    if (this.localPosLen === 0) {
+      return
+    }
     for (let i = 0; i < this.list0.length; i++) {
       this.markers.push(this.createMakders(this.list0[i]['longitude'], this.list0[i]['latitude'], this.list0[i]['localDt']));
       obj[this.list0[i]['longitude'] + ',' + this.list0[i]['latitude']] = 1
@@ -107,17 +111,19 @@ export class ShoesMapComponent implements OnInit {
       let tps = keys[i].split(',')
       this.markersPos.push([Number(tps[0]), Number(tps[1])])
     }
-    console.log(this.markersPos)
-    this.markersPos = [[120.242381, 30.470517],
-    [120.232366, 30.469067],
-    [120.242949, 30.467434],
-    [120.242396, 30.470517],
-    [120.242949, 30.467435]
-    ]
 
-    this.mk2 = [[120.242481, 30.470617],
-    [120.232766, 30.469267]]
-    console.log(this.markersPos)
+    if (this.localPosLen > 1) {
+      let obj2 = {};
+      for (let i = 0; i < this.list1.length; i++) {
+        this.markers.push(this.createMakders(this.list1[i]['longitude'], this.list1[i]['latitude'], this.list1[i]['localDt']));
+        obj2[this.list1[i]['longitude'] + ',' + this.list1[i]['latitude']] = 1
+      }
+      let keys = Object.keys(obj2)
+      for (let i = 0; i < keys.length; i++) {
+        let tps = keys[i].split(',')
+        this.mk2.push([Number(tps[0]), Number(tps[1])])
+      }
+    }
 
     this.createLines(parseFloat(this.list0[0]['longitude']), parseFloat(this.list0[0]['latitude']));
   }
@@ -155,9 +161,10 @@ export class ShoesMapComponent implements OnInit {
       if (res.success) {
         if (res.data.pMap) {
           let tmp = Object.keys(res.data.pMap);
+          this.localPosLen = tmp.length;
           if (tmp.length > 0) {
 
-            for (let i = 0; i < tmp.length; i++) {
+            for (let i = 0; i < this.localPosLen; i++) {
               if (i === 0) {
                 this.list0 = res.data.pMap[tmp[i]]
               } else if (i === 1) {
