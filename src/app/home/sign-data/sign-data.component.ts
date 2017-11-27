@@ -20,7 +20,7 @@ export class SignDataComponent implements OnInit {
   private list: Array<any> = [];
   private pagination: any;
   private totalCount: any;
-  private periodDay: any = 1;
+  private periodDay: any = 30;
   private userInfo: any = {};
   private totalPage: number;
   private pages: Array<any> = [];
@@ -74,6 +74,8 @@ export class SignDataComponent implements OnInit {
       case 1: this.periodDay = 7;
         break;
       case 2: this.periodDay = 30;
+        break;
+      case 3: this.periodDay = 365;
         break;
       default:
     }

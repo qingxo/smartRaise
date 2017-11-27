@@ -43,8 +43,8 @@
     </button>
       </div>
       <div class="modal-body">
-        <div class="line ">
-          <textarea name="name" rows="8" cols="40" [(ngModel)]="dealInfo" #txt="ngModel" required></textarea>
+        <div class="line " style="overflow:auto;padding:10px">
+          <textarea name="name" rows="8" cols="40" [(ngModel)]="dealInfo" #txt="ngModel" required style="width:100%"></textarea>
         </div>
         <div class="line error-tips" [hidden]='txt.valid || txt.untouched'>
           处理意见需要填写

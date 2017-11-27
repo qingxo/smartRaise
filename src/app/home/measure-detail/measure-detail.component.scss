@@ -1,0 +1,24 @@
+.measure-detail-info {
+  .lname {
+    display: block;
+    font-size: 18px;
+  }
+
+  .ll {
+    margin: 10px 20px 0 0;
+  }
+
+  .exc {
+    text-align: right;
+    margin: 10px 0;
+
+    a {
+      background-color: #693905;
+      color: white;
+      padding: 8px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+  }
+}

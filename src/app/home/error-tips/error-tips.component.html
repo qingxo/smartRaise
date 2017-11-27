@@ -2,6 +2,22 @@
   <div class="detail-content">
     <div class="highline">
       <div class="lf">
+        <div class="org" style="margin-right:45px">
+          <span>机构</span>
+          <select class="" name="" (change)="onChangeMonit($event.target.value)" [(ngModel)]="chooseGroupId">
+            <option  *ngFor="let item of chooseGroupList" value="{{item.socialWelfareId}}">{{item.socialWelfareName}}</option>
+          </select>
+        </div>
+        <div class="org" style="margin-right:45px">
+          <span>监测项目</span>
+          <select class="" name="" (change)="onChangeMonit($event.target.value)" [(ngModel)]="chooseMonitorId">
+            <option  *ngFor="let item of monitorList" value="{{item.id}}">{{item.name}}</option>
+          </select>
+        </div>
+        <div class="org range-time" style="margin-right:45px">
+          <span>日期</span>
+          <ng2-flatpickr [config]="exampleOptions" placeholder="请选择一个时间区域"></ng2-flatpickr>
+        </div>
         <app-search-line placeHolderValue="客户姓名、手机号、专员名" (search)="searchTable($event)"></app-search-line>
       </div>
     </div>
@@ -41,6 +57,9 @@
           </tr>
         </tbody>
       </table>
+      <div class="exc" *ngIf="list.length!=0">
+        <a href="api/webAbnormalHealth/outputExcel?socialWelfareId={{chooseGroupId}}&type={{chooseMonitorId}}&start={{dayStart}}&end={{dayEnd}}&query={{queryInfo}}">导出到Excel</a>
+      </div>
       <nothing [isHidden]="list.length!=0"></nothing>
 
       <app-pages [pages]=pages (pageInfo)="pageTurning($event)" [currentPage]=pageNumber [sum]=totalPage></app-pages>

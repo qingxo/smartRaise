@@ -51,10 +51,14 @@ import { CriticalValueComponent } from './critical-value/critical-value.componen
 import { StatisticsComponent } from './statistics/statistics.component';
 import { BarLinesComponent } from './bar-lines/bar-lines.component';
 import { CircleLineComponent } from './circle-line/circle-line.component';
-import { ShoesMapComponent } from './shoes-map';
-import { BaiduMapModule } from 'angular2-baidu-map';
-import { TumbleManageComponent } from './tumble-manage/tumble-manage.component';
-import { SleepReportComponent } from './sleep-report/sleep-report.component'; // import BaiduMapModule
+// import { ShoesMapComponent } from './shoes-map';
+// import { BaiduMapModule } from 'angular2-baidu-map';
+// import { TumbleManageComponent } from './tumble-manage/tumble-manage.component';
+import { SleepReportComponent } from './sleep-report/sleep-report.component';
+import { LoginInfoComponent } from './login-info/login-info.component';
+import { OrgManageComponent } from './org-manage/org-manage.component';
+import { ClientSearchComponent } from './client-search/client-search.component';
+import { MeasureDetailComponent } from './measure-detail/measure-detail.component'; // import BaiduMapModule
 
 @NgModule({
   imports: [
@@ -64,7 +68,7 @@ import { SleepReportComponent } from './sleep-report/sleep-report.component'; //
     ReactiveFormsModule,
     EchartsNg2Module,
     NgbModule,
-    BaiduMapModule,
+    // BaiduMapModule,
     RouterModule.forChild(ROUTER_CONFIG)
 
   ],
@@ -115,9 +119,13 @@ import { SleepReportComponent } from './sleep-report/sleep-report.component'; //
     StatisticsComponent,
     BarLinesComponent,
     CircleLineComponent,
-    ShoesMapComponent,
-    TumbleManageComponent,
-    SleepReportComponent
+    // ShoesMapComponent,
+    // TumbleManageComponent,
+    SleepReportComponent,
+    LoginInfoComponent,
+    OrgManageComponent,
+    ClientSearchComponent,
+    MeasureDetailComponent
   ],
   providers: []
 })

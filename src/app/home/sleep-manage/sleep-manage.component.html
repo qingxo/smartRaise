@@ -9,7 +9,7 @@
           </select>
         </div>
         <div class="equip">
-          <span>床用监测</span>
+          <span>床用监测设备</span>
           <select class="" (change)="onChange($event.target.value)" [(ngModel)]="choosedBed">
             <option value="-1">请选择</option>
             <option value="1">已绑定</option>
@@ -20,13 +20,13 @@
       </div>
     </div>
     <div class="table-info errorInfo">
-      <div class="group-info" [hidden]="list.length==0">
+      <!-- <div class="group-info" [hidden]="list.length==0">
         <div>{{groupNameShow(showGroupName)}}:</div>
         <div>
           <span>已绑床 {{totalSum['equipmentBindingCount']}}</span>
           <span>未绑床 {{totalSum['equipmentUnBindingCount']}}</span>
         </div>
-      </div>
+      </div> -->
       <table cellpadding="0" cellspacing="0" border="0" ng-show="taskProgress == 0" [hidden]="list.length==0">
         <thead>
           <tr>
@@ -38,7 +38,7 @@
             <td><span>注册时间</span></td>
             <td><span>身份证号</span></td>
             <td><span>健康服务专员</span></td>
-            <td><span>床用监测</span></td>
+            <td><span>床用监测设备</span></td>
             <td><span>操作</span></td>
           </tr>
         </thead>
@@ -88,7 +88,7 @@
         </span><span style="float: right;padding-right: 30px;" [hidden]="!list[itemTarget].mobile"><em style="color:#666666;font-style:normal">手机号码</em>{{list[itemTarget].mobile}}</span>
       </div>
       <div class="line">
-        <label for="">智能床用体征监测系统</label>
+        <label for="">智能床型号</label>
         <div class="inline beauty-sel ">
           <select class="" name="" style="min-width:154px" [(ngModel)]='sources'>
             <option *ngFor="let opt of bedType" value="{{opt.value}}">{{opt.name}}</option>
@@ -96,7 +96,7 @@
         </div>
       </div>
       <div class="line">
-        <label for="">智能床用体征监测系统编号</label>
+        <label for="">智能床编号</label>
         <div class="inline">
           <input class="nol" type="text" name="" value="" [(ngModel)]="smartBed">
         </div>

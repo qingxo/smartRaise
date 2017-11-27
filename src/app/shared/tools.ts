@@ -19,7 +19,7 @@ class Tools {
 
   initBtnShow(topLevel, secondLevel, btnKey) {
     if (!storage.get('menu')) {
-      return {}
+      return {};
     }
     const menu = eval(storage.get('menu'));
     let jurisdiction = [], myBtn: any;

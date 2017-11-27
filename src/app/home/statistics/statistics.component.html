@@ -1,6 +1,6 @@
 <div class="right-content-info statistics-info">
   <div class="fbchoose">
-    <app-line-btn [totalBtn]="[ '客户分类统计', '设备使用统计','订单数统计']" (btnInfo)="toogleChoosed($event)"></app-line-btn>
+    <app-line-btn [totalBtn]="[ '客户分类统计', '设备使用统计','便携体征测量统计']" (btnInfo)="toogleChoosed($event)"></app-line-btn>
   </div>
   <div class="detail-content">
 
@@ -23,14 +23,81 @@
     </div>
 
     <div class="" *ngIf="choosedBtn == 1">
+      <h2 class="title">统计信息</h2>
+      <div class="table-info table-statistics bg table-special">
+        <table cellpadding="0" cellspacing="0" border="0 " *ngIf="equipUseArray.length>0">
+          <thead>
+            <tr>
+              <td rowspan="2"><span>机构</span></td>
+              <td rowspan="2"><span>客户数</span></td>
+              <td colspan="2"><span>便携多体征检测设备</span></td>
+              <td colspan="3"><span>智能床用体征检测设备</span></td>
+            </tr>
+            <tr>
+              <td><span>绑定数</span></td>
+              <td><span>激活数</span></td>
+              <td><span>绑定数</span></td>
+              <!-- <td><span>异常数</span></td> -->
+              <!-- <td><span>断电数</span></td> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of equipUseArray;let index = index">
+              <td [class.disabled]="index==equipUseArray.length-1"><span (click)="getStatisticsDetails2(item)">{{item.organizationName}}</span></td>
+              <td><span>{{item.customerCount}}</span></td>
+              <td><span>{{item.manySignsCardCount}}</span></td>
+              <td><span>{{item.manySingCardOpenCount}}</span></td>
+              <td><span>{{item.smartBedCount}}</span></td>
+              <!-- <td><span>{{item.smartBedUnusualCount}}</span></td> -->
+              <!-- <td><span>{{item.smartBedOutageCount}}</span></td> -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- <h2 class="title">明细信息</h2>
+      <div class="statistics-detail-info clearfix">
+        <div class="item">桐乡市社会福利中心</div>
+        <div class="item">客户数&ensp;168</div>
+        <div class="item">便携体征：绑定数&ensp;155&emsp;激活数&ensp;128</div>
+        <div class="item">床用体征：绑定数&ensp;155&emsp;异常数&ensp;128&emsp;断电数&ensp;128</div>
+      </div>
       <div class="table-info bg">
+        <table cellpadding="0" cellspacing="0" border="0 " *ngIf="equipUseArray.length>0">
+          <thead>
+            <tr>
+              <td><span>姓名</span></td>
+              <td><span>手机号</span></td>
+              <td><span>性别</span></td>
+              <td><span>年龄</span></td>
+              <td><span>机构</span></td>
+              <td><span>身份证号</span></td>
+              <td><span>便捷检测</span></td>
+              <td><span>床用检测</span></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of equipUseArray">
+              <td><span>张志平</span></td>
+              <td><span>15158271600</span></td>
+              <td><span>男</span></td>
+              <td><span>81</span></td>
+              <td><span>杭州市社会福利中心</span></td>
+              <td><span>330121199101020332</span></td>
+              <td><span>1D4H8EA5C0000</span></td>
+              <td><span>A床(300021817264)</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <app-pages [pages]=pages (pageInfo)="pageTurning($event)" [currentPage]=pageNumber [sum]=totalPage></app-pages>
+      </div> -->
+      <!-- <div class="table-info bg">
         <table cellpadding="0" cellspacing="0" border="0 " *ngIf="equipUseArray.length>0">
           <thead>
             <tr>
               <td><span>机构</span></td>
               <td><span>客户数</span></td>
-              <td><span>便携式多体征检测系统</span></td>
-              <td><span>智能床用体征监测系统</span></td>
+              <td><span>多体征监测设备</span></td>
+              <td><span>床用监测设备</span></td>
             </tr>
           </thead>
           <tbody>
@@ -43,11 +110,45 @@
           </tbody>
         </table>
       </div>
-      <app-bar-lines topTitle="设备统计表" [serisesData]="equipArrays" [xData]="orgName" [legendData]="['客户数','便携式多体征检测系统','智能床用体征监测系统']"></app-bar-lines>
+      <app-bar-lines topTitle="设备统计表" [serisesData]="equipArrays" [xData]="orgName" [legendData]="['客户数','多体征监测设备','床用监测设备']"></app-bar-lines> -->
 
     </div>
     <div class="" *ngIf="choosedBtn ==2">
-      <div class="table-info bg">
+      <div class="search-bar">
+        测量时间
+        <div class="inline" style="position:relative">
+          <ng2-flatpickr [config]="startDateOptions" [setDate]="startDate"></ng2-flatpickr>
+        </div>
+        至
+        <div class="inline" style="position:relative">
+          <ng2-flatpickr [config]="endDateOptions" [setDate]="endDate"></ng2-flatpickr>
+        </div>
+        <button class="btn-search" (click)="showList()">统计</button>
+      </div>
+      <h2 class="title">统计信息</h2>
+      <div class="table-info bg table-special">
+        <table cellpadding="0" cellspacing="0" border="0 " *ngIf="orderList.length>0">
+          <thead>
+            <tr>
+              <td><span>机构</span></td>
+              <td><span>客户数</span></td>
+              <td><span>绑定数</span></td>
+              <td><span>已测量人数</span></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of orderList;let index = index">
+              <td [class.disabled]="index==orderList.length-1"><span (click)="getStatisticsDetails2(item)">{{item.organizationName}}</span></td>
+              <td><span>{{item.customerCount}}</span></td>
+              <td><span>{{item.boundCount}}</span></td>
+              <td><span [routerLink]="['/home/measuredetail',item.socialWelfareId,item.organizationName]">{{item.measurementCount}}</span></td>
+              <!-- <td><span>{{item.manySignsCardCount}}便捷多体征检测设备</span></td>
+              <td><span>{{item.smartBedCount}}智能床用体征检测设备</span></td> -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- <div class="table-info bg">
         <table cellpadding="0" cellspacing="0" border="0" *ngIf="orderList.length>0">
           <thead>
             <tr>
@@ -69,7 +170,52 @@
           </tbody>
         </table>
       </div>
-      <app-bar-lines topTitle="订单数统计" [serisesData]="equipArrays" [xData]="orgName" [legendData]="['客户数','多体征监测服务包','睡眠监测服务包','慢病管理服务包']"></app-bar-lines>
+      <app-bar-lines topTitle="订单数统计" [serisesData]="equipArrays" [xData]="orgName" [legendData]="['客户数','多体征监测服务包','睡眠监测服务包','慢病管理服务包']"></app-bar-lines> -->
+    </div>
+    <div *ngIf="choosedBtn ==1 || choosedBtn ==2">
+      <h2 class="title">明细信息</h2>
+      <div class="statistics-detail-info clearfix">
+        <!-- <div class="org">
+          <span>机构</span>
+          <select class="" name="" [(ngModel)]="groupName" (change)="onChange($event.target.value)">
+            <option  *ngFor="let item of groupList" value="{{item.socialWelfareId}}">{{item.socialWelfareName}}</option>
+          </select>
+        </div> -->
+        <div class="item">{{statistInfo.organizationName}}</div>
+        <div class="item" *ngIf="choosedBtn == 1">客户数&ensp;{{statistInfo.customerCount}}</div>
+        <div class="item" *ngIf="choosedBtn == 1">便携体征：绑定数&ensp;{{statistInfo.manySignsCardCount}}&emsp;激活数&ensp;{{statistInfo.manySingCardOpenCount}}</div>
+        <div class="item" *ngIf="choosedBtn == 1">床用体征：绑定数&ensp;{{statistInfo.smartBedCount}}&emsp;</div>
+        <div class="item" *ngIf="choosedBtn == 2">客户数&ensp;{{statistInfo.customerCount}}&emsp;绑定数&ensp;{{statistInfo.boundCount}}&emsp;已测量人数&ensp;{{statistInfo.measurementCount}}</div>
+      </div>
+      <div class="table-info bg">
+        <table cellpadding="0" cellspacing="0" border="0 " *ngIf="statisticsDetails.length>0">
+          <thead>
+            <tr>
+              <td><span>姓名</span></td>
+              <td><span>手机号</span></td>
+              <td><span>性别</span></td>
+              <td><span>年龄</span></td>
+              <td><span>机构</span></td>
+              <td><span>身份证号</span></td>
+              <td><span>便携检测</span></td>
+              <td><span>床用检测</span></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of statisticsDetails">
+              <td><span>{{item.name}}</span></td>
+              <td><span>{{item.mobile}}</span></td>
+              <td><span>{{item.sex=='F'?'女':'男'}}</span></td>
+              <td><span>{{item.birdthday}}</span></td>
+              <td><span>{{item.socialWelfareName}}</span></td>
+              <td><span>{{item.cardId}}</span></td>
+              <td><span>{{item.cardNo}}</span></td>
+              <td><span>{{item.equipmentNo}}</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <app-pages [pages]=pages (pageInfo)="pageTurning($event)" [currentPage]=pageNumber [sum]=totalPage></app-pages>
+      </div>
     </div>
   </div>
 </div>

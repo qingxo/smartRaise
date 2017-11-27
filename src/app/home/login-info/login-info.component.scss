@@ -1,0 +1,12 @@
+.login-info-page {
+  .info-org {
+    text-align: left;
+    margin-top: 20px;
+    padding: 5px 20px;
+    font-size: 14px;
+
+    & > span:nth-child(2) {
+      margin-left: 50px;
+    }
+  }
+}

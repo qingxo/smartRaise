@@ -20,5 +20,17 @@ export class ErrorTipsService extends BaseService {
     return this.postInfo('api/webAbnormalHealth/updateRemind', storage.serialize(data));
   }
 
+  //导出到excel
+  outPutExc(data) {
+    return this.postInfo('api/webAbnormalHealth/outputExcel', storage.serialize(data));
+  }
+
+  testCall() {
+    return this.http.post('http://localhost:5000/dd/testbook.doc', '').map((res) => { return res.json() })
+  }
+
+
+
+
 
 }

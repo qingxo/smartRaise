@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TumbleManageService } from './tumble-manage.service'
-import storage from '../../shared/storage'
+import { TumbleManageService } from './tumble-manage.service';
+import storage from '../../shared/storage';
 @Component({
   selector: 'app-tumble-manage',
   templateUrl: './tumble-manage.component.html',

@@ -2,12 +2,127 @@
   min-width: 1200px;
   padding: 20px;
 
+  h2.title {
+    margin: 10px 0 4px;
+    font-size: 17px;
+    text-align: left;
+    padding: 10px 0;
+  }
+
+  .line-btn span:last-child {
+    width: 140px !important;
+  }
+
+  .detail-content .table-info.table-statistics table thead tr td {
+    padding: 0 !important;
+  }
+
+  .table-info {
+    padding: 0 !important;
+
+    &.table-special {
+      tbody tr td:first-child,
+      tbody tr td:last-child {
+        cursor: pointer;
+
+        span:hover {
+          color: #FECA00;
+        }
+
+        &.disabled {
+          cursor: default;
+
+          span:hover {
+            color: #333;
+          }
+        }
+      }
+    }
+  }
+
+  .statistics-detail-info {
+    margin-bottom: 10px;
+
+    .org {
+      float: left;
+      margin: -2px 0 0;
+    }
+
+    .item {
+      position: relative;
+      float: left;
+      padding: 0 20px;
+      font-size: 15px;
+
+      &:after {
+        position: absolute;
+        display: block;
+        content: '';
+        top: 4px;
+        bottom: 4px;
+        left: 0;
+        width: 1px;
+        background-color: #aaa;
+      }
+
+      &:first-child {
+        padding-left: 0;
+
+        &:after {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .search-bar {
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: -10px;
+
+    .inline {
+      display: inline-block;
+
+      .ng2-flatpickr-input {
+        background: #fff url("/assets/images/calender-i.png") right 0 no-repeat;
+        background-size: 30px 30px;
+        width: 200px;
+        height: 30px;
+        border: 1px solid #d2d2d2;
+        border-radius: 4px;
+        color: #333333;
+        padding: 2px 4px;
+
+        &:focus {
+          border: 1px solid #efca00;
+        }
+      }
+    }
+  }
+
+  .btn-search {
+    padding: 4px 10px;
+    border: 1px solid rgba(47, 64, 6, 0.7);
+    border-radius: 3px;
+    cursor: pointer;
+    margin-right: 20px;
+    font-size: 14px;
+    background-color: #6A4307;
+    color: white;
+    outline: none;
+
+    &:active,
+    &:hover {
+      background-color: #472D05;
+    }
+  }
+
   .fbchoose {
     // margin: 20px;
   }
 
   .org {
-    display: block;
+    display: block !important;
     margin: 15px 0 50px;
     text-align: left;
 

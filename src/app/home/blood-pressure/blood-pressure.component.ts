@@ -88,7 +88,7 @@ export class BloodPressureComponent implements OnInit, OnChanges {
       },
       legend: {
         data: [
-          '舒张压', '收缩压', '心率'
+          '收缩压', '舒张压', '心率'
         ],
         right: '2%'
       },
@@ -105,6 +105,11 @@ export class BloodPressureComponent implements OnInit, OnChanges {
       },
       series: [
         {
+          name: '收缩压',
+          type: 'line',
+          data: this.bloodPressureHigh
+        },
+        {
           name: '舒张压',
           type: 'line',
           data: this.bloodPressureLower,
@@ -119,10 +124,6 @@ export class BloodPressureComponent implements OnInit, OnChanges {
               }
             ]
           }
-        }, {
-          name: '收缩压',
-          type: 'line',
-          data: this.bloodPressureHigh
         }, {
           name: '心率',
           type: 'line',

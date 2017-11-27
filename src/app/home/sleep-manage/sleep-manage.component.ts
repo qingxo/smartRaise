@@ -39,7 +39,7 @@ export class SleepManageComponent implements OnInit {
   private groupPlanName = '';
   private showGroupName = '';
   private choosedBed = '-1';
-  private totalSum: any = {};
+  // private totalSum: any = {};
   constructor(private sleepManageService: SleepManageService, private signManageService: SignManageService, private clientService: ClientService, private modalService: NgbModal) { }
 
   ngOnInit() {
@@ -74,6 +74,7 @@ export class SleepManageComponent implements OnInit {
         this.groupPlanList = res.data.list;
       }
       this.groupPlanList.unshift({ 'socialWelfareId': '', 'socialWelfareName': '请选择' });
+      this.groupPlanList.push({ 'socialWelfareId': '无机构', 'socialWelfareName': '无机构' });
       this.groupPlanName = this.groupPlanList[0].socialWelfareId;
     });
   }
@@ -203,7 +204,9 @@ export class SleepManageComponent implements OnInit {
       'pageNum': this.pageNumber,
       'query': this.queryInfo,
       'userId': storage.get('state')['userId'],
-      'socialWelfareId': this.groupPlanName,
+      // 'socialWelfareId': this.groupPlanName,
+      'socialWelfareId': this.groupPlanName === '无机构' ? '' : this.groupPlanName,
+      'flag': this.groupPlanName === '无机构' ? '0' : '',
       'type': '3'
     };
 
@@ -227,9 +230,9 @@ export class SleepManageComponent implements OnInit {
       'type': '3'
     };
 
-    this.signManageService.countStatistics(tmpData).subscribe((res) => {
-      this.totalSum = res.counts;
-    });
+    // this.signManageService.countStatistics(tmpData).subscribe((res) => {
+    //   this.totalSum = res.counts;
+    // });
 
   }
 

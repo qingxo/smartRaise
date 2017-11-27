@@ -48,8 +48,8 @@
           <thead>
             <tr>
               <td><span>测量时间</span></td>
-              <td><span>舒张压(mmHG)</span></td>
               <td><span>收缩压(mmHG)</span></td>
+              <td><span>舒张压(mmHG)</span></td>
               <td><span>心率(bpm)</span></td>
               <td><span>来源</span></td>
             </tr>
@@ -57,8 +57,8 @@
           <tbody>
             <tr *ngFor="let item of list">
               <td><span>{{item.measurementTime}}</span></td>
-              <td><span>{{item.stretchPressure}}</span></td>
               <td><span>{{item.systolicPressure}}</span></td>
+              <td><span>{{item.stretchPressure}}</span></td>   
               <td><span>{{item.heartRateValue}}</span></td>
               <td><span>{{item.sources == '0'?'自己输入':item.sources=='1'?'专员输入':'设备测量'}}</span></td>
             </tr>

@@ -1,0 +1,52 @@
+<div class="right-content-info measure-detail-info">
+  <div class="detail-content">
+    <div class="highline" style="text-align:left;height:70px;">
+      <div class="lname" style="display:block">
+        {{currentOrg}}
+      </div>
+      <div class="lf" style="padding:0">
+        <div class="ll org">
+          <label for="times">时间</label>
+          <select class="" name="times" [(ngModel)]="measureTime" (change)="startSearch($event)">
+            <option value="3">全部</option>
+            <option value="1">本周</option>
+            <option value="2">本月</option>
+          </select>
+        </div>
+        <div class="ll org">
+          <label for="">监测项目</label>
+          <select class="" name="" [(ngModel)]="measureItem" (change)="startSearch($event)">
+            <option value="{{item.sign}}" *ngFor="let item of searchList;let index = index">{{item.name}}</option>
+          </select>
+        </div>
+      </div>
+
+    </div>
+    <div class="table-info">
+      <table cellpadding="0" cellspacing="0" border="0" [hidden]="list.length==0">
+        <thead>
+          <tr>
+            <td><span>测量时间</span></td>
+            <td><span>客户姓名</span></td>
+            <td><span>监测项目</span></td>
+            <td><span>测量值</span></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of list;let index  =index">
+            <td><span>{{item.occurDt | date:'yyyy-MM-dd'}}</span></td>
+            <td><span>{{item.name}}</span></td>
+            <td><span>{{item.signTypeName}}</span></td>
+            <td><span>{{item.signTypeVal}}</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <nothing [isHidden]="list.length!=0"></nothing>
+      <div class="exc" *ngIf="list.length!=0">
+        <a href="api/statisticalStatement/outputExcel?socialWelfareId={{socialWelfareId}}&signType={{measureItem}}&timeType={{measureTime}}">导出到Excel</a>
+      </div>
+      <app-pages [pages]=pages (pageInfo)="pageTurning($event)" [currentPage]=pageNumber [sum]=totalPage></app-pages>
+
+    </div>
+  </div>
+</div>

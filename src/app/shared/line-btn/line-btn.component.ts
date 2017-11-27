@@ -10,6 +10,7 @@ export class LineBtnComponent implements OnInit {
   @ViewChild('kk') el: ElementRef;
   @Input() totalBtn: Array<any> = ['one', 'two'];
   @Input() smartWidth = '100';
+  @Input() chooseIndex = 0;
   @Output() btnInfo = new EventEmitter<any>();
   constructor(private elRef: ElementRef, private renderer: Renderer) { }
 

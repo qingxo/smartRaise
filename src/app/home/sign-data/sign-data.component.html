@@ -39,10 +39,10 @@
         <div class="box-head-line">监测数据</div>
         <div class="box-tools">
           <div class="tools-other" style="display:inline-block">
-            <app-line-btn [totalBtn]="['最近一天','最近七天','最近一月']" (btnInfo)="changePeriodDay($event)"></app-line-btn>
+            <app-line-btn [totalBtn]="['最近一天','最近七天','最近一月','全部']" (btnInfo)="changePeriodDay($event)" [chooseIndex]='2'></app-line-btn>
           </div>
           <div class="tools-all" style="display:inline-block">
-            <i [routerLink]="['/home/monitorlist',userId]" style="display:inline-block;text-align:center">全部</i>
+            <i [routerLink]="['/home/monitorlist',userId]" style="display:inline-block;text-align:center;background-color:#8b572a;color:white;">数据列表</i>
           </div>
 
         </div>

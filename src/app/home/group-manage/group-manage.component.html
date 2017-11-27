@@ -27,6 +27,7 @@
 
             <td><span class="opt">
                <em (click)="showTpl(i,groupUI)">编辑</em>
+               <!-- <em [routerLink]="['/home/loginInfo',item.socialWelfareId]">登录日志</em> -->
                <em (click)="handleDel(item.socialWelfareId)" class="del">删除</em>
             </span></td>
           </tr>
@@ -103,6 +104,23 @@
             <input type="text" name="" value="" [(ngModel)]="address">
           </div>
         </div>
+        <div class="lf dis-in">
+          <label for="">客户经理</label>
+          <div class="inline sex-opt">
+            <input type="text" name="" value="" [(ngModel)]="manager">
+          </div>
+        </div>
+        <div class="lf dis-in">
+          <label for="">电话</label>
+          <div class="inline sex-opt">
+            <input type="number" name="" value="" [(ngModel)]="managerMobile" [ngClass]="{true:'redBorder',false:''}[errorManagerMobile.length>1]">
+          </div>
+        </div>
+        <div class="error" [ngClass]="{true:'error-true',false:''}[errorManagerMobile.length>1]">
+          <span></span>
+          <span class="sec">{{errorManagerMobile}}</span>
+        </div>
+
         <div class="lf dis-bl">
           其他联系人
         </div>

@@ -31,7 +31,7 @@ export class SignManageComponent implements OnInit {
   private groupPlanName: string;
   private choosedSocialWelfare = '';
   private choosedCard = '-1';
-  private totalCount: any = {};
+  // private totalCount: any = {};
   constructor(private signManageService: SignManageService) { }
 
   ngOnInit() {
@@ -66,6 +66,7 @@ export class SignManageComponent implements OnInit {
         this.groupPlanList = res.data.list;
       }
       this.groupPlanList.unshift({ 'socialWelfareId': '', 'socialWelfareName': '请选择' });
+      this.groupPlanList.push({ 'socialWelfareId': '无机构', 'socialWelfareName': '无机构' });
       this.groupPlanName = this.groupPlanList[0].socialWelfareId;
     });
   }
@@ -76,7 +77,8 @@ export class SignManageComponent implements OnInit {
       'pageNum': this.pageNumber,
       'query': this.queryInfo,
       'userId': storage.get('state')['userId'],
-      'socialWelfareId': this.choosedSocialWelfare,
+      'socialWelfareId': this.choosedSocialWelfare === '无机构' ? '' : this.choosedSocialWelfare,
+      'flag': this.choosedSocialWelfare === '无机构' ? '0' : '',
       'type': '2'
     };
     switch (this.choosedCard) {
@@ -110,9 +112,9 @@ export class SignManageComponent implements OnInit {
       'type': '2'
     };
 
-    this.signManageService.countStatistics(tmpData).subscribe((res) => {
-      this.totalCount = res.counts;
-    });
+    // this.signManageService.countStatistics(tmpData).subscribe((res) => {
+    //   this.totalCount = res.counts;
+    // });
 
 
   }

@@ -24,25 +24,25 @@ import { AccountDialogsComponent } from '../account-dialogs';
 })
 export class ClientComponent implements OnInit {
 
-  private clientHead: string[] = [];
-  private operate = '操作';
-  private listData: Array<any> = [];
-  private listName: Array<any> = [];
-  private pages: Array<any> = [];
-  private pageSize = 10;
-  private pageNumber = 1;
-  private queryInfo = '';
-  private totalPage: number;
-  private clientBtn: any;
-  private closeResult: string;
-  private modalRef: any;
-  private itemTarget = 0; // 用户点击的列的值
-  private smartBed: string;
-  private sources = 'A'; // 智能床默认值
-  private healthpersonlist: Array<any> = []; // 健康专员列表
-  private healthCarePerson: string; // 用户默认的健康专员
-  private role: number;
-  private bedType: Array<any> = [
+  clientHead: string[] = [];
+  operate = '操作';
+  listData: Array<any> = [];
+  listName: Array<any> = [];
+  pages: Array<any> = [];
+  pageSize = 10;
+  pageNumber = 1;
+  queryInfo = '';
+  totalPage: number;
+  clientBtn: any;
+  closeResult: string;
+  modalRef: any;
+  itemTarget = 0; // 用户点击的列的值
+  smartBed: string;
+  sources = 'A'; // 智能床默认值
+  healthpersonlist: Array<any> = []; // 健康专员列表
+  healthCarePerson: string; // 用户默认的健康专员
+  role: number;
+  bedType: Array<any> = [
     {
       'name': '智能床A',
       'value': 'A'
@@ -51,42 +51,42 @@ export class ClientComponent implements OnInit {
       'value': 'B'
     }
   ];
-  private realname = '';
-  private mobile = null;
-  private sex = '';
-  private userName = '';
-  private weight = '';
-  private height = '';
-  private email = '';
-  private address = '';
-  private remark = '';
-  private birdthday = '';
-  private relationShip = '';
-  private cardId = '';
-  private checkList = [];
-  private myGroup = [];
-  private myGroupName = [];
-  private isEdit = false;
-  private commissionerUserId: string;
-  private group: Array<any>; // 监护人列表
-  private helpList: Array<any>;
-  private queryHelpInfo: string;
+  realname = '';
+  mobile = null;
+  sex = '';
+  userName = '';
+  weight = '';
+  height = '';
+  email = '';
+  address = '';
+  remark = '';
+  birdthday = '';
+  relationShip = '';
+  cardId = '';
+  checkList = [];
+  myGroup = [];
+  myGroupName = [];
+  isEdit = false;
+  commissionerUserId: string;
+  group: Array<any>; // 监护人列表
+  helpList: Array<any>;
+  queryHelpInfo: string;
 
-  private errorRealname = '';
-  private errorCardId = '';
-  private errorMobile = '';
-  private errorHeight = '';
-  private errorWeight = '';
-  private bothhw = '';
-  private bothNumber = '';
-  private provinces: Array<any> = [];
-  private cities: Array<any> = [];
-  private streets: Array<any> = [];
-  private global_tips = '请选择=-1';
-  private choosedProvince: string = this.global_tips;
-  private choosedCities: string = this.global_tips;
-  private choosedStreets: string = this.global_tips;
-  private exampleOptions: FlatpickrOptions = {
+  errorRealname = '';
+  errorCardId = '';
+  errorMobile = '';
+  errorHeight = '';
+  errorWeight = '';
+  bothhw = '';
+  bothNumber = '';
+  provinces: Array<any> = [];
+  cities: Array<any> = [];
+  streets: Array<any> = [];
+  global_tips = '请选择=-1';
+  choosedProvince: string = this.global_tips;
+  choosedCities: string = this.global_tips;
+  choosedStreets: string = this.global_tips;
+  exampleOptions: FlatpickrOptions = {
     enableTime: false,
     static: true,
     time_24hr: true,
@@ -95,15 +95,15 @@ export class ClientComponent implements OnInit {
     onChange: this.changeBirthday.bind(this),
     onClose: this.closeTime.bind(this)
   };
-  private birthTime: any;
-  private chameleon = 'inactive';
-  private fly = 0;
-  private groupPlanList: Array<any> = [];
-  private chooseGroupList: Array<any> = [];
-  private groupPlanName: string;
-  private chooseGroupId = '';
-  private choosedPkg = '请选择';
-  private pkgList: Array<any> = [];
+  birthTime: any;
+  chameleon = 'inactive';
+  fly = 0;
+  groupPlanList: Array<any> = [];
+  chooseGroupList: Array<any> = [];
+  groupPlanName: string;
+  chooseGroupId = '';
+  choosedPkg = '请选择';
+  pkgList: Array<any> = [];
   constructor(private clientService: ClientService, private groupManageService: GroupManageService, private servicePackageService: ServicePackageService, private modalService: NgbModal) { }
   changeMe() {
     this.chameleon === 'inactive' ? this.chameleon = 'active' : this.chameleon = 'inactive';
@@ -220,6 +220,7 @@ export class ClientComponent implements OnInit {
         this.chooseGroupList = Array.from(res.data.list);
       }
       this.chooseGroupList.unshift({ 'socialWelfareId': '', 'socialWelfareName': '请选择' });
+      this.chooseGroupList.push({ 'socialWelfareId': '无机构', 'socialWelfareName': '无机构' });
       this.groupPlanName = this.groupPlanList[0].socialWelfareId;
     });
   }
@@ -567,7 +568,8 @@ export class ClientComponent implements OnInit {
       'userId': storage.get('state')['userId'],
       'type': '1',
       'servicePackName': this.choosedPkg === '请选择' ? '' : this.choosedPkg,
-      'socialWelfareId': this.chooseGroupId
+      'socialWelfareId': this.chooseGroupId === '无机构' ? '' : this.chooseGroupId,
+      'flag': this.chooseGroupId === '无机构' ? '0' : ''
     };
     this.clientService.clientList(data).subscribe(
       (res) => {

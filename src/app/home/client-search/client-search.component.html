@@ -1,0 +1,54 @@
+<div class="right-content-info client-search-info">
+  <div class="detail-content">
+    <div class="highline" style="text-align:left;height:70px;">
+      <div class="lname" style="display:block">
+        {{currentOrg}}
+      </div>
+      <div class="ll">
+        <span>当前客户数量:{{currentClientNumber}}</span>
+      </div>
+      <div class="ll">
+        <span>总计客户数量:{{totalClientNumber}}</span>
+      </div>
+      <div class="ll">
+        <span>离院客户数量:{{leaveClientNumber}}</span>
+      </div>
+    </div>
+    <div class="table-info">
+      <table cellpadding="0" cellspacing="0" border="0" [hidden]="list.length==0">
+        <thead>
+          <tr>
+            <td><span>客户姓名</span></td>
+            <td><span>手机号</span></td>
+            <td><span>性别</span></td>
+            <td><span>年龄</span></td>
+            <td><span>注册时间</span></td>
+            <td><span>身份证号</span></td>
+            <td><span>健康服务专员</span></td>
+            <td><span>在院/离院状态</span></td>
+            <td><span>入院日期</span></td>
+            <td><span>离院日期</span></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of list;let index  =index">
+            <td><span>{{item.name}}</span></td>
+            <td><span>{{item.mobile}}</span></td>
+            <td><span>{{item.sex=='F'?'女':'男'}}</span></td>
+            <td><span>{{item.birdthday | pipeBirth}}</span></td>
+            <td><span>{{item.createDt}}</span></td>
+            <td><span>{{item.cardId}}</span></td>
+            <td><span>{{item.healthPerson}}</span></td>
+            <td><span>{{item.custStatus=='2'?'在院':'离院'}}</span></td>
+            <td><span>{{item.admissionTime}}</span></td>
+            <td><span>{{item.dischargeTime || '--'}}</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <nothing [isHidden]="list.length!=0"></nothing>
+
+      <app-pages [pages]=pages (pageInfo)="pageTurning($event)" [currentPage]=pageNumber [sum]=totalPage></app-pages>
+
+    </div>
+  </div>
+</div>

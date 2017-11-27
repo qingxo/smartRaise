@@ -14,7 +14,8 @@ export class SignManageService extends BaseService {
     return this.postInfo('api/socialWelfare/listByPage', storage.serialize(data));
   }
 
-  countStatistics(data) {
-    return this.postInfo('api/customer/countOfBinding', storage.serialize(data));
-  }
+  // 统计信息
+  // countStatistics(data) {
+  //   return this.postInfo('api/customer/countOfBinding', storage.serialize(data));
+  // }
 }

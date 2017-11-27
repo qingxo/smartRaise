@@ -11,40 +11,43 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   providers: [GroupManageService]
 })
 export class GroupManageComponent implements OnInit {
-  private pageSize = 10;
-  private pageNumber = 1;
-  private queryInfo = '';
-  private list: Array<any> = [];
-  private pages = 1;
-  private totalPage: number;
-  private delItemId: number;
-  private itemTarget: number;
-  private modalRef: any;
-  private closeResult: string;
+  pageSize = 10;
+  pageNumber = 1;
+  queryInfo = '';
+  list: Array<any> = [];
+  pages = 1;
+  totalPage: number;
+  delItemId: number;
+  itemTarget: number;
+  modalRef: any;
+  closeResult: string;
 
-  private groupCode: string;
-  private groupName: string;
-  private connectPeople: string;
-  private mobile: string;
-  private address: string;
+  groupCode: string;
+  groupName: string;
+  connectPeople: string;
+  mobile: string;
+  address: string;
+  manager: string;
+  managerMobile: number;
 
-  private errorGroupCode = '';
-  private errorAddress = '';
-  private errorConnectPeople = '';
-  private errorGroupName = '';
-  private bothGroup = '';
-  private bothInfo = '';
-  private errorMobile = '';
-  private isEdit = false;
-  private contacts: Array<any> = [];
-  private errorName = '';
-  private provinces: Array<any> = [];
-  private cities: Array<any> = [];
-  private streets: Array<any> = [];
-  private global_tips = '请选择=-1';
-  private choosedProvince: string = this.global_tips;
-  private choosedCities: string = this.global_tips;
-  private choosedStreets: string = this.global_tips;
+  errorGroupCode = '';
+  errorAddress = '';
+  errorConnectPeople = '';
+  errorGroupName = '';
+  errorManagerMobile = '';
+  bothGroup = '';
+  bothInfo = '';
+  errorMobile = '';
+  isEdit = false;
+  contacts: Array<any> = [];
+  errorName = '';
+  provinces: Array<any> = [];
+  cities: Array<any> = [];
+  streets: Array<any> = [];
+  global_tips = '请选择=-1';
+  choosedProvince: string = this.global_tips;
+  choosedCities: string = this.global_tips;
+  choosedStreets: string = this.global_tips;
   constructor(private groupManageService: GroupManageService, private modalService: NgbModal) { }
 
   ngOnInit() {
@@ -120,6 +123,8 @@ export class GroupManageComponent implements OnInit {
       this.connectPeople = this.list[index]['contact'];
       this.address = this.list[index]['address'];
       this.mobile = this.list[index]['tel'];
+      this.manager = this.list[index]['managerName'];
+      this.managerMobile = this.list[index]['managerTel'];
       const code = this.list[index].addressCode;
       this.cities = [];
       this.streets = [];
@@ -217,9 +222,11 @@ export class GroupManageComponent implements OnInit {
     this.errorGroupName = '';
     this.errorConnectPeople = '';
     this.errorMobile = '';
+    this.errorManagerMobile = '';
     this.errorAddress = '';
     this.bothGroup = '';
     this.bothInfo = '';
+
     this.errorName = '';
     if (!this.groupName) {
       this.errorGroupName = '机构名必填';
@@ -235,12 +242,23 @@ export class GroupManageComponent implements OnInit {
 
     }
 
+    if (this.managerMobile) {
+      if (this.managerMobile.toString().length > 18) {
+        if (!tools.checkMobile(this.managerMobile)) {
+          this.errorManagerMobile = '电话号码太长';
+        }
+      }
+
+    }
+
+
+
     if (!this.groupCode) {
       this.errorGroupCode = '机构代码必填';
       this.bothGroup = 'xxx';
     }
 
-    if (this.bothGroup !== '' || this.bothInfo !== '') {
+    if (this.bothGroup !== '' || this.bothInfo !== '' || this.errorManagerMobile !== '') {
       return;
     }
 
@@ -270,7 +288,9 @@ export class GroupManageComponent implements OnInit {
       'city': this.choosedCities.split('=')[0] === '请选择' ? '' : this.choosedCities.split('=')[0],
       'district': this.choosedStreets.split('=')[0] === '请选择' ? '' : this.choosedStreets.split('=')[0],
       'addressCode': this.choosedProvince.split('=')[1] + ',' + this.choosedCities.split('=')[1] + ',' + this.choosedStreets.split('=')[1],
-      'socialWelfareContact': JSON.stringify(tmp)
+      'socialWelfareContact': JSON.stringify(tmp),
+      'managerName': this.manager,
+      'managerTel': this.managerMobile
     };
 
     if (this.isEdit) {

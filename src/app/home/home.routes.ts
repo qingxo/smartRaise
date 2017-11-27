@@ -26,9 +26,13 @@ import { SignManageComponent } from './sign-manage';
 import { SignDataComponent } from './sign-data';
 import { CriticalValueComponent } from './critical-value';
 import { StatisticsComponent } from './statistics';
-import { ShoesMapComponent } from './shoes-map';
-import { TumbleManageComponent } from './tumble-manage';
+// import { ShoesMapComponent } from './shoes-map';
+// import { TumbleManageComponent } from './tumble-manage';
 import { SleepReportComponent } from './sleep-report';
+import { LoginInfoComponent } from './login-info';
+import { OrgManageComponent } from './org-manage';
+import { ClientSearchComponent } from './client-search';
+import { MeasureDetailComponent } from './measure-detail';
 export const ROUTER_CONFIG: Routes = [
   {
     path: '', component: HomeComponent,
@@ -62,10 +66,13 @@ export const ROUTER_CONFIG: Routes = [
       { path: 'signdata/:userId', component: SignDataComponent },
       { path: 'crisis', component: CriticalValueComponent },
       { path: 'statistics', component: StatisticsComponent },
-      { path: 'shoesmap', component: ShoesMapComponent },
-      { path: 'tumble', component: TumbleManageComponent },
-      { path: 'sleepreport', component: SleepReportComponent }
-
+      // { path: 'shoesmap', component: ShoesMapComponent },
+      // { path: 'tumble', component: TumbleManageComponent },
+      { path: 'sleepreport', component: SleepReportComponent },
+      { path: 'loginInfo/:socialWelfareId', component: LoginInfoComponent },
+      { path: 'organizationManagement', component: OrgManageComponent },
+      { path: 'clientsearch/:socialWelfareId/:socialWelfareName', component: ClientSearchComponent },
+      { path: 'measuredetail/:socialWelfareId/:socialWelfareName', component: MeasureDetailComponent }
     ]
   }
 ];
