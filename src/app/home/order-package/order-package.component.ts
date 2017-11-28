@@ -13,14 +13,14 @@ import { PkginfoDialogComponent } from '../pkginfo-dialog';
 })
 export class OrderPackageComponent implements OnInit {
 
-  private userId = '';
-  private pageSize = 100;
-  private pageNumber = 1;
-  private personBuyPkg: Array<any> = [];
-  private personInfo: any = {};
-  private pages: Array<any> = [];
-  private targetItem: object = {};
-  private targetIndex: number = -1;
+  userId = '';
+  pageSize = 100;
+  pageNumber = 1;
+  personBuyPkg: Array<any> = [];
+  personInfo: any = {};
+  pages: Array<any> = [];
+  targetItem: object = {};
+  targetIndex: number = -1;
 
   constructor(private orderPackageService: OrderPackageService, private route: ActivatedRoute, private viewContainerRef: ViewContainerRef, private componentFactoryResolver: ComponentFactoryResolver) { }
 

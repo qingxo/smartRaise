@@ -10,20 +10,20 @@ import tools from '../../shared/tools';
   providers: [MyTaskService]
 })
 export class MyTaskComponent implements OnInit {
-  private clientHead: string[] = [];
-  private operate = '操作';
-  private list: Array<any> = [];
-  private pages: Array<any> = [];
-  private pageSize = 10;
-  private pageNumber = 1;
-  private totalPage: number;
-  private missionList: Array<any> = [];
-  private taskId: any = -1;
-  private taskProgress = 0; // 0 未完成任务，1 已完成任务
-  private tableProgress = 0; // 0 健康监测，1 健康报表 ， 2 建档任务
-  private missionName = 'missionName';
-  private myTaskBtn: any;
-  private queryInfo: string;
+  clientHead: string[] = [];
+  operate = '操作';
+  list: Array<any> = [];
+  pages: Array<any> = [];
+  pageSize = 10;
+  pageNumber = 1;
+  totalPage: number;
+  missionList: Array<any> = [];
+  taskId: any = -1;
+  taskProgress = 0; // 0 未完成任务，1 已完成任务
+  tableProgress = 0; // 0 健康监测，1 健康报表 ， 2 建档任务
+  missionName = 'missionName';
+  myTaskBtn: any;
+  queryInfo: string;
   @ViewChild('tables') el: ElementRef;
   constructor(private myTaskService: MyTaskService, private elRef: ElementRef, private router: Router) { }
 

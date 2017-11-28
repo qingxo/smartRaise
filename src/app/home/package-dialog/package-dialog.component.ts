@@ -12,17 +12,17 @@ import storage from '../../shared/storage';
 })
 export class PackageDialogComponent implements OnInit, AfterViewInit {
 
-  private closeResult: string;
-  private modalRef: any;
-  private servicePackName = '';
-  private sources = false;
-  private imageSrc = '';
-  private remark = '';
-  private currentPrice: number;
-  private oldPrice: number;
-  private tasks: Array<any> = [];
-  private taskName: Array<any> = [];
-  private taskTimes: Array<any> = [
+  closeResult: string;
+  modalRef: any;
+  servicePackName = '';
+  sources = false;
+  imageSrc = '';
+  remark = '';
+  currentPrice: number;
+  oldPrice: number;
+  tasks: Array<any> = [];
+  taskName: Array<any> = [];
+  taskTimes: Array<any> = [
     {
       'name': '一次性任务',
       'value': 0
@@ -31,7 +31,7 @@ export class PackageDialogComponent implements OnInit, AfterViewInit {
       'value': 1
     }
   ];
-  private taskCount: Array<any> = [
+  taskCount: Array<any> = [
     {
       'name': '天',
       'value': 0
@@ -52,16 +52,16 @@ export class PackageDialogComponent implements OnInit, AfterViewInit {
       'value': 5
     }
   ];
-  private role = '';
-  private isEdit = false;
+  role = '';
+  isEdit = false;
 
-  private bothprice = '';
-  private errorServicePackName = '';
-  private errorImg = '';
-  private errorTasks = '';
-  private errorRemark = '';
-  private errorOldPrice = '';
-  private errorCurrentPrice = '';
+  bothprice = '';
+  errorServicePackName = '';
+  errorImg = '';
+  errorTasks = '';
+  errorRemark = '';
+  errorOldPrice = '';
+  errorCurrentPrice = '';
 
   @Input() packageId = '';
   @Input() showList: any;

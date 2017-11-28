@@ -1,19 +1,20 @@
 <div class="right-content">
-  <app-line-info  lineInfo="新建 / 编辑 客户账号"></app-line-info>
+  <app-line-info lineInfo="新建 / 编辑 客户账号"></app-line-info>
 
   <div class="detail-content">
     <div class="detailform">
 
-      <form class="" [formGroup]="accountForm" (ngSubmit) = "save()" >
+      <form class="" [formGroup]="accountForm" (ngSubmit)="save()">
         <div class="line">
-          <label for="">账户角色*</label><div class="inline">
-            <input type="text"   formControlName="role" />
+          <label for="">账户角色*</label>
+          <div class="inline">
+            <input type="text" formControlName="role" />
           </div>
         </div>
         <div class="line">
           <label for="">姓名*</label>
           <div class="inline">
-            <input type="text" name="" value="" formControlName="name"  required minlength="4" forbiddenName="niuren">
+            <input type="text" name="" value="" formControlName="name" required minlength="4">
           </div>
         </div>
         <div class="" *ngIf="formErrors.name">
@@ -33,10 +34,10 @@
         </div>
         <div class="line">
           <label for="">头像</label>
-          <div class="inline head-img-line" >
+          <div class="inline head-img-line">
             <div style="position:relative;width:60px;height:60px;">
-              <img id="headImg" src="{{imageUrl.length>1?imageUrl:'assets/img/sidebar/user.png'}}"  >
-                <app-upload-image (uploadDone) = 'getImageUrl($event)' ></app-upload-image>
+              <img id="headImg" src="{{imageUrl.length>1?imageUrl:'assets/img/sidebar/user.png'}}">
+              <app-upload-image (uploadDone)='getImageUrl($event)'></app-upload-image>
             </div>
             <input type="hidden" name="" value="" formControlName="headImgUrl">
           </div>
@@ -57,20 +58,21 @@
         <div class="line">
           <label for="">生日</label>
           <div class="inline">
-            <ng2-flatpickr [config]="flatpickrOption" ></ng2-flatpickr>
+            <input type="text" class="birth-day" mwlFlatpickr [(ngModel)]="birdthday">
+            <!-- <ng2-flatpickr [config]="flatpickrOption"></ng2-flatpickr> -->
             <input type="hidden" name="" value="" formControlName="birdthDay">
           </div>
         </div>
         <div class="line">
           <label for="">身高</label>
           <div class="inline">
-            <input type="number" name="" placeholder="只能输入整数"  onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" value="" formControlName="height"><span>cm</span>
+            <input type="number" name="" placeholder="只能输入整数" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" value="" formControlName="height"><span>cm</span>
           </div>
         </div>
         <div class="line">
           <label for="">体重</label>
           <div class="inline">
-            <input type="number" name="" placeholder="只能输入整数"  onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" value=""formControlName="weight"><span>kg</span>
+            <input type="number" name="" placeholder="只能输入整数" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" value="" formControlName="weight"><span>kg</span>
           </div>
         </div>
         <div class="line">
@@ -81,15 +83,14 @@
         </div>
         <div class="line">
           <label for="">监护人</label>
-          <div class="inline editline" >
-            <input type="text" name="" value="" formControlName="guardianDetail" >
+          <div class="inline editline">
+            <input type="text" name="" value="" formControlName="guardianDetail">
             <span class="editControlName" ng-click="$ctrl.handleClick()">...</span>
           </div>
         </div>
         <div style="margin-bottom: 1em">
-         <button type="submit"
-                 [disabled]="accountForm.pristine" class="btn btn-success">Save</button>
-       </div>
+          <button type="submit" [disabled]="accountForm.pristine" class="btn btn-success">Save</button>
+        </div>
       </form>
 
     </div>

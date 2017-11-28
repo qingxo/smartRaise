@@ -11,13 +11,13 @@ import { SleepTestService } from './sleep-test.service';
 })
 export class SleepTestComponent implements OnInit {
 
-  private item: any = {};
-  private sources = '';
-  private customerId: string;
-  private xData: Array<any> = [];
-  private sleepQuality: Array<any> = [];
-  private sleepFeeling: Array<any> = [];
-  private sleepBlue: Array<any> = [];
+  item: any = {};
+  sources = '';
+  customerId: string;
+  xData: Array<any> = [];
+  sleepQuality: Array<any> = [];
+  sleepFeeling: Array<any> = [];
+  sleepBlue: Array<any> = [];
   constructor(private sleepTestService: SleepTestService, private route: ActivatedRoute) { }
 
   ngOnInit() {

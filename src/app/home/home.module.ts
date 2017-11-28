@@ -8,7 +8,6 @@ import { SharedModule } from '../shared';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { ClientDetailComponent } from './client-detail/client-detail.component';
-import { Ng2FlatpickrComponent } from 'ng2-flatpickr/ng2-flatpickr';
 import { OrderPackageComponent } from './order-package';
 import { OrderDetailComponent } from './order-detail';
 import { ServicePackageComponent } from './service-package/service-package.component';
@@ -59,12 +58,24 @@ import { LoginInfoComponent } from './login-info/login-info.component';
 import { OrgManageComponent } from './org-manage/org-manage.component';
 import { ClientSearchComponent } from './client-search/client-search.component';
 import { MeasureDetailComponent } from './measure-detail/measure-detail.component'; // import BaiduMapModule
+import { FlatpickrModule, FLATPICKR } from 'angularx-flatpickr';
+import * as flatpickr from 'flatpickr';
+import zh_lang from 'flatpickr/dist/l10n/zh.js';
+
+export function flatpickrFactory() {
+  flatpickr.localize(zh_lang['zh']);
+  return flatpickr;
+}
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
     FormsModule,
+    FlatpickrModule.forRoot({
+      provide: FLATPICKR,
+      useFactory: flatpickrFactory
+    }),
     ReactiveFormsModule,
     EchartsNg2Module,
     NgbModule,
@@ -77,7 +88,6 @@ import { MeasureDetailComponent } from './measure-detail/measure-detail.componen
     HomeComponent,
     ClientComponent,
     CreateAccountComponent,
-    Ng2FlatpickrComponent,
     ClientDetailComponent,
     OrderPackageComponent,
     OrderDetailComponent,

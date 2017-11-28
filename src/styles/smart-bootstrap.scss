@@ -477,7 +477,7 @@ textarea:focus {
               }
 
               em.bind-equip {
-                background: url('/assets/images/svg/i-associated.svg') right 0 no-repeat;
+                background: url("/assets/images/svg/i-associated.svg") right 0 no-repeat;
                 background-size: 12px 12px;
                 padding-right: 15px;
               }
@@ -715,14 +715,14 @@ textarea:focus {
       }
 
       .price-desc {
-        background: url('/assets/images/desc.png') 0 0 no-repeat;
+        background: url("/assets/images/desc.png") 0 0 no-repeat;
         background-size: 16px 16px;
         background-position: 5px;
         cursor: pointer;
       }
 
       .price-plus {
-        background: url('/assets/images/plus.png') 0 0 no-repeat;
+        background: url("/assets/images/plus.png") 0 0 no-repeat;
         background-size: 16px 16px;
         background-position: 5px;
         cursor: pointer;
@@ -810,13 +810,14 @@ textarea:focus {
           padding: 2px 4px;
         }
 
+        input.birth-day,
         input.ng2-flatpickr-input {
-          background: url('/assets/images/calender-i.png') right 0 no-repeat;
+          background: url("/assets/images/calender-i.png") right 0 no-repeat;
           background-size: 30px 30px;
         }
 
         .calender-line input {
-          background: url('/assets/images/calender-i.png') right 0 no-repeat;
+          background: url("/assets/images/calender-i.png") right 0 no-repeat;
           background-size: 30px 30px;
         }
 
@@ -846,7 +847,7 @@ textarea:focus {
         }
 
         span.cal {
-          background: url('/assets/images/svg/i-calendar.svg') 0 0 no-repeat;
+          background: url("/assets/images/svg/i-calendar.svg") 0 0 no-repeat;
           background-size: 16px 18px;
           position: absolute;
           right: 20px;
@@ -1162,10 +1163,15 @@ textarea:focus {
       font-size: 14px;
       height: 40px;
       line-height: 20px;
-      padding: 10px 0;
       border-top-left-radius: 4px;
       border-top-right-radius: 4px;
       font-weight: 200;
+    }
+
+    .close {
+      padding: 9px 15px;
+      cursor: pointer;
+      outline: none;
     }
   }
 }

@@ -8,7 +8,7 @@
       </div>
       <ul class="taskChoose">
         <li #tables>
-          <span [ngClass]="{true:'choosed',false:''}[index==0]" *ngFor="let item of missionList; let index = index" data-id="{{item.missionId}}" (click)="toogleTableProgress(index)">{{item.missionName}}</span>
+          <span [ngClass]="{'choosed':index==0}" *ngFor="let item of missionList; let index = index" data-id="{{item.missionId}}" (click)="toogleTableProgress(index)">{{item.missionName}}</span>
         </li>
       </ul>
 
@@ -57,7 +57,7 @@
             </td>
             <td><span>{{item.commissionerName}}</span></td>
             <td><span class="opt">
-                <ng-container *ngIf = 'item.userId&&item.customerId&&item.commissionerTaskId'>
+                <ng-container *ngIf = "item.userId&&item.customerId&&item.commissionerTaskId">
                  <a *ngIf="item.missionName == '血糖监测'&& taskProgress == 0" [routerLink]="['/home/healthmonitor',item.userId,item.customerId,item.commissionerTaskId,1]" [hidden]="myTaskBtn['处理']" target="_blank">处理</a>
                  <a *ngIf="item.missionName == '血压监测'&& taskProgress == 0" [routerLink]="['/home/healthmonitor',item.userId,item.customerId,item.commissionerTaskId,2]" [hidden]="myTaskBtn['处理']" target="_blank">处理</a>
                  <a *ngIf="item.missionName == 'BMI监测' && taskProgress == 0" [routerLink]="['/home/healthmonitor',item.userId,item.customerId,item.commissionerTaskId,3]" [hidden]="myTaskBtn['处理']" target="_blank">处理</a>

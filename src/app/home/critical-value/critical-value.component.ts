@@ -12,12 +12,12 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 })
 export class CriticalValueComponent implements OnInit {
 
-  private list: Array<any> = [];
-  private clickItem = 0;
-  private closeResult: string;
-  private modalRef: any;
-  private highValue: string;
-  private lowValue: string;
+  list: Array<any> = [];
+  clickItem = 0;
+  closeResult: string;
+  modalRef: any;
+  highValue: string;
+  lowValue: string;
   constructor(private criticalValueService: CriticalValueService, private modalService: NgbModal) { }
 
   ngOnInit() {

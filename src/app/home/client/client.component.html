@@ -78,7 +78,7 @@
               </span>
             </td>
             <td><span class="opt">
-                            <a [routerLink]="['/home/clientDetail',item.customerId,{'equipNo':item.equipmentNo}]" [hidden]="clientBtn['客户详情']" target="_blank">详情</a>
+                            <a [routerLink]="['/home/clientDetail',item.customerId]" [hidden]="clientBtn['客户详情']" target="_blank">详情</a>
                            <a [routerLink]="['/home/orderpackage',item.customerId]" [hidden]="clientBtn['订购服务包']"  target="_blank">订购服务包</a>
                            <em (click)="delconfirm(index)" class="del"  [hidden]="clientBtn['删除']" >删除</em>
             </span></td>
@@ -118,7 +118,7 @@
       </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary spec-btn" (click)="saveHealthCare()" [@newState]="chameleon" (mouseover)="changeMe()" (mouseout)="changeMe()">确定</button>
+      <button type="button" class="btn btn-secondary spec-btn" (click)="saveHealthCare()">确定</button>
     </div>
   </ng-template>
 
@@ -155,7 +155,7 @@
       </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary spec-btn" (click)="saveGroupPlan()" [@newState]="chameleon" (mouseover)="changeMe()" (mouseout)="changeMe()">确定</button>
+      <button type="button" class="btn btn-secondary spec-btn" (click)="saveGroupPlan()">确定</button>
     </div>
   </ng-template>
 
@@ -174,55 +174,54 @@
         <div class="lf dis-bl">
           <label for=""><em>*</em>姓名</label>
           <div class="inline">
-            <input type="text" name="" value="" [(ngModel)]="realname" [ngClass]="{true:'redBorder',false:''}[errorRealname.length>1]">
+            <input type="text" name="" value="" [(ngModel)]="realname" [ngClass]="{'redBorder':errorRealname.length>1}">
           </div>
         </div>
-        <div class="error" [ngClass]="{true:'error-true',false:''}[errorRealname.length>1]">
+        <div class="error" [ngClass]="{'error-true':errorRealname.length>1}">
           <span>{{errorRealname}}</span>
         </div>
         <div class="lf dis-in">
           <label for="">身份证号</label>
           <div class="inline">
-            <input type="text" name="" value="" [(ngModel)]="cardId" [ngClass]="{true:'redBorder',false:''}[errorCardId.length>1]">
+            <input type="text" name="" value="" [(ngModel)]="cardId" [ngClass]="{'redBorder':errorCardId.length>1}">
           </div>
         </div>
         <div class="lf dis-in">
           <label for="">手机号</label>
           <div class="inline">
-            <input type="number" name="" value="" [(ngModel)]="mobile" [ngClass]="{true:'redBorder',false:''}[errorMobile.length>1]">
+            <input type="number" name="" value="" [(ngModel)]="mobile" [ngClass]="{'redBorder':errorMobile.length>1}">
           </div>
         </div>
-        <div class="error" [ngClass]="{true:'error-true',false:''}[bothNumber.length>1]">
+        <div class="error" [ngClass]="{'error-true':bothNumber.length>1}">
           <span>{{errorCardId}}</span>
           <span class="sec">{{errorMobile}}</span>
         </div>
         <div class="lf dis-in">
           <label for="">性别</label>
           <div class="inline sex-opt">
-            <span (click)="sexChoosed('M')" [ngClass]="{true:'choosed',false:''}[sex == 'M']">男</span><span [ngClass]="{true:'choosed',false:''}[sex == 'F']" (click)="sexChoosed('F')">女</span>
+            <span (click)="sexChoosed('M')" [ngClass]="{'choosed':sex == 'M'}">男</span><span [ngClass]="{'choosed':sex == 'F'}" (click)="sexChoosed('F')">女</span>
           </div>
         </div>
         <div class="lf dis-in">
           <label for="">生日</label>
           <div class="inline bt-pos">
-            <ng2-flatpickr [config]="exampleOptions" [setDate]="birdthday"></ng2-flatpickr>
-
+            <input type="text" class="birth-day" mwlFlatpickr [(ngModel)]="birdthday">
           </div>
         </div>
         <div class="lf dis-in">
           <label for="">身高</label>
           <div class="inline pos-rev">
-            <input [ngClass]="{true:'redBorder',false:''}[errorHeight.length>1]" type="text" name="" (ngModelChange)="makeSpecH($event)" [ngModel]="height" value=""><span class="pos-ab tail-pos">cm</span>
+            <input [ngClass]="{'redBorder':errorHeight.length>1}" type="text" name="" (ngModelChange)="makeSpecH($event)" [ngModel]="height" value=""><span class="pos-ab tail-pos">cm</span>
           </div>
         </div>
 
         <div class="lf dis-in">
           <label for="">体重</label>
           <div class="inline pos-rev">
-            <input [ngClass]="{true:'redBorder',false:''}[errorWeight.length>1]" type="text" name="" (ngModelChange)="makeSpecW($event)" [(ngModel)]="weight"><span class="pos-ab tail-pos">kg</span>
+            <input [ngClass]="{'redBorder':errorWeight.length>1}" type="text" name="" (ngModelChange)="makeSpecW($event)" [(ngModel)]="weight"><span class="pos-ab tail-pos">kg</span>
           </div>
         </div>
-        <div class="error" [ngClass]="{true:'error-true',false:''}[bothhw.length>1]">
+        <div class="error" [ngClass]="{'error-true':bothhw.length>1}">
           <span>{{errorHeight}}</span>
           <span class="sel sec">{{errorWeight}}</span>
         </div>
@@ -303,7 +302,7 @@
       </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary spec-btn" (click)="saveClientAddOrEdit()" [@newState]="chameleon" (mouseover)="changeMe()" (mouseout)="changeMe()">确定</button>
+      <button type="button" class="btn btn-secondary spec-btn" (click)="saveClientAddOrEdit()">确定</button>
     </div>
   </ng-template>
 

@@ -9,14 +9,14 @@ import * as $ from 'jquery';
 })
 export class RealLineComponent implements OnInit, OnChanges {
 
-  private optionBreath: EChartOption;
-  private option2: EChartOption;
-  private option3: EChartOption;
-  private breathInfo: Array<any> = [];
-  private moveInfo: Array<any> = [];
-  private heartInfo: Array<any> = [];
-  private realTime: Array<any> = [];
-  private nothingFlag = false;
+  optionBreath: EChartOption;
+  option2: EChartOption;
+  option3: EChartOption;
+  breathInfo: Array<any> = [];
+  moveInfo: Array<any> = [];
+  heartInfo: Array<any> = [];
+  realTime: Array<any> = [];
+  nothingFlag = false;
   @Input('breath') breathDot = 0;
   @Input('move') moveDot = 0;
   @Input('heart') heartDot = 0;

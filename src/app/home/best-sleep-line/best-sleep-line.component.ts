@@ -10,14 +10,14 @@ import * as moment from 'moment';
 })
 export class BestSleepLineComponent implements OnInit, OnChanges {
 
-  private option: EChartOption;
+  option: EChartOption;
   @Input() subText: string;
   @Input() optTitle: string;
   @Input() lineData: Array<any> = [];
   @Input() timeData: Array<any> = [];
   @Input() echartsStyle: any = { 'height': '350px' };
   @ViewChild('tt') el: ElementRef;
-  private nothingFlag = false;
+  nothingFlag = false;
   constructor() { }
 
   ngOnInit() {

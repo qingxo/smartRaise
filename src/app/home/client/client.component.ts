@@ -8,9 +8,6 @@ import storage from '../../shared/storage';
 import tools from '../../shared/tools';
 import SysData from '../../shared/sysData';
 import * as $ from 'jquery';
-import { FlatpickrOptions } from 'ng2-flatpickr/ng2-flatpickr';
-import * as Flatpickr from 'flatpickr';
-import * as zh_lang from 'flatpickr/dist/l10n/zh.js';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'moment';
 import baseAnimation from '../../shared/myAnimation';
@@ -86,15 +83,6 @@ export class ClientComponent implements OnInit {
   choosedProvince: string = this.global_tips;
   choosedCities: string = this.global_tips;
   choosedStreets: string = this.global_tips;
-  exampleOptions: FlatpickrOptions = {
-    enableTime: false,
-    static: true,
-    time_24hr: true,
-    dateFormat: 'Y-m-d',
-    locale: zh_lang['zh'],
-    onChange: this.changeBirthday.bind(this),
-    onClose: this.closeTime.bind(this)
-  };
   birthTime: any;
   chameleon = 'inactive';
   fly = 0;
@@ -225,15 +213,6 @@ export class ClientComponent implements OnInit {
     });
   }
 
-
-  changeBirthday(val) {
-    this.birdthday = moment(new Date(val)).format('YYYY-MM-DD');
-  }
-
-  closeTime(selectedDates, dateStr, instance) {
-    instance.input.blur();
-  }
-
   open(content) {
     this.modalRef = this.modalService.open(content, { windowClass: 't-sm-modal' });
 
@@ -353,14 +332,14 @@ export class ClientComponent implements OnInit {
             this.getAddressInfo(tmp[1], 2, street);
           }
         }
-
-
         if (info.socialWelfareId) {
           const tt = info.socialWelfareId.split(',');
-          const tmp = info.socialWelfareName.split(',');
-          for (let i = 0; i < tmp.length; i++) {
-            this.myGroupName.push(tmp[i]);
-            this.myGroup.push(tt[i]);
+          if (info.socialWelfareName !== null) {
+            const tmp = info.socialWelfareName.split(',');
+            for (let i = 0; i < tmp.length; i++) {
+              this.myGroupName.push(tmp[i]);
+              this.myGroup.push(tt[i]);
+            }
           }
         } else {
           this.myGroup = [];

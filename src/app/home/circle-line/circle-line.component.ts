@@ -7,8 +7,8 @@ import { EChartOption } from 'echarts-ng2';
 })
 export class CircleLineComponent implements OnInit, AfterContentChecked {
 
-  private option: EChartOption;
-  private nothingFlag = false;
+  option: EChartOption;
+  nothingFlag = false;
   @Input() topTitle = '';
   @Input() serisesData: Array<any> = [];
   @Input() echartsStyle: any = { 'height': '360px' };

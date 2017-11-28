@@ -16,7 +16,7 @@
         </div>
         <div class="org range-time" style="margin-right:45px">
           <span>日期</span>
-          <ng2-flatpickr [config]="exampleOptions" placeholder="请选择一个时间区域"></ng2-flatpickr>
+          <input type="text" class="range-time-info" mwlFlatpickr [(ngModel)]="rangeValue" placeholder="请输入日期" mode="range" (flatpickrClose)="closeNow()">
         </div>
         <app-search-line placeHolderValue="客户姓名、手机号、专员名" (search)="searchTable($event)"></app-search-line>
       </div>

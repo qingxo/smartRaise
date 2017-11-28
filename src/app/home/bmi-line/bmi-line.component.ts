@@ -10,10 +10,10 @@ import * as moment from 'moment';
 })
 export class BmiLineComponent implements OnInit, OnChanges {
 
-  private option: EChartOption;
-  private bmiList: Array<any> = [];
-  private xBMIData: Array<any> = [];
-  private nothingFlag = false;
+  option: EChartOption;
+  bmiList: Array<any> = [];
+  xBMIData: Array<any> = [];
+  nothingFlag = false;
   @Input() userId: string;
   @Input() periodDay: number;
   @Input() echartsStyle: any = { 'height': '350px' };

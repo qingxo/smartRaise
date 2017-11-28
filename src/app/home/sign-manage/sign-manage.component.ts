@@ -5,9 +5,6 @@ import storage from '../../shared/storage';
 import tools from '../../shared/tools';
 import SysData from '../../shared/sysData';
 import * as $ from 'jquery';
-import { FlatpickrOptions } from 'ng2-flatpickr/ng2-flatpickr';
-import * as Flatpickr from 'flatpickr';
-import * as zh_lang from 'flatpickr/dist/l10n/zh.js';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'moment';
 import baseAnimation from '../../shared/myAnimation';
@@ -20,18 +17,17 @@ import { SignManageService } from './sign-manage.service';
   providers: [SignManageService]
 })
 export class SignManageComponent implements OnInit {
-  private listData: Array<any> = [];
-  private listName: Array<any> = [];
-  private pages: Array<any> = [];
-  private pageSize = 10;
-  private pageNumber = 1;
-  private queryInfo = '';
-  private totalPage: number;
-  private groupPlanList: Array<any> = [];
-  private groupPlanName: string;
-  private choosedSocialWelfare = '';
-  private choosedCard = '-1';
-  // private totalCount: any = {};
+  listData: Array<any> = [];
+  listName: Array<any> = [];
+  pages: Array<any> = [];
+  pageSize = 10;
+  pageNumber = 1;
+  queryInfo = '';
+  totalPage: number;
+  groupPlanList: Array<any> = [];
+  groupPlanName: string;
+  choosedSocialWelfare = '';
+  choosedCard = '-1';
   constructor(private signManageService: SignManageService) { }
 
   ngOnInit() {
@@ -101,7 +97,6 @@ export class SignManageComponent implements OnInit {
           }
         }
 
-
         this.pages = res.data.navigatepageNums;
         this.totalPage = res.data.total;
       }
@@ -111,11 +106,6 @@ export class SignManageComponent implements OnInit {
       'socialWelfareId': this.choosedSocialWelfare,
       'type': '2'
     };
-
-    // this.signManageService.countStatistics(tmpData).subscribe((res) => {
-    //   this.totalCount = res.counts;
-    // });
-
 
   }
 

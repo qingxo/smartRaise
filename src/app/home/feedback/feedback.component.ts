@@ -10,16 +10,16 @@ import { NgbModal, ModalDismissReasons, NgbPopoverConfig } from '@ng-bootstrap/n
   providers: [FeedbackService, NgbPopoverConfig]
 })
 export class FeedbackComponent implements OnInit {
-  private list: Array<any> = [];
-  private pages: Array<any> = [];
-  private pageSize = 10;
-  private pageNumber = 1;
-  private feedback = 0;
-  private dealInfo = '';
-  private clickItemId = '';
-  private item: any;
-  private modalRef: any;
-  private closeResult: string;
+  list: Array<any> = [];
+  pages: Array<any> = [];
+  pageSize = 10;
+  pageNumber = 1;
+  feedback = 0;
+  dealInfo = '';
+  clickItemId = '';
+  item: any;
+  modalRef: any;
+  closeResult: string;
 
 
   constructor(private feedbackService: FeedbackService, private modalService: NgbModal, private config: NgbPopoverConfig) { }

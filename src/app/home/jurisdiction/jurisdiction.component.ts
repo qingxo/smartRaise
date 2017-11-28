@@ -11,11 +11,11 @@ import * as $ from 'jquery';
 })
 export class JurisdictionComponent implements OnInit {
 
-  private roles: Array<any> = [];
-  private rolesName: Array<string> = [];
-  private checkedRole = 1;
-  private tree: Array<any> = [];
-  private checkedItem = '';
+  roles: Array<any> = [];
+  rolesName: Array<string> = [];
+  checkedRole = 1;
+  tree: Array<any> = [];
+  checkedItem = '';
 
   constructor(private jurisdictionService: JurisdictionService) { }
 

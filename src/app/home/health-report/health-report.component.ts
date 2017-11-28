@@ -3,9 +3,6 @@ import tools from '../../shared/tools';
 import SysData from '../../shared/sysData';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HealthReportService } from './health-report.service';
-import * as Flatpickr from 'flatpickr';
-import * as zh_lang from 'flatpickr/dist/l10n/zh.js';
-import { FlatpickrOptions } from 'ng2-flatpickr/ng2-flatpickr';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'moment';
 
@@ -18,37 +15,18 @@ import * as moment from 'moment';
 })
 export class HealthReportComponent implements OnInit {
 
-  private userInfo: any = {};
-  private list: Array<any> = [];
-  private customerId = '';
-  private taskId: any;
-  private startTime: any = '';
-  private endTime: any = '';
-  private exampleOptionsStart: FlatpickrOptions = {
-    enableTime: false,
-    static: true,
-    time_24hr: true,
-    dateFormat: 'Y-m',
-    locale: zh_lang['zh'],
-    onChange: this.changeStartDay.bind(this),
-    onClose: this.closeTime.bind(this)
-  };
-  private exampleOptionsEnd: FlatpickrOptions = {
-    enableTime: false,
-    static: true,
-    time_24hr: true,
-    dateFormat: 'Y-m',
-    locale: zh_lang['zh'],
-    onChange: this.changeEndDay.bind(this),
-    onClose: this.closeTime.bind(this)
-  };
-
-  private modalRef: any;
-  private closeResult: string;
-  private bothTime = '';
-  private errorStartTime = '';
-  private errorEndTime = '';
-  private delId: number;
+  userInfo: any = {};
+  list: Array<any> = [];
+  customerId = '';
+  taskId: any;
+  startTime: any = '';
+  endTime: any = '';
+  modalRef: any;
+  closeResult: string;
+  bothTime = '';
+  errorStartTime = '';
+  errorEndTime = '';
+  delId: number;
 
   constructor(private healthReportService: HealthReportService, private route: ActivatedRoute, private modalService: NgbModal) { }
 
@@ -75,19 +53,6 @@ export class HealthReportComponent implements OnInit {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
-
-  changeStartDay(val) {
-    this.startTime = moment(new Date(val)).format('YYYY-MM');
-  }
-
-  closeTime(selectedDates, dateStr, instance) {
-    instance.input.blur();
-  }
-
-  changeEndDay(val) {
-    this.endTime = moment(new Date(val)).format('YYYY-MM');
-  }
-
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {

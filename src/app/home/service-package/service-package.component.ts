@@ -10,14 +10,14 @@ import { PkginfoDialogComponent } from '../pkginfo-dialog';
   providers: [ServicePackageService]
 })
 export class ServicePackageComponent implements OnInit {
-  private pageSize = 10;
-  private pageNumber = 1;
-  private pages: Array<any> = [];
-  private list: Array<any> = [];
-  private queryInfo = '';
-  private totalPage: string;
-  private clickItem: any;
-  private servicePackageBtn: any;
+  pageSize = 10;
+  pageNumber = 1;
+  pages: Array<any> = [];
+  list: Array<any> = [];
+  queryInfo = '';
+  totalPage: string;
+  clickItem: any;
+  servicePackageBtn: any;
   constructor(private servicePackageService: ServicePackageService, private componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) { }
 
   ngOnInit() {

@@ -55,32 +55,32 @@
         <div class="lf dis-in">
           <label for=""><em>*</em>机构代码</label>
           <div class="inline">
-            <input type="text" name="" value="" [(ngModel)]="groupCode" [ngClass]="{true:'redBorder',false:''}[errorGroupCode.length>1]">
+            <input type="text" name="" value="" [(ngModel)]="groupCode" [ngClass]="{'redBorder':errorGroupCode.length>1}">
           </div>
         </div>
         <div class="lf dis-in">
           <label for=""><em>*</em>机构名称</label>
           <div class="inline">
-            <input type="text" name="" value="" [(ngModel)]="groupName" [ngClass]="{true:'redBorder',false:''}[errorGroupName.length>1]">
+            <input type="text" name="" value="" [(ngModel)]="groupName" [ngClass]="{'redBorder':errorGroupName.length>1}">
           </div>
         </div>
-        <div class="error" [ngClass]="{true:'error-true',false:''}[bothGroup.length>1]">
+        <div class="error" [ngClass]="{'error-true':bothGroup.length>1}">
           <span>{{errorGroupCode}}</span>
           <span class="sec">{{errorGroupName}}</span>
         </div>
         <div class="lf dis-in">
           <label for="">联系人</label>
           <div class="inline">
-            <input type="text" name="" value="" [(ngModel)]="connectPeople" [ngClass]="{true:'redBorder',false:''}[errorConnectPeople.length>1]">
+            <input type="text" name="" value="" [(ngModel)]="connectPeople" [ngClass]="{'redBorder':errorConnectPeople.length>1}">
           </div>
         </div>
         <div class="lf dis-in">
           <label for="">电话</label>
           <div class="inline sex-opt">
-            <input type="number" name="" value="" [(ngModel)]="mobile" [ngClass]="{true:'redBorder',false:''}[errorMobile.length>1]">
+            <input type="number" name="" value="" [(ngModel)]="mobile" [ngClass]="{'redBorder':errorMobile.length>1}">
           </div>
         </div>
-        <div class="error" [ngClass]="{true:'error-true',false:''}[bothInfo.length>1]">
+        <div class="error" [ngClass]="{'error-true':bothInfo.length>1}">
           <span>{{errorConnectPeople}}</span>
           <span class="sec">{{errorMobile}}</span>
         </div>
@@ -113,10 +113,10 @@
         <div class="lf dis-in">
           <label for="">电话</label>
           <div class="inline sex-opt">
-            <input type="number" name="" value="" [(ngModel)]="managerMobile" [ngClass]="{true:'redBorder',false:''}[errorManagerMobile.length>1]">
+            <input type="number" name="" value="" [(ngModel)]="managerMobile" [ngClass]="{'redBorder':errorManagerMobile.length>1}">
           </div>
         </div>
-        <div class="error" [ngClass]="{true:'error-true',false:''}[errorManagerMobile.length>1]">
+        <div class="error" [ngClass]="{'error-true':errorManagerMobile.length>1}">
           <span></span>
           <span class="sec">{{errorManagerMobile}}</span>
         </div>
@@ -128,7 +128,7 @@
           <div class="contacts" *ngFor="let item of contacts;let index=index">
             <div class="inline">
               <label for="">姓名</label>
-              <input type="text" name="" value="" class="t-name" [(ngModel)]="item.contact" [ngClass]="{true:'redBorder',false:''}[item['error'].length>2]">
+              <input type="text" name="" value="" class="t-name" [(ngModel)]="item.contact" [ngClass]="{'redBorder':item['error'].length>2}">
             </div>
             <div class="inline">
               <label for="">电话</label>
@@ -144,7 +144,7 @@
             </div>
             <div class="del inline" (click)="delContacts(index)">
             </div>
-            <div class="error" style="text-align:left; margin-top: -4px;margin-bottom: 8px;margin-left: -10px;" [ngClass]="{true:'error-true',false:''}[item['error'].length>2]">
+            <div class="error" style="text-align:left; margin-top: -4px;margin-bottom: 8px;margin-left: -10px;" [ngClass]="{'error-true':item['error'].length>2}">
               <span>{{errorName}}</span>
             </div>
           </div>

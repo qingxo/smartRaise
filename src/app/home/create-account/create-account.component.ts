@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as $ from 'jquery';
-import { FlatpickrOptions } from 'ng2-flatpickr/ng2-flatpickr';
-import * as Flatpickr from 'flatpickr';
 import * as moment from 'moment';
-import * as flatpickr_local from 'flatpickr/dist/l10n/zh';
 import { NormalAccount } from '../accounts-model';
 import 'rxjs/Observable';
-import { forbiddenNameValidator } from '../../shared/moreDirective/forbidden-name.directive';
 import { CardCheckDirective } from '../../shared/moreDirective/card-check.directive';
 @Component({
   selector: 'app-create-account',
@@ -16,28 +12,27 @@ import { CardCheckDirective } from '../../shared/moreDirective/card-check.direct
 })
 export class CreateAccountComponent implements OnInit {
 
-  private realname = '';
-  private mobile = '';
-  private imageUrl = '';
-  private healthperson = '';
-  private sex = 'M';
-  private height: number;
-  private weight: number;
-  private address = '';
-  private controlName = '';
-  private controlMobile = '';
-  private relationShip = 0;
-  private flatpickrOption: FlatpickrOptions;
-  private birdthday: any;
-  private role: number;
+  realname = '';
+  mobile = '';
+  imageUrl = '';
+  healthperson = '';
+  sex = 'M';
+  height: number;
+  weight: number;
+  address = '';
+  controlName = '';
+  controlMobile = '';
+  relationShip = 0;
+  birdthday: any;
+  role: number;
 
-  private accountForm: FormGroup;
-  private formErrors = {
+  accountForm: FormGroup;
+  formErrors = {
     'name': '',
     'power': ''
   };
 
-  private validationMessages = {
+  validationMessages = {
     'name': {
       'required': 'Name is required.',
       'minlength': 'Name must be at least 4 characters long.',
@@ -51,10 +46,9 @@ export class CreateAccountComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.initData();
     this.accountForm = this.fb.group({
       role: ['客户', [Validators.required]], // 0 系统账号，1 平台账号，2 健康专员账号， 3 客户账号
-      name: ['', [Validators.required, forbiddenNameValidator(/kaka/i)]],
+      name: ['', [Validators.required]],
       cardId: ['', []],
       mobile: null,
       headImgUrl: null,
@@ -93,13 +87,6 @@ export class CreateAccountComponent implements OnInit {
         }
       }
     }
-  }
-
-  initData() {
-    this.flatpickrOption = {
-      // enableTime: true
-    };
-    Flatpickr.localize(flatpickr_local.zh);
   }
 
   revert() { }

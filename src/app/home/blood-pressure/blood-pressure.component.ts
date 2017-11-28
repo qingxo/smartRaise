@@ -9,14 +9,14 @@ import storage from '../../shared/storage';
   providers: [BloodPressureService]
 })
 export class BloodPressureComponent implements OnInit, OnChanges {
-  private sources = '';
-  private option: EChartOption;
-  private bloodPressureList: Array<any> = [];
-  private bloodPressureDate: Array<any> = [];
-  private heartRateValue: Array<any> = [];
-  private bloodPressureHigh: Array<any> = [];
-  private bloodPressureLower: Array<any> = [];
-  private nothingFlag = false;
+  sources = '';
+  option: EChartOption;
+  bloodPressureList: Array<any> = [];
+  bloodPressureDate: Array<any> = [];
+  heartRateValue: Array<any> = [];
+  bloodPressureHigh: Array<any> = [];
+  bloodPressureLower: Array<any> = [];
+  nothingFlag = false;
   @Input() userId = '';
   @Input() periodDay = 1;
   @Input() echartsStyle: any = { 'height': '350px' };

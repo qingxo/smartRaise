@@ -12,20 +12,20 @@ import { ClientDetailService } from '../client-detail/client-detail.service';
 })
 export class SleepMonitorComponent implements OnInit {
 
-  private pageSize = 10;
-  private pageNumber = 1;
-  private heartBeating = '-';
-  private breathLevel = '-';
-  private bedStatus = '-';
-  private moveInfo = '-';
-  private realTime = '';
-  private missionList: Array<string> = ['实时曲线', '历史曲线', '在离床分析', '睡眠质量分析'];
-  private missionListB: Array<string> = ['实时曲线', '历史曲线'];
-  private showTable = 0;
-  private customerId = '';
-  private equipNo = '';
-  private item: any = {};
-  private sources = '';
+  pageSize = 10;
+  pageNumber = 1;
+  heartBeating = '-';
+  breathLevel = '-';
+  bedStatus = '-';
+  moveInfo = '-';
+  realTime = '';
+  missionList: Array<string> = ['实时曲线', '历史曲线', '在离床分析', '睡眠质量分析'];
+  missionListB: Array<string> = ['实时曲线', '历史曲线'];
+  showTable = 0;
+  customerId = '';
+  equipNo = '';
+  item: any = {};
+  sources = '';
 
   @ViewChild('tt') el: ElementRef;
   constructor(private route: ActivatedRoute, private clientDetailService: ClientDetailService) { }

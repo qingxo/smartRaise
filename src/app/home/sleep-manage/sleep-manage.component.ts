@@ -14,16 +14,16 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 })
 export class SleepManageComponent implements OnInit {
 
-  private pageSize = 10;
-  private pageNumber = 1;
-  private totalCount: number;
-  private pages: Array<any> = [];
-  private queryInfo = '';
-  private list: Array<any> = [];
-  private itemTarget: number;
-  private smartBed: string;
-  private sleepBtn: any;
-  private bedType: Array<any> = [
+  pageSize = 10;
+  pageNumber = 1;
+  totalCount: number;
+  pages: Array<any> = [];
+  queryInfo = '';
+  list: Array<any> = [];
+  itemTarget: number;
+  smartBed: string;
+  sleepBtn: any;
+  bedType: Array<any> = [
     {
       'name': '智能床A',
       'value': 'A'
@@ -32,13 +32,13 @@ export class SleepManageComponent implements OnInit {
       'value': 'B'
     }
   ];
-  private closeResult: string;
-  private modalRef: any;
-  private sources = 'A';
-  private groupPlanList: Array<any> = [];
-  private groupPlanName = '';
-  private showGroupName = '';
-  private choosedBed = '-1';
+  closeResult: string;
+  modalRef: any;
+  sources = 'A';
+  groupPlanList: Array<any> = [];
+  groupPlanName = '';
+  showGroupName = '';
+  choosedBed = '-1';
   // private totalSum: any = {};
   constructor(private sleepManageService: SleepManageService, private signManageService: SignManageService, private clientService: ClientService, private modalService: NgbModal) { }
 

@@ -1,7 +1,4 @@
 import { Component, OnInit, ViewEncapsulation, ElementRef } from '@angular/core';
-import { FlatpickrOptions } from 'ng2-flatpickr/ng2-flatpickr';
-import * as Flatpickr from 'flatpickr';
-import * as zh_lang from 'flatpickr/dist/l10n/zh.js';
 import * as moment from 'moment';
 import { SignManageService } from '../sign-manage/sign-manage.service';
 import { StatisticsService } from './statistics.service';
@@ -15,52 +12,32 @@ import { StatisticsService } from './statistics.service';
 })
 export class StatisticsComponent implements OnInit {
 
-  private groupList: Array<any> = [];
-  private groupName = '';
-  private choosedBtn = '0';
-  private orgArray: Array<any> = [];
-  private ageArray: Array<any> = [];
-  private genderArray: Array<any> = [];
-  private equipUseArray: Array<any> = [];
+  groupList: Array<any> = [];
+  groupName = '';
+  choosedBtn = '0';
+  orgArray: Array<any> = [];
+  ageArray: Array<any> = [];
+  genderArray: Array<any> = [];
+  equipUseArray: Array<any> = [];
 
-  private customerArray: Array<number> = [];
-  private manySignArray: Array<number> = [];
-  private smartBedArray: Array<number> = [];
-  private equipArrays: Array<Array<number>> = [];
-  private orgName: Array<string> = [];
+  customerArray: Array<number> = [];
+  manySignArray: Array<number> = [];
+  smartBedArray: Array<number> = [];
+  equipArrays: Array<Array<number>> = [];
+  orgName: Array<string> = [];
 
-  private orderList: Array<any> = [];
-  private sleepArray: Array<number> = [];
-  private slowArray: Array<number> = [];
+  orderList: Array<any> = [];
+  sleepArray: Array<number> = [];
+  slowArray: Array<number> = [];
 
-  private totalPage = 0;
-  private pageNumber = 1;
-  private pages: Array<any> = [];
-  private statistInfo: any = {}; // 用于统计明细信息
-  private statisticsDetails: Array<any> = []; // 明细列表
-  private organizationList: Array<any> = [];
-  private startDate = '';
-  private endDate = '';
-  private startDateOptions: FlatpickrOptions = {
-    enableTime: false,
-    static: true,
-    time_24hr: true,
-    dateFormat: 'Y-m-d',
-    defaultDate: moment().subtract(30, 'days').format('YYYY-MM-DD'),
-    locale: zh_lang['zh'],
-    onChange: this.changeStartDate.bind(this),
-    onClose: this.closeTime.bind(this)
-  };
-  private endDateOptions: FlatpickrOptions = {
-    enableTime: false,
-    static: true,
-    time_24hr: true,
-    dateFormat: 'Y-m-d',
-    defaultDate: moment().format('YYYY-MM-DD'),
-    locale: zh_lang['zh'],
-    onChange: this.changeEndDate.bind(this),
-    onClose: this.closeTime.bind(this)
-  };
+  totalPage = 0;
+  pageNumber = 1;
+  pages: Array<any> = [];
+  statistInfo: any = {}; // 用于统计明细信息
+  statisticsDetails: Array<any> = []; // 明细列表
+  organizationList: Array<any> = [];
+  startDate = '';
+  endDate = '';
 
   constructor(private signManageService: SignManageService, private statisticsService: StatisticsService) { }
 
@@ -83,16 +60,6 @@ export class StatisticsComponent implements OnInit {
   pageTurning(number) {
     this.pageNumber = number;
     this.getStatisticsDetails();
-  }
-
-  changeStartDate(val) {
-    this.startDate = moment(new Date(val)).format('YYYY-MM-DD');
-  }
-  changeEndDate(val) {
-    this.endDate = moment(new Date(val)).format('YYYY-MM-DD');
-  }
-  closeTime(selectedDates, dateStr, instance) {
-    instance.input.blur();
   }
 
   showList() {
@@ -159,7 +126,7 @@ export class StatisticsComponent implements OnInit {
         }
         this.equipArrays.push(this.customerArray, this.manySignArray, this.smartBedArray);
 
-        this.equipUseArray.push({ 'organizationName': '合计', 'customerCount': customerN, 'manySignsCardCount': cardSign, 'manySingCardOpenCount': cardSignOpen, 'smartBedCount': bedN, 'smartBedUnusualCount': bedUnusualN, 'smartBedOutageCount': bedOutageN});
+        this.equipUseArray.push({ 'organizationName': '合计', 'customerCount': customerN, 'manySignsCardCount': cardSign, 'manySingCardOpenCount': cardSignOpen, 'smartBedCount': bedN, 'smartBedUnusualCount': bedUnusualN, 'smartBedOutageCount': bedOutageN });
         this.equipArrays = Array.from(this.equipArrays);
         this.orgName = Array.from(this.orgName);
 

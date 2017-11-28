@@ -10,10 +10,10 @@ import * as moment from 'moment';
 })
 export class BloodOxygenComponent implements OnInit, OnChanges {
 
-  private option: EChartOption;
-  private oxygenList: Array<any> = [];
-  private xOxygenData: Array<any> = [];
-  private nothingFlag = false;
+  option: EChartOption;
+  oxygenList: Array<any> = [];
+  xOxygenData: Array<any> = [];
+  nothingFlag = false;
   @Input() periodDay = 1;
   @Input() userId = '';
   @Input() echartsStyle: any = { 'height': '350px' };

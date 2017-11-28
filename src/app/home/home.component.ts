@@ -15,18 +15,18 @@ import { AccountDialogsComponent } from './account-dialogs';
   providers: [HomeService]
 })
 export class HomeComponent implements OnInit {
-  private toggleLogOutFlag = true;
-  private userName: any = '';
-  private userNameState: string;
-  private icon: any = '';
-  private menu: Array<any>;
-  private errorOldPwd = '';
-  private errorNewPwd = '';
-  private oldPwd = '';
-  private newPwd = '';
-  private confirmNewPwd = '';
-  private closeResult: string;
-  private modalRef: any;
+  toggleLogOutFlag = true;
+  userName: any = '';
+  userNameState: string;
+  icon: any = '';
+  menu: Array<any>;
+  errorOldPwd = '';
+  errorNewPwd = '';
+  oldPwd = '';
+  newPwd = '';
+  confirmNewPwd = '';
+  closeResult: string;
+  modalRef: any;
   constructor(private router: Router, private homeService: HomeService, private modalService: NgbModal, private componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) { }
 
   ngOnInit() {

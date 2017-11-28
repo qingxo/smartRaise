@@ -10,15 +10,15 @@ import { HistoryLineService } from './history-line.service';
 })
 export class HistoryLineComponent implements OnInit, OnChanges {
 
-  private bedList: Array<any> = [];
-  private nothingFlag = false;
-  private yBreathData: Array<any> = [];
-  private yHeartData: Array<any> = [];
-  private ySignData: Array<any> = [];
-  private xData: Array<any> = [];
-  private periodDay = 1;
-  private option: EChartOption;
-  private option2: EChartOption;
+  bedList: Array<any> = [];
+  nothingFlag = false;
+  yBreathData: Array<any> = [];
+  yHeartData: Array<any> = [];
+  ySignData: Array<any> = [];
+  xData: Array<any> = [];
+  periodDay = 1;
+  option: EChartOption;
+  option2: EChartOption;
   @Input() sources = '-1';
   @Input() equipNo = '';
   @ViewChild('tt') el: ElementRef;

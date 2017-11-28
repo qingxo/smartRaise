@@ -12,14 +12,14 @@ import storage from '../shared/storage';
 })
 export class LoginComponent implements OnInit {
 
-  private loginAction: Observable<any>;
-  private passWord = '';
-  private loginName = '';
-  private errorMsg = '';
-  private loginErr: boolean;
-  private role: number;
-  private rememberPWD: boolean;
-  private loginFlag = true;
+  loginAction: Observable<any>;
+  passWord = '';
+  loginName = '';
+  errorMsg = '';
+  loginErr: boolean;
+  role: number;
+  rememberPWD: boolean;
+  loginFlag = true;
   constructor(private loginService: LoginService, private router: Router) {
   }
 
@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
 
   rememberChange() {
     this.rememberPWD = !this.rememberPWD;
+    console.log(this.rememberPWD)
   }
 
   styleChange() {

@@ -9,14 +9,14 @@ import { BloodSugarService } from './blood-sugar.service';
 })
 export class BloodSugarComponent implements OnInit, OnChanges {
 
-  private bloodSugarListAfter: Array<any> = [];
-  private bloodSugarListBefore: Array<any> = [];
-  private bloodSugarBefore: Array<any> = [];
-  private bloodSugarAfter: Array<any> = [];
-  private nothingFlag = false;
-  private bloodSugarDateBefore: Array<any> = [];
-  private bloodSugarDateAfter: Array<any> = [];
-  private option: EChartOption;
+  bloodSugarListAfter: Array<any> = [];
+  bloodSugarListBefore: Array<any> = [];
+  bloodSugarBefore: Array<any> = [];
+  bloodSugarAfter: Array<any> = [];
+  nothingFlag = false;
+  bloodSugarDateBefore: Array<any> = [];
+  bloodSugarDateAfter: Array<any> = [];
+  option: EChartOption;
   @Input() userId = '';
   @Input() periodDay = 1;
   @Input() echartsStyle: any = { 'height': '350px' };

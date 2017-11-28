@@ -2,9 +2,6 @@ import { Component, OnInit, Input, Output, OnChanges, SimpleChanges, Renderer, E
 import { EChartOption } from 'echarts-ng2';
 import { BedAnalysisService } from './bed-analysis.service';
 import * as moment from 'moment';
-import { FlatpickrOptions } from 'ng2-flatpickr/ng2-flatpickr';
-import * as Flatpickr from 'flatpickr';
-import * as zh_lang from 'flatpickr/dist/l10n/zh.js';
 @Component({
   selector: 'app-bed-analysis',
   templateUrl: './bed-analysis.component.html',
@@ -17,37 +14,19 @@ export class BedAnalysisComponent implements OnInit, OnChanges {
   @Input() equipNo: string;
   @Input() echartsStyle: any = { 'height': '350px' };
   @ViewChild('tt') el: ElementRef;
-  private bedAwayAnalysis: Array<any> = [];
-  private bedAwayTime: Array<any> = [];
-  private nothingFlag = false;
-  private option: EChartOption;
-  private focusDay: any = moment(new Date()).format('YYYY-MM-DD');
-  private exampleOptions: FlatpickrOptions = {
-    enableTime: false,
-    static: true,
-    time_24hr: true,
-    dateFormat: 'Y-m-d',
-    locale: zh_lang['zh'],
-    defaultDate: this.focusDay,
-    maxDate: moment(new Date()).format('YYYY-MM-DD'),
-    onChange: this.chooseDay.bind(this),
-    onClose: this.closeTime.bind(this)
-
-  };
+  bedAwayAnalysis: Array<any> = [];
+  bedAwayTime: Array<any> = [];
+  nothingFlag = false;
+  option: EChartOption;
+  focusDay: any = moment(new Date()).format('YYYY-MM-DD');
 
   constructor(private bedAnalysisService: BedAnalysisService) { }
 
   ngOnInit() {
-    moment.locale('zh-cn');
   }
 
-  chooseDay(val) {
-    this.focusDay = moment(new Date(val)).format('YYYY-MM-DD');
+  chooseDay() {
     this.bedAnalysis();
-  }
-
-  closeTime(selectedDates, dateStr, instance) {
-    instance.input.blur();
   }
 
   ngOnChanges(changes: SimpleChanges) {

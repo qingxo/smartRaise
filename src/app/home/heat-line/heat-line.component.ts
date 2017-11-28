@@ -9,11 +9,11 @@ import storage from '../../shared/storage';
   providers: [HeatLineService]
 })
 export class HeatLineComponent implements OnInit, OnChanges {
-  private sources = '';
-  private option: EChartOption;
-  private heatList: Array<any> = [];
-  private xHeatData: Array<any> = [];
-  private nothingFlag = false;
+  sources = '';
+  option: EChartOption;
+  heatList: Array<any> = [];
+  xHeatData: Array<any> = [];
+  nothingFlag = false;
   @Input() userId = '';
   @Input() periodDay = 1;
   @Input() echartsStyle: any = { 'height': '350px' };

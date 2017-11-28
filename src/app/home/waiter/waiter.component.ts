@@ -10,15 +10,17 @@ import { AccountDialogsComponent } from '../account-dialogs';
   providers: [WaiterService]
 })
 export class WaiterComponent implements OnInit {
-  private pageSize = 10;
-  private pageNumber = 1;
-  private pages: Array<any> = [];
-  private totalPage: number;
-  private list: Array<any> = [];
-  private queryInfo = '';
-  private defalutPerson: object = {};
-  private userId: any;
-  private waiterBtn: any;
+  pageSize = 10;
+  pageNumber = 1;
+  pages: Array<any> = [];
+  totalPage: number;
+  list: Array<any> = [];
+  queryInfo = '';
+  defalutPerson: object = {
+    name: null
+  };
+  userId: any;
+  waiterBtn: object;
 
   constructor(private waiterService: WaiterService, private componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) { }
 

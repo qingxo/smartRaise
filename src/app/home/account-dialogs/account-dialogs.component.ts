@@ -2,9 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, 
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AccountDialogs } from './account-dialogs.model';
 import * as moment from 'moment';
-import { FlatpickrOptions } from 'ng2-flatpickr/ng2-flatpickr';
-import * as Flatpickr from 'flatpickr';
-import * as zh_lang from 'flatpickr/dist/l10n/zh.js';
 import { AccountDialogsService } from './account-dialogs.service';
 import * as md5 from 'md5';
 import tools from '../../shared/tools';
@@ -15,44 +12,35 @@ import tools from '../../shared/tools';
   providers: [AccountDialogsService]
 })
 export class AccountDialogsComponent implements OnInit, AfterViewInit {
-  private closeResult: string;
-  private modalRef: any;
-  private count = 0;
-  private myAccount: AccountDialogs = new AccountDialogs();
-  private exampleOptions: FlatpickrOptions = {
-    enableTime: false,
-    static: true,
-    time_24hr: true,
-    dateFormat: 'Y-m-d',
-    locale: zh_lang['zh'],
-    onChange: this.changeBirthday.bind(this),
-    onClose: this.closeTime.bind(this)
-  };
-  private chooseRole = '2'; // 0：表示系统管理员，1:表示平台管理员，2：表示健康专员
-  private name: string;
-  private userName: string;
-  private mobile: number;
-  private pwd: string;
-  private sex = 'F';
-  private birdthday: any = '';
-  private height: number;
-  private weight: number;
-  private email: string;
-  private address: string;
-  private remark: string;
+  closeResult: string;
+  modalRef: any;
+  count = 0;
+  myAccount: AccountDialogs = new AccountDialogs();
+  chooseRole = '2'; // 0：表示系统管理员，1:表示平台管理员，2：表示健康专员
+  name: string;
+  userName: string;
+  mobile: number;
+  pwd: string;
+  sex = 'F';
+  birdthday: any = '';
+  height: number;
+  weight: number;
+  email: string;
+  address: string;
+  remark: string;
 
-  private errorRealname = '';
-  private errorUserName = '';
-  private bothNames = '';
-  private errorMobile = '';
-  private errorPwd = '';
-  private bothTwop = '';
-  private errorHeight = '';
-  private errorWeight = '';
-  private bothhw = '';
-  private errorEmail = '';
+  errorRealname = '';
+  errorUserName = '';
+  bothNames = '';
+  errorMobile = '';
+  errorPwd = '';
+  bothTwop = '';
+  errorHeight = '';
+  errorWeight = '';
+  bothhw = '';
+  errorEmail = '';
 
-  private isEdit = false;
+  isEdit = false;
   @Input() fly = 0;
   @Input() userId = '';
   @Input() freezeRole = false;
@@ -80,13 +68,6 @@ export class AccountDialogsComponent implements OnInit, AfterViewInit {
         this.remark = info.remark;
       }
     });
-  }
-
-  changeBirthday(val) {
-    this.birdthday = moment(new Date(val)).format('YYYY-MM-DD');
-  }
-  closeTime(selectedDates, dateStr, instance) {
-    instance.input.blur();
   }
 
   chooseRoled(val) {

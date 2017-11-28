@@ -13,7 +13,7 @@ import storage from '../../shared/storage';
 })
 export class ClientDetailComponent implements OnInit {
 
-  private userInfo: object = {
+  userInfo: object = {
     'name': null,
     'mobile': null,
     'sex': 'F',
@@ -22,21 +22,19 @@ export class ClientDetailComponent implements OnInit {
     'commissionerUserName': null,
     'cardId': null
   };
-  private userId: string;
-  private sources: any = '-1';
-  private equipNo: string;
-  private pageSize = 10;
-  private pageNumber = 1;
-  private list: Array<any> = [];
-  private pagination: any;
-  private totalCount: any;
+  userId: string;
+  sources: any = '-1';
+  pageSize = 10;
+  pageNumber = 1;
+  list: Array<any> = [];
+  pagination: any;
+  totalCount: any;
   constructor(public clientDetailService: ClientDetailService, private route: ActivatedRoute, private router: Router) {
 
   }
 
   ngOnInit() {
     this.userId = this.route.snapshot.params['userId'];
-    this.equipNo = this.route.snapshot.params['equipNo'];
     this.getUserInfo();
     this.userOrderList();
   }

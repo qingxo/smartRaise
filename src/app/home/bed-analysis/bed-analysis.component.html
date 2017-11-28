@@ -2,7 +2,7 @@
   <div class="">
     <label for="">分析时段</label>
     <div class="inline" style="position:relative;display:inline-block;width:200px">
-      <ng2-flatpickr [config]="exampleOptions"></ng2-flatpickr>
+      <input type="text" class="birth-day" mwlFlatpickr [(ngModel)]="focusDay" dateFormat="Y-m-d" (flatpickrClose)="chooseDay()">
     </div>
   </div>
   <div class="lines black-hole" #tt>

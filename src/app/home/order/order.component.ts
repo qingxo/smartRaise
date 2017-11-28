@@ -11,16 +11,16 @@ import { PkginfoDialogComponent } from '../pkginfo-dialog';
   providers: [OrderService]
 })
 export class OrderComponent implements OnInit {
-  private pageSize = 10;
-  private pageNumber = 1;
-  private pages: Array<any> = [];
-  private totalPage: number;
-  private queryInfo = '';
-  private list: Array<any> = [];
-  private orderBtn: any;
-  private orderId = '';
-  private pkgId = '';
-  private customerId = '';
+  pageSize = 10;
+  pageNumber = 1;
+  pages: Array<any> = [];
+  totalPage: number;
+  queryInfo = '';
+  list: Array<any> = [];
+  orderBtn: any;
+  orderId = '';
+  pkgId = '';
+  customerId = '';
   constructor(private orderService: OrderService, private activedRoute: ActivatedRoute, private viewContainerRef: ViewContainerRef, private componentFactoryResolver: ComponentFactoryResolver) { }
 
   ngOnInit() {

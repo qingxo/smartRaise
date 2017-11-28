@@ -7,9 +7,9 @@ import { EChartOption } from 'echarts-ng2';
 })
 export class BarLinesComponent implements OnInit, OnChanges, OnDestroy {
 
-  private option: EChartOption;
-  private nothingFlag = false;
-  private count = 0;
+  option: EChartOption;
+  nothingFlag = false;
+  count = 0;
   @Input() topTitle = '';
   @Input() legendData: Array<string> = [];
   @Input() xData: Array<string> = [];
@@ -38,7 +38,7 @@ export class BarLinesComponent implements OnInit, OnChanges, OnDestroy {
     this.legendData = [];
     this.xData = [];
     this.serisesData = [];
-    this.option = '';
+    this.option = null;
   }
 
   getOption() {

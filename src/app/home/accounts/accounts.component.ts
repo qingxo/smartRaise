@@ -12,14 +12,14 @@ import { AccountDialogsComponent } from '../account-dialogs';
 
 })
 export class AccountsComponent implements OnInit {
-  private pageSize = 10;
-  private pageNumber = 1;
-  private pages: Array<any> = [];
-  private totalPage: number;
-  private queryInfo = '';
-  private list: Array<any> = [];
-  private userId: any = -1;
-  private accountsBtn: any;
+  pageSize = 10;
+  pageNumber = 1;
+  pages: Array<any> = [];
+  totalPage: number;
+  queryInfo = '';
+  list: Array<any> = [];
+  userId: any = -1;
+  accountsBtn: any;
   constructor(private changeDetectorRef: ChangeDetectorRef, private accountsService: AccountsService, private componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) { }
 
   ngOnInit() {

@@ -3,9 +3,6 @@ import { EChartOption } from 'echarts-ng2';
 import * as moment from 'moment';
 import * as $ from 'jquery';
 import { SleepQualityService } from './sleep-quality.service';
-import { FlatpickrOptions } from 'ng2-flatpickr/ng2-flatpickr';
-import * as Flatpickr from 'flatpickr';
-import * as zh_lang from 'flatpickr/dist/l10n/zh.js';
 @Component({
   selector: 'app-sleep-quality',
   templateUrl: './sleep-quality.component.html',
@@ -15,47 +12,34 @@ import * as zh_lang from 'flatpickr/dist/l10n/zh.js';
 })
 export class SleepQualityComponent implements OnInit, OnChanges {
 
-  private option: EChartOption;
-  private option2: EChartOption;
-  private option3: EChartOption;
-  private option4: EChartOption;
-  private option5: EChartOption;
-  private option6: EChartOption;
+  option: EChartOption;
+  option2: EChartOption;
+  option3: EChartOption;
+  option4: EChartOption;
+  option5: EChartOption;
+  option6: EChartOption;
 
-  private recovery: any;
-  private relaxation: any;
+  recovery: any;
+  relaxation: any;
 
-  private deepRate: any;
-  private lightRate: any;
-  private remRate: any;
+  deepRate: any;
+  lightRate: any;
+  remRate: any;
 
-  private sleepQuality: any;
-  private averageHeartRate: any;
-  private averageRespiration: any;
-  private focusData: Array<any> = [];
-  private focusDay: any = moment(new Date()).format('YYYY-MM-DD');
+  sleepQuality: any;
+  averageHeartRate: any;
+  averageRespiration: any;
+  focusData: Array<any> = [];
+  focusDay: any = moment(new Date()).format('YYYY-MM-DD');
+  nothingFlag = false;
 
-  private exampleOptions: FlatpickrOptions = {
-    enableTime: false,
-    static: true,
-    time_24hr: true,
-    dateFormat: 'Y-m-d',
-    locale: zh_lang['zh'],
-    defaultDate: this.focusDay,
-    maxDate: moment(new Date()).format('YYYY-MM-DD'),
-    onChange: this.chooseDay.bind(this),
-    onClose: this.closeTime.bind(this)
-
-  };
-  private nothingFlag = false;
-
-  private backgroundColor: string;
-  private color: any;
-  private fontSize: string;
-  private name: string;
-  private value: any;
-  private styleFormat: any;
-  private title: string;
+  backgroundColor: string;
+  color: any;
+  fontSize: string;
+  name: string;
+  value: any;
+  styleFormat: any;
+  title: string;
   @Input() echartsStyle: any = { 'height': '350px' };
   @Input() equipNo = '';
   @ViewChild('tt') el: ElementRef;
@@ -65,11 +49,6 @@ export class SleepQualityComponent implements OnInit, OnChanges {
   ngOnInit() {
     moment.locale('zh-cn');
   }
-
-  closeTime(selectedDates, dateStr, instance) {
-    instance.input.blur();
-  }
-
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.equipNo !== '') {
@@ -86,8 +65,7 @@ export class SleepQualityComponent implements OnInit, OnChanges {
   }
 
 
-  chooseDay(val) {
-    this.focusDay = moment(new Date(val)).format('YYYY-MM-DD');
+  chooseDay() {
     this.sleepAnalysis();
   }
 
@@ -104,7 +82,6 @@ export class SleepQualityComponent implements OnInit, OnChanges {
 
   sleepAnalysis() {
     this.sleepQualityService.sleepQuality(this.equipNo, this.focusDay).subscribe((res) => {
-      console.log(res);
       if (res.success && res.data) {
         this.showCircleZoom(true);
         this.recovery = res.data.recovery;

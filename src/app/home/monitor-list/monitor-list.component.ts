@@ -11,14 +11,14 @@ import tools from '../../shared/tools';
 })
 export class MonitorListComponent implements OnInit {
 
-  private userId = '';
-  private userInfo: any = {};
-  private list: Array<any> = [];
-  private pagination: Array<any> = [];
-  private pageNumber = 1;
-  private totalCount: number;
-  private pageSize = 10;
-  private taskProgress = 0;
+  userId = '';
+  userInfo: any = {};
+  list: Array<any> = [];
+  pagination: Array<any> = [];
+  pageNumber = 1;
+  totalCount: number;
+  pageSize = 10;
+  taskProgress = 0;
   constructor(private route: ActivatedRoute, private taskInfoService: TaskInfoService, private monitorListService: MonitorListService) { }
 
   ngOnInit() {

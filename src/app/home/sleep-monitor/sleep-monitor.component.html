@@ -51,8 +51,8 @@
 
     <ul class="mission-list">
       <li #tt>
-        <span [hidden]="sources!='A'" class="mission-table " [ngClass]="{true:'show-table',false:''}[index==0]" *ngFor="let item of missionList;let index=index" (click)="showChoosed($event,index)">{{item}}</span>
-        <span [hidden]="sources!='B'" class="mission-table" [ngClass]="{true:'show-table',false:''}[index==0]" *ngFor="let item of missionListB;let index=index " (click)="showChoosed($event,index)">{{item}}</span>
+        <span [hidden]="sources!='A'" class="mission-table " [ngClass]="{'show-table':index==0}" *ngFor="let item of missionList;let index=index" (click)="showChoosed($event,index)">{{item}}</span>
+        <span [hidden]="sources!='B'" class="mission-table" [ngClass]="{'show-table':index==0}" *ngFor="let item of missionListB;let index=index " (click)="showChoosed($event,index)">{{item}}</span>
       </li>
     </ul>
     <div class="mybox allLines" style="min-height:350px;height:auto;width:100%;border-top: 1px solid #e5e5e5;margin-top:10px;">

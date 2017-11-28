@@ -1,9 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import storage from '../../shared/storage';
 import { ErrorTipsService } from './error-tips.service';
-import { FlatpickrOptions } from 'ng2-flatpickr/ng2-flatpickr';
-import * as Flatpickr from 'flatpickr';
-import * as zh_lang from 'flatpickr/dist/l10n/zh.js';
 import { ClientService } from '../client/client.service';
 import { NgbModal, ModalDismissReasons, NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
 import tools from '../../shared/tools';
@@ -16,6 +13,7 @@ import * as $ from 'jquery';
   providers: [ErrorTipsService, ClientService],
   encapsulation: ViewEncapsulation.None
 })
+
 export class ErrorTipsComponent implements OnInit {
 
   list: Array<any> = [];
@@ -36,7 +34,7 @@ export class ErrorTipsComponent implements OnInit {
   chooseGroupList: Array<any> = [];
   groupPlanList: Array<any> = [];
   groupPlanName: string = '';
-  dayStart: string = '';
+  dayStart: string;
   dayEnd: string = '';
   monitorList: Array<any> = [
     { 'name': '请选择', 'id': '' },
@@ -48,20 +46,30 @@ export class ErrorTipsComponent implements OnInit {
     { 'name': '血氧', 'id': '07' },
     { 'name': '体温', 'id': '08' }
   ];
-  exampleOptions: FlatpickrOptions = {
-    static: true,
-    mode: 'range',
-    maxDate: "today",
-    dateFormat: 'Y-m-d',
-    locale: zh_lang['zh'],
-    onClose: this.closeTime.bind(this)
-  };
+  rangeValue: any;
+
   constructor(private errorTipsService: ErrorTipsService, private clientService: ClientService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.showList();
     this.initBtnShow();
     this.initGroupPlanList();
+  }
+
+  closeNow() {
+    if (this.rangeValue.length < 15) {
+      this.dayStart = '';
+      this.dayEnd = '';
+    } else {
+      let tmp = this.rangeValue.split('至');
+      if (tmp[0] === this.dayStart && tmp[1] === this.dayEnd) {
+        return
+      }
+      this.dayStart = tmp[0];
+      this.dayEnd = tmp[1];
+    }
+    this.showList();
+
   }
 
   onChangeMonit(num) {
@@ -93,27 +101,6 @@ export class ErrorTipsComponent implements OnInit {
     //   document.body.appendChild(IFrameRequest);
     // })
   }
-
-  closeTime(selectedDates, dateStr, instance) {
-    console.log(selectedDates)
-    if (selectedDates.length > 1) {
-      let dayst = moment(selectedDates[0]).format('YYYY-MM-DD');
-      let dayed = moment(selectedDates[1]).format('YYYY-MM-DD');
-      if (this.dayStart == dayst && this.dayEnd === dayed) {
-        instance.input.blur();
-        return
-      }
-      this.dayStart = moment(selectedDates[0]).format('YYYY-MM-DD');
-      this.dayEnd = moment(selectedDates[1]).format('YYYY-MM-DD');
-      this.showList();
-    } else if (selectedDates.length == 1) {
-      this.dayStart = '';
-      this.dayEnd = '';
-      this.showList();
-    }
-    instance.input.blur();
-  }
-
   // 获取机构列表
   initGroupPlanList() {
     const data = {

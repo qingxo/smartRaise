@@ -12,19 +12,19 @@ import storage from '../../shared/storage';
   providers: [ClientDetailService, SignDataService, ErrorTipsService]
 })
 export class SignDataComponent implements OnInit {
-  private userId: string;
-  private sources: any = '-1';
-  private equipNo: string;
-  private pageSize = 10;
-  private pageNumber = 1;
-  private list: Array<any> = [];
-  private pagination: any;
-  private totalCount: any;
-  private periodDay: any = 30;
-  private userInfo: any = {};
-  private totalPage: number;
-  private pages: Array<any> = [];
-  private queryInfo = '';
+  userId: string;
+  sources: any = '-1';
+  equipNo: string;
+  pageSize = 10;
+  pageNumber = 1;
+  list: Array<any> = [];
+  pagination: any;
+  totalCount: any;
+  periodDay: any = 30;
+  userInfo: any = {};
+  totalPage: number;
+  pages: Array<any> = [];
+  queryInfo = '';
 
   constructor(private errorTipsService: ErrorTipsService, private clientDetailService: ClientDetailService, private signDataService: SignDataService, private route: ActivatedRoute, private router: Router) { }
 

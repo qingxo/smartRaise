@@ -1,8 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { FlatpickrOptions } from 'ng2-flatpickr/ng2-flatpickr';
 import { Router, ActivatedRoute } from '@angular/router';
-import * as Flatpickr from 'flatpickr';
-import * as zh_lang from 'flatpickr/dist/l10n/zh.js';
 import * as moment from 'moment';
 import { InputGroupService } from './input-group.service';
 import tools from '../../shared/tools';
@@ -14,30 +11,20 @@ import tools from '../../shared/tools';
 })
 export class InputGroupComponent implements OnInit, OnChanges {
 
-  private chooseDate = '';
-  private lunchTime = 0;
-  private sugarLevel: number;
-  private remark = '';
+  chooseDate = '';
+  lunchTime = 0;
+  sugarLevel: number;
+  remark = '';
 
-  private heartBeat: number;
-  private highPressure: number;
-  private lowerPressure: number;
+  heartBeat: number;
+  highPressure: number;
+  lowerPressure: number;
 
-  private bmi: number;
+  bmi: number;
 
-  private bloodOxygen: number;
+  bloodOxygen: number;
 
-  private heat: number;
-
-
-  private exampleOptions: FlatpickrOptions = {
-    enableTime: true,
-    static: true,
-    time_24hr: true,
-    locale: zh_lang['zh'],
-    onChange: this.changeDate.bind(this),
-    onClose: this.closeTime.bind(this)
-  };
+  heat: number;
   @Input() inputType: string;
   @Input() customerId: string;
   @Input() taskId: string;
@@ -216,14 +203,4 @@ export class InputGroupComponent implements OnInit, OnChanges {
       }
     });
   }
-
-
-  changeDate(val) {
-    this.chooseDate = moment(new Date(val)).format('YYYY-MM-DD HH:mm:ss');
-  }
-  closeTime(selectedDates, dateStr, instance) {
-    instance.input.blur();
-  }
-
-
 }

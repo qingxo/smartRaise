@@ -10,12 +10,13 @@ import { SynDataService } from './syn-data.service';
 })
 export class SynDataComponent implements OnInit {
 
-  private pageSize = 10;
-  private pages: Array<any> = [];
-  private pageNumber = 1;
-  private taskProgress = 0;
-  private list: Array<any> = [];
-  private missionList: Array<any> = [];
+  pageSize = 10;
+  pages: Array<any> = [];
+  pageNumber = 1;
+  taskProgress = 0;
+  list: Array<any> = [];
+  missionList: Array<any> = [];
+  totalPage: number;
   constructor(private synDataService: SynDataService) { }
 
   ngOnInit() {
@@ -51,6 +52,7 @@ export class SynDataComponent implements OnInit {
           this.list = res.data.list;
           this.pages = res.data.navigatepageNums;
           this.pageNumber = res.data.pageNum;
+          this.totalPage = res.data.total
         } else {
           tools.tips(res.errMsg, '', 'error');
         }

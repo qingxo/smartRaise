@@ -75,7 +75,7 @@
       <div class="line">
         <label for="inline">开始时间</label>
         <div class="inline">
-          <ng2-flatpickr [config]="exampleOptionsStart" [setDate]="startTime"></ng2-flatpickr>
+          <input type="text" class="birth-day" mwlFlatpickr [(ngModel)]="startTime" dateFormat='Y-m'>
         </div>
       </div>
       <div class="error" style="color:red">
@@ -84,7 +84,7 @@
       <div class="line">
         <label for="">结束时间</label>
         <div class="inline">
-          <ng2-flatpickr [config]="exampleOptionsEnd" [setDate]="endTime"></ng2-flatpickr>
+          <input type="text" class="birth-day" mwlFlatpickr [(ngModel)]="endTime" dateFormat='Y-m'>
         </div>
       </div>
       <div class="error" style="color:red">

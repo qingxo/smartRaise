@@ -10,7 +10,7 @@ export class UploadImageComponent implements OnInit {
   @Input() imgUrl = '';
   @Input() customerStyle = '';
   @Output() uploadDone = new EventEmitter<string>();
-  private imageDomain = 'http://oivkcwaj2.bkt.clouddn.com/';
+  imageDomain = 'http://oivkcwaj2.bkt.clouddn.com/';
 
   constructor() { }
 

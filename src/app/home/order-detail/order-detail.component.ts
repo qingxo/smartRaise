@@ -10,15 +10,15 @@ import tools from '../../shared/tools';
   providers: [OrderDetailService, OrderPackageService]
 })
 export class OrderDetailComponent implements OnInit {
-  private pageSize = 10;
-  private pageNumber = 1;
-  private pkgId = '';
-  private item: any = {};
-  private list: Array<any> = [];
-  private missionType: Array<string> = ['一次性任务', '周期性任务'];
-  private orderId: any = -1;
-  private unsubscribeUserId: any = 0;
-  private unsubscribePkgId: any = 0;
+  pageSize = 10;
+  pageNumber = 1;
+  pkgId = '';
+  item: any = {};
+  list: Array<any> = [];
+  missionType: Array<string> = ['一次性任务', '周期性任务'];
+  orderId: any = -1;
+  unsubscribeUserId: any = 0;
+  unsubscribePkgId: any = 0;
   constructor(private orderDetailService: OrderDetailService, private orderPackageService: OrderPackageService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {

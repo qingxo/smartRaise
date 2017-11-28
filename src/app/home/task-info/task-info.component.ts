@@ -10,12 +10,12 @@ import tools from '../../shared/tools';
 })
 export class TaskInfoComponent implements OnInit {
 
-  private userId: string;
-  private customerId: string;
-  private type: number;
-  private taskId: string;
-  private userInfo: any = {};
-  private tableInfo: Array<any> = [];
+  userId: string;
+  customerId: string;
+  type: number;
+  taskId: string;
+  userInfo: any = {};
+  tableInfo: Array<any> = [];
 
   constructor(private taskInfoService: TaskInfoService, private route: ActivatedRoute) { }
 

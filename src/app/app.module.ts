@@ -3,8 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ROUTER_CONFIG } from './app.routes';
-
 import { Http, HttpModule, XHRBackend, RequestOptions } from '@angular/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { CoreComponent } from './core/core.component';
@@ -16,7 +17,6 @@ import { SharedModule } from './shared';
 import { DialogsComponent } from './dialogs/dialogs.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EchartsNg2Module } from 'echarts-ng2';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
