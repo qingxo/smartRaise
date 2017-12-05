@@ -1,5 +1,5 @@
 .client-content {
-  min-width: 1400px;
+  min-width: 1450px;
 }
 
 .t-org {
@@ -44,7 +44,7 @@
 
 .table-info table tr span {
   em.client-name {
-    background: url('/assets/images/svg/i-editor.svg') right 0 no-repeat;
+    background: url("/assets/images/svg/i-editor.svg") right 0 no-repeat;
     background-size: 12px 12px;
     padding-right: 15px;
   }
@@ -54,7 +54,7 @@
   }
 
   em.bind-equip {
-    background: url('/assets/images/svg/i-associated.svg') right 0 no-repeat;
+    background: url("/assets/images/svg/i-associated.svg") right 0 no-repeat;
     background-size: 12px 12px;
     padding-right: 15px;
   }
@@ -64,7 +64,7 @@
   }
 
   em.health-rechange {
-    background: url('/assets/images/svg/i-change.svg') right 0 no-repeat;
+    background: url("/assets/images/svg/i-change.svg") right 0 no-repeat;
     background-size: 12px 12px;
     padding-right: 15px;
   }

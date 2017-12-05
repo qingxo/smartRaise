@@ -18,6 +18,7 @@ export class CriticalValueComponent implements OnInit {
   modalRef: any;
   highValue: string;
   lowValue: string;
+  tag: string;
   constructor(private criticalValueService: CriticalValueService, private modalService: NgbModal) { }
 
   ngOnInit() {
@@ -28,6 +29,7 @@ export class CriticalValueComponent implements OnInit {
     this.clickItem = index;
     this.highValue = this.list[this.clickItem]['highValue'];
     this.lowValue = this.list[this.clickItem]['lowValue'];
+    this.tag = this.list[this.clickItem]['tag'];
     this.modalRef = this.modalService.open(content, { windowClass: 't-sm-modal' });
 
     this.modalRef.result.then((result) => {
@@ -56,7 +58,6 @@ export class CriticalValueComponent implements OnInit {
     this.criticalValueService.valueEdit(data).subscribe((res) => {
       if (res.success) {
         this.modalRef.close();
-        // this.showList()
         this.list[this.clickItem]['highValue'] = this.highValue;
         this.list[this.clickItem]['lowValue'] = this.lowValue;
         tools.tips('保存成功');
@@ -70,6 +71,13 @@ export class CriticalValueComponent implements OnInit {
     this.criticalValueService.getCriticalList().subscribe((res) => {
       if (res.success) {
         this.list = res.data;
+        for (let i = 0; i < this.list.length; i++) {
+          let tmp = this.list[i]['abnormalTypeName'].split('(')[1];
+          this.list[i]['tag'] = tmp.substr(0, tmp.length - 1);
+          if (this.list[i]['abnormalTypeName'].indexOf('血氧') != -1) {
+            this.list[i].highValue = '--';
+          }
+        }
       }
     });
   }

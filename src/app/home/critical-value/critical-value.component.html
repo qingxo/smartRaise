@@ -32,15 +32,15 @@
     </button>
     </div>
     <div class="modal-body">
-      <div class="line">
+      <div class="line" *ngIf="highValue!='--'">
         <label for="inline">异常高值</label>
         <input type="number" name="ss" [(ngModel)]="highValue">
-        <span>mmol/L</span>
+        <span>{{tag}}</span>
       </div>
       <div class="line">
         <label for="">异常低值</label>
         <input type="number" name="ss" [(ngModel)]="lowValue">
-        <span>mmol/L</span>
+        <span>{{tag}}</span>
       </div>
     </div>
     <div class="modal-footer">

@@ -1,4 +1,4 @@
-<div class="right-content-info">
+<div class="right-content-info group-manage-info">
   <div class="detail-content">
     <div class="highline">
       <div class="rf create-btn" (click)="showTpl(-1,groupUI)">
@@ -20,7 +20,7 @@
         <tbody>
           <tr *ngFor="let item of list;let i = index">
             <td><span>{{item.socialWelfareCode}}</span></td>
-            <td><span>{{item.socialWelfareName}}</span></td>
+            <td><span><em class="org-name"  (click)="showTpl(i,groupUI)">{{item.socialWelfareName}}</em></span></td>
             <td><span>{{item.contact}}</span></td>
             <td><span>{{item.tel}}</span></td>
             <td><span>{{item.province}} {{item.city}} {{item.district}} {{item.address}}</span></td>
@@ -43,7 +43,7 @@
 
   <ng-template #groupUI let-c="close" let-d="dismiss">
     <div class="modal-header">
-      <h3 class="modal-title">{{itemTarget==-1?'新增':'编辑'}}客户账号</h3>
+      <h3 class="modal-title">{{itemTarget==-1?'新增':'编辑'}}机构账号</h3>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -119,6 +119,20 @@
         <div class="error" [ngClass]="{'error-true':errorManagerMobile.length>1}">
           <span></span>
           <span class="sec">{{errorManagerMobile}}</span>
+        </div>
+
+        <div class="lf dis-bl">
+          <label for="">基本情况</label>
+          <div class="inline">
+            <input type="text" name="" value="" [(ngModel)]="basicInfo" style="width:483px;">
+          </div>
+        </div>
+        <div class="lf dis-bl">
+          <label for="">合作现状</label>
+          <div class="inline">
+            <input type="text" name="" value="" [(ngModel)]="cooperInfo" style="width:483px;">
+
+          </div>
         </div>
 
         <div class="lf dis-bl">

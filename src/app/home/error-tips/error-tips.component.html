@@ -32,9 +32,9 @@
             <td><span>监测值</span></td>
             <td><span>异常发生时间</span></td>
             <td><span>异常情况</span></td>
-            <td><span>处理意见</span></td>
+            <!-- <td><span>处理意见</span></td> -->
             <td><span>健康服务专员</span></td>
-            <td [hidden]="errorBtn['处理']"><span>操作</span></td>
+            <!-- <td [hidden]="errorBtn['处理']"><span>操作</span></td> -->
           </tr>
         </thead>
         <tbody>
@@ -46,14 +46,14 @@
             <td><span>{{item.missionValue}}</span></td>
             <td><span>{{item.ocurrDate | date:'yyyy-MM-dd'}}</span></td>
             <td><span ngbPopover="{{item.errContent}}" triggers="mouseenter:mouseleave" container="body">{{cultOpinion(item.errContent)}}</span></td>
-            <td>
+            <!-- <td>
               <span ngbPopover="{{item.remark}}" triggers="mouseenter:mouseleave" container="body">{{cultOpinion(item.remark)}}</span>
-            </td>
+            </td> -->
             <td><span>{{item.commissionerName}}</span></td>
-            <td [hidden]="errorBtn['处理']"><span class="opt">
-              <em *ngIf="item.enable == 'DISABLE'" style="cursor:auto;color:#a3adb3">已处理</em>
+            <!-- <td [hidden]="errorBtn['处理']"><span class="opt">
+              <em *ngIf="item.enable == 'DISABLE'" class="done" style="cursor:auto;color:#a3adb3">已处理</em>
               <em *ngIf = "item.enable!='DISABLE'" (click)="handleErrorDealing(item,ideas)" >处理</em>
-            </span></td>
+            </span></td> -->
           </tr>
         </tbody>
       </table>

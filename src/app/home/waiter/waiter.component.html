@@ -32,8 +32,8 @@
             <!-- <td><span>{{item.num?item.num:'0'}}</span></td> -->
             <td><span class="opt">
                <em (click)="openModal(item.userId)" [hidden]="waiterBtn['编辑']">编辑</em>
-               <em (click)="delConfirm(item.userId)" class="del" [hidden]="waiterBtn['删除']">删除</em>
                <em   [hidden] = 'item.isDefaultCommissioner==1'   (click)="defaultTips(item.userId)" [hidden]="waiterBtn['设为默认专员']">设置为默认专员</em>
+               <em (click)="delConfirm(item.userId)" class="del" [hidden]="waiterBtn['删除']">删除</em>
             </span></td>
           </tr>
         </tbody>

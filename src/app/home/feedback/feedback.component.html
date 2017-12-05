@@ -22,7 +22,7 @@
             <td *ngIf="!!item.dealRemark"><span ngbPopover="{{item.dealRemark}}" triggers="mouseenter:mouseleave" container="body">{{cultLen(item.dealRemark)}}</span></td>
             <td *ngIf="!item.dealRemark"></td>
             <td><span class="opt">
-                 <em [hidden]="!item.dealRemark" class="hasremark">已处理</em>
+                 <em [hidden]="!item.dealRemark" class="hasremark done">已处理</em>
                  <em [hidden]="!!item.dealRemark" (click)="handleFeedBack(feedback == 0? item.opinionId: item.opinionUserId,item,ideas)">处理</em>
               </span></td>
           </tr>

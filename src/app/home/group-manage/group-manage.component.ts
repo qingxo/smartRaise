@@ -48,6 +48,8 @@ export class GroupManageComponent implements OnInit {
   choosedProvince: string = this.global_tips;
   choosedCities: string = this.global_tips;
   choosedStreets: string = this.global_tips;
+  basicInfo: string = '';
+  cooperInfo: string = '';
   constructor(private groupManageService: GroupManageService, private modalService: NgbModal) { }
 
   ngOnInit() {
@@ -125,6 +127,8 @@ export class GroupManageComponent implements OnInit {
       this.mobile = this.list[index]['tel'];
       this.manager = this.list[index]['managerName'];
       this.managerMobile = this.list[index]['managerTel'];
+      this.cooperInfo = this.list[index]['cooperationActuality'];
+      this.basicInfo = this.list[index]['basicInformation'];
       const code = this.list[index].addressCode;
       this.cities = [];
       this.streets = [];
@@ -290,7 +294,9 @@ export class GroupManageComponent implements OnInit {
       'addressCode': this.choosedProvince.split('=')[1] + ',' + this.choosedCities.split('=')[1] + ',' + this.choosedStreets.split('=')[1],
       'socialWelfareContact': JSON.stringify(tmp),
       'managerName': this.manager,
-      'managerTel': this.managerMobile
+      'managerTel': this.managerMobile,
+      'basicInformation': this.basicInfo,
+      'cooperationActuality': this.cooperInfo
     };
 
     if (this.isEdit) {

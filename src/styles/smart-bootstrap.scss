@@ -500,6 +500,26 @@ textarea:focus {
                   color: #F4333C;
                 }
               }
+
+              td:last-child {
+                span.opt {
+                  a,
+                  em {
+                    padding: 4px 5px;
+                    border: 1px solid #60bfff;
+                    display: inline-block;
+                    margin: 2px 6px;
+                  }
+
+                  em.del {
+                    border: 1px solid #f4333c;
+                  }
+
+                  em.done {
+                    border: 0;
+                  }
+                }
+              }
             }
 
             tr:last-child {

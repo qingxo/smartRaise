@@ -67,6 +67,12 @@ export class MonitorListComponent implements OnInit {
       this.monitorListService.getBloodSugarList(data).subscribe((res) => {
         if (res.success) {
           this.list = res.data.list;
+          for (let i = 0; i < this.list.length; i++) {
+            console.log(this.list[i]['sugarValue'])
+            if ((this.list[i]['sugarValue'] + '').indexOf('.') == -1) {
+              this.list[i]['sugarValue'] += '.0';
+            }
+          }
           this.pagination = res.data.navigatepageNums;
           this.pageNumber = res.data.pageNum;
           this.totalCount = res.data.total;

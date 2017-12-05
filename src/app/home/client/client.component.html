@@ -53,8 +53,8 @@
             <td><span>{{item.mobile}}</span></td>
             <td><span>{{item.sex === 'M' ? '男' : '女'}}</span></td>
             <td><span>{{item.birthday | pipeBirth}}</span></td>
-            <td *ngIf="item.socialWelfareName==null"><span>{{item.socialWelfareName}}</span></td>
-            <td *ngIf="item.socialWelfareName!=null"><span *ngFor="let clip of item.socialWelfareName.split(',')">{{clip}}</span></td>
+            <td style="max-width:300px" *ngIf="item.socialWelfareName==null"><span>{{item.socialWelfareName}}</span></td>
+            <td style="max-width:300px" *ngIf="item.socialWelfareName!=null"><span *ngFor="let clip of item.socialWelfareName.split(',')">{{clip}}</span></td>
             <td><span>{{item.createDt | date:'yyyy-MM-dd'}}</span></td>
             <td><span>{{item.guardian == '1'?'Y':''}}</span></td>
             <td style="max-width:250px"><span *ngFor="let serviceInfo of item.serviceOrders">{{serviceInfo.servicePackName}}  </span></td>
